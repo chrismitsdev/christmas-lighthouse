@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "clean": "rimraf .next node_modules"
+    "clean": "rimraf .next node_modules pnpm-lock.yaml"
   },
   "devDependencies": {
     "@radix-ui/react-scroll-area": "^1.2.0",
