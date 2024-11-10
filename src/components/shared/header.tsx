@@ -6,8 +6,8 @@ import {LocaleSwitcher} from '@/src/components/shared/locale-switcher'
 import {Navigation} from '@/src/components/shared/navigation'
 import logo from '@/public/logo.png'
 
-async function Header({locale}: {locale: string}) {
-  const categories = await getCategories()
+async function Header({locale}: {locale: Locale}) {
+  const categories = await getCategories(locale)
   const t = await getTranslations('components.localeSwitcher')
 
   // Mutate categories to add "All cateogories link" which leads to '/'

@@ -3,7 +3,7 @@ import {cva, type VariantProps} from 'class-variance-authority'
 import {Slot} from '@radix-ui/react-slot'
 import {cn} from '@/src/lib/utils'
 
-const typographyVariants = cva(['block leading-6'], {
+const typographyVariants = cva(['block', 'leading-6'], {
   variants: {
     variant: {
       h1: ['text-4xl', 'tracking-tight'],
@@ -13,7 +13,8 @@ const typographyVariants = cva(['block leading-6'], {
       p: ['text-base'],
       lead: ['text-xl'],
       large: ['text-lg'],
-      small: ['text-sm', 'font-medium', 'leading-none', 'leading-6'],
+      small: ['text-sm', 'font-normal'],
+      mini: ['text-[10px]'],
       muted: ['text-sm']
     }
   },

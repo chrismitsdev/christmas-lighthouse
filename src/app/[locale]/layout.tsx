@@ -23,6 +23,10 @@ export const metadata: Metadata = {
   }
 }
 
+export function generateStaticParams() {
+  return routing.locales.map((locale) => ({locale}))
+}
+
 export default async function LocaleLayout({
   children,
   params
@@ -40,16 +44,12 @@ export default async function LocaleLayout({
       lang={locale}
       className={font.className}
     >
-      <body className='relative'>
+      <body className='relative min-h-screen grid grid-rows-[auto,auto,1fr,auto]'>
         <Header locale={locale} />
-        <main>{children}</main>
+        {children}
         <Footer />
-        <Snowfall snowflakeCount={50} />
+        <Snowfall snowflakeCount={25} />
       </body>
     </html>
   )
-}
-
-export function generateStaticParams() {
-  return routing.locales.map((locale) => ({locale}))
 }

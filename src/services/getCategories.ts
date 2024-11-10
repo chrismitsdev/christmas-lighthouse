@@ -1,6 +1,7 @@
 import * as React from 'react'
-import {getTranslations, getMessages} from 'next-intl/server'
-import {BurgerIcon} from '@/src/components/icons/burger-icon'
+import messages from '@/messages/en.json'
+import {getTranslations} from 'next-intl/server'
+import {formatCurrency} from '@/src/lib/utils'
 import {
   Coffee,
   Milk,
@@ -14,6 +15,7 @@ import {
   Martini,
   Popcorn
 } from 'lucide-react'
+import {BurgerIcon} from '@/src/components/icons/burger-icon'
 
 const uniqueIcons = [
   Coffee,
@@ -30,9 +32,8 @@ const uniqueIcons = [
   Popcorn
 ]
 
-export async function getCategories() {
-  const t = await getTranslations('Catalog')
-  const messages = (await getMessages()) as unknown as IntlMessages
+export async function getCategories(locale: Locale) {
+  const t = await getTranslations({locale, namespace: 'Catalog'})
 
   const categories: Category[] = []
 
@@ -54,7 +55,7 @@ export async function getCategories() {
 
           return {
             name: t(`${placeholder}.name` as never),
-            price: t(`${placeholder}.price` as never),
+            price: formatCurrency(t(`${placeholder}.price` as never)),
             description: description
               ? Object.keys(description).map((k) =>
                   t(`${placeholder}.description.${k}` as never)

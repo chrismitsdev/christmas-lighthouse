@@ -84,6 +84,15 @@ const config: Config = {
       },
       boxShadow: {
         'navigation-divider': 'inset 0 -1px hsl(var(--border-hover))'
+      },
+      keyframes: {
+        appear: {
+          from: {opacity: '0', transform: 'translateY(16px)'},
+          to: {opacity: '1', transform: 'translateY(0px)'}
+        }
+      },
+      animation: {
+        appear: 'appear 750ms ease-in-out'
       }
     }
   },
