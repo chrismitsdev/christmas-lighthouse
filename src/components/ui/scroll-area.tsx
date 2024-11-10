@@ -82,7 +82,9 @@ const ScrollAreaViewport = React.forwardRef<
 
   function handleShowShadows(e: React.UIEvent<HTMLDivElement, UIEvent>) {
     if (!showShadows) return
+
     const {scrollLeft, scrollWidth, clientWidth} = e.currentTarget
+
     setCanScrollLeft(scrollLeft > 0)
     setCanScrollRight(scrollWidth - scrollLeft !== clientWidth)
   }
@@ -91,7 +93,7 @@ const ScrollAreaViewport = React.forwardRef<
     <div
       className={cn(
         'relative',
-        'before:absolute before:-left-1 before:top-0 before:z-10 before:block before:h-full before:w-8 before:opacity-0 before:bg-gradient-to-r before:from-primary before:pointer-events-none',
+        'before:absolute before:-left-1 before:top-0 before:z-10 before:block before:h-full before:w-8 before:opacity-0 before:bg-gradient-to-rs before:from-primary before:pointer-events-none',
         'after:absolute after:-right-1 after:top-0 after:z-10 after:block after:h-full after:w-8 after:bg-gradient-to-l after:from-primary after:pointer-events-none',
         canScrollLeft && 'before:opacity-100',
         !canScrollRight && 'after:opacity-0'
@@ -134,7 +136,7 @@ const ScrollBar = React.forwardRef<
     <ScrollAreaThumb
       className={cn(
         orientation === 'vertical' && 'flex-1',
-        'relative rounded-full bg-accent/30 hover:bg-accent/50 transition-colors'
+        'relative rounded-full bg-black/30 hover:bg-black/50 transition-colors'
       )}
     />
   </ScrollAreaScrollbar>

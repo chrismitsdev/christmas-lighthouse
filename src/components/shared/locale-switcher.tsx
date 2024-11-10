@@ -18,11 +18,11 @@ import {UsaFlagIcon} from '@/src/components/icons/flags/usa-flag-icon'
 import {Spinner} from '@/src/components/ui/spinner'
 
 type LocaleSwitcherProps = {
-  gr: string
-  en: string
+  grLabel: string
+  enLabel: string
 }
 
-function LocaleSwitcher({gr, en}: LocaleSwitcherProps) {
+function LocaleSwitcher({grLabel, enLabel}: LocaleSwitcherProps) {
   const locale = useLocale() as Locale
   const router = useRouter()
   const pathname = usePathname()
@@ -46,11 +46,11 @@ function LocaleSwitcher({gr, en}: LocaleSwitcherProps) {
           <SelectViewport>
             <SelectItem value='gr'>
               <GreekFlagIcon />
-              <SelectItemText>{gr}</SelectItemText>
+              <SelectItemText>{grLabel}</SelectItemText>
             </SelectItem>
             <SelectItem value='en'>
               <UsaFlagIcon />
-              <SelectItemText>{en}</SelectItemText>
+              <SelectItemText>{enLabel}</SelectItemText>
             </SelectItem>
           </SelectViewport>
         </SelectContent>

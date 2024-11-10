@@ -1,7 +1,7 @@
 {
   "pages": {
-    "index": {
-      "title": "Home page"
+    "metadata": {
+      "index": "Menu"
     }
   },
   "components": {

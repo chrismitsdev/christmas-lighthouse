@@ -11,7 +11,7 @@ const config: Config = {
       bottom: 'side="bottom"',
       left: 'side="left"',
       disabled: 'disabled',
-      highlighted: ''
+      highlighted: 'highlighted=""'
     },
     container: {
       center: true,
@@ -19,56 +19,72 @@ const config: Config = {
     },
     extend: {
       colors: {
+        app: {
+          background: 'hsl(var(--app-background))',
+          foreground: 'hsl(var(--app-foreground))',
+          surface: 'hsl(var(--app-surface))'
+        },
         brand: {
-          DEFAULT: 'hsl(var(--brand))',
-          foreground: 'hsl(var(--brand-foreground))'
+          blue: {
+            1: 'hsl(var(--brand-blue-1))',
+            2: 'hsl(var(--brand-blue-2))',
+            3: 'hsl(var(--brand-blue-3))',
+            4: 'hsl(var(--brand-blue-4))',
+            5: 'hsl(var(--brand-blue-5))',
+            6: 'hsl(var(--brand-blue-6))',
+            7: 'hsl(var(--brand-blue-7))',
+            8: 'hsl(var(--brand-blue-8))',
+            9: 'hsl(var(--brand-blue-9))',
+            10: 'hsl(var(--brand-blue-10))',
+            11: 'hsl(var(--brand-blue-11))',
+            12: 'hsl(var(--brand-blue-12))'
+          },
+          gold: {
+            1: 'hsl(var(--brand-gold-1))',
+            2: 'hsl(var(--brand-gold-2))',
+            3: 'hsl(var(--brand-gold-3))',
+            4: 'hsl(var(--brand-gold-4))',
+            5: 'hsl(var(--brand-gold-5))',
+            6: 'hsl(var(--brand-gold-6))',
+            7: 'hsl(var(--brand-gold-7))',
+            8: 'hsl(var(--brand-gold-8))',
+            9: 'hsl(var(--brand-gold-9))',
+            10: 'hsl(var(--brand-gold-10))',
+            11: 'hsl(var(--brand-gold-11))',
+            12: 'hsl(var(--brand-gold-12))'
+          },
+          gray: {
+            1: 'hsl(var(--brand-gray-1))',
+            2: 'hsl(var(--brand-gray-2))',
+            3: 'hsl(var(--brand-gray-3))',
+            4: 'hsl(var(--brand-gray-4))',
+            5: 'hsl(var(--brand-gray-5))',
+            6: 'hsl(var(--brand-gray-6))',
+            7: 'hsl(var(--brand-gray-7))',
+            8: 'hsl(var(--brand-gray-8))',
+            9: 'hsl(var(--brand-gray-9))',
+            10: 'hsl(var(--brand-gray-10))',
+            11: 'hsl(var(--brand-gray-11))',
+            12: 'hsl(var(--brand-gray-12))'
+          }
         },
-        primary: {
-          DEFAULT: 'hsl(var(--primary))',
-          foreground: 'hsl(var(--primary-foreground))'
-        },
-        secondary: {
-          DEFAULT: 'hsl(var(--secondary))',
-          foreground: 'hsl(var(--secondary-foreground))'
-        },
-        accent: {
-          DEFAULT: 'hsl(var(--accent))',
-          foreground: 'hsl(var(--accent-foreground))'
-        },
-        border: 'hsl(var(--border))'
+        border: {
+          DEFAULT: 'hsl(var(--border))',
+          hover: 'hsl(var(--border-hover))'
+        }
       },
       borderRadius: {
-        lg: 'var(--radius)',
-        md: 'calc(var(--radius) - 2px)',
-        sm: 'calc(var(--radius) - 4px)'
+        none: '0px',
+        xs: 'calc(var(--radius) - 4px)', // 2px
+        sm: 'calc(var(--radius) - 2px)', // 4px
+        DEFAULT: 'var(--radius)', // 6px
+        md: 'calc(var(--radius) + 4px)', // 10px
+        lg: 'calc(var(--radius) + 6px)', // 12px
+        xl: 'calc(var(--radius) + 8px)' // 14px
       },
       boxShadow: {
-        'menu-nav': 'inset 0 -1px hsl(var(--secondary) / 0.4)'
+        'navigation-divider': 'inset 0 -1px hsl(var(--border-hover))'
       }
-    },
-    keyframes: {
-      'accordion-down': {
-        from: {height: '0'},
-        to: {height: 'var(--radix-accordion-content-height)'}
-      },
-      'accordion-up': {
-        from: {height: 'var(--radix-accordion-content-height)'},
-        to: {height: ''}
-      },
-      spin: {
-        from: {transform: 'rotate(0deg)'},
-        to: {transform: 'rotate(360deg)'}
-      },
-      appear: {
-        from: {opacity: '0', transform: 'translateY(16px)'},
-        to: {opacity: '1', transform: 'translateY(0px)'}
-      }
-    },
-    animation: {
-      'accordion-down': 'accordion-down 150ms ease-out',
-      'accordion-up': 'accordion-up 150ms ease-out',
-      spin: 'spin 1s linear infinite',
-      appear: 'appear 750ms ease-in-out'
     }
   },
   plugins: []

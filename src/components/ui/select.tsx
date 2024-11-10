@@ -30,14 +30,17 @@ const SelectTrigger = React.forwardRef<
 >(({className, children, ...props}, ref) => (
   <Trigger
     className={cn(
-      'p-2 w-full flex items-center justify-between text-sm rounded-sm border outline-none placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50',
+      'px-2.5 py-[7px] flex items-center justify-between gap-1 text-sm rounded border outline-none hover:border-border-hover disabled:cursor-not-allowed disabled:opacity-50 data-open:border-border-hover group',
       className
     )}
     ref={ref}
     {...props}
   >
     {children}
-    <Icon asChild>
+    <Icon
+      className='opacity-50 group-data-open:opacity-100 group-data-open:rotate-180 transition-transform'
+      asChild
+    >
       <ChevronDown size={16} />
     </Icon>
   </Trigger>
@@ -63,7 +66,7 @@ const SelectContent = React.forwardRef<
       side={side}
       sideOffset={sideOffset}
       className={cn(
-        'relative z-50 bg-primary w-[--radix-select-trigger-width] max-h-[--radix-select-content-available-height] overflow-hidden rounded-sm border shadow-lg',
+        'relative z-50 bg-app-background max-h-[--radix-select-content-available-height] overflow-hidden border data-open:border-border-hover rounded',
         className
       )}
       ref={ref}
@@ -90,7 +93,7 @@ const SelectLabel = React.forwardRef<
   React.ComponentPropsWithoutRef<typeof Label>
 >(({className, ...props}, ref) => (
   <Label
-    className={cn('py-1.5 pl-8 pr-2 text-sm font-semibold', className)}
+    className={cn('py-1.5 pl-8 pr-2 text-sm ', className)}
     ref={ref}
     {...props}
   />
@@ -102,7 +105,7 @@ const SelectItem = React.forwardRef<
 >(({className, children, ...props}, ref) => (
   <Item
     className={cn(
-      'py-2.5 px-2 flex items-center justify-start gap-2 w-full relative select-none rounded-sm text-sm font-semibold outline-none data-disabled:pointer-events-none data-disabled:opacity-50',
+      'px-1.5 py-2 relative w-full flex items-center justify-start gap-2.5  bg-inherit select-none rounded text-sm  outline-none data-disabled:pointer-events-none data-disabled:opacity-50 data-highlighted:bg-brand-gray-11/30',
       className
     )}
     ref={ref}
@@ -137,7 +140,7 @@ const SelectSeparator = React.forwardRef<
   React.ComponentPropsWithoutRef<typeof Separator>
 >(({className, ...props}, ref) => (
   <Separator
-    className={cn('my-1 h-px bg-muted', className)}
+    className={cn('my-1 h-px bg-brand-gray-5', className)}
     ref={ref}
     {...props}
   />

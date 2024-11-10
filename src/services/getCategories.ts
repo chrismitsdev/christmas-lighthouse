@@ -1,6 +1,5 @@
 import * as React from 'react'
-import {getTranslations} from 'next-intl/server'
-import Messages from '@/messages/en.json'
+import {getTranslations, getMessages} from 'next-intl/server'
 import {BurgerIcon} from '@/src/components/icons/burger-icon'
 import {
   Coffee,
@@ -33,19 +32,20 @@ const uniqueIcons = [
 
 export async function getCategories() {
   const t = await getTranslations('Catalog')
+  const messages = (await getMessages()) as unknown as IntlMessages
 
   const categories: Category[] = []
 
-  for (const [i, [key, value]] of Object.entries(Messages.Catalog).entries()) {
+  for (const [i, [key, value]] of Object.entries(messages.Catalog).entries()) {
     const categoryObj: Category = {
-      name: value.categoryName.toLowerCase().replace(' ', '-'),
-      categoryName: t(`${key as keyof IntlMessages['Catalog']}.categoryName`),
-      categoryNotes: value.categoryNote
+      link: value.categoryName.toLowerCase().replace(' ', '-'),
+      title: t(`${key as keyof IntlMessages['Catalog']}.categoryName`),
+      notes: value.categoryNote
         ? Object.keys(value.categoryNote).map((k) =>
             t(`${key}.categoryNote.${k}` as never)
           )
         : null,
-      categoryProducts: Object.entries(value.products)
+      products: Object.entries(value.products)
         .filter((product) => !product[1].disabled)
         .map(([productName, {description}]) => {
           const placeholder = `${
@@ -53,7 +53,6 @@ export async function getCategories() {
           }.products.${productName}`
 
           return {
-            // name: t(`${placeholder}.name` as any),
             name: t(`${placeholder}.name` as never),
             price: t(`${placeholder}.price` as never),
             description: description
@@ -63,7 +62,7 @@ export async function getCategories() {
               : null
           }
         }),
-      categoryIcon: React.createElement(uniqueIcons[i], {
+      icon: React.createElement(uniqueIcons[i], {
         strokeWidth: 2.2
       })
     }

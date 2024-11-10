@@ -15,15 +15,15 @@ declare global {
   }
 
   type Category = {
-    name: string
-    categoryName: string
-    categoryNotes: string[] | null
-    categoryProducts: {
+    link: string
+    title: string
+    notes: string[] | null
+    products: {
       name: string
       price: string
       description: string[] | null
     }[]
-    categoryIcon?: React.ReactElement
+    icon?: React.ReactElement
   }
 
   type CustomIconProps = React.SVGProps<SVGSVGElement> & {
