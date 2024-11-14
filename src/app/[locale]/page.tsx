@@ -26,11 +26,12 @@ export default async function CategoriesPage({params}: AsyncParamsLocale) {
       duration={1.5}
     >
       <Container>
-        <Section>
+        <Section className='space-y-4'>
           {categories.map((category) => (
             <Category
               key={category.title}
-              {...category}
+              category={category}
+              collapsible
             />
           ))}
         </Section>

@@ -5,7 +5,7 @@ const config: Config = {
   theme: {
     data: {
       open: 'state="open"',
-      closed: 'state="open"',
+      closed: 'state="closed"',
       top: 'side="top"',
       right: 'side="right"',
       bottom: 'side="bottom"',
@@ -89,10 +89,28 @@ const config: Config = {
         appear: {
           from: {opacity: '0', transform: 'translateY(16px)'},
           to: {opacity: '1', transform: 'translateY(0px)'}
+        },
+        'collapse-open': {
+          from: {
+            height: '0'
+          },
+          to: {
+            height: 'var(--radix-collapsible-content-height)'
+          }
+        },
+        'collapse-close': {
+          from: {
+            height: 'var(--radix-collapsible-content-height)'
+          },
+          to: {
+            height: '0'
+          }
         }
       },
       animation: {
-        appear: 'appear 750ms ease-in-out'
+        appear: 'appear 750ms ease-in-out',
+        'collapse-open': 'collapse-open 500ms ease-in-out',
+        'collapse-close': 'collapse-close 350ms ease-in-out'
       }
     }
   },

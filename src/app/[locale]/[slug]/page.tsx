@@ -46,7 +46,7 @@ export default async function CategoryPage({params}: AsyncParamsLocaleSlug) {
     >
       <Container>
         <Section>
-          {category ? <Category {...category} /> : <CategoryNotFound />}
+          {category ? <Category category={category} /> : <CategoryNotFound />}
         </Section>
       </Container>
     </FadeUp>
