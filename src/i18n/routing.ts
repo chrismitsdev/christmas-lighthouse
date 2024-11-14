@@ -8,6 +8,7 @@ const routing = defineRouting({
   defaultLocale: 'gr'
 })
 
-const {Link, redirect, usePathname, useRouter} = createNavigation(routing)
+const {Link, redirect, usePathname, useRouter, getPathname} =
+  createNavigation(routing)
 
-export {routing, Link, redirect, usePathname, useRouter}
+export {routing, Link, redirect, usePathname, useRouter, getPathname}
