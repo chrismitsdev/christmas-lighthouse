@@ -5,6 +5,7 @@ import {Container} from '@/src/components/shared/container'
 import {Section} from '@/src/components/shared/section'
 import {Category} from '@/src/components/shared/category'
 import {CategoryNotFound} from '@/src/components/shared/category-not-found'
+import {FadeUp} from '@/src/components/shared/fade-up'
 
 type AsyncParamsLocaleSlug = {
   params: Promise<{
@@ -21,7 +22,7 @@ export async function generateMetadata({
   const category = categories.find((category) => category.link === slug)
 
   return {
-    title: `${category?.title} | The Christmas Lighthouse`
+    title: `${category?.title ?? ''} | The Christmas Lighthouse`
   }
 }
 
@@ -39,10 +40,15 @@ export default async function CategoryPage({params}: AsyncParamsLocaleSlug) {
   const category = categories.find((ctg) => ctg.link === slug)
 
   return (
-    <Container>
-      <Section>
-        {category ? <Category {...category} /> : <CategoryNotFound />}
-      </Section>
-    </Container>
+    <FadeUp
+      delay={0}
+      duration={1.5}
+    >
+      <Container>
+        <Section>
+          {category ? <Category {...category} /> : <CategoryNotFound />}
+        </Section>
+      </Container>
+    </FadeUp>
   )
 }

@@ -4,6 +4,7 @@ import {getCategories} from '@/src/services/getCategories'
 import {Container} from '@/src/components/shared/container'
 import {Section} from '@/src/components/shared/section'
 import {Category} from '@/src/components/shared/category'
+import {FadeUp} from '@/src/components/shared/fade-up'
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations('pages.metadata')
@@ -20,15 +21,20 @@ export default async function CategoriesPage({params}: AsyncParamsLocale) {
   const categories = await getCategories(locale)
 
   return (
-    <Container>
-      <Section>
-        {categories.map((category) => (
-          <Category
-            key={category.title}
-            {...category}
-          />
-        ))}
-      </Section>
-    </Container>
+    <FadeUp
+      delay={0}
+      duration={1.5}
+    >
+      <Container>
+        <Section>
+          {categories.map((category) => (
+            <Category
+              key={category.title}
+              {...category}
+            />
+          ))}
+        </Section>
+      </Container>
+    </FadeUp>
   )
 }
