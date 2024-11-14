@@ -47,7 +47,10 @@ function Footer() {
               variant='icon-button'
               asChild
             >
-              <a target='_blank'>
+              <a
+                target='_blank'
+                href='https://www.facebook.com/TheChristmasLighthouseAXD'
+              >
                 <FacebookIcon />
               </a>
             </Button>
@@ -55,7 +58,10 @@ function Footer() {
               variant='icon-button'
               asChild
             >
-              <a target='_blank'>
+              <a
+                target='_blank'
+                href='https://www.instagram.com/the.christmas.lighthouse.axd/'
+              >
                 <InstagramIcon />
               </a>
             </Button>

@@ -10,7 +10,7 @@ const Section = React.forwardRef<
 
   return (
     <Comp
-      className={cn('py-20 space-y-12', className)}
+      className={cn('py-16 space-y-16', className)}
       ref={ref}
       {...props}
     />
