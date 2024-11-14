@@ -45,10 +45,13 @@ export default async function LocaleLayout({
       className={font.className}
     >
       <body className='relative min-h-screen grid grid-rows-[auto,auto,1fr,auto]'>
-        <Header locale={locale} />
-        {children}
+        <Header />
+        <main>{children}</main>
         <Footer />
-        <Snowfall snowflakeCount={25} />
+        <Snowfall
+          style={{zIndex: 100}}
+          snowflakeCount={25}
+        />
       </body>
     </html>
   )

@@ -1,13 +1,14 @@
 import Image from 'next/image'
+import {getLocale, getTranslations} from 'next-intl/server'
 import {Link} from '@/src/i18n/routing'
-import {getTranslations} from 'next-intl/server'
 import {getCategories} from '@/src/services/getCategories'
 import {Container} from '@/src/components/shared/container'
 import {LocaleSwitcher} from '@/src/components/shared/locale-switcher'
 import {Navigation} from '@/src/components/shared/navigation'
 import logo from '@/public/logo.png'
 
-async function Header({locale}: {locale: Locale}) {
+async function Header() {
+  const locale = (await getLocale()) as Locale
   const categories = await getCategories(locale)
   const t = await getTranslations('components.localeSwitcher')
 

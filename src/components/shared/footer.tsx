@@ -1,5 +1,7 @@
 import * as React from 'react'
 import Image from 'next/image'
+import {useTranslations} from 'next-intl'
+import {PhoneIcon} from 'lucide-react'
 import {Container} from '@/src/components/shared/container'
 import {Button} from '@/src/components/ui/button'
 import {FacebookIcon} from '@/src/components/icons/facebook-icon'
@@ -9,36 +11,38 @@ import {Separator} from '@/src/components/ui/separator'
 import logo from '@/public/logo.png'
 
 function Footer() {
+  const t = useTranslations('components.footer')
+
   return (
     <footer className='py-12 bg-app-surface border-t'>
       <Container>
-        <article className='py-6 flex flex-col justify-between gap-8 sm:flex-row'>
+        <article className='py-6 flex flex-col justify-between gap-14 sm:flex-row'>
           <Image
             src={logo}
             alt='Footer logo'
-            height={128}
+            className='w-auto sm:h-32'
           />
-          <div className='space-y-4 sm:space-y-8'>
+          <div className='space-y-8'>
             <div className='space-y-1'>
               <Typography className='uppercase font-semibold'>
-                {'Operating'}
+                {t('operating.title')}
               </Typography>
               <Typography
                 variant='small'
                 className='font-extralight'
               >
-                {'Daily 11:00 - 23:30 | November 30, 2024 - January 6, 2025'}
+                {t('operating.message')}
               </Typography>
             </div>
             <div className='space-y-1'>
               <Typography className='uppercase font-semibold'>
-                {'Information'}
+                {t('information.title')}
               </Typography>
               <Typography
                 variant='small'
                 className='font-extralight'
               >
-                {'Port of Alexandroupoli | +30 6973433980'}
+                {t('information.message')}
               </Typography>
             </div>
           </div>
@@ -63,6 +67,14 @@ function Footer() {
                 href='https://www.instagram.com/the.christmas.lighthouse.axd/'
               >
                 <InstagramIcon />
+              </a>
+            </Button>
+            <Button
+              variant='icon-button'
+              asChild
+            >
+              <a href='tel:+306973433980'>
+                <PhoneIcon />
               </a>
             </Button>
           </div>

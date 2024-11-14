@@ -1,10 +1,10 @@
 import type {Metadata} from 'next'
 import {setRequestLocale, getTranslations} from 'next-intl/server'
 import {getCategories} from '@/src/services/getCategories'
+import {FadeUp} from '@/src/components/shared/fade-up'
 import {Container} from '@/src/components/shared/container'
 import {Section} from '@/src/components/shared/section'
 import {Category} from '@/src/components/shared/category'
-import {FadeUp} from '@/src/components/shared/fade-up'
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations('pages.metadata')

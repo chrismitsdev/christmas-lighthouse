@@ -10,11 +10,10 @@ const buttonVariants = cva(
     'items-center',
     'justify-center',
     'gap-2',
-    'text-app-foreground/50',
+    'text-app-foreground',
     'border',
     'rounded',
     'cursor-pointer',
-    'hover:text-app-foreground',
     'hover:border-border-hover'
   ],
   {

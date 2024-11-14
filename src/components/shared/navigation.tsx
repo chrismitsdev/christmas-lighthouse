@@ -9,7 +9,7 @@ function Navigation({categories}: {categories: Category[]}) {
   const pathname = usePathname().replace('/', '')
 
   return (
-    <nav className='sticky top-0 flex justify-center bg-inherit overflow-x-hidden shadow-navigation-divider'>
+    <nav className='sticky top-0 z-50 flex justify-center bg-inherit overflow-x-hidden shadow-navigation-divider'>
       <ScrollArea
         orientation='horizontal'
         invisible
