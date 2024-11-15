@@ -50,7 +50,7 @@ export default async function LocaleLayout({
         <Footer />
         <Snowfall
           style={{zIndex: 100}}
-          snowflakeCount={25}
+          snowflakeCount={40}
         />
       </body>
     </html>

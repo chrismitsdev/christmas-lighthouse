@@ -110,7 +110,7 @@ const config: Config = {
       animation: {
         appear: 'appear 750ms ease-in-out',
         'collapse-open': 'collapse-open 500ms ease-in-out',
-        'collapse-close': 'collapse-close 350ms ease-in-out'
+        'collapse-close': 'collapse-close 300ms ease-in-out'
       }
     }
   },

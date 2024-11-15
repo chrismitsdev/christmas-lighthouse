@@ -21,7 +21,7 @@ function Navigation({categories}: {categories: Category[]}) {
               key={category.link}
               href={`/${category.link}`}
               className={cn(
-                'p-4 relative flex-shrink-0 duration-200 select-none after:absolute after:inset-x-0 after:-bottom-1.5 after:h-1.5 after:bg-border-hover after:rounded-t-lg after:duration-200 sm:px-3 opacity-50',
+                'p-4 relative flex-shrink-0 duration-200 select-none opacity-50 after:absolute after:inset-x-0 after:-bottom-1.5 after:h-1.5 after:bg-border-hover after:rounded-t-lg after:duration-200 sm:px-3',
                 pathname === category.link && 'opacity-100 after:bottom-0'
               )}
             >
