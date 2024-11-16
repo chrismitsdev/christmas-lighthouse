@@ -38,13 +38,13 @@ function LocaleSwitcher({grLabel, enLabel}: LocaleSwitcherProps) {
     >
       <SelectTrigger>
         <SelectValue placeholder={<Spinner />}>
-          {locale === 'gr' ? <GreekFlagIcon /> : <UsaFlagIcon />}
+          {locale === 'el' ? <GreekFlagIcon /> : <UsaFlagIcon />}
         </SelectValue>
       </SelectTrigger>
       <SelectPortal>
         <SelectContent>
           <SelectViewport>
-            <SelectItem value='gr'>
+            <SelectItem value='el'>
               <GreekFlagIcon />
               <SelectItemText>{grLabel}</SelectItemText>
             </SelectItem>

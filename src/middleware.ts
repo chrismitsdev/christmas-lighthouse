@@ -10,5 +10,5 @@ export const config: MiddlewareConfig = {
 
 // export const config = {
 //   // Match only internationalized pathnames
-//   matcher: ['/', '/(gr|en)/:path*']
+//   matcher: ['/', '/(el|en)/:path*']
 // }

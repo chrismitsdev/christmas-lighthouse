@@ -7,7 +7,7 @@
   "components": {
     "localeSwitcher": {
       "values": {
-        "gr": "Greek",
+        "el": "Greek",
         "en": "English"
       }
     },

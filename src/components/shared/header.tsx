@@ -15,7 +15,7 @@ async function Header() {
   // Mutate categories to add "All cateogories link" which leads to '/'
   const homeCategory: Category = {
     link: '',
-    title: locale === 'gr' ? 'Όλες οι κατηγορίες' : 'All categories',
+    title: locale === 'el' ? 'Όλες οι κατηγορίες' : 'All categories',
     notes: null,
     products: []
   }
@@ -35,7 +35,7 @@ async function Header() {
             />
           </Link>
           <LocaleSwitcher
-            grLabel={t('values.gr')}
+            grLabel={t('values.el')}
             enLabel={t('values.en')}
           />
         </Container>
