@@ -114,7 +114,7 @@ function Category({category, collapsible = false}: CategoryProps) {
                   {product.description.map((desc) => (
                     <Badge
                       key={desc}
-                      className='text-sm '
+                      variant='secondary'
                     >
                       {desc}
                     </Badge>
