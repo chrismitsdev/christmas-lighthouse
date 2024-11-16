@@ -22,9 +22,9 @@ export async function generateMetadata({
   const category = categories.find((category) => category.link === slug)
 
   return {
-    title: `${
-      category?.title ? category.title + ' |' : ''
-    } The Christmas Lighthouse`
+    title: category?.title
+      ? `${category.title} | The Christmas Lighthouse`
+      : 'The Christmas Lighthouse'
   }
 }
 
