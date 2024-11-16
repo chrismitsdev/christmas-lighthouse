@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev --turbo",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
@@ -23,7 +23,7 @@
     "eslint": "^8",
     "eslint-config-next": "15.0.3",
     "framer-motion": "^11.11.17",
-    "lucide-react": "0.459.0",
+    "lucide-react": "0.460.0",
     "next": "15.0.3",
     "next-intl": "3.25.1",
     "postcss": "8.4.49",
