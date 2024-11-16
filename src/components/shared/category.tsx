@@ -30,7 +30,7 @@ function Category({category, collapsible = false}: CategoryProps) {
           <CollapsibleTrigger className='relative w-full group'>
             <CardHeader
               className={cn(
-                'group-data-closed:border-b-transparent group-data-open:duration-500 group-data-closed:duration-300'
+                'group-data-closed:border-b-transparent group-data-open:duration-500 group-data-closed:active:bg-brand-gray-12'
               )}
             >
               <CardTitle className='flex items-center gap-2'>
