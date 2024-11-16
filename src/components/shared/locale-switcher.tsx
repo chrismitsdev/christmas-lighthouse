@@ -14,7 +14,7 @@ import {
   SelectItemText
 } from '@/src/components/ui/select'
 import {GreekFlagIcon} from '@/src/components/icons/flags/greek-flag-icon'
-import {UsaFlagIcon} from '@/src/components/icons/flags/usa-flag-icon'
+import {EnglandFlagIcon} from 'src/components/icons/flags/england-flag-icon'
 import {Spinner} from '@/src/components/ui/spinner'
 
 type LocaleSwitcherProps = {
@@ -38,7 +38,7 @@ function LocaleSwitcher({grLabel, enLabel}: LocaleSwitcherProps) {
     >
       <SelectTrigger>
         <SelectValue placeholder={<Spinner />}>
-          {locale === 'el' ? <GreekFlagIcon /> : <UsaFlagIcon />}
+          {locale === 'el' ? <GreekFlagIcon /> : <EnglandFlagIcon />}
         </SelectValue>
       </SelectTrigger>
       <SelectPortal>
@@ -49,7 +49,7 @@ function LocaleSwitcher({grLabel, enLabel}: LocaleSwitcherProps) {
               <SelectItemText>{grLabel}</SelectItemText>
             </SelectItem>
             <SelectItem value='en'>
-              <UsaFlagIcon />
+              <EnglandFlagIcon />
               <SelectItemText>{enLabel}</SelectItemText>
             </SelectItem>
           </SelectViewport>
