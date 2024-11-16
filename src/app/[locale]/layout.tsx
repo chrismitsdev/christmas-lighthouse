@@ -1,6 +1,6 @@
 import '@/src/styles/globals.css'
 import type {Metadata} from 'next'
-import {Literata} from 'next/font/google'
+import {Manrope} from 'next/font/google'
 import {notFound} from 'next/navigation'
 import {setRequestLocale} from 'next-intl/server'
 import {routing} from '@/src/i18n/routing'
@@ -8,7 +8,7 @@ import {Header} from '@/src/components/shared/header'
 import {Footer} from '@/src/components/shared/footer'
 import {Snowfall} from '@/src/components/shared/snow-fall'
 
-const font = Literata({
+const font = Manrope({
   subsets: ['latin'],
   display: 'swap'
 })

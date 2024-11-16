@@ -1,5 +1,5 @@
 import * as React from 'react'
-import {ChevronsUpDown} from 'lucide-react'
+import {ChevronsUpDownIcon, ChevronsDownUpIcon} from 'lucide-react'
 import {cn} from '@/src/lib/utils'
 import {
   Card,
@@ -38,7 +38,10 @@ function Category({category, collapsible = false}: CategoryProps) {
                 <span>{category?.title}</span>
               </CardTitle>
             </CardHeader>
-            <ChevronsUpDown className='absolute right-4 top-1/2 -translate-y-1/2 text-app-foreground/50' />
+            <span className='absolute right-4 top-1/2 -translate-y-1/2 text-app-foreground/50'>
+              <ChevronsUpDownIcon className='group-data-open:hidden' />
+              <ChevronsDownUpIcon className='group-data-closed:hidden' />
+            </span>
           </CollapsibleTrigger>
           <CollapsibleContent className='overflow-hidden data-open:animate-collapse-open data-closed:animate-collapse-close'>
             <CardContent className='space-y-4'>
@@ -56,7 +59,7 @@ function Category({category, collapsible = false}: CategoryProps) {
                         {product.description.map((desc) => (
                           <Badge
                             key={desc}
-                            className='text-sm '
+                            variant='secondary'
                           >
                             {desc}
                           </Badge>
