@@ -48,6 +48,7 @@ function Footer() {
           </div>
           <div className='space-x-4'>
             <Button
+              aria-label='Facebook link'
               variant='icon-button'
               asChild
             >
@@ -59,6 +60,7 @@ function Footer() {
               </a>
             </Button>
             <Button
+              aria-label='Instagram link'
               variant='icon-button'
               asChild
             >
@@ -70,6 +72,7 @@ function Footer() {
               </a>
             </Button>
             <Button
+              aria-label='Telephone link'
               variant='icon-button'
               asChild
             >
