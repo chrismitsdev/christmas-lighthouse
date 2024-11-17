@@ -6,10 +6,10 @@ import {cn} from '@/src/lib/utils'
 const typographyVariants = cva(['block', 'leading-6'], {
   variants: {
     variant: {
-      h1: ['text-4xl', 'tracking-tight'],
-      h2: ['pb-2', 'text-3xl', 'border-b', 'tracking-tight'],
-      h3: ['text-2xl', 'tracking-tight'],
-      h4: ['text-xl', 'tracking-tight'],
+      h1: ['text-4xl'],
+      h2: ['pb-2', 'text-3xl', 'border-b'],
+      h3: ['text-2xl'],
+      h4: ['text-xl'],
       p: ['text-base'],
       lead: ['text-xl'],
       large: ['text-lg'],
@@ -20,7 +20,13 @@ const typographyVariants = cva(['block', 'leading-6'], {
   },
   defaultVariants: {
     variant: 'p'
-  }
+  },
+  compoundVariants: [
+    {
+      variant: ['h1', 'h2', 'h3', 'h4'],
+      className: ['tracking-tight', 'leading-6']
+    }
+  ]
 })
 
 type TypographyProps = React.ComponentPropsWithRef<'span'> &

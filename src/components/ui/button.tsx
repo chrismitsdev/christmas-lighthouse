@@ -11,6 +11,7 @@ const buttonVariants = cva(
     'justify-center',
     'gap-2',
     'text-app-foreground',
+    'font-bold',
     'border',
     'rounded',
     'cursor-pointer',

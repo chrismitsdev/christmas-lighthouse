@@ -15,6 +15,11 @@
       "label": "Category not found",
       "button": "Back"
     },
+    "promo-product": {
+      "intro": "Warm up your holidays with our delightful Glühwein – the perfect choice for the magical Christmas season!",
+      "description": "Glühwein is a traditional mulled wine with spices, served warm during winter.",
+      "link": "More"
+    },
     "footer": {
       "operating": {
         "title": "Operating",
@@ -401,6 +406,19 @@
       "categoryName": "Spirit",
       "categoryNote": null,
       "products": {
+        "Gluhwein": {
+          "name": "Glühwein",
+          "description": [
+            "Red wine",
+            "Honey",
+            "Cinnamon",
+            "Cloves",
+            "Star anise",
+            "Orange"
+          ],
+          "price": "5",
+          "disabled": false
+        },
         "RegularDrink": {
           "name": "Regular drink",
           "description": [
