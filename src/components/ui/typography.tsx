@@ -15,12 +15,18 @@ const typographyVariants = cva(['block', 'leading-6'], {
       large: ['text-lg'],
       small: ['text-sm', 'font-normal'],
       mini: ['text-[10px]'],
-      muted: ['text-sm']
+      muted: ['text-sm', 'text-app-foreground/50']
     }
   },
   defaultVariants: {
     variant: 'p'
-  }
+  },
+  compoundVariants: [
+    {
+      variant: ['h1', 'h2', 'h3', 'h4'],
+      className: 'font-bold'
+    }
+  ]
 })
 
 type TypographyProps = React.ComponentPropsWithRef<'span'> &

@@ -5,11 +5,11 @@ import {cn} from '@/src/lib/utils'
 
 const buttonVariants = cva(
   [
-    'p-[7px]',
+    'p-4',
     'inline-flex',
     'items-center',
     'justify-center',
-    'gap-2',
+    'gap-3',
     'text-app-foreground',
     'border',
     'rounded',
@@ -19,8 +19,8 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        regular: 'px-2',
-        'icon-button': ''
+        regular: 'sm:px-5',
+        'icon-button': 'p-[7px]'
       }
     },
     defaultVariants: {

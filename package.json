@@ -9,11 +9,14 @@
     "lint": "next lint",
     "db:generate": "drizzle-kit generate",
     "db:migrate": "tsx ./src/db/migrate.ts",
-    "test": "tsx ./src/db/test.ts",
+    "db:exec": "tsx ./src/db/exec.ts",
     "clean": "rimraf .next node_modules pnpm-lock.yaml"
   },
   "devDependencies": {
     "@neondatabase/serverless": "^0.10.3",
+    "@node-rs/argon2": "^2.0.0",
+    "@oslojs/crypto": "^1.0.1",
+    "@oslojs/encoding": "^1.1.0",
     "@radix-ui/react-collapsible": "^1.1.1",
     "@radix-ui/react-scroll-area": "^1.2.1",
     "@radix-ui/react-select": "^2.1.2",

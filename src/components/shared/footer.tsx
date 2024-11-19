@@ -1,4 +1,6 @@
 import * as React from 'react'
+// eslint-disable-next-line
+import Link from 'next/link'
 import Image from 'next/image'
 import {useTranslations} from 'next-intl'
 import {PhoneIcon} from 'lucide-react'
@@ -46,40 +48,48 @@ function Footer() {
               </Typography>
             </div>
           </div>
-          <div className='space-x-4'>
-            <Button
-              aria-label='Facebook link'
-              variant='icon-button'
-              asChild
-            >
-              <a
-                target='_blank'
-                href='https://www.facebook.com/TheChristmasLighthouseAXD'
+          <div className='flex flex-col'>
+            <div className='space-x-4'>
+              <Button
+                aria-label='Facebook link'
+                variant='icon-button'
+                asChild
               >
-                <FacebookIcon />
-              </a>
-            </Button>
-            <Button
-              aria-label='Instagram link'
-              variant='icon-button'
-              asChild
-            >
-              <a
-                target='_blank'
-                href='https://www.instagram.com/the.christmas.lighthouse.axd/'
+                <a
+                  target='_blank'
+                  href='https://www.facebook.com/TheChristmasLighthouseAXD'
+                >
+                  <FacebookIcon />
+                </a>
+              </Button>
+              <Button
+                aria-label='Instagram link'
+                variant='icon-button'
+                asChild
               >
-                <InstagramIcon />
-              </a>
-            </Button>
-            <Button
-              aria-label='Telephone link'
-              variant='icon-button'
-              asChild
+                <a
+                  target='_blank'
+                  href='https://www.instagram.com/the.christmas.lighthouse.axd/'
+                >
+                  <InstagramIcon />
+                </a>
+              </Button>
+              <Button
+                aria-label='Telephone link'
+                variant='icon-button'
+                asChild
+              >
+                <a href='tel:+306973433980'>
+                  <PhoneIcon />
+                </a>
+              </Button>
+            </div>
+            <Link
+              href='/login'
+              className='mt-auto block text-sm underline'
             >
-              <a href='tel:+306973433980'>
-                <PhoneIcon />
-              </a>
-            </Button>
+              {t('admin')}
+            </Link>
           </div>
         </article>
         <Separator />

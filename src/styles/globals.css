@@ -55,6 +55,10 @@
 
   * {
     @apply border-border;
+
+    &::selection {
+      @apply bg-brand-gold-9 text-brand-blue-12;
+    }
   }
 
   body {
