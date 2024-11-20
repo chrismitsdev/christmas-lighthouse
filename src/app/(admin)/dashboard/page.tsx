@@ -4,7 +4,7 @@ import {getCurrentSession} from '@/src/db/session'
 import {DashboardHeader} from '@/src/app/(admin)/dashboard/dashboard-header'
 
 export const metadata: Metadata = {
-  title: 'Διαχειριστικό'
+  title: 'Διαχειριστικό | The Christmas Lighthouse'
 }
 
 export default async function DashboardPage() {

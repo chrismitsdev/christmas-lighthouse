@@ -2,11 +2,12 @@ import type {Metadata} from 'next'
 import Image from 'next/image'
 import {redirect} from 'next/navigation'
 import {getCurrentSession} from '@/src/db/session'
+import {Section} from '@/src/components/shared/section'
 import {LoginForm} from '@/src/app/(admin)/login/login-form'
 import logo from '@/public/logo.png'
 
 export const metadata: Metadata = {
-  title: 'Σύνδεση Διαχειριστή'
+  title: 'Σύνδεση Διαχειριστή | The Christmas Lighthouse'
 }
 
 export default async function LoginPage() {
@@ -17,16 +18,17 @@ export default async function LoginPage() {
   }
 
   return (
-    <main className='py-10 min-h-screen sm:py-40'>
-      <div className='px-4 mx-auto flex flex-col gap-y-6 items-center max-w-xl w-full sm:gap-y-12'>
+    <main className='min-h-screen'>
+      <Section className='mx-4 max-w-xl sm:py-32 sm:mx-auto'>
         <Image
+          className='mx-auto'
           src={logo}
           alt='The Christmas Lighthouse image'
           height={100}
           priority
         />
         <LoginForm />
-      </div>
+      </Section>
     </main>
   )
 }
