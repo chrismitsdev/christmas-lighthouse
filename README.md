@@ -1,6 +1,6 @@
 # christmas-lighthouse-menu
 
-Repo of the The Christmas Lighthouse website.
+Repo of the The Christmas Lighthouse website.  
 At the moment, contains only the product catalogue.
 
 You can take a look at the website [here](https://thechristmaslighthouse.gr).
