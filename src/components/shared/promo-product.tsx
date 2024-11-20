@@ -34,12 +34,12 @@ function PromoProduct() {
             src={product}
             alt='Gluhwein'
           />
-          <div className='space-y-1.5'>
+          <div className='space-y-4 sm:space-y-1.5'>
             <Typography>{t('intro')}</Typography>
             <Typography>{t('description')}</Typography>
             <Link
               href='/spirit'
-              className='block font-bold underline leading-8'
+              className='inline-block font-bold underline tracking-wide leading-8'
             >
               {t('link')}
             </Link>
