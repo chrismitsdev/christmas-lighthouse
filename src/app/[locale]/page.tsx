@@ -4,6 +4,7 @@ import {getCategories} from '@/src/services/getCategories'
 import {FadeUp} from '@/src/components/shared/fade-up'
 import {Container} from '@/src/components/shared/container'
 import {Section} from '@/src/components/shared/section'
+import {PromoProduct} from '@/src/components/shared/promo-product'
 import {Category} from '@/src/components/shared/category'
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -27,6 +28,7 @@ export default async function CategoriesPage({params}: AsyncParamsLocale) {
     >
       <Container>
         <Section className='space-y-4'>
+          <PromoProduct />
           {categories.map((category) => (
             <Category
               key={category.title}

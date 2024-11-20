@@ -43,7 +43,7 @@ function Category({category, collapsible = false}: CategoryProps) {
               <ChevronsDownUpIcon className='group-data-closed:hidden' />
             </span>
           </CollapsibleTrigger>
-          <CollapsibleContent className='overflow-hidden data-open:animate-collapse-open data-closed:animate-collapse-close'>
+          <CollapsibleContent>
             <CardContent className='space-y-4'>
               {category?.products.map((product, i, a) => (
                 <React.Fragment key={product.name}>
