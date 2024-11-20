@@ -7,14 +7,14 @@ import {LoginForm} from '@/src/app/(admin)/login/login-form'
 import logo from '@/public/logo.png'
 
 export const metadata: Metadata = {
-  title: 'Σύνδεση Διαχειριστή | The Christmas Lighthouse'
+  title: 'Σύνδεση Διαχειριστή'
 }
 
 export default async function LoginPage() {
   const {session} = await getCurrentSession()
 
   if (session !== null) {
-    return redirect('/dashboard')
+    redirect('/dashboard')
   }
 
   return (

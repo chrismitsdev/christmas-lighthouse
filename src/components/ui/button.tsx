@@ -10,6 +10,7 @@ const buttonVariants = cva(
     'items-center',
     'justify-center',
     'gap-3',
+    'bg-app-surface',
     'text-app-foreground',
     'border',
     'rounded',

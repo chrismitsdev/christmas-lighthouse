@@ -42,8 +42,6 @@ export async function loginAction(
     }
   }
 
-  console.log(user)
-
   const passwordHash = await getUserPasswordHash(user.id)
   const validPassword = await verifyPasswordHash(passwordHash, password)
 
@@ -57,5 +55,5 @@ export async function loginAction(
   const session = await createSession(sessionToken, user.id)
   await setSessionTokenCookie(sessionToken, session.expiresAt)
 
-  return redirect('/dashboard')
+  redirect('/dashboard')
 }

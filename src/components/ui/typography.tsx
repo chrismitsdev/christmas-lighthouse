@@ -24,7 +24,7 @@ const typographyVariants = cva(['block', 'leading-6'], {
   compoundVariants: [
     {
       variant: ['h1', 'h2', 'h3', 'h4'],
-      className: 'font-bold'
+      className: 'font-bold, leading-6'
     }
   ]
 })

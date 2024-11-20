@@ -1,20 +1,21 @@
 import * as React from 'react'
-import {db} from '@/src/db'
-import {type Session, type User, userTable, sessionTable} from '@/src/db/schema'
-import {eq} from 'drizzle-orm'
+import {cookies} from 'next/headers'
 import {
   encodeBase32LowerCaseNoPadding,
   encodeHexLowerCase
 } from '@oslojs/encoding'
 import {sha256} from '@oslojs/crypto/sha2'
-import {cookies} from 'next/headers'
+import {eq} from 'drizzle-orm'
+import {db} from '@/src/db'
+import {type Session, type User, userTable, sessionTable} from '@/src/db/schema'
 
 /* API USAGE *****************************************************************|
 |- When a user signs in:                                                      |
-|- 1) generate a session token with generateSessionToken() and                |
-|- 2) create a session linked to it with createSession().                     |
-|- The token is provided to the user client.                                  |
+|- 1) generate a session token with generateSessionToken(),                   |
+|- 2) create a db session linked to it with createSession().                  |
+|- 3) store the token on the user's browser with setSessionTokenCookie()      |
 ******************************************************************************/
+
 type SessionValidationResult =
   | {session: Session; user: User}
   | {session: null; user: null}
@@ -61,7 +62,8 @@ export async function validateSessionToken(
     await db.delete(sessionTable).where(eq(sessionTable.id, session.id))
     return {session: null, user: null}
   }
-  // checks if the session is within 15 days of expiring
+
+  // checks if the session is within 15 days of expiring and extend to 30
   if (Date.now() >= session.expiresAt.getTime() - 1000 * 60 * 60 * 24 * 15) {
     session.expiresAt = new Date(Date.now() + 1000 * 60 * 60 * 24 * 30)
     await db

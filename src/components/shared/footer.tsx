@@ -1,13 +1,11 @@
-import * as React from 'react'
-// eslint-disable-next-line
-import Link from 'next/link'
 import Image from 'next/image'
 import {useTranslations} from 'next-intl'
 import {PhoneIcon} from 'lucide-react'
 import {Container} from '@/src/components/shared/container'
-import {Button} from '@/src/components/ui/button'
+import {LinkToAdmin} from '@/src/components/shared/link-to-admin'
 import {FacebookIcon} from '@/src/components/icons/facebook-icon'
 import {InstagramIcon} from '@/src/components/icons/instagram-icon'
+import {Button} from '@/src/components/ui/button'
 import {Typography} from '@/src/components/ui/typography'
 import {Separator} from '@/src/components/ui/separator'
 import logo from '@/public/logo.png'
@@ -84,12 +82,7 @@ function Footer() {
                 </a>
               </Button>
             </div>
-            <Link
-              href='/login'
-              className='mt-auto block text-sm underline'
-            >
-              {t('admin')}
-            </Link>
+            <LinkToAdmin>{t('admin')}</LinkToAdmin>
           </div>
         </article>
         <Separator />
