@@ -16,12 +16,20 @@ const buttonVariants = cva(
     'border',
     'rounded',
     'cursor-pointer',
-    'hover:border-border-hover'
+    'hover:bg-brand-gray-12',
+    'hover:border-border-hover',
+    'active:bg-brand-gray-11/50'
   ],
   {
     variants: {
       variant: {
         regular: 'sm:px-5',
+        danger: [
+          'bg-red-950/25',
+          'border-red-950/50',
+          'hover:bg-red-950/50',
+          'hover:border-red-900'
+        ],
         'icon-button': 'p-[7px]'
       }
     },

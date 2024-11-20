@@ -7,7 +7,7 @@ import {LoginForm} from '@/src/app/(admin)/login/login-form'
 import logo from '@/public/logo.png'
 
 export const metadata: Metadata = {
-  title: 'Σύνδεση Διαχειριστή'
+  title: 'Σύνδεση | Διαχειριστικό'
 }
 
 export default async function LoginPage() {

@@ -17,7 +17,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
       <div className='relative group'>
         <input
           className={cn(
-            'p-4 w-full bg-app-surface text-brand-gray-1 border rounded outline-none placeholder:text-sm placeholder:text-app-foreground/25 group-focus-within:border-border-hover group-focus-within:bg-brand-gray-12 duration-300 sm:placeholder:text-base',
+            'p-4 w-full bg-app-surface text-brand-gray-1 border rounded outline-none placeholder:text-sm placeholder:text-app-foreground/25 group-focus-within:bg-brand-gray-12 group-focus-within:border-border-hover  duration-300 sm:placeholder:text-base',
             icon && 'pl-10 sm:pl-12',
             isPasswordType && 'pr-10 sm:pr-12',
             className

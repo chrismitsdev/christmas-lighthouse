@@ -1,14 +1,14 @@
-import Link from 'next/link'
-import {HomeIcon, UserIcon, PanelLeftIcon} from 'lucide-react'
+import {PanelLeftIcon, UserIcon} from 'lucide-react'
+import type {User} from '@/src/db/schema'
 import {cn} from '@/src/lib/utils'
 import {Typography} from '@/src/components/ui/typography'
 import {Button} from '@/src/components/ui/button'
-import {LogoutButton} from '@/src/app/(admin)/dashboard/logout-button'
 import {Separator} from '@/src/components/ui/separator'
+import {Badge} from '@/src/components/ui/badge'
 
-type HeaderProps = React.HTMLAttributes<HTMLHeadingElement>
+type HeaderProps = React.HTMLAttributes<HTMLHeadingElement> & {user: User}
 
-function Header({className, ...props}: HeaderProps) {
+function Header({className, user, ...props}: HeaderProps) {
   return (
     <header
       className={cn(
@@ -32,20 +32,10 @@ function Header({className, ...props}: HeaderProps) {
           Διαχειριστικο
         </Typography>
       </div>
-      <div className='flex gap-2'>
-        <Button
-          variant='icon-button'
-          asChild
-        >
-          <Link href='/'>
-            <HomeIcon />
-          </Link>
-        </Button>
-        <Button variant='icon-button'>
-          <UserIcon />
-        </Button>
-        <LogoutButton />
-      </div>
+      <Badge className='font-semibold tracking-widest'>
+        <UserIcon size={16} />
+        <span>{user.username}</span>
+      </Badge>
     </header>
   )
 }

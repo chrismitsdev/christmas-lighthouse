@@ -8,6 +8,7 @@ const badgeVariants = cva(
     'px-2',
     'inline-flex',
     'items-center',
+    'gap-2',
     'rounded',
     'border',
     'text-xs',

@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 export default async function DashboardLayout({
   children
 }: React.PropsWithChildren) {
-  const {session} = await getCurrentSession()
+  const {session, user} = await getCurrentSession()
 
   if (session === null) {
     redirect('/login')
@@ -20,7 +20,7 @@ export default async function DashboardLayout({
   return (
     <div className='h-screen grid grid-cols-[320px,1fr] grid-rows-[auto,1fr]'>
       <Aside className='row-span-full' />
-      <Header />
+      <Header user={user} />
       <main>{children}</main>
     </div>
   )

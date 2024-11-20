@@ -13,10 +13,16 @@ function LogoutButton() {
   const [, action] = React.useActionState(logoutAction, initialState)
 
   return (
-    <form action={action}>
-      <Button variant='icon-button'>
-        <span className='sr-only'>Αποσύνδεση</span>
-        <LogOutIcon />
+    <form
+      className='mt-auto'
+      action={action}
+    >
+      <Button
+        variant='danger'
+        className='w-full'
+      >
+        <LogOutIcon className='rotate-180' />
+        <span>Αποσύνδεση</span>
       </Button>
     </form>
   )
