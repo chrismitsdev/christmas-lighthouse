@@ -16,7 +16,7 @@ const font = Manrope({
 export const metadata: Metadata = {
   title: 'The Christmas Lighthouse',
   description: 'The Christmas Lighthouse amusement park menu',
-  metadataBase: new URL('https://christmas-lighthouse.gr'),
+  metadataBase: new URL('https://thechristmaslighthouse.gr'),
   formatDetection: {
     email: true,
     telephone: true
