@@ -1,5 +1,5 @@
 import {ImageResponse} from 'next/og'
-import {getCategories} from '@/src/services/getCategories'
+import {getTranslations} from 'next-intl/server'
 
 type ParamsLocaleSlug = {
   params: {
@@ -19,8 +19,17 @@ export const contentType = 'image/png'
 export default async function Image({
   params: {locale, slug}
 }: ParamsLocaleSlug) {
-  const categories = await getCategories(locale)
-  const category = categories.find((category) => category.link === slug)
+  const catalogSlug =
+    slug === 'energy-drink'
+      ? 'Energy'
+      : (slug.replace(
+          slug[0],
+          slug[0].toUpperCase()
+        ) as keyof IntlMessages['Catalog'])
+  const t = await getTranslations({
+    locale,
+    namespace: `Catalog.${catalogSlug}`
+  })
   const assetUrl = new URL('../../../../public/logo.png', import.meta.url)
   const assetResponse = await fetch(assetUrl)
   const assetBuffer = await assetResponse.arrayBuffer()
@@ -50,7 +59,7 @@ export default async function Image({
             width={300}
           />
         </picture>
-        <span>{`${category?.title} | The Christmas Lighthouse`}</span>
+        <span>{`${t('categoryName')}| The Christmas Lighthouse`}</span>
       </div>
     ),
     {
