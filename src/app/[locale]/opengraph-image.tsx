@@ -7,7 +7,7 @@ type ParamsLocale = {
   }
 }
 
-// export const runtime = 'edge'
+export const runtime = 'edge'
 export const alt = 'The Christmas Lighthouse'
 export const size = {
   width: 1200,
