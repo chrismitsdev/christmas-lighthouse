@@ -16,36 +16,69 @@ function Footer() {
   return (
     <footer className='py-12 bg-app-surface border-t'>
       <Container>
-        <article className='py-6 flex flex-col justify-between gap-14 sm:flex-row'>
+        <article className='py-6 space-y-16 sm:space-y-0 sm:flex sm:justify-between sm:flex-wrap sm:gap-4'>
           <Image
             src={logo}
             alt='Footer logo'
             className='w-auto sm:h-32'
           />
-          <div className='space-y-8'>
-            <div className='space-y-1'>
-              <Typography className='uppercase font-semibold'>
-                {t('operating.title')}
-              </Typography>
+          <div className='space-y-3'>
+            <Typography className='uppercase font-bold'>
+              {t('operating.column-title')}
+            </Typography>
+            <div className='space-y-2'>
               <Typography
                 variant='small'
+                className='underline'
+              >
+                {t('operating.zone-1.title')}
+              </Typography>
+              <Typography
+                variant='mini'
                 className='font-extralight'
               >
-                {t('operating.message')}
+                {t('operating.zone-1.description-1')}
+              </Typography>
+              <Typography
+                variant='mini'
+                className='font-extralight'
+              >
+                {t('operating.zone-1.description-2')}
               </Typography>
             </div>
-            <div className='space-y-1'>
-              <Typography className='uppercase font-semibold'>
-                {t('information.title')}
-              </Typography>
+            <div className='space-y-2'>
               <Typography
                 variant='small'
+                className='underline'
+              >
+                {t('operating.zone-2.title')}
+              </Typography>
+              <Typography
+                variant='mini'
                 className='font-extralight'
               >
-                {t('information.message')}
+                {t('operating.zone-2.description-1')}
               </Typography>
             </div>
           </div>
+
+          <div className='space-y-3'>
+            <Typography className='uppercase font-bold'>
+              {t('information.column-title')}
+            </Typography>
+            <div className='space-y-2'>
+              <Typography variant='small'>
+                {t('information.description-1')}
+              </Typography>
+              <Typography variant='small'>
+                {t('information.description-2')}
+              </Typography>
+              <Typography variant='small'>
+                {t('information.description-3')}
+              </Typography>
+            </div>
+          </div>
+
           <div className='space-x-4'>
             <Button
               aria-label='Facebook link'
@@ -85,13 +118,13 @@ function Footer() {
         <Separator />
         <article className='py-6 flex flex-col items-start justify-between gap-4 sm:items-center sm:flex-row'>
           <Typography
-            variant='small'
+            variant='mini'
             className='font-extralight'
           >
             {`© ${new Date().getFullYear()} The Christmas Lighthouse`}
           </Typography>
           <Typography
-            variant='small'
+            variant='mini'
             className='font-extralight'
           >
             {`Designed & Developed by CM`}

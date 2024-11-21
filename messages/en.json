@@ -22,12 +22,22 @@
     },
     "footer": {
       "operating": {
-        "title": "Operating",
-        "message": "Daily 11:00 - 23:30 | November 30, 2024 - January 6, 2025"
+        "column-title": "Opening hours",
+        "zone-1": {
+          "title": "November 30, 2024 - December 20, 2024",
+          "description-1": "Monday to Friday: 18:00 - 23:30",
+          "description-2": "Weekends & Holidays: 11:00 - 23:30"
+        },
+        "zone-2": {
+          "title": "December 21, 2024 - January 6, 2025",
+          "description-1": "Daily: 11:00 - 23:30"
+        }
       },
       "information": {
-        "title": "Information",
-        "message": "AXD | Port of Alexandroupoli | +30 6973433980"
+        "column-title": "Information",
+        "description-1": "Alexandroupoli, Greece",
+        "description-2": "Port of Alexandroupoli",
+        "description-3": "+30 6973433980"
       }
     }
   },

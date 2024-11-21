@@ -14,7 +14,7 @@ const typographyVariants = cva(['block', 'leading-6'], {
       lead: ['text-xl'],
       large: ['text-lg'],
       small: ['text-sm', 'font-normal'],
-      mini: ['text-[10px]'],
+      mini: ['text-xs'],
       muted: ['text-sm']
     }
   },
