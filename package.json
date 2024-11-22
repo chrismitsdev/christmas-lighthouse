@@ -40,6 +40,7 @@
     "postcss": "8.4.49",
     "react": "19.0.0-rc-02c0e824-20241028",
     "react-dom": "19.0.0-rc-02c0e824-20241028",
+    "react-hook-form": "^7.53.2",
     "react-snowfall": "2.1.1",
     "rimraf": "6.0.1",
     "tailwind-merge": "2.5.4",
