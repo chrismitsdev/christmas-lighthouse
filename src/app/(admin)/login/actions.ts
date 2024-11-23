@@ -3,14 +3,17 @@
 import {redirect} from 'next/navigation'
 import {
   type InferOutput,
-  object,
-  pipe,
+  objectAsync,
+  pipeAsync,
   string,
   trim,
   nonEmpty,
   email,
   endsWith,
-  safeParse,
+  forwardAsync,
+  safeParseAsync,
+  partialCheckAsync,
+  checkAsync,
   flatten
 } from 'valibot'
 import {
@@ -24,20 +27,51 @@ import {
   setSessionTokenCookie
 } from '@/src/db/session'
 
-const LoginFormSchema = object({
-  email: pipe(
-    string('Μη έγκυρο πεδίο email'),
-    trim(),
-    nonEmpty('Το email διαχειριστή απαιτείται'),
-    email('Μη έγκυρη μορφή email'),
-    endsWith('@gmail.com', 'Μη αποδεκτός πάροχος email')
-  ),
-  password: pipe(
-    string('Μη έγκυρο πεδίο κωδικού πρόσβασης'),
-    trim(),
-    nonEmpty('Ο κωδικός πρόσβασης απαιτείται')
+const LoginFormSchema = pipeAsync(
+  objectAsync({
+    email: pipeAsync(
+      string('Μη έγκυρο πεδίο email'),
+      trim(),
+      nonEmpty('Το email διαχειριστή απαιτείται'),
+      email('Μη έγκυρη μορφή email'),
+      endsWith('@gmail.com', 'Μη αποδεκτός πάροχος email'),
+      checkAsync(async function (emailInput) {
+        const user = await getUserFromEmail(emailInput)
+        if (user === null) {
+          return false
+        }
+        return true
+      }, 'Το email διαχειριστή δεν είναι σωστό')
+    ),
+    password: pipeAsync(
+      string('Μη έγκυρο πεδίο κωδικού πρόσβασης'),
+      trim(),
+      nonEmpty('Ο κωδικός πρόσβασης απαιτείται')
+    )
+  }),
+  forwardAsync(
+    partialCheckAsync(
+      [['email'], ['password']],
+      async function (input) {
+        const user = await getUserFromEmail(input.email)
+
+        if (user === null) {
+          throw new Error('Το email διαχειριστή δεν είναι σωστό')
+        }
+
+        const passwordHash = await getUserPasswordHash(user.id)
+        const validPassword = await verifyPasswordHash(
+          passwordHash,
+          input.password
+        )
+
+        return validPassword
+      },
+      'Ο κωδικός πρόσβασης δεν είναι σωστός'
+    ),
+    ['password']
   )
-})
+)
 
 type LoginFormData = InferOutput<typeof LoginFormSchema>
 
@@ -56,7 +90,7 @@ export async function loginAction(
   formData: FormData
 ): Promise<LoginActionState> {
   const data = Object.fromEntries(formData) as LoginActionState['data']
-  const result = safeParse(LoginFormSchema, data)
+  const result = await safeParseAsync(LoginFormSchema, data)
 
   // Valibot validation
   if (!result.success) {
@@ -73,30 +107,8 @@ export async function loginAction(
 
   const user = await getUserFromEmail(result.output.email)
 
-  // DB validation
   if (user === null) {
-    return {
-      data,
-      errors: {
-        email: 'Το email διαχειριστή δεν είναι σωστό'
-      }
-    }
-  }
-
-  const passwordHash = await getUserPasswordHash(user.id)
-  const validPassword = await verifyPasswordHash(
-    passwordHash,
-    result.output.password
-  )
-
-  // DB validation
-  if (!validPassword) {
-    return {
-      data,
-      errors: {
-        password: 'Ο κωδικός πρόσβασης δεν είναι σωστός'
-      }
-    }
+    throw new Error('Το email διαχειριστή δεν είναι σωστό')
   }
 
   const sessionToken = generateSessionToken()

@@ -22,7 +22,7 @@
   },
   "overrides": [
     {
-      "files": ["./src/app/(admin)/**"],
+      "files": ["./src/app/(admin)/**", "./trash/**"],
       "rules": {
         "react/jsx-no-literals": "off",
         "no-restricted-imports": "off"
