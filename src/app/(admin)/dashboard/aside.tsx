@@ -23,7 +23,7 @@ function Aside({className, ...props}: AsideProps) {
         alt='The Christmas Lighthouse logo'
         height={40}
       />
-      <nav className='p-8 flex flex-col h-full'>
+      <nav className='py-16 px-8 flex flex-col h-full'>
         <div className='space-y-8'>
           <Button
             className='w-full'

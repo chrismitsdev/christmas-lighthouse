@@ -3,14 +3,15 @@
 import {redirect} from 'next/navigation'
 import {
   type InferOutput,
-  safeParse,
   object,
   pipe,
   string,
   trim,
   nonEmpty,
   email,
-  endsWith
+  endsWith,
+  safeParse,
+  flatten
 } from 'valibot'
 import {
   getUserFromEmail,
@@ -23,7 +24,7 @@ import {
   setSessionTokenCookie
 } from '@/src/db/session'
 
-const LoginSchema = object({
+const LoginFormSchema = object({
   email: pipe(
     string('Μη έγκυρο πεδίο email'),
     trim(),
@@ -38,32 +39,34 @@ const LoginSchema = object({
   )
 })
 
-type LoginData = InferOutput<typeof LoginSchema>
+type LoginFormData = InferOutput<typeof LoginFormSchema>
 
-type LoginErrors = {
+type LoginFormErrors = {
   email?: string
   password?: string
 }
 
-export type ActionState = {
-  data: LoginData
-  errors: LoginErrors
+export type LoginActionState = {
+  data: LoginFormData
+  errors: LoginFormErrors
 }
 
 export async function loginAction(
-  _prev: ActionState,
+  _prev: LoginActionState,
   formData: FormData
-): Promise<ActionState> {
-  const data = Object.fromEntries(formData) as ActionState['data']
-  const result = safeParse(LoginSchema, data, {abortPipeEarly: true})
+): Promise<LoginActionState> {
+  const data = Object.fromEntries(formData) as LoginActionState['data']
+  const result = safeParse(LoginFormSchema, data)
 
   // Valibot validation
   if (!result.success) {
+    const issues = flatten<typeof LoginFormSchema>(result.issues)
+
     return {
       data,
       errors: {
-        email: result.issues[0].message,
-        password: result.issues[1].message
+        email: issues.nested?.email?.[0],
+        password: issues.nested?.password?.[0]
       }
     }
   }

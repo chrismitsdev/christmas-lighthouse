@@ -8,14 +8,17 @@ import {
   SendHorizonalIcon,
   HouseIcon
 } from 'lucide-react'
+import {
+  type LoginActionState,
+  loginAction
+} from '@/src/app/(admin)/login/actions'
 import {Typography} from '@/src/components/ui/typography'
 import {Button} from '@/src/components/ui/button'
 import {Input} from '@/src/components/ui/input'
-import {type ActionState, loginAction} from '@/src/app/(admin)/login/actions'
 
 const initialState = {
-  data: {} as ActionState['data'],
-  errors: {} as ActionState['errors']
+  data: {} as LoginActionState['data'],
+  errors: {} as LoginActionState['errors']
 }
 
 function LoginForm() {
@@ -37,7 +40,7 @@ function LoginForm() {
               Συμπληρώστε τα στοιχεία σας για να συνδεθείτε στο διαχειριστκό.
             </Typography>
           </div>
-          <div className='mt-12 space-y-4'>
+          <div className='space-y-4'>
             <Input
               defaultValue={state.data.email}
               placeholder='Email διαχειριστή'
@@ -58,7 +61,7 @@ function LoginForm() {
               disabled={isPending}
             />
           </div>
-          <div className='mt-12 flex justify-between'>
+          <div className='flex justify-between'>
             <Button
               asChild
               disabled={isPending}

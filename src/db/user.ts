@@ -72,23 +72,6 @@ async function getUserFromEmail(email: string) {
   return user
 }
 
-// async function getUserFromEmail(
-//   email: string
-// ): Promise<UserWithoutHashPassword> {
-//   const user = await db.query.userTable.findFirst({
-//     where: eq(userTable.email, email),
-//     columns: {
-//       passwordHash: false
-//     }
-//   })
-
-//   if (!user) {
-//     throw new Error('Invalid email in getUserFromEmail function')
-//   }
-
-//   return user
-// }
-
 async function getUserPasswordHash(userId: number): Promise<string> {
   const user = await db.query.userTable.findFirst({
     where: eq(userTable.id, userId),
