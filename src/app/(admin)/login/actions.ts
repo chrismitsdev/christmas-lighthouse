@@ -2,6 +2,17 @@
 
 import {redirect} from 'next/navigation'
 import {
+  type InferOutput,
+  safeParse,
+  object,
+  pipe,
+  string,
+  trim,
+  nonEmpty,
+  email,
+  endsWith
+} from 'valibot'
+import {
   getUserFromEmail,
   getUserPasswordHash,
   verifyPasswordHash
@@ -12,42 +23,76 @@ import {
   setSessionTokenCookie
 } from '@/src/db/session'
 
-type ActionResult = {
-  message: string
+const LoginSchema = object({
+  email: pipe(
+    string('Μη έγκυρο πεδίο email'),
+    trim(),
+    nonEmpty('Το email διαχειριστή απαιτείται'),
+    email('Μη έγκυρη μορφή email'),
+    endsWith('@gmail.com', 'Μη αποδεκτός πάροχος email')
+  ),
+  password: pipe(
+    string('Μη έγκυρο πεδίο κωδικού πρόσβασης'),
+    trim(),
+    nonEmpty('Ο κωδικός πρόσβασης απαιτείται')
+  )
+})
+
+type LoginData = InferOutput<typeof LoginSchema>
+
+type LoginErrors = {
+  email?: string
+  password?: string
+}
+
+export type ActionState = {
+  data: LoginData
+  errors: LoginErrors
 }
 
 export async function loginAction(
-  _prev: ActionResult,
+  _prev: ActionState,
   formData: FormData
-): Promise<ActionResult> {
-  const email = formData.get('email')
-  const password = formData.get('password')
+): Promise<ActionState> {
+  const data = Object.fromEntries(formData) as ActionState['data']
+  const result = safeParse(LoginSchema, data, {abortPipeEarly: true})
 
-  if (typeof email !== 'string' || typeof password !== 'string') {
+  // Valibot validation
+  if (!result.success) {
     return {
-      message: 'Μη έγκυρα πεδία ή πεδία λείπουν'
+      data,
+      errors: {
+        email: result.issues[0].message,
+        password: result.issues[1].message
+      }
     }
   }
 
-  if (email === '' || password === '') {
-    return {
-      message: 'Εισαγάγετε το email και τον κωδικό πρόσβασής σας.'
-    }
-  }
+  const user = await getUserFromEmail(result.output.email)
 
-  const user = await getUserFromEmail(email)
+  // DB validation
   if (user === null) {
     return {
-      message: 'O λογαριασμός δεν υπάρχει'
+      data,
+      errors: {
+        email: 'Το email διαχειριστή δεν είναι σωστό'
+      }
     }
   }
 
   const passwordHash = await getUserPasswordHash(user.id)
-  const validPassword = await verifyPasswordHash(passwordHash, password)
+  const validPassword = await verifyPasswordHash(
+    passwordHash,
+    result.output.password
+  )
 
+  // DB validation
   if (!validPassword) {
     return {
-      message: 'Μη έγκυρος κωδικός πρόσβασης'
+      data,
+      errors: {
+        password: 'Ο κωδικός πρόσβασης δεν είναι σωστός'
+      }
     }
   }
 

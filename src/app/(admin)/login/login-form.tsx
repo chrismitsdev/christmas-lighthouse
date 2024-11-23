@@ -11,19 +11,25 @@ import {
 import {Typography} from '@/src/components/ui/typography'
 import {Button} from '@/src/components/ui/button'
 import {Input} from '@/src/components/ui/input'
-import {loginAction} from '@/src/app/(admin)/login/actions'
-import {cn} from '@/src/lib/utils'
+import {type ActionState, loginAction} from '@/src/app/(admin)/login/actions'
 
 const initialState = {
-  message: ''
+  data: {} as ActionState['data'],
+  errors: {} as ActionState['errors']
 }
 
 function LoginForm() {
-  const [state, action] = React.useActionState(loginAction, initialState)
+  const [state, action, isPending] = React.useActionState(
+    loginAction,
+    initialState
+  )
 
   return (
     <div className='py-8 px-4 w-full bg-app-surface border rounded sm:py-16 sm:px-12'>
-      <form action={action}>
+      <form
+        action={action}
+        noValidate
+      >
         <div className='space-y-12'>
           <div className='space-y-2 text-center'>
             <Typography variant='h4'>Σύνδεση διαχειριστή</Typography>
@@ -33,35 +39,39 @@ function LoginForm() {
           </div>
           <div className='mt-12 space-y-4'>
             <Input
-              placeholder='Email'
+              defaultValue={state.data.email}
+              placeholder='Email διαχειριστή'
               icon={<MailIcon size={20} />}
               name='email'
               type='email'
               autoComplete='username'
+              error={state?.errors.email}
+              disabled={isPending}
             />
             <Input
+              defaultValue={state.data.password}
               placeholder='Κωδικός πρόσβασης'
               icon={<KeySquareIcon size={20} />}
               name='password'
               type='password'
+              error={state?.errors.password}
+              disabled={isPending}
             />
-            <span
-              className={cn(
-                'block px-1 py-[3px] min-h-6 text-xs text-red-200 font-semibold text-center rounded',
-                state?.message && 'bg-red-300/20 border border-red-300/20'
-              )}
-            >
-              {state?.message}
-            </span>
           </div>
           <div className='mt-12 flex justify-between'>
-            <Button asChild>
+            <Button
+              asChild
+              disabled={isPending}
+            >
               <Link href='/'>
                 <HouseIcon size={20} />
                 <span>Αρχική</span>
               </Link>
             </Button>
-            <Button>
+            <Button
+              isLoading={isPending}
+              disabled={isPending}
+            >
               <span>Υποβολή</span>
               <SendHorizonalIcon size={20} />
             </Button>
