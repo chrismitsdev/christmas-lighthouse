@@ -44,7 +44,7 @@ function LoginForm() {
             <Input
               defaultValue={state.data.email}
               placeholder='Email διαχειριστή'
-              icon={<MailIcon size={20} />}
+              icon={<MailIcon />}
               name='email'
               type='email'
               autoComplete='username'
@@ -54,7 +54,7 @@ function LoginForm() {
             <Input
               defaultValue={state.data.password}
               placeholder='Κωδικός πρόσβασης'
-              icon={<KeySquareIcon size={20} />}
+              icon={<KeySquareIcon />}
               name='password'
               type='password'
               error={state?.errors.password}

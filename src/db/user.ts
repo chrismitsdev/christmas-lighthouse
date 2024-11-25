@@ -48,14 +48,87 @@ async function createUser(
       email: userTable.email
     })
 
-  const newUser: UserWithoutHashPassword = {
+  if (result.length < 1) {
+    throw new Error('Could not create new user (createUser function)')
+  }
+
+  const user: UserWithoutHashPassword = {
     id: result[0].id,
     username,
     email
   }
 
-  return newUser
+  return user
 }
+
+async function updateUser(
+  userId: number,
+  username?: string,
+  email?: string,
+  password?: string
+): Promise<UserWithoutHashPassword> {
+  let passwordHash: string | undefined = undefined
+
+  if (password) {
+    passwordHash = await hashPassword(password)
+  }
+
+  const result = await db
+    .update(userTable)
+    .set({username, email, passwordHash})
+    .where(eq(userTable.id, userId))
+    .returning({
+      id: userTable.id,
+      username: userTable.username,
+      email: userTable.email
+    })
+
+  if (result.length < 1) {
+    throw new Error('Could not update existing user (updateUser function)')
+  }
+
+  const user: UserWithoutHashPassword = {
+    id: userId,
+    username: result[0].username,
+    email: result[0].email
+  }
+
+  return user
+}
+// async function updateUser(
+//   userId: number,
+//   username?: string,
+//   email?: string,
+//   password?: string
+// ): Promise<UserWithoutHashPassword> {
+//   const updateFields: Partial<User> = {}
+
+//   if (username) updateFields.username = username
+//   if (email) updateFields.email = email
+//   if (password) updateFields.passwordHash = await hashPassword(password)
+
+//   const result = await db
+//     .update(userTable)
+//     .set(updateFields)
+//     .where(eq(userTable.id, userId))
+//     .returning({
+//       id: userTable.id,
+//       username: userTable.username,
+//       email: userTable.email
+//     })
+
+//   if (result.length < 1) {
+//     throw new Error('Could not update existing user (updateUser function)')
+//   }
+
+//   const updatedUser: UserWithoutHashPassword = {
+//     id: userId,
+//     username: result[0].username,
+//     email: result[0].email
+//   }
+
+//   return updatedUser
+// }
 
 async function getUserFromEmail(email: string) {
   const user = await db.query.userTable.findFirst({
@@ -92,6 +165,7 @@ export {
   hashPassword,
   checkEmailAvailability,
   createUser,
+  updateUser,
   getUserFromEmail,
   getUserPasswordHash
 }

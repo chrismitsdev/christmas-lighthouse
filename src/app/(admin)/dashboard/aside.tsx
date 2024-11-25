@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import {ShoppingBasketIcon, UserIcon, HomeIcon} from 'lucide-react'
+import {ShoppingBasketIcon, UserCogIcon, HomeIcon} from 'lucide-react'
 import {cn} from '@/src/lib/utils'
 import {Button} from 'src/components/ui/button'
 import {LogoutButton} from '@/src/app/(admin)/dashboard/logout-button'
@@ -39,7 +39,7 @@ function Aside({className, ...props}: AsideProps) {
             asChild
           >
             <Link href='/dashboard/account'>
-              <UserIcon />
+              <UserCogIcon />
               <span>Λογαριασμός</span>
             </Link>
           </Button>

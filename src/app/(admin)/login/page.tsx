@@ -19,12 +19,11 @@ export default async function LoginPage() {
 
   return (
     <main className='min-h-screen'>
-      <Section className='mx-4 max-w-xl sm:py-32 sm:mx-auto'>
+      <Section className='mx-4 py-8 max-w-xl space-y-8 sm:mx-auto sm:py-32 sm:!space-y-20'>
         <Image
-          className='mx-auto'
+          className='mx-auto w-auto h-24'
           src={logo}
           alt='The Christmas Lighthouse image'
-          height={100}
           priority
         />
         <LoginForm />

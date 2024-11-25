@@ -32,8 +32,8 @@ function Header({className, user, ...props}: HeaderProps) {
           Διαχειριστικο
         </Typography>
       </div>
-      <Badge className='font-semibold tracking-widest'>
-        <UserIcon size={16} />
+      <Badge>
+        <UserIcon size={14} />
         <span>{user.username}</span>
       </Badge>
     </header>

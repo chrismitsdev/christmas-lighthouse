@@ -2,16 +2,16 @@
 
 import * as React from 'react'
 import {cn} from '@/src/lib/utils'
-import {EyeIcon, EyeOffIcon} from 'lucide-react'
+import {type LucideIcon, EyeIcon, EyeOffIcon} from 'lucide-react'
 
 type InputProps = React.InputHTMLAttributes<HTMLInputElement> & {
-  icon?: React.ReactNode
+  icon?: React.ReactElement<LucideIcon>
   error?: string
 }
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
   (
-    {className, icon, type = 'text', error, disabled = false, ...props},
+    {className, type = 'text', disabled = false, icon, error, ...props},
     ref
   ) => {
     const [passVisible, setPassVisible] = React.useState(false)
@@ -26,7 +26,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
           <input
             className={cn(
               'p-4 w-full bg-app-surface text-brand-gray-1 border rounded outline-none placeholder:text-sm placeholder:text-app-foreground/25 group-focus-within:bg-brand-gray-12 group-focus-within:border-border-hover duration-300 sm:placeholder:text-base disabled:opacity-30',
-              icon && 'pl-10 sm:pl-12',
+              icon && 'pl-8 sm:pl-12',
               isPasswordType && 'pr-10 sm:pr-12',
               error && 'border-red-400/50 group-focus-within:border-red-400/50',
               className
@@ -37,7 +37,10 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
             {...props}
           />
           {icon && (
-            <span className='absolute left-3 top-1/2 -translate-y-1/2 text-app-foreground/25 group-focus-within:text-brand-gray-1 duration-300 sm:left-4'>
+            <span
+              aria-hidden='true'
+              className='absolute left-3 top-1/2 -translate-y-1/2 text-app-foreground/25 group-focus-within:text-brand-gray-1 duration-300 [&>svg]:size-4 sm:left-4 sm:[&>svg]:size-5'
+            >
               {icon}
             </span>
           )}

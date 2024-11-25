@@ -1,39 +1,46 @@
 'use server'
 
-// import {getCurrentSession} from '@/src/db/session'
-// import {revalidatePath} from 'next/cache'
+import {revalidatePath} from 'next/cache'
 import {
   type InferOutput,
-  object,
-  optional,
+  objectAsync,
+  union,
+  unionAsync,
+  literal,
+  safeParseAsync,
+  checkAsync,
   pipe,
+  pipeAsync,
   string,
   trim,
   email,
   endsWith,
   minLength,
-  safeParse,
   flatten
 } from 'valibot'
-// import {hashPassword} from '@/src/db/user'
+import {checkEmailAvailability, updateUser} from '@/src/db/user'
 
-const UpdateFormSchema = object({
-  username: optional(
+const UpdateFormSchema = objectAsync({
+  new_username: union([
+    literal(''),
     pipe(
       string('Μη έγκυρο πεδίο username'),
       trim(),
-      minLength(8, 'Το νέο username πρέπει να είναι τουλάχιστον 4 χαρακτήρες')
+      minLength(4, 'Το νέο username πρέπει να είναι τουλάχιστον 4 χαρακτήρες')
     )
-  ),
-  email: optional(
-    pipe(
+  ]),
+  new_email: unionAsync([
+    literal(''),
+    pipeAsync(
       string('Μη έγκυρο πεδίο email'),
       trim(),
       email('Μη έγκυρη μορφή νέου email'),
-      endsWith('@gmail.com', 'Μη αποδεκτός πάροχος email')
+      endsWith('@gmail.com', 'Μη αποδεκτός πάροχος email'),
+      checkAsync(checkEmailAvailability, 'Το νέο email υπάρχει ήδη')
     )
-  ),
-  password: optional(
+  ]),
+  new_password: union([
+    literal(''),
     pipe(
       string('Μη έγκυρο πεδίο password'),
       trim(),
@@ -42,7 +49,7 @@ const UpdateFormSchema = object({
         'Ο νέος κωδικός πρόσβασης πρέπει να είναι τουλάιχστον 8 χαρακτήρες'
       )
     )
-  )
+  ])
 })
 
 type UpdateFormData = InferOutput<typeof UpdateFormSchema>
@@ -53,25 +60,54 @@ type UpdateFormErrors = {
   password?: string
 }
 
-export type ActionState = {
+export type UpdateActionState = {
   data: UpdateFormData
   errors: UpdateFormErrors
 }
 
-export async function updateUserAction(_prev: ActionState, formData: FormData) {
-  const data = Object.fromEntries(formData) as ActionState['data']
-  const result = safeParse(UpdateFormSchema, data)
+const initialState = {
+  data: {} as UpdateFormData,
+  errors: {} as UpdateFormErrors
+}
+
+export async function updateUserAction(
+  userId: number,
+  _prev: UpdateActionState,
+  formData: FormData
+): Promise<UpdateActionState> {
+  const {new_username, new_email, new_password} = Object.fromEntries(formData)
+  const data = {
+    new_username,
+    new_email,
+    new_password
+  } as UpdateFormData
+
+  if (Object.values(data).every((value) => value === '')) {
+    return initialState
+  }
+
+  const result = await safeParseAsync(UpdateFormSchema, data)
 
   if (!result.success) {
-    const issues = flatten<typeof UpdateFormSchema>(result.issues)
+    const issues = flatten(result.issues)
 
     return {
       data,
       errors: {
-        username: issues.nested?.username?.[0],
-        email: issues.nested?.email?.[0],
-        password: issues.nested?.password?.[0]
+        username: issues.nested?.new_username?.[0],
+        email: issues.nested?.new_email?.[0],
+        password: issues.nested?.new_password?.[0]
       }
     }
   }
+
+  await updateUser(
+    userId,
+    result.output.new_username || undefined,
+    result.output.new_email || undefined,
+    result.output.new_password || undefined
+  )
+
+  revalidatePath('/dashboard')
+  return initialState
 }
