@@ -30,8 +30,22 @@ const typographyVariants = cva(['block', 'leading-6'], {
 })
 
 type TypographyProps = React.ComponentPropsWithRef<'span'> &
-  AsChild &
-  VariantProps<typeof typographyVariants>
+  VariantProps<typeof typographyVariants> &
+  AsChild
+
+// const Typography = React.forwardRef<HTMLElement, TypographyProps>(
+//   ({className, variant, asChild = false, ...props}, ref) => {
+//     const Comp = asChild ? Slot : 'h2'
+
+//     return (
+//       <Comp
+//         className={cn(typographyVariants({variant, className}))}
+//         ref={ref}
+//         {...props}
+//       />
+//     )
+//   }
+// )
 
 function Typography({
   variant,
