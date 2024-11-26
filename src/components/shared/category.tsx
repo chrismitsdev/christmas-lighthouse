@@ -41,11 +41,11 @@ function Category({category, collapsible = false}: CategoryProps) {
             <span className='absolute w-6 h-6 right-4 top-1/2 -translate-y-1/2'>
               <ChevronUpIcon
                 size={16}
-                className='absolute -top-0.5 left-1/2 -translate-x-1/2 group-data-open:translate-y-2 transition'
+                className='absolute -top-0.5 left-1/2 -translate-x-1/2 group-data-open:translate-y-2 group-data-open:duration-500 transition'
               />
               <ChevronDownIcon
                 size={16}
-                className='absolute -bottom-0.5 left-1/2 -translate-x-1/2 group-data-open:-translate-y-2 transition'
+                className='absolute -bottom-0.5 left-1/2 -translate-x-1/2 group-data-open:-translate-y-2 group-data-open:duration-500 transition'
               />
             </span>
           </CollapsibleTrigger>
