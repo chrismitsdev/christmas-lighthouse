@@ -14,8 +14,8 @@ const typographyVariants = cva(['block', 'leading-6'], {
       lead: ['text-xl'],
       large: ['text-lg'],
       small: ['text-sm', 'font-normal'],
-      mini: ['text-[10px]'],
-      muted: ['text-sm', 'text-app-foreground/50']
+      mini: ['text-xs'],
+      muted: ['text-sm']
     }
   },
   defaultVariants: {
@@ -30,8 +30,8 @@ const typographyVariants = cva(['block', 'leading-6'], {
 })
 
 type TypographyProps = React.ComponentPropsWithRef<'span'> &
-  AsChild &
-  VariantProps<typeof typographyVariants>
+  VariantProps<typeof typographyVariants> &
+  AsChild
 
 function Typography({
   variant,

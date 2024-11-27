@@ -4,7 +4,7 @@ import {routing, getPathname} from '@/src/i18n/routing'
 
 type Href = Parameters<typeof getPathname>[0]['href']
 
-const host = 'https://christmas-lighthouse-menu.vercel.app'
+const host = 'https://thechristmaslighthouse.gr'
 
 const slugs = Object.values(enMessages.Catalog).map(function (c) {
   return c.categoryName.toLowerCase().replace(' ', '-')
