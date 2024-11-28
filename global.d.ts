@@ -14,22 +14,6 @@ declare global {
     }>
   }
 
-  type Product = {
-    id: string
-    name: string
-    description: string[] | null
-    price: string
-    disabled: boolean
-  }
-
-  type Category = {
-    link: string
-    icon?: React.ReactComponentElement
-    title: string
-    products: Product[]
-    notes: string[] | null
-  }
-
   type CustomIconProps = React.SVGProps<SVGSVGElement> & {
     size?: number
   }

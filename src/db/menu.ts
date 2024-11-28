@@ -42,36 +42,37 @@ const categoryIcons = [
   Popcorn
 ]
 
-const CategorySchema = object({
+const NeonProductSchema = object({
+  id: string(),
+  name: string(),
+  description: union([array(string()), null_()]),
+  price: string(),
+  disabled: boolean()
+})
+const NeonCategorySchema = object({
   title: string(),
   notes: union([array(string()), null_()]),
-  products: array(
-    object({
-      id: string(),
-      name: string(),
-      description: union([array(string()), null_()]),
-      price: string(),
-      disabled: boolean()
-    })
-  )
+  products: array(NeonProductSchema)
 })
+const NeonCategoriesSchema = objectWithRest({}, NeonCategorySchema)
 
-const CategoriesSchema = objectWithRest({}, CategorySchema)
+export type Product = InferOutput<typeof NeonProductSchema>
+export type Category = InferOutput<typeof NeonCategorySchema> & {
+  link: string
+  icon?: React.ReactElement
+}
 
-export type Category = InferOutput<typeof CategoriesSchema>
-
-export async function getCategories(locale: Locale) {
-  const result = await db
+export async function getCategories(locale: Locale): Promise<Category[]> {
+  const dbResult = await db
     .select({jsonColumn: categoryTable[locale]})
     .from(categoryTable)
+  const result = safeParse(NeonCategoriesSchema, dbResult[0].jsonColumn)
 
-  const parsedResult = safeParse(CategoriesSchema, result[0].jsonColumn)
-
-  if (!parsedResult.success) {
+  if (!result.success) {
     throw new Error('Db schema not validated')
   }
 
-  return Object.entries(parsedResult.output).map(function (
+  return Object.entries(result.output).map(function (
     [categoryName, categoryValue],
     i
   ) {

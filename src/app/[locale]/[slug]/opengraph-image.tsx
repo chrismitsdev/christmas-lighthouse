@@ -1,7 +1,7 @@
 import {ImageResponse} from 'next/og'
-import {getCategories} from '@/src/db/menu'
-import {readFile} from 'node:fs/promises'
 import {join} from 'path'
+import {readFile} from 'node:fs/promises'
+import {getCategories} from '@/src/db/menu'
 
 type ParamsLocaleSlug = {
   params: {

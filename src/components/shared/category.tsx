@@ -1,5 +1,6 @@
 import * as React from 'react'
 import {ChevronUpIcon, ChevronDownIcon} from 'lucide-react'
+import {type Category as CategoryType} from '@/src/db/menu'
 import {cn} from '@/src/lib/utils'
 import {
   Card,
@@ -19,7 +20,7 @@ import {Separator} from '@/src/components/ui/separator'
 import {formatCurrency} from '@/src/lib/utils'
 
 type CategoryProps = {
-  category: Category
+  category: CategoryType
   collapsible?: boolean
 }
 
@@ -35,8 +36,8 @@ function Category({category, collapsible = false}: CategoryProps) {
               )}
             >
               <CardTitle className='flex items-center gap-2'>
-                {category?.icon}
-                <span>{category?.title}</span>
+                {category.icon}
+                <span>{category.title}</span>
               </CardTitle>
             </CardHeader>
             <span className='absolute w-6 h-6 right-4 top-1/2 -translate-y-1/2'>
@@ -52,7 +53,7 @@ function Category({category, collapsible = false}: CategoryProps) {
           </CollapsibleTrigger>
           <CollapsibleContent>
             <CardContent className='space-y-4'>
-              {category?.products.map((product, i, a) => (
+              {category.products.map((product, i, a) => (
                 <React.Fragment key={product.name}>
                   <div className='grid grid-cols-[1fr_auto] gap-y-2 gap-x-1'>
                     <Typography
@@ -61,7 +62,7 @@ function Category({category, collapsible = false}: CategoryProps) {
                     >
                       {product.name}
                     </Typography>
-                    {product.description && (
+                    {product.description !== null && (
                       <div className='flex flex-wrap gap-1.5 row-start-2'>
                         {product.description.map((desc) => (
                           <Badge
@@ -83,10 +84,10 @@ function Category({category, collapsible = false}: CategoryProps) {
               ))}
             </CardContent>
 
-            {category?.notes && (
+            {category.notes !== null && (
               <CardFooter>
                 <ul className='pl-4 space-y-2 list-disc'>
-                  {category?.notes.map((note) => (
+                  {category.notes.map((note) => (
                     <li key={note}>
                       <Typography variant='small'>{note}</Typography>
                     </li>
@@ -104,12 +105,12 @@ function Category({category, collapsible = false}: CategoryProps) {
     <Card>
       <CardHeader>
         <CardTitle className='flex items-center gap-2'>
-          {category?.icon}
+          {category.icon}
           <span>{category?.title}</span>
         </CardTitle>
       </CardHeader>
       <CardContent className='space-y-4'>
-        {category?.products.map((product, i, a) => (
+        {category.products.map((product, i, a) => (
           <React.Fragment key={product.name}>
             <div className='grid grid-cols-[1fr_auto] gap-y-2 gap-x-1'>
               <Typography
@@ -118,7 +119,7 @@ function Category({category, collapsible = false}: CategoryProps) {
               >
                 {product.name}
               </Typography>
-              {product.description && (
+              {product.description !== null && (
                 <div className='flex flex-wrap gap-1.5 row-start-2'>
                   {product.description.map((desc) => (
                     <Badge
@@ -140,10 +141,10 @@ function Category({category, collapsible = false}: CategoryProps) {
         ))}
       </CardContent>
 
-      {category?.notes && (
+      {category.notes !== null && (
         <CardFooter>
           <ul className='pl-4 space-y-2 list-disc'>
-            {category?.notes.map((note) => (
+            {category.notes.map((note) => (
               <li key={note}>
                 <Typography variant='small'>{note}</Typography>
               </li>
