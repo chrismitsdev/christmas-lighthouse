@@ -18,7 +18,7 @@ export const contentType = 'image/png'
 
 export default async function Image({params: {locale}}: ParamsLocale) {
   const t = await getTranslations({locale, namespace: 'pages.metadata'})
-  const assetUrl = await readFile(join(process.cwd(), 'public/logo.png'))
+  const assetUrl = await readFile(join(process.cwd(), 'o-logo.png'))
   const base64String = Buffer.from(assetUrl).toString('base64')
   const imgSrc = `data:image/png;base64,${base64String}`
 
