@@ -1,8 +1,7 @@
 import Image from 'next/image'
-import {Link} from '@/src/i18n/routing'
 import {getLocale, getTranslations} from 'next-intl/server'
+import {Link} from '@/src/i18n/routing'
 import {type Category, getCategories} from '@/src/db/menu'
-// import {getCategories} from '@/src/services/getCategories'
 import {Container} from '@/src/components/shared/container'
 import {LocaleSwitcher} from '@/src/components/shared/locale-switcher'
 import {Navigation} from '@/src/components/shared/navigation'
@@ -15,7 +14,7 @@ async function Header() {
 
   // Mutate categories to add "All cateogories link" which leads to '/'
   const homeCategory: Category = {
-    link: '/',
+    link: '',
     title: locale === 'el' ? 'Όλες οι κατηγορίες' : 'All categories',
     notes: null,
     products: []
