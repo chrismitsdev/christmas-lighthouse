@@ -47,7 +47,7 @@ export async function getCategories(locale: Locale) {
       }),
       ...categoryValue
     }
-  }) as Ctg[]
+  }) as Category[]
 
   return categories
 }

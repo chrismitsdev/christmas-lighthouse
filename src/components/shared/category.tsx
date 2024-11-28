@@ -19,7 +19,7 @@ import {Separator} from '@/src/components/ui/separator'
 import {formatCurrency} from '@/src/lib/utils'
 
 type CategoryProps = {
-  category: Ctg
+  category: Category
   collapsible?: boolean
 }
 

@@ -14,7 +14,7 @@ async function Header() {
   const t = await getTranslations('components.localeSwitcher')
 
   // Mutate categories to add "All cateogories link" which leads to '/'
-  const homeCategory: Ctg = {
+  const homeCategory: Category = {
     link: '',
     title: locale === 'el' ? 'Όλες οι κατηγορίες' : 'All categories',
     notes: null,

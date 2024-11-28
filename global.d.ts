@@ -22,24 +22,12 @@ declare global {
     disabled: boolean
   }
 
-  type Ctg = {
+  type Category = {
     link: string
     icon?: React.ReactComponentElement
     title: string
     products: Product[]
     notes: string[] | null
-  }
-
-  type Category = {
-    link: string
-    title: string
-    notes: string[] | null
-    products: {
-      name: string
-      description: string[] | null
-      price: string
-    }[]
-    icon?: React.ReactElement
   }
 
   type CustomIconProps = React.SVGProps<SVGSVGElement> & {
