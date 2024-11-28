@@ -22,7 +22,7 @@ export default async function Image({
 }: ParamsLocaleSlug) {
   const categories = await getCategories(locale)
   const category = categories.find((category) => category.link === slug)
-  const assetUrl = await readFile(join(process.cwd(), 'o-logo.png'))
+  const assetUrl = await readFile(join(process.cwd(), 'public/logo.png'))
   const base64String = Buffer.from(assetUrl).toString('base64')
   const imgSrc = `data:image/png;base64,${base64String}`
 
@@ -46,7 +46,7 @@ export default async function Image({
           <img
             src={imgSrc}
             alt='The Christmas Lighthouse Logo'
-            width={300}
+            width={350}
           />
         </picture>
         <span>{`${category?.title}| The Christmas Lighthouse`}</span>
