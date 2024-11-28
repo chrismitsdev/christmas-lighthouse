@@ -14,14 +14,30 @@ declare global {
     }>
   }
 
+  type Product = {
+    id: string
+    name: string
+    description: string[] | null
+    price: string
+    disabled: boolean
+  }
+
+  type Ctg = {
+    link: string
+    icon?: React.ReactComponentElement
+    title: string
+    products: Product[]
+    notes: string[] | null
+  }
+
   type Category = {
     link: string
     title: string
     notes: string[] | null
     products: {
       name: string
-      price: string
       description: string[] | null
+      price: string
     }[]
     icon?: React.ReactElement
   }

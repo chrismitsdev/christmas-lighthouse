@@ -1,3 +1,9 @@
+CREATE TABLE IF NOT EXISTS "category" (
+	"id" serial PRIMARY KEY NOT NULL,
+	"el" json NOT NULL,
+	"en" json NOT NULL
+);
+--> statement-breakpoint
 CREATE TABLE IF NOT EXISTS "session" (
 	"id" text PRIMARY KEY NOT NULL,
 	"user_id" integer NOT NULL,

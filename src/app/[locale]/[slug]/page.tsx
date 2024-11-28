@@ -1,6 +1,6 @@
 import type {Metadata} from 'next'
 import {setRequestLocale} from 'next-intl/server'
-import {getCategories} from 'src/services/getCategories'
+import {getCategories} from '@/src/db/menu'
 import {FadeUp} from '@/src/components/shared/fade-up'
 import {Container} from '@/src/components/shared/container'
 import {Section} from '@/src/components/shared/section'

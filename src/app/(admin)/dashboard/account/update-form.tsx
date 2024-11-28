@@ -5,7 +5,8 @@ import {type User} from '@/src/db/schema'
 import {UserIcon, MailIcon, KeySquareIcon} from 'lucide-react'
 import {SendHorizontalIcon} from 'lucide-react'
 import {
-  type UpdateActionState,
+  type UpdateFormData,
+  type UpdateFormErrors,
   updateUserAction
 } from '@/src/app/(admin)/dashboard/account/actions'
 import {Typography} from '@/src/components/ui/typography'
@@ -14,8 +15,8 @@ import {Button} from '@/src/components/ui/button'
 import {Badge} from '@/src/components/ui/badge'
 
 const initialState = {
-  data: {} as UpdateActionState['data'],
-  errors: {} as UpdateActionState['errors']
+  data: {} as UpdateFormData,
+  errors: {} as UpdateFormErrors
 }
 
 function UpdateForm({user}: {user: User}) {

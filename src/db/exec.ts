@@ -1,27 +1,18 @@
-import {
-  getUserFromEmail,
-  getUserPasswordHash,
-  verifyPasswordHash
-} from '@/src/db/user'
+import {db} from '@/src/db'
+import {categoryTable} from '@/src/db/schema'
+
+async function getCategories(locale: Locale) {
+  const result = await db
+    .select({messages: categoryTable[locale]})
+    .from(categoryTable)
+
+  return result[0].messages
+}
 
 async function main() {
-  const testEmail = 'chrismits88@gmail.com'
+  const msgs = await getCategories('en')
 
-  const user = await getUserFromEmail(testEmail)
-
-  if (user === null) {
-    console.log('A user with this email was not found')
-    return
-  }
-
-  const passwordHash = await getUserPasswordHash(user.id)
-  const validPassword = await verifyPasswordHash(passwordHash, '2551022619aA1')
-
-  if (validPassword) {
-    console.log('✅ Password is correct')
-  } else {
-    console.log('❌ Invalid password')
-  }
+  console.log(msgs)
 }
 
 main()

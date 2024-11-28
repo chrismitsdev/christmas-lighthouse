@@ -52,15 +52,15 @@ const UpdateFormSchema = objectAsync({
   ])
 })
 
-type UpdateFormData = InferOutput<typeof UpdateFormSchema>
+export type UpdateFormData = InferOutput<typeof UpdateFormSchema>
 
-type UpdateFormErrors = {
+export type UpdateFormErrors = {
   username?: string
   email?: string
   password?: string
 }
 
-export type UpdateActionState = {
+type UpdateActionState = {
   data: UpdateFormData
   errors: UpdateFormErrors
 }
@@ -89,7 +89,7 @@ export async function updateUserAction(
   const result = await safeParseAsync(UpdateFormSchema, data)
 
   if (!result.success) {
-    const issues = flatten(result.issues)
+    const issues = flatten<typeof UpdateFormSchema>(result.issues)
 
     return {
       data,

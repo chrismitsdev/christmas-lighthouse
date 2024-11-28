@@ -16,9 +16,10 @@ import {
 import {Typography} from '@/src/components/ui/typography'
 import {Badge} from '@/src/components/ui/badge'
 import {Separator} from '@/src/components/ui/separator'
+import {formatCurrency} from '@/src/lib/utils'
 
 type CategoryProps = {
-  category: Category
+  category: Ctg
   collapsible?: boolean
 }
 
@@ -72,7 +73,9 @@ function Category({category, collapsible = false}: CategoryProps) {
                         ))}
                       </div>
                     )}
-                    <Typography variant='small'>{product.price}</Typography>
+                    <Typography variant='small'>
+                      {formatCurrency(product.price)}
+                    </Typography>
                   </div>
 
                   {i !== a.length - 1 && <Separator />}
@@ -127,7 +130,9 @@ function Category({category, collapsible = false}: CategoryProps) {
                   ))}
                 </div>
               )}
-              <Typography variant='small'>{product.price}</Typography>
+              <Typography variant='small'>
+                {formatCurrency(product.price)}
+              </Typography>
             </div>
 
             {i !== a.length - 1 && <Separator />}

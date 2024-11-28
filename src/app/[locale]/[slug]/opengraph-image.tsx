@@ -1,5 +1,7 @@
 import {ImageResponse} from 'next/og'
-import {getTranslations} from 'next-intl/server'
+import {getCategories} from '@/src/db/menu'
+import {readFile} from 'node:fs/promises'
+import {join} from 'path'
 
 type ParamsLocaleSlug = {
   params: {
@@ -8,7 +10,6 @@ type ParamsLocaleSlug = {
   }
 }
 
-export const runtime = 'edge'
 export const alt = 'The Christmas Lighthouse'
 export const size = {
   width: 1200,
@@ -19,21 +20,10 @@ export const contentType = 'image/png'
 export default async function Image({
   params: {locale, slug}
 }: ParamsLocaleSlug) {
-  const catalogSlug =
-    slug === 'energy-drink'
-      ? 'Energy'
-      : (slug.replace(
-          slug[0],
-          slug[0].toUpperCase()
-        ) as keyof IntlMessages['Catalog'])
-  const t = await getTranslations({
-    locale,
-    namespace: `Catalog.${catalogSlug}`
-  })
-  const assetUrl = new URL('../../../../public/o-logo.png', import.meta.url)
-  const assetResponse = await fetch(assetUrl)
-  const assetBuffer = await assetResponse.arrayBuffer()
-  const base64String = Buffer.from(assetBuffer).toString('base64')
+  const categories = await getCategories(locale)
+  const category = categories.find((category) => category.link === slug)
+  const assetUrl = await readFile(join(process.cwd(), 'o-logo.png'))
+  const base64String = Buffer.from(assetUrl).toString('base64')
   const imgSrc = `data:image/png;base64,${base64String}`
 
   return new ImageResponse(
@@ -59,7 +49,7 @@ export default async function Image({
             width={300}
           />
         </picture>
-        <span>{`${t('categoryName')}| The Christmas Lighthouse`}</span>
+        <span>{`${category?.title}| The Christmas Lighthouse`}</span>
       </div>
     ),
     {
