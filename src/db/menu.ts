@@ -1,4 +1,15 @@
 import * as React from 'react'
+import {
+  type InferOutput,
+  objectWithRest,
+  object,
+  string,
+  union,
+  array,
+  boolean,
+  null as null_,
+  safeParse
+} from 'valibot'
 import {db} from '@/src/db'
 import {categoryTable} from '@/src/db/schema'
 import {
@@ -31,12 +42,36 @@ const categoryIcons = [
   Popcorn
 ]
 
+const CategorySchema = object({
+  title: string(),
+  notes: union([array(string()), null_()]),
+  products: array(
+    object({
+      id: string(),
+      name: string(),
+      description: union([array(string()), null_()]),
+      price: string(),
+      disabled: boolean()
+    })
+  )
+})
+
+const CategoriesSchema = objectWithRest({}, CategorySchema)
+
+export type Category = InferOutput<typeof CategoriesSchema>
+
 export async function getCategories(locale: Locale) {
   const result = await db
-    .select({messages: categoryTable[locale]})
+    .select({jsonColumn: categoryTable[locale]})
     .from(categoryTable)
 
-  const categories = Object.entries(result[0].messages!).map(function (
+  const parsedResult = safeParse(CategoriesSchema, result[0].jsonColumn)
+
+  if (!parsedResult.success) {
+    throw new Error('Db schema not validated')
+  }
+
+  return Object.entries(parsedResult.output).map(function (
     [categoryName, categoryValue],
     i
   ) {
@@ -47,7 +82,5 @@ export async function getCategories(locale: Locale) {
       }),
       ...categoryValue
     }
-  }) as Category[]
-
-  return categories
+  })
 }
