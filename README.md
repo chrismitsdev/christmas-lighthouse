@@ -15,3 +15,4 @@ You can take a look at the website [here](https://thechristmaslighthouse.gr).
 - [Lucide React](https://lucide.dev/) icon library
 - [Neon DB](https://neon.tech/home) fully managed serverless PostgreSQL
 - [Drizzle ORM](https://orm.drizzle.team/) as a type-safe way to interact with the DB
+- [Valibot](https://valibot.dev/) schema & data validation library
