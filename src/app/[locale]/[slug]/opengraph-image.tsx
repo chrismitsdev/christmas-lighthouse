@@ -49,7 +49,7 @@ export default async function Image({
             width={350}
           />
         </picture>
-        <span>{`${category?.title}| The Christmas Lighthouse`}</span>
+        <span>{`${category?.title} | The Christmas Lighthouse`}</span>
       </div>
     ),
     {
