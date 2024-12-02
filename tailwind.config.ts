@@ -105,12 +105,17 @@ const config: Config = {
           to: {
             height: '0'
           }
+        },
+        shimmer: {
+          from: {transform: 'translateX(-100%)'},
+          to: {transform: 'translateX(100%)'}
         }
       },
       animation: {
         appear: 'appear 750ms ease-in-out',
         'collapse-open': 'collapse-open 500ms ease-in-out',
-        'collapse-close': 'collapse-close 300ms ease-in-out'
+        'collapse-close': 'collapse-close 300ms ease-in-out',
+        shimmer: 'shimmer 1.25s infinite'
       }
     }
   },

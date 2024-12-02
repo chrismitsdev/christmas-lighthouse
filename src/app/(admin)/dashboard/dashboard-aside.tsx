@@ -2,13 +2,13 @@ import Link from 'next/link'
 import Image from 'next/image'
 import {ShoppingBasketIcon, UserCogIcon, HomeIcon} from 'lucide-react'
 import {cn} from '@/src/lib/utils'
-import {Button} from 'src/components/ui/button'
+import {Button} from '@/src/components/ui/button'
 import {LogoutButton} from '@/src/app/(admin)/dashboard/logout-button'
 import logo from '@/public/logo.png'
 
 type AsideProps = React.HTMLAttributes<HTMLElement>
 
-function Aside({className, ...props}: AsideProps) {
+function DashboardAside({className, ...props}: AsideProps) {
   return (
     <aside
       className={cn(
@@ -59,6 +59,6 @@ function Aside({className, ...props}: AsideProps) {
   )
 }
 
-Aside.displayName = 'Aside'
+DashboardAside.displayName = 'DashboardAside'
 
-export {Aside}
+export {DashboardAside}

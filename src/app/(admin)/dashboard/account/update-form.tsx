@@ -30,9 +30,7 @@ function UpdateForm({user}: {user: User}) {
     <div className='p-16 relative bg-app-surface border rounded'>
       <div className='space-y-16'>
         <div className='space-y-4'>
-          <Typography variant='h4'>
-            Πληροφορίες λογαριασμού διαχειριστή
-          </Typography>
+          <Typography variant='h3'>Λογαριασμός διαχειριστή</Typography>
           <Typography variant='muted'>
             Σε αυτή τη σελίδα μπορείτε να πραγματοποιήσετε αλλαγές στα στοιχεία
             λογαριασμού σας.

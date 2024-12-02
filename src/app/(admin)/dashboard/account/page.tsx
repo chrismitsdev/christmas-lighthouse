@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   title: 'Λογαριασμός | Διαχειριστικό'
 }
 
-export default async function Page() {
+export default async function DashboardAccountPage() {
   const {session, user} = await getCurrentSession()
 
   if (session === null) {

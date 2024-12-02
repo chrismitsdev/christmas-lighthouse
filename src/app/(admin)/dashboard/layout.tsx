@@ -1,8 +1,8 @@
 import type {Metadata} from 'next'
 import {redirect} from 'next/navigation'
 import {getCurrentSession} from '@/src/db/session'
-import {Header} from '@/src/app/(admin)/dashboard/header'
-import {Aside} from '@/src/app/(admin)/dashboard/aside'
+import {DashboardHeader} from '@/src/app/(admin)/dashboard/dashboard-header'
+import {DashboardAside} from '@/src/app/(admin)/dashboard/dashboard-aside'
 
 export const metadata: Metadata = {
   title: 'Διαχειριστικό'
@@ -19,8 +19,8 @@ export default async function DashboardLayout({
 
   return (
     <div className='h-screen grid grid-cols-[320px,1fr] grid-rows-[auto,1fr]'>
-      <Aside className='row-span-full' />
-      <Header user={user} />
+      <DashboardAside className='row-span-full' />
+      <DashboardHeader user={user} />
       <main>{children}</main>
     </div>
   )

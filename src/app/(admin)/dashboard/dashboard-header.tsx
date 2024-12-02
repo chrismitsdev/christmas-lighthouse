@@ -6,9 +6,11 @@ import {Button} from '@/src/components/ui/button'
 import {Separator} from '@/src/components/ui/separator'
 import {Badge} from '@/src/components/ui/badge'
 
-type HeaderProps = React.HTMLAttributes<HTMLHeadingElement> & {user: User}
+type DashboardHeaderProps = React.HTMLAttributes<HTMLHeadingElement> & {
+  user: User
+}
 
-function Header({className, user, ...props}: HeaderProps) {
+function DashboardHeader({className, user, ...props}: DashboardHeaderProps) {
   return (
     <header
       className={cn(
@@ -40,6 +42,6 @@ function Header({className, user, ...props}: HeaderProps) {
   )
 }
 
-Header.displayName = 'Header'
+DashboardHeader.displayName = 'DashboardHeader'
 
-export {Header}
+export {DashboardHeader}
