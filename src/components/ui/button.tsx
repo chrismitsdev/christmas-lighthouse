@@ -30,10 +30,10 @@ const buttonVariants = cva(
       variant: {
         regular: 'sm:px-5',
         danger: [
-          'bg-red-950/25',
-          'border-red-950/50',
-          'hover:bg-red-950/50',
-          'hover:border-red-900'
+          'bg-red-900/50',
+          'border-red-900',
+          '[&:not(:disabled)]:hover:bg-red-900',
+          '[&:not(:disabled)]:hover:border-red-900/50'
         ],
         'icon-button': 'p-[7px]'
       }

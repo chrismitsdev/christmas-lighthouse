@@ -1,87 +1,140 @@
 import * as React from 'react'
 import {
-  type InferOutput,
-  objectWithRest,
   object,
-  string,
-  union,
   array,
-  boolean,
+  string,
+  number,
   null as null_,
+  union,
+  boolean,
   safeParse
 } from 'valibot'
-import {db} from '@/src/db'
-import {categoryTable} from '@/src/db/schema'
 import {
-  Coffee,
-  Milk,
-  CupSoda,
-  GlassWater,
-  Beer,
-  Zap,
-  Utensils,
-  Pizza,
+  CoffeeIcon,
+  MilkIcon,
+  CupSodaIcon,
+  GlassWaterIcon,
+  BeerIcon,
+  ZapIcon,
+  UtensilsIcon,
+  PizzaIcon,
   SaladIcon,
-  Martini,
-  Popcorn
+  MartiniIcon,
+  PopcornIcon
 } from 'lucide-react'
+import {eq} from 'drizzle-orm'
+import {db} from '@/src/db'
+import {categoryTable, productTable} from '@/src/db/schema'
 import {BurgerIcon} from '@/src/components/icons/burger-icon'
 
-const categoryIcons = [
-  Coffee,
-  CupSoda,
-  Milk,
-  Zap,
-  GlassWater,
-  Martini,
-  Beer,
-  Utensils,
-  Pizza,
-  BurgerIcon,
-  SaladIcon,
-  Popcorn
-]
-
-const NeonProductSchema = object({
-  id: string(),
-  name: string(),
-  description: union([array(string()), null_()]),
-  price: string(),
-  disabled: boolean()
-})
-const NeonCategorySchema = object({
-  title: string(),
-  notes: union([array(string()), null_()]),
-  products: array(NeonProductSchema)
-})
-const NeonCategoriesSchema = objectWithRest({}, NeonCategorySchema)
-
-export type Product = InferOutput<typeof NeonProductSchema>
-export type Category = InferOutput<typeof NeonCategorySchema> & {
+export type CategoryWithProducts = {
+  title: string
+  notes: string[] | null
   link: string
-  icon?: React.ReactElement
+  icon?: React.ReactNode
+  products: {
+    id: number
+    name: string
+    description: string[] | null
+    price: number
+    active: boolean
+  }[]
 }
 
-export async function getCategories(locale: Locale): Promise<Category[]> {
-  const dbResult = await db
-    .select({jsonColumn: categoryTable[locale]})
-    .from(categoryTable)
-  const result = safeParse(NeonCategoriesSchema, dbResult[0].jsonColumn)
+const iconsMap = {
+  coffee: CoffeeIcon,
+  beverage: CupSodaIcon,
+  refreshment: MilkIcon,
+  ['energy-drink']: ZapIcon,
+  spirit: GlassWaterIcon,
+  cocktail: MartiniIcon,
+  beer: BeerIcon,
+  food: UtensilsIcon,
+  pizza: PizzaIcon,
+  burger: BurgerIcon,
+  salad: SaladIcon,
+  snack: PopcornIcon
+}
 
-  if (!result.success) {
-    throw new Error('Db schema not validated')
+const CategoriesSchema = array(
+  object({
+    categoryId: string(),
+    categoryName: string(),
+    categoryNotes: union([array(string()), null_()]),
+    productId: number(),
+    productName: string(),
+    productDescription: union([array(string()), null_()]),
+    productPrice: number(),
+    productActive: boolean()
+  })
+)
+
+// Used in the public part of the app
+export async function getLocalizedCategories(
+  locale: Locale
+): Promise<CategoryWithProducts[]> {
+  const query = await db
+    .select({
+      categoryId: categoryTable.id,
+      categoryName: categoryTable[`${locale}Name`],
+      categoryNotes: categoryTable[`${locale}Notes`],
+      productId: productTable.id,
+      productName: productTable[`${locale}Name`],
+      productDescription: productTable[`${locale}Description`],
+      productPrice: productTable.price,
+      productActive: productTable.active
+    })
+    .from(categoryTable)
+    .innerJoin(productTable, eq(categoryTable.id, productTable.categoryId))
+    .where(eq(productTable.active, true))
+
+  if (query.length < 1) {
+    throw new Error(
+      'Could not retrieve localized categories (getLocalizedCategories fn)'
+    )
   }
 
-  return Object.entries(result.output).map(function (
-    [categoryName, categoryValue],
-    i
-  ) {
-    return {
-      link: categoryName.toLowerCase().replace('-', ''),
-      icon: React.createElement(categoryIcons[i], {
-        strokeWidth: 2.2
-      }),
-      ...categoryValue
-    }
-  })
+  const result = safeParse(CategoriesSchema, query)
+
+  if (!result.success) {
+    throw new Error('Invalid query schema in getLocalizedCategories fn')
+  }
+
+  const groupedCategories = result.output.reduce(
+    function (acc, item) {
+      const categoryId = item.categoryId as keyof typeof iconsMap
+
+      if (!acc[categoryId]) {
+        acc[categoryId] = {
+          title: item.categoryName,
+          notes: item.categoryNotes,
+          link: item.categoryId,
+          icon: React.createElement(iconsMap[categoryId]),
+          products: []
+        }
+      }
+
+      if (item.productId) {
+        acc[categoryId].products.push({
+          id: item.productId,
+          name: item.productName,
+          description: item.productDescription,
+          price: item.productPrice,
+          active: item.productActive
+        })
+      }
+
+      return acc
+    },
+    {} as Record<string, CategoryWithProducts>
+  )
+
+  return Object.values(groupedCategories)
+}
+
+// Used in the backoffice part of the app
+export async function getProducts() {
+  const query = await db.select().from(productTable).limit(10)
+
+  return query
 }

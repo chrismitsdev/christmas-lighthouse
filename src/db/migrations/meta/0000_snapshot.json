@@ -1,5 +1,5 @@
 {
-  "id": "3a336a51-7596-4b4f-8ef6-d5c34df41fe8",
+  "id": "67524577-2dcf-4d32-ae43-98b55ccd02ba",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
@@ -10,25 +10,132 @@
       "columns": {
         "id": {
           "name": "id",
-          "type": "serial",
+          "type": "text",
           "primaryKey": true,
-          "notNull": true
+          "notNull": true,
+          "generated": {
+            "as": "replace(lower(\"category\".\"en_name\"), ' ', '-')",
+            "type": "stored"
+          }
         },
-        "el": {
-          "name": "el",
-          "type": "json",
+        "el_name": {
+          "name": "el_name",
+          "type": "varchar",
           "primaryKey": false,
           "notNull": true
         },
-        "en": {
-          "name": "en",
-          "type": "json",
+        "en_name": {
+          "name": "en_name",
+          "type": "varchar",
           "primaryKey": false,
           "notNull": true
+        },
+        "el_notes": {
+          "name": "el_notes",
+          "type": "varchar[]",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "en_notes": {
+          "name": "en_notes",
+          "type": "varchar[]",
+          "primaryKey": false,
+          "notNull": false
         }
       },
       "indexes": {},
       "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "category_el_name_unique": {
+          "name": "category_el_name_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "el_name"
+          ]
+        },
+        "category_en_name_unique": {
+          "name": "category_en_name_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "en_name"
+          ]
+        }
+      },
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.product": {
+      "name": "product",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "category_id": {
+          "name": "category_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "el_name": {
+          "name": "el_name",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "en_name": {
+          "name": "en_name",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "el_description": {
+          "name": "el_description",
+          "type": "varchar[]",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "en_description": {
+          "name": "en_description",
+          "type": "varchar[]",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "price": {
+          "name": "price",
+          "type": "real",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "active": {
+          "name": "active",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true,
+          "default": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "product_category_id_category_id_fk": {
+          "name": "product_category_id_category_id_fk",
+          "tableFrom": "product",
+          "tableTo": "category",
+          "columnsFrom": [
+            "category_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
       "compositePrimaryKeys": {},
       "uniqueConstraints": {},
       "policies": {},

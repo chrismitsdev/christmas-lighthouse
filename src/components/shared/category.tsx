@@ -1,7 +1,7 @@
 import * as React from 'react'
 import {ChevronUpIcon, ChevronDownIcon} from 'lucide-react'
-import {type Category as CategoryType} from '@/src/db/menu'
-import {cn} from '@/src/lib/utils'
+import {type CategoryWithProducts} from '@/src/db/menu'
+import {cn, formatCurrency} from '@/src/lib/utils'
 import {
   Card,
   CardHeader,
@@ -17,10 +17,9 @@ import {
 import {Typography} from '@/src/components/ui/typography'
 import {Badge} from '@/src/components/ui/badge'
 import {Separator} from '@/src/components/ui/separator'
-import {formatCurrency} from '@/src/lib/utils'
 
 type CategoryProps = {
-  category: CategoryType
+  category: CategoryWithProducts
   collapsible?: boolean
 }
 

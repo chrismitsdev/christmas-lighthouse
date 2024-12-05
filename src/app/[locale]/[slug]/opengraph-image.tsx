@@ -1,7 +1,7 @@
 import {ImageResponse} from 'next/og'
 import {join} from 'node:path'
 import {readFile} from 'node:fs/promises'
-import {getCategories} from '@/src/db/menu'
+import {getLocalizedCategories} from '@/src/db/menu'
 
 type ParamsLocaleSlug = {
   params: {
@@ -20,7 +20,7 @@ export const contentType = 'image/png'
 export default async function Image({
   params: {locale, slug}
 }: ParamsLocaleSlug) {
-  const categories = await getCategories(locale)
+  const categories = await getLocalizedCategories(locale)
   const category = categories.find((category) => category.link === slug)
   const assetUrl = await readFile(join(process.cwd(), 'public/logo.png'))
   const base64String = Buffer.from(assetUrl).toString('base64')

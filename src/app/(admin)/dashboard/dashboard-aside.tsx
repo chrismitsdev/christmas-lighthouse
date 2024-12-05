@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import {ShoppingBasketIcon, UserCogIcon, HomeIcon} from 'lucide-react'
+import {ShoppingBasketIcon, UserCogIcon} from 'lucide-react'
 import {cn} from '@/src/lib/utils'
 import {Button} from '@/src/components/ui/button'
 import {LogoutButton} from '@/src/app/(admin)/dashboard/logout-button'
@@ -23,36 +23,25 @@ function DashboardAside({className, ...props}: AsideProps) {
         alt='The Christmas Lighthouse logo'
         height={40}
       />
-      <nav className='py-16 px-8 flex flex-col h-full'>
-        <div className='space-y-8'>
-          <Button
-            className='w-full'
-            asChild
-          >
-            <Link href='/dashboard/products'>
-              <ShoppingBasketIcon />
-              <span>Προϊόντα</span>
-            </Link>
-          </Button>
-          <Button
-            className='w-full'
-            asChild
-          >
-            <Link href='/dashboard/account'>
-              <UserCogIcon />
-              <span>Λογαριασμός</span>
-            </Link>
-          </Button>
-          <Button
-            className='w-full'
-            asChild
-          >
-            <Link href='/'>
-              <HomeIcon />
-              <span>Πίσω στην αρχική</span>
-            </Link>
-          </Button>
-        </div>
+      <nav className='py-16 px-8 space-y-8 flex flex-col h-full'>
+        <Button
+          className='w-auto justify-start'
+          asChild
+        >
+          <Link href='/dashboard/products'>
+            <ShoppingBasketIcon />
+            <span>Προϊόντα</span>
+          </Link>
+        </Button>
+        <Button
+          className='w-auto justify-start'
+          asChild
+        >
+          <Link href='/dashboard/account'>
+            <UserCogIcon />
+            <span>Λογαριασμός</span>
+          </Link>
+        </Button>
         <LogoutButton />
       </nav>
     </aside>

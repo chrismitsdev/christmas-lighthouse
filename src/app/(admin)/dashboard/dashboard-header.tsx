@@ -1,4 +1,5 @@
-import {PanelLeftIcon, UserIcon} from 'lucide-react'
+import Link from 'next/link'
+import {PanelLeftIcon, HomeIcon, UserIcon} from 'lucide-react'
 import type {User} from '@/src/db/schema'
 import {cn} from '@/src/lib/utils'
 import {Typography} from '@/src/components/ui/typography'
@@ -22,6 +23,14 @@ function DashboardHeader({className, user, ...props}: DashboardHeaderProps) {
       <div className='flex items-center gap-4'>
         <Button variant='icon-button'>
           <PanelLeftIcon />
+        </Button>
+        <Button
+          variant='icon-button'
+          asChild
+        >
+          <Link href='/'>
+            <HomeIcon />
+          </Link>
         </Button>
         <Separator
           orientation='vertical'

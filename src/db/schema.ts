@@ -1,11 +1,13 @@
-import type {InferSelectModel} from 'drizzle-orm'
+import {SQL, sql, type InferSelectModel} from 'drizzle-orm'
 import {
   pgTable,
   serial,
   text,
+  varchar,
   integer,
-  timestamp,
-  json
+  boolean,
+  real,
+  timestamp
 } from 'drizzle-orm/pg-core'
 
 export const userTable = pgTable('user', {
@@ -27,13 +29,33 @@ export const sessionTable = pgTable('session', {
 })
 
 export const categoryTable = pgTable('category', {
+  id: text('id')
+    .generatedAlwaysAs(function (): SQL {
+      const lower = sql<string>`lower(${categoryTable.enName})`
+      const replaced = sql<string>`replace(${lower}, ' ', '-')`
+      return replaced
+    })
+    .primaryKey(),
+  elName: varchar('el_name').notNull().unique(),
+  enName: varchar('en_name').notNull().unique(),
+  elNotes: varchar('el_notes').array(),
+  enNotes: varchar('en_notes').array()
+})
+
+export const productTable = pgTable('product', {
   id: serial('id').primaryKey(),
-  el: json().notNull(),
-  en: json().notNull()
-  // en: json().$type<string>().notNull()
-  // en: json().$type<string>().notNull()
+  categoryId: text('category_id')
+    .notNull()
+    .references(() => categoryTable.id),
+  elName: varchar('el_name').notNull(),
+  enName: varchar('en_name').notNull(),
+  elDescription: varchar('el_description').array(),
+  enDescription: varchar('en_description').array(),
+  price: real('price').notNull(),
+  active: boolean('active').notNull().default(true)
 })
 
 export type User = InferSelectModel<typeof userTable>
 export type Session = InferSelectModel<typeof sessionTable>
 export type Category = InferSelectModel<typeof categoryTable>
+export type Product = InferSelectModel<typeof productTable>

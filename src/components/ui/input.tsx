@@ -16,6 +16,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
   ) => {
     const [passVisible, setPassVisible] = React.useState(false)
     const isPasswordType = type === 'password'
+    const isNumberType = type === 'number'
 
     return (
       <div
@@ -28,6 +29,8 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
               'p-4 w-full bg-app-surface text-brand-gray-1 border rounded outline-none placeholder:text-sm placeholder:text-app-foreground/25 group-focus-within:bg-brand-gray-12 group-focus-within:border-border-hover duration-300 sm:placeholder:text-base disabled:opacity-30',
               icon && 'pl-8 sm:pl-12',
               isPasswordType && 'pr-10 sm:pr-12',
+              isNumberType &&
+                '[appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none',
               error && 'border-red-400/50 group-focus-within:border-red-400/50',
               className
             )}

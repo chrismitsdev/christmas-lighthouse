@@ -2,11 +2,11 @@
 
 import * as React from 'react'
 import {Link, usePathname} from '@/src/i18n/routing'
-import {type Category} from '@/src/db/menu'
+import {type CategoryWithProducts} from '@/src/db/menu'
 import {ScrollArea} from '@/src/components/ui/scroll-area'
 import {cn} from '@/src/lib/utils'
 
-function Navigation({categories}: {categories: Category[]}) {
+function Navigation({categories}: {categories: CategoryWithProducts[]}) {
   const pathname = usePathname().replace('/', '')
 
   return (

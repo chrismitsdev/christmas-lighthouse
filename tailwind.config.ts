@@ -11,7 +11,8 @@ const config: Config = {
       bottom: 'side="bottom"',
       left: 'side="left"',
       disabled: 'disabled',
-      highlighted: 'highlighted=""'
+      highlighted: 'highlighted=""',
+      selected: 'state="selected"'
     },
     container: {
       center: true,
@@ -22,7 +23,12 @@ const config: Config = {
         app: {
           background: 'hsl(var(--app-background))',
           foreground: 'hsl(var(--app-foreground))',
-          surface: 'hsl(var(--app-surface))'
+          surface: {
+            DEFAULT: 'hsl(var(--app-surface))',
+            solid: 'hsl(var(--app-surface-solid))'
+          }
+          // surface: 'hsl(var(--app-surface))',
+          // ['surface-solid']: 'hsl(var(--app-surface-solid))'
         },
         brand: {
           blue: {

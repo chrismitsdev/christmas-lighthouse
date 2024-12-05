@@ -1,6 +1,6 @@
 import type {Metadata} from 'next'
 import {setRequestLocale, getTranslations} from 'next-intl/server'
-import {getCategories} from '@/src/db/menu'
+import {getLocalizedCategories} from '@/src/db/menu'
 import {FadeUp} from '@/src/components/shared/fade-up'
 import {Container} from '@/src/components/shared/container'
 import {Section} from '@/src/components/shared/section'
@@ -19,7 +19,7 @@ export default async function CategoriesPage({params}: AsyncParamsLocale) {
   const {locale} = await params
   setRequestLocale(locale)
 
-  const categories = await getCategories(locale)
+  const categories = await getLocalizedCategories(locale)
 
   return (
     <FadeUp

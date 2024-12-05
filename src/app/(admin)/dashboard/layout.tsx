@@ -18,9 +18,9 @@ export default async function DashboardLayout({
   }
 
   return (
-    <div className='h-screen grid grid-cols-[320px,1fr] grid-rows-[auto,1fr]'>
-      <DashboardAside className='row-span-full' />
+    <div className='h-screen grid grid-cols-[auto,1fr] grid-rows-[auto,1fr]'>
       <DashboardHeader user={user} />
+      <DashboardAside className='row-span-full' />
       <main>{children}</main>
     </div>
   )
