@@ -34,23 +34,23 @@ const badgeVariants = cva(
   }
 )
 
-type BadgeProps = React.HTMLAttributes<HTMLDivElement> &
+type BadgeProps = React.DetailedHTMLProps<
+  React.HTMLAttributes<HTMLDivElement>,
+  HTMLDivElement
+> &
   AsChild &
   VariantProps<typeof badgeVariants>
 
-const Badge = React.forwardRef<HTMLDivElement, BadgeProps>(
-  ({variant, asChild = false, className, ...props}, ref) => {
-    const Comp = asChild ? Slot : 'div'
+function Badge({variant, asChild = false, className, ...props}: BadgeProps) {
+  const Comp = asChild ? Slot : 'div'
 
-    return (
-      <Comp
-        className={cn(badgeVariants({variant, className}))}
-        ref={ref}
-        {...props}
-      />
-    )
-  }
-)
+  return (
+    <Comp
+      className={cn(badgeVariants({variant, className}))}
+      {...props}
+    />
+  )
+}
 
 Badge.displayName = 'Badge'
 

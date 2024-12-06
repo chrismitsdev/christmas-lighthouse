@@ -44,53 +44,50 @@ const buttonVariants = cva(
   }
 )
 
-type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> &
+type ButtonProps = React.DetailedHTMLProps<
+  React.ButtonHTMLAttributes<HTMLButtonElement>,
+  HTMLButtonElement
+> &
   AsChild &
   VariantProps<typeof buttonVariants> & {
     isLoading?: boolean
   }
 
-const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  (
-    {
-      asChild = false,
-      variant,
-      className,
-      isLoading = false,
-      disabled = false,
-      children,
-      ...props
-    },
-    ref
-  ) => {
-    const Comp = asChild ? Slot : 'button'
+function Button({
+  asChild = false,
+  variant,
+  className,
+  isLoading = false,
+  disabled = false,
+  children,
+  ...props
+}: ButtonProps) {
+  const Comp = asChild ? Slot : 'button'
 
-    return (
-      <Comp
-        className={cn(
-          buttonVariants({
-            variant,
-            className: cn(
-              isLoading && '[&>*:not(span:last-child)]:invisible',
-              className
-            )
-          })
-        )}
-        disabled={disabled}
-        ref={ref}
-        {...(asChild && disabled ? {['data-disabled']: disabled} : {})}
-        {...props}
-      >
-        <Slottable>{children}</Slottable>
-        {isLoading && (
-          <span className='absolute inset-0 flex items-center justify-center'>
-            <Spinner size={24} />
-          </span>
-        )}
-      </Comp>
-    )
-  }
-)
+  return (
+    <Comp
+      className={cn(
+        buttonVariants({
+          variant,
+          className: cn(
+            isLoading && '[&>*:not(span:last-child)]:invisible',
+            className
+          )
+        })
+      )}
+      disabled={disabled}
+      {...(asChild && disabled ? {['data-disabled']: disabled} : {})}
+      {...props}
+    >
+      <Slottable>{children}</Slottable>
+      {isLoading && (
+        <span className='absolute inset-0 flex items-center justify-center'>
+          <Spinner size={24} />
+        </span>
+      )}
+    </Comp>
+  )
+}
 
 Button.displayName = 'Button'
 

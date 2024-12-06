@@ -19,91 +19,100 @@ const Dialog = Root
 const DialogTrigger = Trigger
 const DialogPortal = Portal
 
-const DialogOverlay = React.forwardRef<
-  React.ElementRef<typeof Overlay>,
-  React.ComponentPropsWithoutRef<typeof Overlay>
->(({className, ...props}, ref) => (
-  <Overlay
-    className={cn(
-      'fixed inset-0 z-50 bg-black/50 backdrop-blur-[2px]',
-      className
-    )}
-    ref={ref}
-    {...props}
-  />
-))
+function DialogOverlay({
+  className,
+  ...props
+}: React.ComponentPropsWithRef<typeof Overlay>) {
+  return (
+    <Overlay
+      className={cn(
+        'fixed inset-0 z-50 bg-black/50 backdrop-blur-[2px]',
+        className
+      )}
+      {...props}
+    />
+  )
+}
 
-const DialogContent = React.forwardRef<
-  React.ElementRef<typeof Content>,
-  React.ComponentPropsWithoutRef<typeof Content>
->(({className, ...props}, ref) => (
-  <Content
-    className={cn(
-      'p-8 fixed left-1/2 top-1/2 z-50 -translate-x-1/2 -translate-y-1/2 w-full max-w-xl bg-app-surface-solid border rounded',
-      className
-    )}
-    ref={ref}
-    {...props}
-  />
-))
+function DialogContent({
+  className,
+  ...props
+}: React.ComponentPropsWithRef<typeof Content>) {
+  return (
+    <Content
+      className={cn(
+        'p-8 fixed left-1/2 top-1/2 z-50 -translate-x-1/2 -translate-y-1/2 w-full max-w-xl bg-app-surface-solid border rounded',
+        className
+      )}
+      {...props}
+    />
+  )
+}
 
-const DialogHeader = React.forwardRef<
-  HTMLDivElement,
-  React.HTMLAttributes<HTMLDivElement>
->(({className, ...props}, ref) => (
-  <div
-    className={cn(
-      'space-y-4 flex flex-col text-center sm:text-left',
-      className
-    )}
-    ref={ref}
-    {...props}
-  />
-))
+function DialogHeader({
+  className,
+  ...props
+}: React.DetailedHTMLProps<
+  React.HTMLAttributes<HTMLDivElement>,
+  HTMLDivElement
+>) {
+  return (
+    <div
+      className={cn(
+        'space-y-4 flex flex-col text-center sm:text-left',
+        className
+      )}
+      {...props}
+    />
+  )
+}
 
-const DialogTitle = React.forwardRef<
-  React.ElementRef<typeof Title>,
-  React.ComponentPropsWithoutRef<typeof Title>
->(({className, ...props}, ref) => (
-  <Title
-    className={cn(
-      'text-2xl font-semibold leading-none tracking-tight',
-      className
-    )}
-    ref={ref}
-    {...props}
-  />
-))
+function DialogTitle({
+  className,
+  ...props
+}: React.ComponentPropsWithRef<typeof Title>) {
+  return (
+    <Title
+      className={cn(
+        'text-2xl font-semibold leading-none tracking-tight',
+        className
+      )}
+      {...props}
+    />
+  )
+}
 
-const DialogDescription = React.forwardRef<
-  React.ElementRef<typeof Description>,
-  React.ComponentPropsWithoutRef<typeof Description>
->(({className, ...props}, ref) => (
-  <Description
-    className={cn('text-sm text-brand-gray-10', className)}
-    ref={ref}
-    {...props}
-  />
-))
+function DialogDescription({
+  className,
+  ...props
+}: React.ComponentPropsWithRef<typeof Description>) {
+  return (
+    <Description
+      className={cn('text-sm text-brand-gray-10', className)}
+      {...props}
+    />
+  )
+}
 
-const DialogClose = React.forwardRef<
-  React.ElementRef<typeof Close>,
-  React.ComponentPropsWithoutRef<typeof Close>
->(({className, ...props}, ref) => (
-  <Close
-    className={cn('absolute top-4 right-4', className)}
-    ref={ref}
-    {...props}
-    asChild
-  >
-    <Button
-      className='p-[7px]'
-      variant='danger'
+function DialogClose({
+  className,
+  ...props
+}: React.ComponentPropsWithRef<typeof Close>) {
+  return (
+    <Close
+      className={cn('absolute top-4 right-4', className)}
+      {...props}
+      asChild
     >
-      <XIcon size={16} />
-    </Button>
-  </Close>
-))
+      <Button
+        className='p-[7px]'
+        variant='danger'
+      >
+        <XIcon size={16} />
+      </Button>
+    </Close>
+  )
+}
 
 Dialog.displayName = 'Dialog'
 DialogTrigger.displayName = 'DialogTrigger'

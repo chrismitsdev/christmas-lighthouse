@@ -10,7 +10,7 @@ import {
 } from '@radix-ui/react-scroll-area'
 import {cn} from '@/src/lib/utils'
 
-type ScrollAreaProps = React.ComponentPropsWithoutRef<typeof Root> & {
+type ScrollAreaProps = React.ComponentPropsWithRef<typeof Root> & {
   hasCorner?: boolean
   orientation?: 'horizontal' | 'vertical'
   invisible?: boolean
@@ -18,25 +18,30 @@ type ScrollAreaProps = React.ComponentPropsWithoutRef<typeof Root> & {
   isFlex?: boolean
 }
 
-const ScrollArea = React.forwardRef<
-  React.ElementRef<typeof Root>,
-  ScrollAreaProps
->((_props, ref) => {
-  const {
-    className,
-    children,
-    hasCorner = true,
-    orientation = 'vertical',
-    invisible = false,
-    showShadows = false,
-    isFlex = false,
-    ...props
-  } = _props
+type ScrollAreaViewportProps = React.ComponentPropsWithRef<typeof Viewport> & {
+  showShadows?: boolean
+  isFlex?: boolean
+}
 
+type ScrollAreaScrollbarProps = React.ComponentPropsWithRef<
+  typeof ScrollAreaScrollbar
+> & {
+  invisible?: boolean
+}
+
+function ScrollArea({
+  className,
+  children,
+  hasCorner = true,
+  orientation = 'vertical',
+  invisible = false,
+  showShadows = false,
+  isFlex = false,
+  ...props
+}: ScrollAreaProps) {
   return (
     <Root
       className={cn('relative overflow-hidden', className)}
-      ref={ref}
       {...props}
     >
       <ScrollAreaViewport
@@ -52,15 +57,15 @@ const ScrollArea = React.forwardRef<
       {hasCorner && <Corner />}
     </Root>
   )
-})
+}
 
-const ScrollAreaViewport = React.forwardRef<
-  React.ElementRef<typeof Viewport>,
-  React.ComponentPropsWithoutRef<typeof Viewport> & {
-    showShadows?: boolean
-    isFlex?: boolean
-  }
->(({className, showShadows, children, isFlex, ...props}, ref) => {
+function ScrollAreaViewport({
+  className,
+  showShadows,
+  children,
+  isFlex,
+  ...props
+}: ScrollAreaViewportProps) {
   const [canScrollLeft, setCanScrollLeft] = React.useState<boolean>(false)
   const [canScrollRight, setCanScrollRight] = React.useState<boolean>(true)
 
@@ -72,7 +77,6 @@ const ScrollAreaViewport = React.forwardRef<
           isFlex && '[&>div]:!flex',
           className
         )}
-        ref={ref}
         {...props}
       >
         {children}
@@ -105,42 +109,43 @@ const ScrollAreaViewport = React.forwardRef<
           className
         )}
         onScroll={handleShowShadows}
-        ref={ref}
         {...props}
       >
         {children}
       </Viewport>
     </div>
   )
-})
+}
 
-const ScrollBar = React.forwardRef<
-  React.ElementRef<typeof ScrollAreaScrollbar>,
-  React.ComponentPropsWithoutRef<typeof ScrollAreaScrollbar> & {
-    invisible?: boolean
-  }
->(({className, orientation, invisible, ...props}, ref) => (
-  <ScrollAreaScrollbar
-    className={cn(
-      'flex touch-none select-none transition-colors',
-      orientation === 'vertical' &&
-        'h-full w-3 border-l border-l-transparent p-0.5',
-      orientation === 'horizontal' && 'h-3 border-t border-t-transparent p-0.5',
-      invisible && 'invisible',
-      className
-    )}
-    orientation={orientation}
-    ref={ref}
-    {...props}
-  >
-    <ScrollAreaThumb
+function ScrollBar({
+  className,
+  orientation,
+  invisible,
+  ...props
+}: ScrollAreaScrollbarProps) {
+  return (
+    <ScrollAreaScrollbar
       className={cn(
-        orientation === 'vertical' && 'flex-1',
-        'relative rounded-full bg-black/30 hover:bg-black/50 transition-colors'
+        'flex touch-none select-none transition-colors',
+        orientation === 'vertical' &&
+          'h-full w-3 border-l border-l-transparent p-0.5',
+        orientation === 'horizontal' &&
+          'h-3 border-t border-t-transparent p-0.5',
+        invisible && 'invisible',
+        className
       )}
-    />
-  </ScrollAreaScrollbar>
-))
+      orientation={orientation}
+      {...props}
+    >
+      <ScrollAreaThumb
+        className={cn(
+          orientation === 'vertical' && 'flex-1',
+          'relative rounded-full bg-black/30 hover:bg-black/50 transition-colors'
+        )}
+      />
+    </ScrollAreaScrollbar>
+  )
+}
 
 ScrollArea.displayName = 'ScrollArea'
 ScrollAreaViewport.displayName = 'ScrollAreaViewport'
