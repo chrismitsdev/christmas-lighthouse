@@ -25,17 +25,17 @@ import {splitAndTrim} from '@/src/lib/utils'
 const greekLettersOnly =
   /^[\u0391-\u03A9\u03B1-\u03C9\u0386\u0388-\u038A\u038C\u038E-\u03CE\s]+$/
 const englishLettersOnly = /^[A-Za-z\s]+$/
-const integerDecimalOnly = /^(\d+(\.\d*)?|\.\d+)$/
+const numberRegex = /^(\d+(\.\d*)?|\.\d+)$/
 
 const UpdateProductSchema = object({
   el_name: pipe(
-    string('Πρέπει να είναι αλφαβητική συμβολοσειρά'),
+    string('Πρέπει να είναι αλφαριθμητική συμβολοσειρά.'),
     trim(),
     nonEmpty('Υποχρεωτικό πεδίο'),
     regex(greekLettersOnly, 'Επιτρέπονται μόνο ελληνικοί χαρακτήρες (Α-Ω, α-ω)')
   ),
   en_name: pipe(
-    string('Πρέπει να είναι αλφαβητική συμβολοσειρά'),
+    string('Πρέπει να είναι αλφαριθμητική συμβολοσειρά.'),
     trim(),
     nonEmpty('Υποχρεωτικό πεδίο'),
     regex(
@@ -47,10 +47,7 @@ const UpdateProductSchema = object({
     string('Πρέπει να είναι αριθμητική συμβολοσειρά'),
     trim(),
     nonEmpty('Υποχρεωτικό πεδίο'),
-    regex(
-      integerDecimalOnly,
-      'Επιτρέπονται μόνο αριθμοί (δεκαδικοί ή ακέραιοι)'
-    ),
+    regex(numberRegex, 'Επιτρέπονται μόνο αριθμοί (δεκαδικοί ή ακέραιοι)'),
     transform((input) => Number.parseFloat(input)),
     number('Επιτρέπονται μόνο αριθμοί (δεκαδικοί ή ακέραιοι)'),
     check((input) => input > 0, 'Η τιμή δεν μπορεί να είναι μηδενική'),

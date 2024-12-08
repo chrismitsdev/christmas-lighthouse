@@ -72,6 +72,7 @@ function LoginForm() {
               </Link>
             </Button>
             <Button
+              type='submit'
               isLoading={isPending}
               disabled={isPending}
             >

@@ -78,6 +78,7 @@ function UpdateAccountForm({user}: {user: User}) {
         <div className='flex justify-end'>
           <Button
             form='update-account-form'
+            type='submit'
             disabled={isPending}
             isLoading={isPending}
           >

@@ -69,7 +69,8 @@ const CategoriesSchema = array(
   })
 )
 
-// Used in the public part of the app
+// --- FRONT-FACING ---
+// GET localized categories with products
 export async function getLocalizedCategories(
   locale: Locale
 ): Promise<CategoryWithProducts[]> {
@@ -137,7 +138,8 @@ export async function getLocalizedCategories(
   return Object.values(groupedCategories)
 }
 
-// Used in the backoffice part of the app
+// --- BACK-OFFICE ---
+// GET all products
 export async function getProducts() {
   const query = await db.select().from(productTable).orderBy(productTable.id)
 
@@ -148,13 +150,14 @@ export async function getProducts() {
   return query
 }
 
+// UPDATE single product
 export async function updateProduct(
   productId: number,
-  product: Partial<Product>
-) {
+  updatedProduct: Partial<Product>
+): Promise<Product> {
   const query = await db
     .update(productTable)
-    .set(product)
+    .set(updatedProduct)
     .where(eq(productTable.id, productId))
     .returning()
 
@@ -162,5 +165,19 @@ export async function updateProduct(
     throw new Error('Could not update product (updateProduct fn)')
   }
 
-  return query
+  return query[0]
+}
+
+// DELETE single product
+export async function deleteProduct(productId: number): Promise<Product> {
+  const query = await db
+    .delete(productTable)
+    .where(eq(productTable.id, productId))
+    .returning()
+
+  if (query.length < 1) {
+    throw new Error('Could not delete product (deleteProduct fn)')
+  }
+
+  return query[0]
 }

@@ -30,9 +30,9 @@ import {
 const LoginFormSchema = pipeAsync(
   objectAsync({
     email: pipeAsync(
-      string('Μη έγκυρο πεδίο email'),
+      string('Πρέπει να είναι αλφαριθμητική συμβολοσειρά.'),
       trim(),
-      nonEmpty('Το email διαχειριστή απαιτείται'),
+      nonEmpty('Πληκτρολογήστε το email σας'),
       email('Μη έγκυρη μορφή email'),
       endsWith('@gmail.com', 'Μη αποδεκτός πάροχος email'),
       checkAsync(async function (emailInput) {
@@ -44,9 +44,9 @@ const LoginFormSchema = pipeAsync(
       }, 'Το email διαχειριστή δεν είναι σωστό')
     ),
     password: pipeAsync(
-      string('Μη έγκυρο πεδίο κωδικού πρόσβασης'),
+      string('Πρέπει να είναι αλφαριθμητική συμβολοσειρά.'),
       trim(),
-      nonEmpty('Ο κωδικός πρόσβασης απαιτείται')
+      nonEmpty('Πληκτρολογήστε τον κωδικό σας')
     )
   }),
   forwardAsync(
@@ -89,10 +89,9 @@ export async function loginAction(
   _prev: LoginActionState,
   formData: FormData
 ): Promise<LoginActionState> {
-  const data = Object.fromEntries(formData) as LoginActionState['data']
+  const data = Object.fromEntries(formData) as LoginFormData
   const result = await safeParseAsync(LoginFormSchema, data)
 
-  // Valibot validation
   if (!result.success) {
     const issues = flatten<typeof LoginFormSchema>(result.issues)
 

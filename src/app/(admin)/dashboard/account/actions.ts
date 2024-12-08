@@ -24,7 +24,7 @@ const UpdateAccountFormSchema = objectAsync({
   new_username: union([
     literal(''),
     pipe(
-      string('Μη έγκυρο πεδίο username'),
+      string('Πρέπει να είναι αλφαριθμητική συμβολοσειρά.'),
       trim(),
       minLength(4, 'Το νέο username πρέπει να είναι τουλάχιστον 4 χαρακτήρες')
     )
@@ -32,7 +32,7 @@ const UpdateAccountFormSchema = objectAsync({
   new_email: unionAsync([
     literal(''),
     pipeAsync(
-      string('Μη έγκυρο πεδίο email'),
+      string('Πρέπει να είναι αλφαριθμητική συμβολοσειρά.'),
       trim(),
       email('Μη έγκυρη μορφή νέου email'),
       endsWith('@gmail.com', 'Μη αποδεκτός πάροχος email'),
@@ -42,7 +42,7 @@ const UpdateAccountFormSchema = objectAsync({
   new_password: union([
     literal(''),
     pipe(
-      string('Μη έγκυρο πεδίο password'),
+      string('Πρέπει να είναι αλφαριθμητική συμβολοσειρά.'),
       trim(),
       minLength(
         8,

@@ -63,6 +63,7 @@ function UpdateProductForm({product}: {product: Product}) {
               id='price'
               name='price'
               type='text'
+              inputMode='numeric'
               placeholder='Πληκτρολογήστε τιμή'
               defaultValue={state.data.price ?? product.price}
               error={state.errors.price}
@@ -105,6 +106,7 @@ function UpdateProductForm({product}: {product: Product}) {
         </div>
         <div className='flex justify-end'>
           <Button
+            type='submit'
             disabled={isPending}
             isLoading={isPending}
           >
