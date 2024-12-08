@@ -41,7 +41,7 @@ function DialogContent({
   return (
     <Content
       className={cn(
-        'p-8 fixed left-1/2 top-1/2 z-50 -translate-x-1/2 -translate-y-1/2 w-full max-w-xl bg-app-surface-solid border rounded',
+        'p-6 fixed left-1/2 top-1/2 z-50 -translate-x-1/2 -translate-y-1/2 w-full max-w-xl bg-app-surface-solid border rounded sm:p-12',
         className
       )}
       {...props}
@@ -58,10 +58,7 @@ function DialogHeader({
 >) {
   return (
     <div
-      className={cn(
-        'space-y-4 flex flex-col text-center sm:text-left',
-        className
-      )}
+      className={cn('space-y-4 flex flex-col', className)}
       {...props}
     />
   )
@@ -74,7 +71,7 @@ function DialogTitle({
   return (
     <Title
       className={cn(
-        'text-2xl font-semibold leading-none tracking-tight',
+        'text-xl font-semibold leading-none tracking-tight sm:text-2xl',
         className
       )}
       {...props}

@@ -12,7 +12,9 @@ const config: Config = {
       left: 'side="left"',
       disabled: 'disabled',
       highlighted: 'highlighted=""',
-      selected: 'state="selected"'
+      selected: 'state="selected"',
+      checked: 'state="checked"',
+      unchecked: 'state="unchecked"'
     },
     container: {
       center: true,

@@ -20,7 +20,7 @@ import {
 } from 'valibot'
 import {checkEmailAvailability, updateUser} from '@/src/db/user'
 
-const UpdateFormSchema = objectAsync({
+const UpdateAccountFormSchema = objectAsync({
   new_username: union([
     literal(''),
     pipe(
@@ -52,44 +52,44 @@ const UpdateFormSchema = objectAsync({
   ])
 })
 
-export type UpdateFormData = InferOutput<typeof UpdateFormSchema>
+export type UpdateAccountFormData = InferOutput<typeof UpdateAccountFormSchema>
 
-export type UpdateFormErrors = {
+export type UpdateAccountFormErrors = {
   username?: string
   email?: string
   password?: string
 }
 
-type UpdateActionState = {
-  data: UpdateFormData
-  errors: UpdateFormErrors
+type UpdateAccountActionState = {
+  data: UpdateAccountFormData
+  errors: UpdateAccountFormErrors
 }
 
 const initialState = {
-  data: {} as UpdateFormData,
-  errors: {} as UpdateFormErrors
+  data: {} as UpdateAccountFormData,
+  errors: {} as UpdateAccountFormErrors
 }
 
-export async function updateUserAction(
+export async function updateAccountAction(
   userId: number,
-  _prev: UpdateActionState,
+  _prev: UpdateAccountActionState,
   formData: FormData
-): Promise<UpdateActionState> {
+): Promise<UpdateAccountActionState> {
   const {new_username, new_email, new_password} = Object.fromEntries(formData)
   const data = {
     new_username,
     new_email,
     new_password
-  } as UpdateFormData
+  } as UpdateAccountFormData
 
   if (Object.values(data).every((value) => value === '')) {
     return initialState
   }
 
-  const result = await safeParseAsync(UpdateFormSchema, data)
+  const result = await safeParseAsync(UpdateAccountFormSchema, data)
 
   if (!result.success) {
-    const issues = flatten<typeof UpdateFormSchema>(result.issues)
+    const issues = flatten<typeof UpdateAccountFormSchema>(result.issues)
 
     return {
       data,

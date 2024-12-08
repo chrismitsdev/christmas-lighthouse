@@ -9,7 +9,7 @@ function Label({
   return (
     <Root
       className={cn(
-        'inline-block text-sm font-bold leading-6 peer-disabled:cursor-not-allowed peer-disabled:opacity-70',
+        'inline-block text-xs text-brand-gray-10 font-bold leading-6 peer-disabled:cursor-not-allowed peer-disabled:opacity-70',
         className
       )}
       {...props}

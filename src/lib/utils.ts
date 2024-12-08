@@ -17,3 +17,11 @@ export function formatCurrency(price: number | string) {
     currency: 'EUR'
   }).format(amount)
 }
+
+export function splitAndTrim(str: string): string[] | undefined {
+  if (typeof str !== 'string') return undefined
+
+  return str.split(',').map(function (el) {
+    return el.trim()
+  })
+}

@@ -5,7 +5,7 @@ import {getProducts} from '@/src/db/menu'
 import {Section} from '@/src/components/shared/section'
 import {Container} from '@/src/components/shared/container'
 import {Typography} from '@/src/components/ui/typography'
-import {CategoryTable} from '@/src/app/(admin)/dashboard/products/category-table'
+import {ProductsTable} from '@/src/app/(admin)/dashboard/products/products-table'
 
 export const metadata: Metadata = {
   title: 'Προιόντα | Διαχειριστικό'
@@ -31,7 +31,7 @@ export default async function DashboardProductsPage() {
               προϊόντα.
             </Typography>
           </div>
-          <CategoryTable products={products} />
+          <ProductsTable products={products} />
         </div>
       </Container>
     </Section>

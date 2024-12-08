@@ -3,7 +3,7 @@ import {redirect} from 'next/navigation'
 import {getCurrentSession} from '@/src/db/session'
 import {Section} from '@/src/components/shared/section'
 import {Container} from '@/src/components/shared/container'
-import {UpdateForm} from '@/src/app/(admin)/dashboard/account/update-form'
+import {UpdateAccountForm} from '@/src/app/(admin)/dashboard/account/update-account-form'
 
 export const metadata: Metadata = {
   title: 'Λογαριασμός | Διαχειριστικό'
@@ -19,7 +19,7 @@ export default async function DashboardAccountPage() {
   return (
     <Section>
       <Container>
-        <UpdateForm user={user} />
+        <UpdateAccountForm user={user} />
       </Container>
     </Section>
   )

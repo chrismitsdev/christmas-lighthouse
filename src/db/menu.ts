@@ -24,7 +24,7 @@ import {
 } from 'lucide-react'
 import {eq} from 'drizzle-orm'
 import {db} from '@/src/db'
-import {categoryTable, productTable} from '@/src/db/schema'
+import {type Product, categoryTable, productTable} from '@/src/db/schema'
 import {BurgerIcon} from '@/src/components/icons/burger-icon'
 
 export type CategoryWithProducts = {
@@ -90,7 +90,7 @@ export async function getLocalizedCategories(
 
   if (query.length < 1) {
     throw new Error(
-      'Could not retrieve localized categories (getLocalizedCategories fn)'
+      'Could not get localized categories (getLocalizedCategories fn)'
     )
   }
 
@@ -124,6 +124,11 @@ export async function getLocalizedCategories(
         })
       }
 
+      // Mutation - Sort products array by ascending productId
+      acc[categoryId].products.sort(function (product1, product2) {
+        return product1.id - product2.id
+      })
+
       return acc
     },
     {} as Record<string, CategoryWithProducts>
@@ -134,7 +139,28 @@ export async function getLocalizedCategories(
 
 // Used in the backoffice part of the app
 export async function getProducts() {
-  const query = await db.select().from(productTable).limit(10)
+  const query = await db.select().from(productTable).orderBy(productTable.id)
+
+  if (query.length < 1) {
+    throw new Error('Could not get products (getProducts fn)')
+  }
+
+  return query
+}
+
+export async function updateProduct(
+  productId: number,
+  product: Partial<Product>
+) {
+  const query = await db
+    .update(productTable)
+    .set(product)
+    .where(eq(productTable.id, productId))
+    .returning()
+
+  if (query.length < 1) {
+    throw new Error('Could not update product (updateProduct fn)')
+  }
 
   return query
 }
