@@ -3,12 +3,12 @@
 import * as React from 'react'
 import {
   Root,
-  Value,
-  Portal,
-  Group,
   Trigger,
+  Value,
   Icon,
+  Portal,
   Content,
+  Group,
   Viewport,
   Label,
   Item,
@@ -32,7 +32,7 @@ function SelectTrigger({
   return (
     <Trigger
       className={cn(
-        'px-2.5 py-[7px] flex items-center justify-between gap-1 text-sm rounded border outline-none hover:border-border-hover disabled:cursor-not-allowed disabled:opacity-50 data-open:border-border-hover group',
+        'p-4 flex items-center justify-between gap-1 bg-app-surface text-brand-gray-1 border rounded outline-none duration-300 hover:border-border-hover/50 data-open:bg-brand-gray-12 data-open:border-border-hover disabled:cursor-not-allowed disabled:opacity-50 group',
         className
       )}
       {...props}
@@ -42,7 +42,7 @@ function SelectTrigger({
         className='opacity-50 group-data-open:opacity-100 group-data-open:rotate-180 transition-transform'
         asChild
       >
-        <ChevronDown size={16} />
+        <ChevronDown />
       </Icon>
     </Trigger>
   )
@@ -62,7 +62,7 @@ function SelectContent({
       side={side}
       sideOffset={sideOffset}
       className={cn(
-        'relative z-50 bg-app-background max-h-[--radix-select-content-available-height] overflow-hidden border data-open:border-border-hover rounded',
+        'relative z-50 bg-brand-gray-12 min-w-[--radix-select-trigger-width] max-h-[--radix-select-content-available-height] overflow-hidden border border-border-hover rounded',
         className
       )}
       {...props}
@@ -104,7 +104,7 @@ function SelectItem({
   return (
     <Item
       className={cn(
-        'px-1.5 py-2 relative w-full flex items-center justify-start gap-2.5  bg-inherit select-none rounded text-sm  outline-none data-disabled:pointer-events-none data-disabled:opacity-50 data-highlighted:bg-brand-gray-11/30',
+        'px-3 py-2 relative w-full flex items-center justify-start gap-2.5  bg-inherit text-brand-gray-1 select-none rounded text-sm outline-none data-disabled:pointer-events-none data-disabled:opacity-50 data-highlighted:bg-brand-gray-11/30',
         className
       )}
       {...props}

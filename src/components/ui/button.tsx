@@ -28,14 +28,22 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        regular: 'sm:px-5',
+        regular: [
+          'sm:px-5',
+          'data-open:bg-app-background',
+          'data-open:border-border-hover'
+        ],
         danger: [
           'bg-red-900/50',
           'border-red-900',
           '[&:not(:disabled)]:hover:bg-red-900',
           '[&:not(:disabled)]:hover:border-red-900/50'
         ],
-        'icon-button': 'p-[7px]'
+        'icon-button': [
+          'p-[7px]',
+          'data-open:bg-app-background',
+          'data-open:border-border-hover'
+        ]
       }
     },
     defaultVariants: {

@@ -19,7 +19,7 @@ import {
   safeParse
 } from 'valibot'
 import {type Product} from '@/src/db/schema'
-import {updateProduct} from '@/src/db/menu'
+import {updateProduct, deleteProduct} from '@/src/db/menu'
 import {splitAndTrim} from '@/src/lib/utils'
 
 const greekLettersOnly =
@@ -116,4 +116,9 @@ export async function updateProductAction(
     data: result.output,
     errors: {}
   }
+}
+
+export async function deleteProductAction(productId: number): Promise<void> {
+  await deleteProduct(productId)
+  revalidatePath('/')
 }

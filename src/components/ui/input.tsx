@@ -65,7 +65,10 @@ function Input({
         )}
       </div>
       {error && (
-        <span className='block text-[10px] leading-4 text-right text-red-300 tracking-widest'>
+        <span
+          className='block text-[10px] leading-4 text-right text-red-300 tracking-widest'
+          aria-live='polite'
+        >
           {error}
         </span>
       )}

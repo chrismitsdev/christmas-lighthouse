@@ -7,21 +7,14 @@ import {
   deleteSessionTokenCookie
 } from '@/src/db/session'
 
-type ActionResult = {
-  message: string
-}
-
-export async function logoutAction(): Promise<ActionResult> {
+export async function logoutAction(): Promise<void> {
   const {session} = await getCurrentSession()
 
   if (session === null) {
-    return {
-      message: 'Μη επικυρωμένος χρήστης'
-    }
+    return
   }
 
   await invalidateSession(session.id)
   await deleteSessionTokenCookie()
-
   redirect('/login')
 }

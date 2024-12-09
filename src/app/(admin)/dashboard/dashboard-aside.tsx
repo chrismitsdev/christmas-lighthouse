@@ -1,9 +1,14 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import {ShoppingBasketIcon, UserCogIcon} from 'lucide-react'
+import {
+  ScrollTextIcon,
+  ShoppingBasketIcon,
+  UserCogIcon,
+  LogOutIcon
+} from 'lucide-react'
 import {cn} from '@/src/lib/utils'
 import {Button} from '@/src/components/ui/button'
-import {LogoutButton} from '@/src/app/(admin)/dashboard/logout-button'
+import {LogoutForm} from '@/src/app/(admin)/dashboard/logout-form'
 import logo from '@/public/logo.png'
 
 type AsideProps = React.HTMLAttributes<HTMLElement>
@@ -28,6 +33,15 @@ function DashboardAside({className, ...props}: AsideProps) {
           className='w-auto justify-start'
           asChild
         >
+          <Link href='/dashboard/categories'>
+            <ScrollTextIcon />
+            <span>Κατηγορίες</span>
+          </Link>
+        </Button>
+        <Button
+          className='w-auto justify-start'
+          asChild
+        >
           <Link href='/dashboard/products'>
             <ShoppingBasketIcon />
             <span>Προϊόντα</span>
@@ -42,7 +56,10 @@ function DashboardAside({className, ...props}: AsideProps) {
             <span>Λογαριασμός</span>
           </Link>
         </Button>
-        <LogoutButton />
+        <LogoutForm>
+          <LogOutIcon className='rotate-180' />
+          <span>Αποσύνδεση</span>
+        </LogoutForm>
       </nav>
     </aside>
   )

@@ -24,7 +24,12 @@ import {
 } from 'lucide-react'
 import {eq} from 'drizzle-orm'
 import {db} from '@/src/db'
-import {type Product, categoryTable, productTable} from '@/src/db/schema'
+import {
+  type Product,
+  type Category,
+  categoryTable,
+  productTable
+} from '@/src/db/schema'
 import {BurgerIcon} from '@/src/components/icons/burger-icon'
 
 export type CategoryWithProducts = {
@@ -57,6 +62,29 @@ const iconsMap = {
 }
 
 const CategoriesSchema = array(
+  object({
+    id: string(),
+    elName: string(),
+    enName: string(),
+    elNotes: union([array(string()), null_()]),
+    enNotes: union([array(string()), null_()])
+  })
+)
+
+const ProductSchema = array(
+  object({
+    id: number(),
+    categoryId: string(),
+    elName: string(),
+    enName: string(),
+    price: number(),
+    active: boolean(),
+    elDescription: union([array(string()), null_()]),
+    enDescription: union([array(string()), null_()])
+  })
+)
+
+const CustomCategoriesSchema = array(
   object({
     categoryId: string(),
     categoryName: string(),
@@ -95,10 +123,10 @@ export async function getLocalizedCategories(
     )
   }
 
-  const result = safeParse(CategoriesSchema, query)
+  const result = safeParse(CustomCategoriesSchema, query)
 
   if (!result.success) {
-    throw new Error('Invalid query schema in getLocalizedCategories fn')
+    throw new Error('Invalid query schema (getLocalizedCategories fn)')
   }
 
   const groupedCategories = result.output.reduce(
@@ -115,7 +143,7 @@ export async function getLocalizedCategories(
         }
       }
 
-      if (item.productId) {
+      if (item.productId !== null && item.productId !== undefined) {
         acc[categoryId].products.push({
           id: item.productId,
           name: item.productName,
@@ -140,14 +168,37 @@ export async function getLocalizedCategories(
 
 // --- BACK-OFFICE ---
 // GET all products
-export async function getProducts() {
+export async function getProducts(): Promise<Product[]> {
   const query = await db.select().from(productTable).orderBy(productTable.id)
 
   if (query.length < 1) {
     throw new Error('Could not get products (getProducts fn)')
   }
 
-  return query
+  const result = safeParse(ProductSchema, query)
+
+  if (!result.success) {
+    throw new Error('Invalid query schema (getProducts fn)')
+  }
+
+  return result.output
+}
+
+// GET all categories
+export async function getCategories(): Promise<Category[]> {
+  const query = await db.select().from(categoryTable)
+
+  if (query.length < 1) {
+    throw new Error('Could not get categories (getCategories fn)')
+  }
+
+  const result = safeParse(CategoriesSchema, query)
+
+  if (!result.success) {
+    throw new Error('Invalid query schema (getCategories fn)')
+  }
+
+  return result.output
 }
 
 // UPDATE single product

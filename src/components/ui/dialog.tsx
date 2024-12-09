@@ -41,7 +41,7 @@ function DialogContent({
   return (
     <Content
       className={cn(
-        'p-6 fixed left-1/2 top-1/2 z-50 -translate-x-1/2 -translate-y-1/2 w-full max-w-xl bg-app-surface-solid border rounded sm:p-12',
+        'p-6 fixed left-1/2 top-1/2 z-50 -translate-x-1/2 -translate-y-1/2 w-full max-w-xl bg-app-surface-solid border rounded outline-none sm:p-12',
         className
       )}
       {...props}
@@ -102,7 +102,7 @@ function DialogClose({
       asChild
     >
       <Button
-        className='p-[7px]'
+        className='p-[3px] rounded-sm'
         variant='danger'
       >
         <XIcon size={16} />
