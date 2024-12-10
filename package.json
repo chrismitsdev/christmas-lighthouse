@@ -8,8 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "db:generate": "drizzle-kit generate",
-    "db:migrate": "tsx ./src/db/migrate.ts",
-    "db:exec": "tsx ./src/db/exec.ts",
+    "db:migrate": "tsx ./src/db/drizzle/migrate.ts",
+    "db:exec": "tsx ./src/db/drizzle/exec.ts",
     "clean": "rimraf .next node_modules pnpm-lock.yaml"
   },
   "devDependencies": {
