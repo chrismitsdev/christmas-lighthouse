@@ -7,7 +7,7 @@ import {
   KeySquareIcon,
   SendHorizontalIcon
 } from 'lucide-react'
-import {type User} from '@/src/db/schema'
+import {type User} from '@/src/db/drizzle/schema'
 import {
   type UpdateAccountFormData,
   type UpdateAccountFormErrors,

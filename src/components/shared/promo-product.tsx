@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import {useTranslations} from 'next-intl'
-import {Link} from '@/src/i18n/routing'
 import {MegaphoneIcon, ChevronUpIcon, ChevronDownIcon} from 'lucide-react'
+import {Link} from '@/src/i18n/routing'
 import {
   Collapsible,
   CollapsibleTrigger,

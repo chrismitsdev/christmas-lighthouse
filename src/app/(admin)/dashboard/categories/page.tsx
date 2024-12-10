@@ -1,4 +1,4 @@
-import {type Metadata} from 'next'
+import type {Metadata} from 'next'
 import {redirect} from 'next/navigation'
 import {getCurrentSession} from '@/src/db/session'
 import {getCategories} from '@/src/db/menu'

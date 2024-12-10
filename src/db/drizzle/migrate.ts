@@ -1,4 +1,4 @@
-import {db} from '@/src/db'
+import {db} from '@/src/db/drizzle'
 import {migrate} from 'drizzle-orm/neon-http/migrator'
 import chalk from 'chalk'
 

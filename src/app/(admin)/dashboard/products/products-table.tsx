@@ -1,5 +1,5 @@
 import {EllipsisIcon, PencilIcon, Trash2Icon} from 'lucide-react'
-import {type Product} from '@/src/db/schema'
+import {type Product} from '@/src/db/drizzle/schema'
 import {formatCurrency} from '@/src/lib/utils'
 import {
   Table,
@@ -97,7 +97,7 @@ function ProductsTable({products}: {products: Product[]}) {
                       <DialogOverlay />
                       <DialogContent className='grid gap-10'>
                         <DialogHeader>
-                          <DialogTitle>Επεξεργασία</DialogTitle>
+                          <DialogTitle>Επεξεργασία προϊόντος</DialogTitle>
                           <DialogDescription>
                             Επεξεργάζεστε το προϊόν{' '}
                             <span className='font-bold text-app-foreground'>

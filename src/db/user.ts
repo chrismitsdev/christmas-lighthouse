@@ -1,7 +1,7 @@
 import {eq} from 'drizzle-orm'
 import {hash, verify} from '@node-rs/argon2'
-import {type User, userTable} from '@/src/db/schema'
-import {db} from '@/src/db'
+import {db} from '@/src/db/drizzle'
+import {type User, userTable} from '@/src/db/drizzle/schema'
 
 type UserWithoutHashPassword = Omit<User, 'passwordHash'>
 

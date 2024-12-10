@@ -18,7 +18,7 @@ import {
   undefined_,
   safeParse
 } from 'valibot'
-import {type Product} from '@/src/db/schema'
+import {type Product} from '@/src/db/drizzle/schema'
 import {updateProduct, deleteProduct} from '@/src/db/menu'
 import {splitAndTrim} from '@/src/lib/utils'
 
@@ -59,14 +59,9 @@ const UpdateProductSchema = object({
 })
 
 export type UpdateProductFormData = InferOutput<typeof UpdateProductSchema>
-
-export type UpdateProductFormErrors = {
-  el_name?: string
-  en_name?: string
-  price?: string
-  el_description?: string
-  en_description?: string
-}
+export type UpdateProductFormErrors = Partial<
+  Record<keyof Omit<UpdateProductFormData, 'active'>, string>
+>
 
 type UpdateProductActionState = {
   data: UpdateProductFormData
@@ -101,12 +96,8 @@ export async function updateProductAction(
     enName: result.output.en_name,
     price: Number.parseFloat(result.output.price),
     active: Boolean(result.output.active),
-    elDescription: result.output.el_description
-      ? splitAndTrim(result.output.el_description)
-      : null,
-    enDescription: result.output.en_description
-      ? splitAndTrim(result.output.en_description)
-      : null
+    elDescription: splitAndTrim(result.output.el_description),
+    enDescription: splitAndTrim(result.output.en_description)
   }
 
   await updateProduct(productId, product)

@@ -2,7 +2,7 @@
 
 import * as React from 'react'
 import {EditIcon} from 'lucide-react'
-import {type Product} from '@/src/db/schema'
+import {type Product} from '@/src/db/drizzle/schema'
 import {
   type UpdateProductFormData,
   type UpdateProductFormErrors,

@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import {PanelLeftIcon, HomeIcon, UserIcon} from 'lucide-react'
-import type {User} from '@/src/db/schema'
+import type {User} from '@/src/db/drizzle/schema'
 import {cn} from '@/src/lib/utils'
 import {Typography} from '@/src/components/ui/typography'
 import {Button} from '@/src/components/ui/button'

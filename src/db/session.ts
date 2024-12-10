@@ -6,8 +6,13 @@ import {
 } from '@oslojs/encoding'
 import {sha256} from '@oslojs/crypto/sha2'
 import {eq} from 'drizzle-orm'
-import {db} from '@/src/db'
-import {type Session, type User, userTable, sessionTable} from '@/src/db/schema'
+import {db} from '@/src/db/drizzle'
+import {
+  type Session,
+  type User,
+  userTable,
+  sessionTable
+} from '@/src/db/drizzle/schema'
 
 /* API USAGE *****************************************************************|
 |- When a user signs in:                                                      |

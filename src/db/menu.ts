@@ -23,13 +23,13 @@ import {
   PopcornIcon
 } from 'lucide-react'
 import {eq} from 'drizzle-orm'
-import {db} from '@/src/db'
+import {db} from '@/src/db/drizzle'
 import {
   type Product,
   type Category,
   categoryTable,
   productTable
-} from '@/src/db/schema'
+} from '@/src/db/drizzle/schema'
 import {BurgerIcon} from '@/src/components/icons/burger-icon'
 
 export type CategoryWithProducts = {
@@ -214,6 +214,24 @@ export async function updateProduct(
 
   if (query.length < 1) {
     throw new Error('Could not update product (updateProduct fn)')
+  }
+
+  return query[0]
+}
+
+// UPDATE single category
+export async function updateCategory(
+  categoryId: string,
+  updatedCategory: Partial<Category>
+): Promise<Category> {
+  const query = await db
+    .update(categoryTable)
+    .set(updatedCategory)
+    .where(eq(categoryTable.id, categoryId))
+    .returning()
+
+  if (query.length < 1) {
+    throw new Error('Could not update category (updateCategory fn)')
   }
 
   return query[0]

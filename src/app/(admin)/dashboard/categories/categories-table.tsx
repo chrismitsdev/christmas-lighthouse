@@ -1,5 +1,5 @@
 import {EllipsisIcon, PencilIcon, Trash2Icon} from 'lucide-react'
-import {type Category} from '@/src/db/schema'
+import {type Category} from '@/src/db/drizzle/schema'
 import {
   Table,
   TableHeader,
@@ -78,7 +78,7 @@ function CategoriesTable({categories}: {categories: Category[]}) {
                     <DialogOverlay />
                     <DialogContent className='grid gap-10'>
                       <DialogHeader>
-                        <DialogTitle>Επεξεργασία</DialogTitle>
+                        <DialogTitle>Επεξεργασία κατηγορίας</DialogTitle>
                         <DialogDescription>
                           Επεξεργάζεστε την κατηγορία{' '}
                           <span className='font-bold text-app-foreground'>
