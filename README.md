@@ -1,4 +1,4 @@
-# christmas-lighthouse-menu
+# christmas-lighthouse
 
 Repo of the The Christmas Lighthouse website.
 At the moment, contains only the product catalogue.
