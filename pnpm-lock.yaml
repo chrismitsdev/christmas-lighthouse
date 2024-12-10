@@ -93,7 +93,7 @@ importers:
         specifier: 15.0.4
         version: 15.0.4(eslint@8.57.1)(typescript@5.7.2)
       framer-motion:
-        specifier: ^11.13.4
+        specifier: ^11.13.5
         version: 11.13.5(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       lucide-react:
         specifier: 0.468.0
