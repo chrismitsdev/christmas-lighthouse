@@ -27,3 +27,11 @@ export function splitAndTrim(
     return el.trim()
   })
 }
+
+export function joinAndSpace(arr: string[] | null): string | null {
+  if (!Array.isArray(arr) || arr === null) {
+    return null
+  }
+
+  return arr.join(', ')
+}

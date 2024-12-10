@@ -99,7 +99,7 @@ const CustomCategoriesSchema = array(
 
 // --- FRONT-FACING ---
 // GET localized categories with products
-export async function getLocalizedCategories(
+export const getLocalizedCategories = React.cache(async function (
   locale: Locale
 ): Promise<CategoryWithProducts[]> {
   const query = await db
@@ -164,7 +164,74 @@ export async function getLocalizedCategories(
   )
 
   return Object.values(groupedCategories)
-}
+})
+
+// export async function getLocalizedCategories(
+//   locale: Locale
+// ): Promise<CategoryWithProducts[]> {
+//   const query = await db
+//     .select({
+//       categoryId: categoryTable.id,
+//       categoryName: categoryTable[`${locale}Name`],
+//       categoryNotes: categoryTable[`${locale}Notes`],
+//       productId: productTable.id,
+//       productName: productTable[`${locale}Name`],
+//       productDescription: productTable[`${locale}Description`],
+//       productPrice: productTable.price,
+//       productActive: productTable.active
+//     })
+//     .from(categoryTable)
+//     .innerJoin(productTable, eq(categoryTable.id, productTable.categoryId))
+//     .where(eq(productTable.active, true))
+
+//   if (query.length < 1) {
+//     throw new Error(
+//       'Could not get localized categories (getLocalizedCategories fn)'
+//     )
+//   }
+
+//   const result = safeParse(CustomCategoriesSchema, query)
+
+//   if (!result.success) {
+//     throw new Error('Invalid query schema (getLocalizedCategories fn)')
+//   }
+
+//   const groupedCategories = result.output.reduce(
+//     function (acc, item) {
+//       const categoryId = item.categoryId as keyof typeof iconsMap
+
+//       if (!acc[categoryId]) {
+//         acc[categoryId] = {
+//           title: item.categoryName,
+//           notes: item.categoryNotes,
+//           link: item.categoryId,
+//           icon: React.createElement(iconsMap[categoryId]),
+//           products: []
+//         }
+//       }
+
+//       if (item.productId !== null && item.productId !== undefined) {
+//         acc[categoryId].products.push({
+//           id: item.productId,
+//           name: item.productName,
+//           description: item.productDescription,
+//           price: item.productPrice,
+//           active: item.productActive
+//         })
+//       }
+
+//       // Mutation - Sort products array by ascending productId
+//       acc[categoryId].products.sort(function (product1, product2) {
+//         return product1.id - product2.id
+//       })
+
+//       return acc
+//     },
+//     {} as Record<string, CategoryWithProducts>
+//   )
+
+//   return Object.values(groupedCategories)
+// }
 
 // --- BACK-OFFICE ---
 // GET all products

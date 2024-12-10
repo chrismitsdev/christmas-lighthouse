@@ -68,7 +68,7 @@ export async function validateSessionToken(
     return {session: null, user: null}
   }
 
-  // checks if the session is within 15 days of expiring and extend to 30
+  // checks if the session is within 15 days of expiring; if true extends to 30
   if (Date.now() >= session.expiresAt.getTime() - 1000 * 60 * 60 * 24 * 15) {
     session.expiresAt = new Date(Date.now() + 1000 * 60 * 60 * 24 * 30)
     await db
