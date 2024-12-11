@@ -14,7 +14,7 @@ import {
   safeParse
 } from 'valibot'
 import {type Category} from '@/src/db/drizzle/schema'
-import {updateCategory} from '@/src/db/menu'
+import {updateCategory, deleteCategoryWithProducts} from '@/src/db/menu'
 import {splitAndTrim} from '@/src/lib/utils'
 
 const UpdateCategorySchema = object({
@@ -47,7 +47,6 @@ export async function updateCategoryAction(
   _prev: UpdateCategoryActionState,
   formData: FormData
 ): Promise<UpdateCategoryActionState> {
-  console.log(categoryId)
   const data = Object.fromEntries(formData) as UpdateCategoryFormData
   const result = safeParse(UpdateCategorySchema, data)
 
@@ -79,4 +78,12 @@ export async function updateCategoryAction(
     data: result.output,
     errors: {}
   }
+}
+
+export async function deleteCategoryAction(
+  categoryId: string,
+  deleteProducts: boolean
+): Promise<void> {
+  await deleteCategoryWithProducts(categoryId, deleteProducts)
+  revalidatePath('/')
 }

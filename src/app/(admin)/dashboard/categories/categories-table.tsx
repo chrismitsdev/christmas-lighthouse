@@ -26,8 +26,21 @@ import {
   DialogDescription,
   DialogClose
 } from '@/src/components/ui/dialog'
+import {
+  AlertDialog,
+  AlertDialogTrigger,
+  AlertDialogPortal,
+  AlertDialogOverlay,
+  AlertDialogContent,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogCancel
+} from '@/src/components/ui/alert-dialog'
 import {Button} from '@/src/components/ui/button'
 import {UpdateCategoryForm} from '@/src/app/(admin)/dashboard/categories/update-category-form'
+import {DeleteCategoryForm} from '@/src/app/(admin)/dashboard/categories/delete-category-form'
 
 function CategoriesTable({categories}: {categories: Category[]}) {
   return (
@@ -48,49 +61,77 @@ function CategoriesTable({categories}: {categories: Category[]}) {
               <TableCell>{category.elName}</TableCell>
               <TableCell>{category.enName}</TableCell>
               <TableCell className='py-0 text-right'>
-                <Dialog>
-                  <DropdownMenu>
-                    <DropdownMenuTrigger
-                      className='outline-none'
-                      asChild
-                    >
-                      <Button variant='icon-button'>
-                        <EllipsisIcon size={16} />
-                      </Button>
-                    </DropdownMenuTrigger>
-                    <DropdownMenuPortal>
-                      <DropdownMenuContent align='end'>
-                        <DialogTrigger asChild>
-                          <DropdownMenuItem>
-                            <PencilIcon size={16} />
-                            <span>Επεξεργασία</span>
-                          </DropdownMenuItem>
-                        </DialogTrigger>
-                        <DropdownMenuItem>
-                          <Trash2Icon size={16} />
-                          <span>Διαγραφή</span>
-                        </DropdownMenuItem>
-                      </DropdownMenuContent>
-                    </DropdownMenuPortal>
-                  </DropdownMenu>
+                <AlertDialog>
+                  <Dialog>
+                    <DropdownMenu>
+                      <DropdownMenuTrigger
+                        className='outline-none'
+                        asChild
+                      >
+                        <Button variant='icon-button'>
+                          <EllipsisIcon size={16} />
+                        </Button>
+                      </DropdownMenuTrigger>
+                      <DropdownMenuPortal>
+                        <DropdownMenuContent align='end'>
+                          <DialogTrigger asChild>
+                            <DropdownMenuItem>
+                              <PencilIcon size={16} />
+                              <span>Επεξεργασία</span>
+                            </DropdownMenuItem>
+                          </DialogTrigger>
+                          <AlertDialogTrigger asChild>
+                            <DropdownMenuItem>
+                              <Trash2Icon size={16} />
+                              <span>Διαγραφή</span>
+                            </DropdownMenuItem>
+                          </AlertDialogTrigger>
+                        </DropdownMenuContent>
+                      </DropdownMenuPortal>
+                    </DropdownMenu>
 
-                  <DialogPortal>
-                    <DialogOverlay />
-                    <DialogContent className='grid gap-10'>
-                      <DialogHeader>
-                        <DialogTitle>Επεξεργασία κατηγορίας</DialogTitle>
-                        <DialogDescription>
-                          Επεξεργάζεστε την κατηγορία{' '}
-                          <span className='font-bold text-app-foreground'>
-                            {category.elName}
-                          </span>
-                        </DialogDescription>
-                      </DialogHeader>
-                      <UpdateCategoryForm category={category} />
-                      <DialogClose />
-                    </DialogContent>
-                  </DialogPortal>
-                </Dialog>
+                    <DialogPortal>
+                      <DialogOverlay />
+                      <DialogContent className='grid gap-10'>
+                        <DialogHeader>
+                          <DialogTitle>Επεξεργασία κατηγορίας</DialogTitle>
+                          <DialogDescription>
+                            Επεξεργάζεστε την κατηγορία{' '}
+                            <span className='font-bold text-app-foreground'>
+                              {category.elName}
+                            </span>
+                          </DialogDescription>
+                        </DialogHeader>
+                        <UpdateCategoryForm category={category} />
+                        <DialogClose />
+                      </DialogContent>
+                    </DialogPortal>
+
+                    <AlertDialogPortal>
+                      <AlertDialogOverlay />
+                      <AlertDialogContent className='grid gap-6'>
+                        <AlertDialogHeader>
+                          <AlertDialogTitle>ΠΡΟΣΟΧΗ</AlertDialogTitle>
+                          <AlertDialogDescription>
+                            Αυτή η ενέργεια δεν μπορεί να αναιρεθεί. Αυτή η
+                            ενέργεια θα διαγράψει οριστικά την κατηγορία{' '}
+                            <span className='font-bold text-app-foreground'>
+                              {category.elName}
+                            </span>{' '}
+                            και θα την αφαιρέσει μόνιμα από την βάση δεδομένων.
+                          </AlertDialogDescription>
+                        </AlertDialogHeader>
+                        <AlertDialogFooter className='block'>
+                          <DeleteCategoryForm categoryId={category.id}>
+                            <AlertDialogCancel asChild>
+                              <Button>Mαταίωση</Button>
+                            </AlertDialogCancel>
+                          </DeleteCategoryForm>
+                        </AlertDialogFooter>
+                      </AlertDialogContent>
+                    </AlertDialogPortal>
+                  </Dialog>
+                </AlertDialog>
               </TableCell>
             </TableRow>
           )

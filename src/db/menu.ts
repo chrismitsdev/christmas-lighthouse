@@ -138,7 +138,10 @@ export const getLocalizedCategories = React.cache(async function (
           title: item.categoryName,
           notes: item.categoryNotes,
           link: item.categoryId,
-          icon: React.createElement(iconsMap[categoryId]),
+          icon:
+            categoryId in iconsMap
+              ? React.createElement(iconsMap[categoryId])
+              : undefined,
           products: []
         }
       }
@@ -165,73 +168,6 @@ export const getLocalizedCategories = React.cache(async function (
 
   return Object.values(groupedCategories)
 })
-
-// export async function getLocalizedCategories(
-//   locale: Locale
-// ): Promise<CategoryWithProducts[]> {
-//   const query = await db
-//     .select({
-//       categoryId: categoryTable.id,
-//       categoryName: categoryTable[`${locale}Name`],
-//       categoryNotes: categoryTable[`${locale}Notes`],
-//       productId: productTable.id,
-//       productName: productTable[`${locale}Name`],
-//       productDescription: productTable[`${locale}Description`],
-//       productPrice: productTable.price,
-//       productActive: productTable.active
-//     })
-//     .from(categoryTable)
-//     .innerJoin(productTable, eq(categoryTable.id, productTable.categoryId))
-//     .where(eq(productTable.active, true))
-
-//   if (query.length < 1) {
-//     throw new Error(
-//       'Could not get localized categories (getLocalizedCategories fn)'
-//     )
-//   }
-
-//   const result = safeParse(CustomCategoriesSchema, query)
-
-//   if (!result.success) {
-//     throw new Error('Invalid query schema (getLocalizedCategories fn)')
-//   }
-
-//   const groupedCategories = result.output.reduce(
-//     function (acc, item) {
-//       const categoryId = item.categoryId as keyof typeof iconsMap
-
-//       if (!acc[categoryId]) {
-//         acc[categoryId] = {
-//           title: item.categoryName,
-//           notes: item.categoryNotes,
-//           link: item.categoryId,
-//           icon: React.createElement(iconsMap[categoryId]),
-//           products: []
-//         }
-//       }
-
-//       if (item.productId !== null && item.productId !== undefined) {
-//         acc[categoryId].products.push({
-//           id: item.productId,
-//           name: item.productName,
-//           description: item.productDescription,
-//           price: item.productPrice,
-//           active: item.productActive
-//         })
-//       }
-
-//       // Mutation - Sort products array by ascending productId
-//       acc[categoryId].products.sort(function (product1, product2) {
-//         return product1.id - product2.id
-//       })
-
-//       return acc
-//     },
-//     {} as Record<string, CategoryWithProducts>
-//   )
-
-//   return Object.values(groupedCategories)
-// }
 
 // --- BACK-OFFICE ---
 // GET all products
@@ -268,7 +204,7 @@ export async function getCategories(): Promise<Category[]> {
   return result.output
 }
 
-// UPDATE single product
+// UPDATE single product by product id
 export async function updateProduct(
   productId: number,
   updatedProduct: Partial<Product>
@@ -286,7 +222,7 @@ export async function updateProduct(
   return query[0]
 }
 
-// UPDATE single category
+// UPDATE single category by category id
 export async function updateCategory(
   categoryId: string,
   updatedCategory: Partial<Category>
@@ -304,7 +240,7 @@ export async function updateCategory(
   return query[0]
 }
 
-// DELETE single product
+// DELETE single product by product id
 export async function deleteProduct(productId: number): Promise<Product> {
   const query = await db
     .delete(productTable)
@@ -316,4 +252,50 @@ export async function deleteProduct(productId: number): Promise<Product> {
   }
 
   return query[0]
+}
+
+// DELETE a single category by category id
+async function deleteCategory(categoryId: string): Promise<Category> {
+  const result = await db
+    .delete(categoryTable)
+    .where(eq(categoryTable.id, categoryId))
+    .returning()
+
+  if (result.length < 1) {
+    throw new Error(
+      `Could not delete category with ID: ${categoryId} (deleteCategory fn)`
+    )
+  }
+
+  return result[0]
+}
+
+// DELETE single category; optionally, DELETE all associated products
+export async function deleteCategoryWithProducts(
+  categoryId: string,
+  deleteProducts: boolean
+): Promise<Category | {category: Category; products: Product[]}> {
+  if (deleteProducts) {
+    const deleteProductsQuery = await db
+      .delete(productTable)
+      .where(eq(productTable.categoryId, categoryId))
+      .returning()
+
+    if (deleteProductsQuery.length < 1) {
+      throw new Error(
+        `Could not delete ${categoryId}-related products (deleteCategoryWithProducts fn)`
+      )
+    }
+
+    const deletedCategory = await deleteCategory(categoryId)
+
+    return {
+      category: deletedCategory,
+      products: deleteProductsQuery
+    }
+  }
+
+  const deletedCategory = await deleteCategory(categoryId)
+
+  return deletedCategory
 }
