@@ -99,27 +99,3 @@ function UpdateCategoryForm({category}: {category: Category}) {
 UpdateCategoryForm.displayName = 'UpdateCategoryForm'
 
 export {UpdateCategoryForm}
-
-// <Select defaultValue={category.id}>
-//   <SelectTrigger className='w-full'>
-//     <SelectValue />
-//   </SelectTrigger>
-//   <SelectPortal>
-//     <SelectContent>
-//       <SelectViewport>
-//         {availableCategories.map(function (availableCategory) {
-//           return (
-//             <SelectItem
-//               key={availableCategory.id}
-//               value={availableCategory.id}
-//             >
-//               <SelectItemText>
-//                 {availableCategory.elName}
-//               </SelectItemText>
-//             </SelectItem>
-//           )
-//         })}
-//       </SelectViewport>
-//     </SelectContent>
-//   </SelectPortal>
-// </Select>

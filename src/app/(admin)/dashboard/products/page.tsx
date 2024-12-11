@@ -1,7 +1,7 @@
 import type {Metadata} from 'next'
 import {redirect} from 'next/navigation'
 import {getCurrentSession} from '@/src/db/session'
-import {getProducts} from '@/src/db/menu'
+import {getProducts, getCategories} from '@/src/db/menu'
 import {Section} from '@/src/components/shared/section'
 import {Container} from '@/src/components/shared/container'
 import {Typography} from '@/src/components/ui/typography'
@@ -18,6 +18,7 @@ export default async function DashboardProductsPage() {
     redirect('/login')
   }
 
+  const categories = await getCategories()
   const products = await getProducts()
 
   return (
@@ -31,7 +32,10 @@ export default async function DashboardProductsPage() {
               προϊόντα.
             </Typography>
           </div>
-          <ProductsTable products={products} />
+          <ProductsTable
+            categories={categories}
+            products={products}
+          />
         </div>
       </Container>
     </Section>

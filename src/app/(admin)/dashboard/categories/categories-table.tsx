@@ -39,6 +39,7 @@ import {
   AlertDialogCancel
 } from '@/src/components/ui/alert-dialog'
 import {Button} from '@/src/components/ui/button'
+import {Badge} from '@/src/components/ui/badge'
 import {UpdateCategoryForm} from '@/src/app/(admin)/dashboard/categories/update-category-form'
 import {DeleteCategoryForm} from '@/src/app/(admin)/dashboard/categories/delete-category-form'
 
@@ -47,7 +48,7 @@ function CategoriesTable({categories}: {categories: Category[]}) {
     <Table>
       <TableHeader>
         <TableRow>
-          <TableHead>Α/Α</TableHead>
+          <TableHead>Κατηγορία</TableHead>
           <TableHead>Ελληνική ονομασία</TableHead>
           <TableHead>Αγγλική ονομασία</TableHead>
           <TableHead className='text-right'>Ενέργειες</TableHead>
@@ -57,7 +58,9 @@ function CategoriesTable({categories}: {categories: Category[]}) {
         {categories?.map(function (category) {
           return (
             <TableRow key={category.id}>
-              <TableCell>{category.id}</TableCell>
+              <TableCell>
+                <Badge>{category.id}</Badge>
+              </TableCell>
               <TableCell>{category.elName}</TableCell>
               <TableCell>{category.enName}</TableCell>
               <TableCell className='py-0 text-right'>

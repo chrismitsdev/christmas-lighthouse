@@ -10,6 +10,7 @@ type InputProps = React.DetailedHTMLProps<
 > & {
   icon?: React.ReactElement<LucideIcon>
   error?: string
+  noErrorMessages?: boolean
 }
 
 function Input({
@@ -18,6 +19,7 @@ function Input({
   disabled = false,
   icon,
   error,
+  noErrorMessages = false,
   ...props
 }: InputProps) {
   const [passVisible, setPassVisible] = React.useState(false)
@@ -26,7 +28,7 @@ function Input({
 
   return (
     <div
-      className='min-h-[74px]'
+      className={cn(!noErrorMessages && 'min-h-[74px]')}
       {...(disabled ? {['data-disabled']: disabled} : {})}
     >
       <div className='relative group'>

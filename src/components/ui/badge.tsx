@@ -13,18 +13,15 @@ const badgeVariants = cva(
     'rounded',
     'border',
     'text-xs',
+    'font-semibold',
     'transition-colors',
-    'sm:py-0.5',
+    'sm:py-px',
     'sm:text-sm'
   ],
   {
     variants: {
       variant: {
-        primary: [
-          'bg-brand-gray-11/40',
-          'text-app-foreground/90',
-          'border-brand-gray-11/40'
-        ],
+        primary: ['bg-brand-gray-11/40', 'border-brand-gray-11/40'],
         secondary: ['bg-brand-gold-11/40', 'border-brand-gold-11/40']
       }
     },

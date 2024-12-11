@@ -37,18 +37,12 @@ function TableHeader({
 }
 
 function TableRow({
-  className,
   ...props
 }: React.DetailedHTMLProps<
   React.HTMLAttributes<HTMLTableRowElement>,
   HTMLTableRowElement
 >) {
-  return (
-    <tr
-      className={cn('', className)}
-      {...props}
-    />
-  )
+  return <tr {...props} />
 }
 
 function TableHead({
@@ -70,18 +64,12 @@ function TableHead({
 }
 
 function TableBody({
-  className,
   ...props
 }: React.DetailedHTMLProps<
   React.HTMLAttributes<HTMLTableSectionElement>,
   HTMLTableSectionElement
 >) {
-  return (
-    <tbody
-      className={cn('', className)}
-      {...props}
-    />
-  )
+  return <tbody {...props} />
 }
 
 function TableCell({

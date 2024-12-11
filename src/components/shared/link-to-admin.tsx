@@ -1,6 +1,6 @@
-import {getCurrentSession} from '@/src/db/session'
 // eslint-disable-next-line
 import Link from 'next/link'
+import {getCurrentSession} from '@/src/db/session'
 
 async function LinkToAdmin({children}: React.PropsWithChildren) {
   const {session} = await getCurrentSession()
@@ -9,7 +9,7 @@ async function LinkToAdmin({children}: React.PropsWithChildren) {
   return (
     <Link
       href={`/${href}`}
-      className='mt-auto block text-sm underline'
+      className='block text-xs font-extralight'
     >
       {children}
     </Link>

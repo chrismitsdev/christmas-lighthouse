@@ -78,43 +78,40 @@ function Footer() {
               </Typography>
             </div>
           </div>
-          <div className='flex flex-col'>
-            <div className='space-x-4'>
-              <Button
-                aria-label='Facebook link'
-                variant='icon-button'
-                asChild
+          <div className='space-x-3'>
+            <Button
+              aria-label='Facebook link'
+              variant='icon-button'
+              asChild
+            >
+              <a
+                target='_blank'
+                href='https://www.facebook.com/TheChristmasLighthouseAXD'
               >
-                <a
-                  target='_blank'
-                  href='https://www.facebook.com/TheChristmasLighthouseAXD'
-                >
-                  <FacebookIcon />
-                </a>
-              </Button>
-              <Button
-                aria-label='Instagram link'
-                variant='icon-button'
-                asChild
+                <FacebookIcon />
+              </a>
+            </Button>
+            <Button
+              aria-label='Instagram link'
+              variant='icon-button'
+              asChild
+            >
+              <a
+                target='_blank'
+                href='https://www.instagram.com/the.christmas.lighthouse.axd/'
               >
-                <a
-                  target='_blank'
-                  href='https://www.instagram.com/the.christmas.lighthouse.axd/'
-                >
-                  <InstagramIcon />
-                </a>
-              </Button>
-              <Button
-                aria-label='Telephone link'
-                variant='icon-button'
-                asChild
-              >
-                <a href='tel:+306973433980'>
-                  <PhoneIcon />
-                </a>
-              </Button>
-            </div>
-            <LinkToAdmin>{t('admin')}</LinkToAdmin>
+                <InstagramIcon />
+              </a>
+            </Button>
+            <Button
+              aria-label='Telephone link'
+              variant='icon-button'
+              asChild
+            >
+              <a href='tel:+306973433980'>
+                <PhoneIcon />
+              </a>
+            </Button>
           </div>
         </article>
         <Separator />
@@ -131,6 +128,7 @@ function Footer() {
           >
             {`Designed & Developed by CM`}
           </Typography>
+          <LinkToAdmin>{t('admin')}</LinkToAdmin>
         </article>
       </Container>
     </footer>
