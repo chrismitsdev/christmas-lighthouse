@@ -12,8 +12,8 @@ import {
   Close
 } from '@radix-ui/react-dialog'
 import {XIcon} from 'lucide-react'
-import {Button} from '@/src/components/ui/button'
 import {cn} from '@/src/lib/utils'
+import {Button} from '@/src/components/ui/button'
 
 const Dialog = Root
 const DialogTrigger = Trigger

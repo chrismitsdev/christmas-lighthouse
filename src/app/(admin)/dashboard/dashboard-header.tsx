@@ -1,29 +1,30 @@
 import Link from 'next/link'
-import {PanelLeftIcon, HomeIcon, UserIcon} from 'lucide-react'
+import {HomeIcon, UserIcon} from 'lucide-react'
 import type {User} from '@/src/db/drizzle/schema'
 import {cn} from '@/src/lib/utils'
 import {Typography} from '@/src/components/ui/typography'
 import {Button} from '@/src/components/ui/button'
 import {Separator} from '@/src/components/ui/separator'
 import {Badge} from '@/src/components/ui/badge'
+import {SidebarTrigger} from '@/src/components/ui/sidebar'
 
-type DashboardHeaderProps = React.HTMLAttributes<HTMLHeadingElement> & {
+function DashboardHeader({
+  className,
+  user,
+  ...props
+}: React.HTMLAttributes<HTMLHeadingElement> & {
   user: User
-}
-
-function DashboardHeader({className, user, ...props}: DashboardHeaderProps) {
+}) {
   return (
     <header
       className={cn(
-        'p-8 flex items-center justify-between bg-app-surface border-b',
+        'p-8 sticky top-0 z-[1] flex items-center justify-between bg-app-surface-solid border-b',
         className
       )}
       {...props}
     >
       <div className='flex items-center gap-4'>
-        <Button variant='icon-button'>
-          <PanelLeftIcon />
-        </Button>
+        <SidebarTrigger />
         <Button
           variant='icon-button'
           asChild
