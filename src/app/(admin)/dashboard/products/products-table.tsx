@@ -63,7 +63,7 @@ type ProductTableProps = {
 }
 
 function ProductsTable({categories, products}: ProductTableProps) {
-  const [categoryFilter, setCategoryFilter] = React.useState('coffee')
+  const [categoryFilter, setCategoryFilter] = React.useState(categories[0].id)
 
   const filteredProducts = React.useMemo(
     function () {
@@ -112,11 +112,11 @@ function ProductsTable({categories, products}: ProductTableProps) {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {filteredProducts?.map(function (product) {
+          {filteredProducts?.map(function (product, i) {
             return (
               <TableRow key={product.id}>
                 <TableCell>
-                  <Badge>{product.id}</Badge>
+                  <Badge>{i + 1}</Badge>
                 </TableCell>
                 <TableCell>{product.elName}</TableCell>
                 <TableCell>{product.enName}</TableCell>

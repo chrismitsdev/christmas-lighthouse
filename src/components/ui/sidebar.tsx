@@ -6,17 +6,17 @@ import {PanelLeft} from 'lucide-react'
 import {type VariantProps, cva} from 'class-variance-authority'
 import {cn} from '@/src/lib/utils'
 import {useIsMobile} from '@/src/hooks/use-is-mobile'
-import {Button} from '@/src/components/ui/button'
-import {Input} from '@/src/components/ui/input'
-import {Separator} from '@/src/components/ui/separator'
-import {Sheet, SheetContent, SheetTitle} from '@/src/components/ui/sheet'
-import {Skeleton} from '@/src/components/ui/skeleton'
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger
 } from '@/src/components/ui/tooltip'
+import {Button} from '@/src/components/ui/button'
+import {Input} from '@/src/components/ui/input'
+import {Separator} from '@/src/components/ui/separator'
+import {Sheet, SheetContent, SheetTitle} from '@/src/components/ui/sheet'
+import {Skeleton} from '@/src/components/ui/skeleton'
 
 const SIDEBAR_COOKIE_NAME = 'sidebar:state'
 const SIDEBAR_COOKIE_MAX_AGE = 60 * 60 * 24 * 7
@@ -63,8 +63,8 @@ function SidebarProvider({
   open?: boolean
   onOpenChange?: (open: boolean) => void
 }) {
-  const isMobile = useIsMobile()
   const [openMobile, setOpenMobile] = React.useState(false)
+  const isMobile = useIsMobile()
 
   // This is the internal state of the sidebar.
   // We use openProp and setOpenProp for control from outside the component.
@@ -97,37 +97,41 @@ function SidebarProvider({
     [isMobile, setOpen, setOpenMobile]
   )
 
-  // Adds a keyboard shortcut to toggle the sidebar.
-  React.useEffect(() => {
-    const handleKeyDown = (event: KeyboardEvent) => {
-      if (
-        event.key === SIDEBAR_KEYBOARD_SHORTCUT &&
-        (event.metaKey || event.ctrlKey)
-      ) {
-        event.preventDefault()
-        toggleSidebar()
-      }
-    }
-
-    window.addEventListener('keydown', handleKeyDown)
-    return () => window.removeEventListener('keydown', handleKeyDown)
-  }, [toggleSidebar])
-
   // We add a state so that we can do data-state="expanded" or "collapsed".
   // This makes it easier to style the sidebar with Tailwind classes.
   const state = open ? 'expanded' : 'collapsed'
 
   const contextValue = React.useMemo<SidebarContext>(
-    () => ({
-      state,
-      open,
-      setOpen,
-      isMobile,
-      openMobile,
-      setOpenMobile,
-      toggleSidebar
-    }),
+    function () {
+      return {
+        state,
+        open,
+        setOpen,
+        isMobile,
+        openMobile,
+        setOpenMobile,
+        toggleSidebar
+      }
+    },
     [state, open, setOpen, isMobile, openMobile, setOpenMobile, toggleSidebar]
+  )
+
+  // Adds a keyboard shortcut to toggle the sidebar.
+  React.useEffect(
+    function () {
+      function handleKeyDown(e: KeyboardEvent) {
+        if (e.key === SIDEBAR_KEYBOARD_SHORTCUT && (e.metaKey || e.ctrlKey)) {
+          e.preventDefault()
+          toggleSidebar()
+        }
+      }
+
+      window.addEventListener('keydown', handleKeyDown)
+      return function () {
+        return window.removeEventListener('keydown', handleKeyDown)
+      }
+    },
+    [toggleSidebar]
   )
 
   return (
@@ -135,7 +139,7 @@ function SidebarProvider({
       <TooltipProvider delayDuration={0}>
         <div
           className={cn(
-            'group/sidebar-wrapper flex min-h-svh w-full has-[[data-variant=inset]]:bg-sidebar',
+            'min-h-svh w-full flex group/sidebar-wrapper',
             className
           )}
           style={
@@ -174,10 +178,7 @@ function Sidebar({
   if (collapsible === 'none') {
     return (
       <div
-        className={cn(
-          'flex h-full w-[--sidebar-width] flex-col bg-sidebar text-sidebar-foreground',
-          className
-        )}
+        className={cn('w-[--sidebar-width] flex flex-col h-full', className)}
         {...props}
       >
         {children}
@@ -213,7 +214,7 @@ function Sidebar({
 
   return (
     <aside
-      className='group peer hidden md:block text-sidebar-foreground'
+      className='hidden text-sidebar-foreground md:block peer group'
       data-state={state}
       data-collapsible={state === 'collapsed' ? collapsible : ''}
       data-variant={variant}
@@ -273,6 +274,57 @@ function SidebarTrigger({
     >
       <PanelLeft />
     </Button>
+  )
+}
+
+function SidebarContent({
+  className,
+  ...props
+}: React.DetailedHTMLProps<
+  React.HTMLAttributes<HTMLDivElement>,
+  HTMLDivElement
+>) {
+  return (
+    <div
+      className={cn(
+        'pt-0 px-8 min-h-0 flex flex-1 flex-col bg-app-surface-solid overflow-auto group-data-[collapsible=icon]:overflow-hidden',
+        className
+      )}
+      data-sidebar='content'
+      {...props}
+    />
+  )
+}
+
+function SidebarMenu({
+  className,
+  ...props
+}: React.DetailedHTMLProps<
+  React.HTMLAttributes<HTMLUListElement>,
+  HTMLUListElement
+>) {
+  return (
+    <ul
+      className={cn('space-y-8 w-full min-w-0 flex flex-col', className)}
+      data-sidebar='menu'
+      {...props}
+    />
+  )
+}
+
+function SidebarMenuItem({
+  className,
+  ...props
+}: React.DetailedHTMLProps<
+  React.LiHTMLAttributes<HTMLLIElement>,
+  HTMLLIElement
+>) {
+  return (
+    <li
+      className={cn('group/menu-item relative', className)}
+      data-sidebar='menu-item'
+      {...props}
+    />
   )
 }
 
@@ -373,57 +425,6 @@ function SidebarSeparator({
     <Separator
       className={cn('mx-2 w-auto bg-sidebar-border', className)}
       data-sidebar='separator'
-      {...props}
-    />
-  )
-}
-
-function SidebarContent({
-  className,
-  ...props
-}: React.DetailedHTMLProps<
-  React.HTMLAttributes<HTMLDivElement>,
-  HTMLDivElement
->) {
-  return (
-    <div
-      className={cn(
-        'pt-0 px-8 min-h-0 flex flex-1 flex-col bg-app-surface overflow-auto group-data-[collapsible=icon]:overflow-hidden',
-        className
-      )}
-      data-sidebar='content'
-      {...props}
-    />
-  )
-}
-
-function SidebarMenu({
-  className,
-  ...props
-}: React.DetailedHTMLProps<
-  React.HTMLAttributes<HTMLUListElement>,
-  HTMLUListElement
->) {
-  return (
-    <ul
-      className={cn('space-y-8 w-full min-w-0 flex flex-col', className)}
-      data-sidebar='menu'
-      {...props}
-    />
-  )
-}
-
-function SidebarMenuItem({
-  className,
-  ...props
-}: React.DetailedHTMLProps<
-  React.LiHTMLAttributes<HTMLLIElement>,
-  HTMLLIElement
->) {
-  return (
-    <li
-      className={cn('group/menu-item relative', className)}
-      data-sidebar='menu-item'
       {...props}
     />
   )

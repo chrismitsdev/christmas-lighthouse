@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import {
+  HomeIcon,
   ScrollTextIcon,
   ShoppingBasketIcon,
   UserCogIcon,
@@ -50,6 +51,14 @@ export function DashboardSidebar() {
               <Link href='/dashboard/account'>
                 <UserCogIcon />
                 <span>Λογαριασμός</span>
+              </Link>
+            </SidebarMenuButton>
+          </SidebarMenuItem>
+          <SidebarMenuItem>
+            <SidebarMenuButton asChild>
+              <Link href='/'>
+                <HomeIcon />
+                <span>Αρχική</span>
               </Link>
             </SidebarMenuButton>
           </SidebarMenuItem>

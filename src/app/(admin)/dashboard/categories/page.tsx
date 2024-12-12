@@ -4,7 +4,7 @@ import {getCurrentSession} from '@/src/db/session'
 import {getCategories} from '@/src/db/menu'
 import {Section} from '@/src/components/shared/section'
 import {Container} from '@/src/components/shared/container'
-import {Typography} from '@/src/components/ui/typography'
+import {AdminPageCard} from '@/src/components/shared/admin-page-card'
 import {CategoriesTable} from '@/src/app/(admin)/dashboard/categories/categories-table'
 
 export const metadata: Metadata = {
@@ -23,16 +23,12 @@ export default async function DashboardCategoriesPage() {
   return (
     <Section>
       <Container>
-        <div className='p-16 space-y-16 relative bg-app-surface border rounded'>
-          <div className='space-y-4'>
-            <Typography variant='h3'>Κατηγοριές</Typography>
-            <Typography variant='muted'>
-              Σε αυτή τη σελίδα μπορείτε να πραγματοποιήσετε αλλαγές στις
-              κατηγορίες.
-            </Typography>
-          </div>
+        <AdminPageCard
+          title='Κατηγοριές'
+          desc='Σε αυτή τη σελίδα μπορείτε να πραγματοποιήσετε αλλαγές στις κατηγορίες.'
+        >
           <CategoriesTable categories={categories} />
-        </div>
+        </AdminPageCard>
       </Container>
     </Section>
   )

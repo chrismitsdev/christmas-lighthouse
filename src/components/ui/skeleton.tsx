@@ -14,12 +14,12 @@ function Skeleton({className, asChild = false, ...props}: SkeletonProps) {
   return (
     <Comp
       className={cn(
-        'relative overflow-hidden bg-[#0e101d] rounded border',
+        'relative overflow-hidden bg-brand-gray-12 rounded',
         className
       )}
       {...props}
     >
-      <div className='w-full absolute inset-0 -translate-x-full bg-gradient-to-r from-[#0e101d] via-brand-gray-12/50 to-[#0e101d] animate-shimmer' />
+      <div className='w-full absolute inset-0 -translate-x-full bg-gradient-to-r from-brand-gray-12 via-brand-gray-11/25 to-brand-gray-12 animate-shimmer' />
     </Comp>
   )
 }

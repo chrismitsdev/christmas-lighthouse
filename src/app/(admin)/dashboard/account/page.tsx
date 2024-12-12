@@ -3,6 +3,7 @@ import {redirect} from 'next/navigation'
 import {getCurrentSession} from '@/src/db/session'
 import {Section} from '@/src/components/shared/section'
 import {Container} from '@/src/components/shared/container'
+import {AdminPageCard} from '@/src/components/shared/admin-page-card'
 import {UpdateAccountForm} from '@/src/app/(admin)/dashboard/account/update-account-form'
 
 export const metadata: Metadata = {
@@ -19,7 +20,12 @@ export default async function DashboardAccountPage() {
   return (
     <Section>
       <Container>
-        <UpdateAccountForm user={user} />
+        <AdminPageCard
+          title='Λογαριασμός'
+          desc='Σε αυτή τη σελίδα μπορείτε να πραγματοποιήσετε αλλαγές στα στοιχεία λογαριασμού σας.'
+        >
+          <UpdateAccountForm user={user} />
+        </AdminPageCard>
       </Container>
     </Section>
   )
