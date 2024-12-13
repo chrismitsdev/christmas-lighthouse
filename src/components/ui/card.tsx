@@ -73,7 +73,7 @@ function CardContent({
 >) {
   return (
     <div
-      className={cn('p-4 space-y-1.5', className)}
+      className={cn('p-4 space-y-4', className)}
       {...props}
     />
   )

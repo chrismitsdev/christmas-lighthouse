@@ -1,7 +1,6 @@
 import type {Metadata} from 'next'
 import {setRequestLocale, getTranslations} from 'next-intl/server'
 import {getLocalizedCategories} from '@/src/db/menu'
-import {FadeUp} from '@/src/components/shared/fade-up'
 import {Container} from '@/src/components/shared/container'
 import {Section} from '@/src/components/shared/section'
 import {PromoProduct} from '@/src/components/shared/promo-product'
@@ -22,22 +21,17 @@ export default async function CategoriesPage({params}: AsyncParamsLocale) {
   const categories = await getLocalizedCategories(locale)
 
   return (
-    <FadeUp
-      delay={0}
-      duration={1.5}
-    >
-      <Container>
-        <Section className='space-y-4'>
-          <PromoProduct />
-          {categories.map((category) => (
-            <Category
-              key={category.title}
-              category={category}
-              collapsible
-            />
-          ))}
-        </Section>
-      </Container>
-    </FadeUp>
+    <Container>
+      <Section className='space-y-4'>
+        <PromoProduct />
+        {categories.map((category) => (
+          <Category
+            key={category.title}
+            category={category}
+            collapsible
+          />
+        ))}
+      </Section>
+    </Container>
   )
 }

@@ -1,7 +1,6 @@
 import type {Metadata} from 'next'
 import {setRequestLocale} from 'next-intl/server'
 import {getLocalizedCategories} from '@/src/db/menu'
-import {FadeUp} from '@/src/components/shared/fade-up'
 import {Container} from '@/src/components/shared/container'
 import {Section} from '@/src/components/shared/section'
 import {Category} from '@/src/components/shared/category'
@@ -42,15 +41,10 @@ export default async function CategoryPage({params}: AsyncParamsLocaleSlug) {
   const category = categories.find((ctg) => ctg.link === slug)
 
   return (
-    <FadeUp
-      delay={0}
-      duration={1.5}
-    >
-      <Container>
-        <Section>
-          {category ? <Category category={category} /> : <CategoryNotFound />}
-        </Section>
-      </Container>
-    </FadeUp>
+    <Container>
+      <Section>
+        {category ? <Category category={category} /> : <CategoryNotFound />}
+      </Section>
+    </Container>
   )
 }

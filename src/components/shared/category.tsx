@@ -51,7 +51,7 @@ function Category({category, collapsible = false}: CategoryProps) {
             </span>
           </CollapsibleTrigger>
           <CollapsibleContent>
-            <CardContent className='space-y-4'>
+            <CardContent>
               {category.products.map((product, i, a) => (
                 <React.Fragment key={product.name}>
                   <div className='grid grid-cols-[1fr_auto] gap-y-2 gap-x-1'>
@@ -108,7 +108,7 @@ function Category({category, collapsible = false}: CategoryProps) {
           <span>{category?.title}</span>
         </CardTitle>
       </CardHeader>
-      <CardContent className='space-y-4'>
+      <CardContent>
         {category.products.map((product, i, a) => (
           <React.Fragment key={product.name}>
             <div className='grid grid-cols-[1fr_auto] gap-y-2 gap-x-1'>
