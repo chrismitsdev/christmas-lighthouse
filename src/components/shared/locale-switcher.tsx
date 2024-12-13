@@ -38,7 +38,7 @@ function LocaleSwitcher({grLabel, enLabel}: LocaleSwitcherProps) {
     >
       <SelectTrigger
         aria-label='Change locale'
-        className='py-2'
+        className='py-2 px-3'
       >
         <SelectValue placeholder={<Spinner />}>
           {locale === 'el' ? <GreekFlagIcon /> : <EnglandFlagIcon />}
