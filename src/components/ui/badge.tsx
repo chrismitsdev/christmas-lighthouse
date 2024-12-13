@@ -10,13 +10,14 @@ const badgeVariants = cva(
     'items-center',
     'justify-center',
     'gap-2',
-    'rounded',
+    'rounded-sm',
     'border',
     'text-xs',
     'font-semibold',
     'transition-colors',
     'sm:py-px',
-    'sm:text-sm'
+    'sm:text-sm',
+    'sm:rounded'
   ],
   {
     variants: {

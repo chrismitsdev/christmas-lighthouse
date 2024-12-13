@@ -12,7 +12,7 @@ function Table({
     <div className='relative w-full overflow-auto bg-brand-gray-12/25 border rounded'>
       <table
         className={cn(
-          'w-full caption-bottom text-sm indent-0 leading-6 border-separate border-spacing-0',
+          'w-full table-fixed caption-bottom text-sm indent-0 leading-6 border-separate border-spacing-0',
           className
         )}
         {...props}
@@ -55,7 +55,7 @@ function TableHead({
   return (
     <th
       className={cn(
-        'p-4 text-start text-base font-bold uppercase text-nowrap border-b',
+        'p-4 text-start text-sm font-bold uppercase text-nowrap border-b sm:text-base',
         className
       )}
       {...props}
@@ -81,7 +81,7 @@ function TableCell({
 >) {
   return (
     <td
-      className={cn('p-4 text-nowrap truncate border-b', className)}
+      className={cn('p-4 truncate border-b', className)}
       {...props}
     />
   )

@@ -80,7 +80,7 @@ function ProductsTable({categories, products}: ProductTableProps) {
         value={categoryFilter}
         onValueChange={setCategoryFilter}
       >
-        <SelectTrigger className='w-56'>
+        <SelectTrigger className='w-full sm:w-56'>
           <SelectValue />
         </SelectTrigger>
         <SelectPortal>
@@ -104,10 +104,12 @@ function ProductsTable({categories, products}: ProductTableProps) {
       <Table>
         <TableHeader>
           <TableRow>
-            <TableHead>Α/Α</TableHead>
-            <TableHead>Ελληνική ονομασία</TableHead>
-            <TableHead>Αγγλική ονομασία</TableHead>
-            <TableHead>Τιμή</TableHead>
+            <TableHead className='w-16 hidden sm:table-cell'>Α/Α</TableHead>
+            <TableHead className='w-52 sm:w-auto'>Ελληνική ονομασία</TableHead>
+            <TableHead className='hidden sm:table-cell'>
+              Αγγλική ονομασία
+            </TableHead>
+            <TableHead className='w-24 hidden sm:table-cell'>Τιμή</TableHead>
             <TableHead className='text-right'>Ενέργειες</TableHead>
           </TableRow>
         </TableHeader>
@@ -115,12 +117,16 @@ function ProductsTable({categories, products}: ProductTableProps) {
           {filteredProducts?.map(function (product, i) {
             return (
               <TableRow key={product.id}>
-                <TableCell>
+                <TableCell className='hidden sm:table-cell'>
                   <Badge>{i + 1}</Badge>
                 </TableCell>
                 <TableCell>{product.elName}</TableCell>
-                <TableCell>{product.enName}</TableCell>
-                <TableCell>{formatCurrency(product.price)}</TableCell>
+                <TableCell className='hidden sm:table-cell'>
+                  {product.enName}
+                </TableCell>
+                <TableCell className='hidden sm:table-cell'>
+                  {formatCurrency(product.price)}
+                </TableCell>
                 <TableCell className='py-0 text-right'>
                   <AlertDialog>
                     <Dialog>

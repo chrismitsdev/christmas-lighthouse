@@ -48,9 +48,11 @@ function CategoriesTable({categories}: {categories: Category[]}) {
     <Table>
       <TableHeader>
         <TableRow>
-          <TableHead>Κατηγορία</TableHead>
+          <TableHead className='hidden sm:table-cell'>Κατηγορία</TableHead>
           <TableHead>Ελληνική ονομασία</TableHead>
-          <TableHead>Αγγλική ονομασία</TableHead>
+          <TableHead className='hidden sm:table-cell'>
+            Αγγλική ονομασία
+          </TableHead>
           <TableHead className='text-right'>Ενέργειες</TableHead>
         </TableRow>
       </TableHeader>
@@ -58,11 +60,13 @@ function CategoriesTable({categories}: {categories: Category[]}) {
         {categories?.map(function (category) {
           return (
             <TableRow key={category.id}>
-              <TableCell>
+              <TableCell className='hidden sm:table-cell'>
                 <Badge>{category.id}</Badge>
               </TableCell>
               <TableCell>{category.elName}</TableCell>
-              <TableCell>{category.enName}</TableCell>
+              <TableCell className='hidden sm:table-cell'>
+                {category.enName}
+              </TableCell>
               <TableCell className='py-0 text-right'>
                 <AlertDialog>
                   <Dialog>
