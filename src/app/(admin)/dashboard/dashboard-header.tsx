@@ -1,9 +1,8 @@
-import {UserIcon} from 'lucide-react'
 import type {User} from '@/src/db/drizzle/schema'
-import {Typography} from '@/src/components/ui/typography'
-import {Separator} from '@/src/components/ui/separator'
-import {Badge} from '@/src/components/ui/badge'
 import {SidebarTrigger} from '@/src/components/ui/sidebar'
+import {Typography} from '@/src/components/ui/typography'
+import {Badge} from '@/src/components/ui/badge'
+import {Separator} from '@/src/components/ui/separator'
 
 function DashboardHeader({
   user,
@@ -30,7 +29,6 @@ function DashboardHeader({
         </Typography>
       </div>
       <Badge>
-        <UserIcon size={14} />
         <span>{user.username}</span>
       </Badge>
     </header>

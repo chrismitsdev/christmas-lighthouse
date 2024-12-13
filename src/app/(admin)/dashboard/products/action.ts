@@ -18,30 +18,21 @@ import {
   undefined_,
   safeParse
 } from 'valibot'
+import {numberRegex} from '@/src/lib/utils'
 import {type Product} from '@/src/db/drizzle/schema'
 import {updateProduct, deleteProduct} from '@/src/db/menu'
 import {splitAndTrim} from '@/src/lib/utils'
-
-const greekLettersOnly =
-  /^[\u0391-\u03A9\u03B1-\u03C9\u0386\u0388-\u038A\u038C\u038E-\u03CE\s]+$/
-const englishLettersOnly = /^[A-Za-z\s]+$/
-const numberRegex = /^(\d+(\.\d*)?|\.\d+)$/
 
 const UpdateProductSchema = object({
   el_name: pipe(
     string('Πρέπει να είναι αλφαριθμητική συμβολοσειρά.'),
     trim(),
-    nonEmpty('Υποχρεωτικό πεδίο'),
-    regex(greekLettersOnly, 'Επιτρέπονται μόνο ελληνικοί χαρακτήρες (Α-Ω, α-ω)')
+    nonEmpty('Υποχρεωτικό πεδίο')
   ),
   en_name: pipe(
     string('Πρέπει να είναι αλφαριθμητική συμβολοσειρά.'),
     trim(),
-    nonEmpty('Υποχρεωτικό πεδίο'),
-    regex(
-      englishLettersOnly,
-      'Επιτρέπονται μόνο αγγλικοί χαρακτήρες (A-Z, a-z)'
-    )
+    nonEmpty('Υποχρεωτικό πεδίο')
   ),
   price: pipe(
     string('Πρέπει να είναι αριθμητική συμβολοσειρά'),
