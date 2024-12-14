@@ -41,7 +41,7 @@ function DialogContent({
   return (
     <Content
       className={cn(
-        'p-6 fixed left-1/2 top-1/2 z-50 -translate-x-1/2 -translate-y-1/2 w-full max-w-xl bg-app-surface-solid border rounded outline-none sm:p-12',
+        'fixed left-1/2 top-1/2 z-50 -translate-x-1/2 -translate-y-1/2 max-h-[calc(100%-32px)] max-w-xl w-[calc(100%-32px)] bg-app-surface-solid border rounded outline-none grid',
         className
       )}
       {...props}
@@ -58,7 +58,10 @@ function DialogHeader({
 >) {
   return (
     <div
-      className={cn('space-y-4 flex flex-col', className)}
+      className={cn(
+        'px-4 pb-4 pt-8 space-y-4 border-b flex flex-col sm:px-12 sm:pt-12',
+        className
+      )}
       {...props}
     />
   )
@@ -71,7 +74,7 @@ function DialogTitle({
   return (
     <Title
       className={cn(
-        'text-xl font-semibold leading-none tracking-tight sm:text-2xl',
+        'text-lg font-semibold leading-none tracking-tight sm:text-xl',
         className
       )}
       {...props}
@@ -85,7 +88,22 @@ function DialogDescription({
 }: React.ComponentPropsWithRef<typeof Description>) {
   return (
     <Description
-      className={cn('text-sm text-brand-gray-10', className)}
+      className={cn('text-xs text-brand-gray-10 sm:text-sm', className)}
+      {...props}
+    />
+  )
+}
+
+function DialogMain({
+  className,
+  ...props
+}: React.DetailedHTMLProps<
+  React.HTMLAttributes<HTMLDivElement>,
+  HTMLDivElement
+>) {
+  return (
+    <div
+      className={cn('px-4 pt-4 pb-8 sm:px-12 sm:pb-12', className)}
       {...props}
     />
   )
@@ -119,6 +137,7 @@ DialogContent.displayName = 'DialogContent'
 DialogHeader.displayName = 'DialogHeader'
 DialogTitle.displayName = 'DialogTitle'
 DialogDescription.displayName = 'DialogDescription'
+DialogMain.displayName = 'DialogMain'
 DialogClose.displayName = 'DialogClose'
 
 export {
@@ -130,5 +149,6 @@ export {
   DialogHeader,
   DialogTitle,
   DialogDescription,
+  DialogMain,
   DialogClose
 }

@@ -24,6 +24,7 @@ import {
   DialogHeader,
   DialogTitle,
   DialogDescription,
+  DialogMain,
   DialogClose
 } from '@/src/components/ui/dialog'
 import {
@@ -38,6 +39,7 @@ import {
   AlertDialogFooter,
   AlertDialogCancel
 } from '@/src/components/ui/alert-dialog'
+import {ScrollArea} from '@/src/components/ui/scroll-area'
 import {Button} from '@/src/components/ui/button'
 import {Badge} from '@/src/components/ui/badge'
 import {UpdateCategoryForm} from '@/src/app/(admin)/dashboard/categories/update-category-form'
@@ -99,17 +101,24 @@ function CategoriesTable({categories}: {categories: Category[]}) {
 
                     <DialogPortal>
                       <DialogOverlay />
-                      <DialogContent className='grid gap-10'>
+                      <DialogContent>
                         <DialogHeader>
                           <DialogTitle>Επεξεργασία κατηγορίας</DialogTitle>
                           <DialogDescription>
                             Επεξεργάζεστε την κατηγορία{' '}
-                            <span className='font-bold text-app-foreground'>
+                            <span className='font-bold text-app-foreground italic'>
                               {category.elName}
                             </span>
                           </DialogDescription>
                         </DialogHeader>
-                        <UpdateCategoryForm category={category} />
+                        <ScrollArea
+                          className='max-h-[calc(100svh-116px-26px)]'
+                          type='always'
+                        >
+                          <DialogMain>
+                            <UpdateCategoryForm category={category} />
+                          </DialogMain>
+                        </ScrollArea>
                         <DialogClose />
                       </DialogContent>
                     </DialogPortal>

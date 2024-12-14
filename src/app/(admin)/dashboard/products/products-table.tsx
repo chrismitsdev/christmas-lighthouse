@@ -38,6 +38,7 @@ import {
   DialogHeader,
   DialogTitle,
   DialogDescription,
+  DialogMain,
   DialogClose
 } from '@/src/components/ui/dialog'
 import {
@@ -52,6 +53,7 @@ import {
   AlertDialogFooter,
   AlertDialogCancel
 } from '@/src/components/ui/alert-dialog'
+import {ScrollArea} from '@/src/components/ui/scroll-area'
 import {Button} from '@/src/components/ui/button'
 import {Badge} from '@/src/components/ui/badge'
 import {UpdateProductForm} from '@/src/app/(admin)/dashboard/products/update-product-form'
@@ -159,17 +161,24 @@ function ProductsTable({categories, products}: ProductTableProps) {
 
                       <DialogPortal>
                         <DialogOverlay />
-                        <DialogContent className='grid gap-10'>
+                        <DialogContent>
                           <DialogHeader>
                             <DialogTitle>Επεξεργασία προϊόντος</DialogTitle>
                             <DialogDescription>
                               Επεξεργάζεστε το προϊόν{' '}
-                              <span className='font-bold text-app-foreground'>
+                              <span className='font-bold text-app-foreground italic'>
                                 {product.elName}
                               </span>
                             </DialogDescription>
                           </DialogHeader>
-                          <UpdateProductForm product={product} />
+                          <ScrollArea
+                            className='max-h-[calc(100svh-116px-26px)]'
+                            type='always'
+                          >
+                            <DialogMain>
+                              <UpdateProductForm product={product} />
+                            </DialogMain>
+                          </ScrollArea>
                           <DialogClose />
                         </DialogContent>
                       </DialogPortal>

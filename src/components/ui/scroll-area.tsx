@@ -10,25 +10,6 @@ import {
 } from '@radix-ui/react-scroll-area'
 import {cn} from '@/src/lib/utils'
 
-type ScrollAreaProps = React.ComponentPropsWithRef<typeof Root> & {
-  hasCorner?: boolean
-  orientation?: 'horizontal' | 'vertical'
-  invisible?: boolean
-  showShadows?: boolean
-  isFlex?: boolean
-}
-
-type ScrollAreaViewportProps = React.ComponentPropsWithRef<typeof Viewport> & {
-  showShadows?: boolean
-  isFlex?: boolean
-}
-
-type ScrollAreaScrollbarProps = React.ComponentPropsWithRef<
-  typeof ScrollAreaScrollbar
-> & {
-  invisible?: boolean
-}
-
 function ScrollArea({
   className,
   children,
@@ -38,7 +19,13 @@ function ScrollArea({
   showShadows = false,
   isFlex = false,
   ...props
-}: ScrollAreaProps) {
+}: React.ComponentPropsWithRef<typeof Root> & {
+  hasCorner?: boolean
+  orientation?: 'horizontal' | 'vertical'
+  invisible?: boolean
+  showShadows?: boolean
+  isFlex?: boolean
+}) {
   return (
     <Root
       className={cn('relative overflow-hidden', className)}
@@ -65,7 +52,10 @@ function ScrollAreaViewport({
   children,
   isFlex,
   ...props
-}: ScrollAreaViewportProps) {
+}: React.ComponentPropsWithRef<typeof Viewport> & {
+  showShadows?: boolean
+  isFlex?: boolean
+}) {
   const [canScrollLeft, setCanScrollLeft] = React.useState<boolean>(false)
   const [canScrollRight, setCanScrollRight] = React.useState<boolean>(true)
 
@@ -96,9 +86,7 @@ function ScrollAreaViewport({
   return (
     <div
       className={cn(
-        'relative',
-        'before:absolute before:-left-1 before:top-0 before:z-10 before:block before:h-full before:w-8 before:opacity-0 before:bg-gradient-to-rs before:from-primary before:pointer-events-none',
-        'after:absolute after:-right-1 after:top-0 after:z-10 after:block after:h-full after:w-8 after:bg-gradient-to-l after:from-primary after:pointer-events-none',
+        'relative before:absolute before:-left-1 before:top-0 before:z-10 before:block before:h-full before:w-8 before:opacity-0 before:bg-gradient-to-rs before:from-primary before:pointer-events-none after:absolute after:-right-1 after:top-0 after:z-10 after:block after:h-full after:w-8 after:bg-gradient-to-l after:from-primary after:pointer-events-none',
         canScrollLeft && 'before:opacity-100',
         !canScrollRight && 'after:opacity-0'
       )}
@@ -122,15 +110,16 @@ function ScrollBar({
   orientation,
   invisible,
   ...props
-}: ScrollAreaScrollbarProps) {
+}: React.ComponentPropsWithRef<typeof ScrollAreaScrollbar> & {
+  invisible?: boolean
+}) {
   return (
     <ScrollAreaScrollbar
       className={cn(
         'flex touch-none select-none transition-colors',
-        orientation === 'vertical' &&
-          'h-full w-3 border-l border-l-transparent p-0.5',
-        orientation === 'horizontal' &&
-          'h-3 border-t border-t-transparent p-0.5',
+        orientation === 'vertical'
+          ? 'p-[4.5px] h-full w-4 border-l border-l-transparent sm:p-[3.5px]'
+          : 'p-[4.5px] h-4 border-t border-t-transparent sm:p-[3.5px]',
         invisible && 'invisible',
         className
       )}
@@ -139,8 +128,8 @@ function ScrollBar({
     >
       <ScrollAreaThumb
         className={cn(
-          orientation === 'vertical' && 'flex-1',
-          'relative rounded-full bg-black/30 hover:bg-black/50 transition-colors'
+          'relative bg-border rounded-full transition-colors hover:bg-border-hover',
+          orientation === 'vertical' && 'flex-1'
         )}
       />
     </ScrollAreaScrollbar>

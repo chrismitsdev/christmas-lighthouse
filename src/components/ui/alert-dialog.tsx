@@ -42,7 +42,7 @@ function AlertDialogContent({
   return (
     <Content
       className={cn(
-        'p-6 fixed left-1/2 top-1/2 z-50 -translate-x-1/2 -translate-y-1/2 w-full max-w-xl bg-app-surface-solid border rounded sm:p-12',
+        'px-4 py-6 fixed left-1/2 top-1/2 z-50 -translate-x-1/2 -translate-y-1/2 max-w-xl w-[calc(100%-32px)] bg-app-surface-solid border rounded sm:p-12',
         className
       )}
       {...props}
