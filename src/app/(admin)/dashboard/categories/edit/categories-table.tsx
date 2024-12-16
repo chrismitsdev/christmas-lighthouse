@@ -42,8 +42,8 @@ import {
 import {ScrollArea} from '@/src/components/ui/scroll-area'
 import {Button} from '@/src/components/ui/button'
 import {Badge} from '@/src/components/ui/badge'
-import {UpdateCategoryForm} from '@/src/app/(admin)/dashboard/categories/update-category-form'
-import {DeleteCategoryForm} from '@/src/app/(admin)/dashboard/categories/delete-category-form'
+import {UpdateCategoryForm} from '@/src/app/(admin)/dashboard/categories/edit/update-category-form'
+import {DeleteCategoryForm} from '@/src/app/(admin)/dashboard/categories/edit/delete-category-form'
 
 function CategoriesTable({categories}: {categories: Category[]}) {
   return (

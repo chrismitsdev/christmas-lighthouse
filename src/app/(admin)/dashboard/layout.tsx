@@ -2,8 +2,10 @@ import type {Metadata} from 'next'
 import {redirect} from 'next/navigation'
 import {getCurrentSession} from '@/src/db/session'
 import {SidebarProvider} from '@/src/components/ui/sidebar'
-import {DashboardSidebar} from '@/src/app/(admin)/dashboard/dashboard-sidebar'
-import {DashboardHeader} from '@/src/app/(admin)/dashboard/dashboard-header'
+import {
+  DashboardSidebar,
+  DashboardHeader
+} from '@/src/app/(admin)/dashboard/components'
 
 export const metadata: Metadata = {
   title: 'Διαχειριστικό'

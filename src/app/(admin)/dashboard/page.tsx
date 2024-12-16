@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   title: 'Αρχική | Διαχειριστικό'
 }
 
-export default async function DashboardIndexPage() {
+export default async function IndexPage() {
   const {session} = await getCurrentSession()
 
   if (session === null) {

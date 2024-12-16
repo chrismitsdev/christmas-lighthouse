@@ -72,7 +72,7 @@ export async function updateCategoryAction(
   }
 
   await updateCategory(categoryId, category)
-  revalidatePath('/')
+  revalidatePath('/', 'layout')
 
   return {
     data: result.output,
@@ -85,5 +85,5 @@ export async function deleteCategoryAction(
   deleteProducts: boolean
 ): Promise<void> {
   await deleteCategoryWithProducts(categoryId, deleteProducts)
-  revalidatePath('/')
+  revalidatePath('/', 'layout')
 }

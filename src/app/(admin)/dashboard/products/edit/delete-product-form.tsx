@@ -1,4 +1,4 @@
-import {deleteProductAction} from '@/src/app/(admin)/dashboard/products/action'
+import {deleteProductAction} from '@/src/app/(admin)/dashboard/products/edit/action'
 import {SubmitActionButton} from '@/src/components/shared/submit-action-button'
 
 export function DeleteProductForm({

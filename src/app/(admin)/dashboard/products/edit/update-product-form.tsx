@@ -7,7 +7,7 @@ import {
   type UpdateProductFormData,
   type UpdateProductFormErrors,
   updateProductAction
-} from '@/src/app/(admin)/dashboard/products/action'
+} from '@/src/app/(admin)/dashboard/products/edit/action'
 import {Label} from '@/src/components/ui/label'
 import {Input} from '@/src/components/ui/input'
 import {Switch} from '@/src/components/ui/switch'

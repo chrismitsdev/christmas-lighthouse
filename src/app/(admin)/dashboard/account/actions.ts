@@ -108,6 +108,6 @@ export async function updateAccountAction(
     result.output.new_password || undefined
   )
 
-  revalidatePath('/dashboard')
+  revalidatePath('/dashboard', 'layout')
   return initialState
 }

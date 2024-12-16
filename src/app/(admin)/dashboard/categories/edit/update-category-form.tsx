@@ -10,7 +10,7 @@ import {
   type UpdateCategoryFormData,
   type UpdateCategoryFormErrors,
   updateCategoryAction
-} from '@/src/app/(admin)/dashboard/categories/action'
+} from '@/src/app/(admin)/dashboard/categories/edit/action'
 
 const initialState = {
   data: {} as UpdateCategoryFormData,

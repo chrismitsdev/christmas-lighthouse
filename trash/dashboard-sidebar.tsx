@@ -23,11 +23,13 @@ export function DashboardSidebar() {
     <Sidebar>
       <SidebarContent>
         <SidebarHeader>
-          <Image
-            src={logo}
-            alt='The Christmas Lighthouse logo'
-            height={40}
-          />
+          <Link href='/dashboard'>
+            <Image
+              src={logo}
+              alt='The Christmas Lighthouse logo'
+              height={40}
+            />
+          </Link>
         </SidebarHeader>
         <SidebarMenu className='mt-16 mb-8'>
           <SidebarMenuItem>

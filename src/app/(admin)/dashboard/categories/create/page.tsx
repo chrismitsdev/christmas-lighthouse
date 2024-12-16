@@ -4,14 +4,13 @@ import {getCurrentSession} from '@/src/db/session'
 import {Section} from '@/src/components/shared/section'
 import {Container} from '@/src/components/shared/container'
 import {DashboardPageCard} from '@/src/app/(admin)/dashboard/components'
-import {UpdateAccountForm} from '@/src/app/(admin)/dashboard/account/update-account-form'
 
 export const metadata: Metadata = {
-  title: 'Λογαριασμός | Διαχειριστικό'
+  title: 'Δημιουργία κατηγορίας | Διαχειριστικό'
 }
 
-export default async function AccountPage() {
-  const {session, user} = await getCurrentSession()
+export default async function CategoriesCreatePage() {
+  const {session} = await getCurrentSession()
 
   if (session === null) {
     redirect('/login')
@@ -21,10 +20,10 @@ export default async function AccountPage() {
     <Section>
       <Container>
         <DashboardPageCard
-          title='Λογαριασμός'
-          desc='Σε αυτή τη σελίδα μπορείτε να πραγματοποιήσετε αλλαγές στα στοιχεία λογαριασμού σας.'
+          title='Δημιουργία κατηγορίας'
+          desc='Σε αυτή τη σελίδα μπορείτε να δημιουργήσετε νέα κατηγορία.'
         >
-          <UpdateAccountForm user={user} />
+          <span>CategoriesCreatePage</span>
         </DashboardPageCard>
       </Container>
     </Section>

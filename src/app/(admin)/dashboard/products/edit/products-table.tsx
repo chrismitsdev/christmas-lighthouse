@@ -56,8 +56,8 @@ import {
 import {ScrollArea} from '@/src/components/ui/scroll-area'
 import {Button} from '@/src/components/ui/button'
 import {Badge} from '@/src/components/ui/badge'
-import {UpdateProductForm} from '@/src/app/(admin)/dashboard/products/update-product-form'
-import {DeleteProductForm} from '@/src/app/(admin)/dashboard/products/delete-product-form'
+import {UpdateProductForm} from '@/src/app/(admin)/dashboard/products/edit/update-product-form'
+import {DeleteProductForm} from '@/src/app/(admin)/dashboard/products/edit/delete-product-form'
 
 type ProductTableProps = {
   categories: Category[]

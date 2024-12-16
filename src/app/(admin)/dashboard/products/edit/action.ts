@@ -18,10 +18,9 @@ import {
   undefined_,
   safeParse
 } from 'valibot'
-import {numberRegex} from '@/src/lib/utils'
 import {type Product} from '@/src/db/drizzle/schema'
 import {updateProduct, deleteProduct} from '@/src/db/menu'
-import {splitAndTrim} from '@/src/lib/utils'
+import {numberRegex, splitAndTrim} from '@/src/lib/utils'
 
 const UpdateProductSchema = object({
   el_name: pipe(
@@ -92,7 +91,7 @@ export async function updateProductAction(
   }
 
   await updateProduct(productId, product)
-  revalidatePath('/')
+  revalidatePath('/', 'layout')
 
   return {
     data: result.output,
@@ -102,5 +101,5 @@ export async function updateProductAction(
 
 export async function deleteProductAction(productId: number): Promise<void> {
   await deleteProduct(productId)
-  revalidatePath('/')
+  revalidatePath('/', 'layout')
 }
