@@ -8,21 +8,21 @@ const badgeVariants = cva(
     'px-2',
     'inline-flex',
     'items-center',
-    'rounded',
+    'justify-center',
+    'gap-2',
+    'rounded-sm',
     'border',
     'text-xs',
+    'font-semibold',
     'transition-colors',
-    'sm:py-0.5',
-    'sm:text-sm'
+    'sm:py-px',
+    'sm:text-sm',
+    'sm:rounded'
   ],
   {
     variants: {
       variant: {
-        primary: [
-          'bg-brand-gray-11/40',
-          'text-app-foreground/90',
-          'border-brand-gray-11/40'
-        ],
+        primary: ['bg-brand-gray-11/40', 'border-brand-gray-11/40'],
         secondary: ['bg-brand-gold-11/40', 'border-brand-gold-11/40']
       }
     },
@@ -32,23 +32,23 @@ const badgeVariants = cva(
   }
 )
 
-type BadgeProps = React.HTMLAttributes<HTMLDivElement> &
+type BadgeProps = React.DetailedHTMLProps<
+  React.HTMLAttributes<HTMLDivElement>,
+  HTMLDivElement
+> &
   AsChild &
   VariantProps<typeof badgeVariants>
 
-const Badge = React.forwardRef<HTMLDivElement, BadgeProps>(
-  ({variant, asChild = false, className, ...props}, ref) => {
-    const Comp = asChild ? Slot : 'div'
+function Badge({variant, asChild = false, className, ...props}: BadgeProps) {
+  const Comp = asChild ? Slot : 'div'
 
-    return (
-      <Comp
-        className={cn(badgeVariants({variant, className}))}
-        ref={ref}
-        {...props}
-      />
-    )
-  }
-)
+  return (
+    <Comp
+      className={cn(badgeVariants({variant, className}))}
+      {...props}
+    />
+  )
+}
 
 Badge.displayName = 'Badge'
 

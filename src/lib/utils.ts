@@ -1,6 +1,7 @@
 import {type ClassValue, clsx} from 'clsx'
 import {twMerge} from 'tailwind-merge'
 
+// Helper functions
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
@@ -17,3 +18,27 @@ export function formatCurrency(price: number | string) {
     currency: 'EUR'
   }).format(amount)
 }
+
+export function splitAndTrim(
+  str: string | null | undefined | ''
+): string[] | null {
+  if (!str || str === '') return null
+
+  return str.split(',').map(function (el) {
+    return el.trim()
+  })
+}
+
+export function joinAndSpace(arr: string[] | null): string | null {
+  if (!Array.isArray(arr) || arr === null) {
+    return null
+  }
+
+  return arr.join(', ')
+}
+
+// Regex
+export const greekLettersOnly =
+  /^[\u0391-\u03A9\u03B1-\u03C9\u0386\u0388-\u038A\u038C\u038E-\u03CE\s]+$/
+export const englishLettersOnly = /^[A-Za-z\s]+$/
+export const numberRegex = /^(\d+(\.\d*)?|\.\d+)$/

@@ -1,4 +1,5 @@
 import '@/src/styles/globals.css'
+import * as React from 'react'
 import type {Metadata} from 'next'
 import {Manrope} from 'next/font/google'
 import {notFound} from 'next/navigation'
@@ -14,9 +15,9 @@ const font = Manrope({
 })
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://thechristmaslighthouse.gr'),
   title: 'The Christmas Lighthouse',
   description: 'The Christmas Lighthouse amusement park menu',
-  metadataBase: new URL('https://thechristmaslighthouse.gr'),
   formatDetection: {
     email: true,
     telephone: true
@@ -27,11 +28,11 @@ export function generateStaticParams() {
   return routing.locales.map((locale) => ({locale}))
 }
 
-export default async function LocaleLayout({
-  children,
-  params
-}: React.PropsWithChildren<AsyncParamsLocale>) {
-  const {locale} = await params
+export default function LocaleLayout(
+  props: React.PropsWithChildren<AsyncParamsLocale>
+) {
+  const params = React.use(props.params)
+  const locale = params.locale
 
   if (!routing.locales.includes(locale)) {
     notFound()
@@ -46,7 +47,7 @@ export default async function LocaleLayout({
     >
       <body className='relative min-h-screen grid grid-rows-[auto,auto,1fr,auto]'>
         <Header />
-        <main>{children}</main>
+        <main>{props.children}</main>
         <Footer />
         <Snowfall
           style={{zIndex: 100}}

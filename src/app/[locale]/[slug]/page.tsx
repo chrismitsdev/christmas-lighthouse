@@ -1,7 +1,6 @@
 import type {Metadata} from 'next'
 import {setRequestLocale} from 'next-intl/server'
-import {getCategories} from 'src/services/getCategories'
-import {FadeUp} from '@/src/components/shared/fade-up'
+import {getLocalizedCategories} from '@/src/db/menu'
 import {Container} from '@/src/components/shared/container'
 import {Section} from '@/src/components/shared/section'
 import {Category} from '@/src/components/shared/category'
@@ -18,7 +17,7 @@ export async function generateMetadata({
   params
 }: AsyncParamsLocaleSlug): Promise<Metadata> {
   const {locale, slug} = await params
-  const categories = await getCategories(locale)
+  const categories = await getLocalizedCategories(locale)
   const category = categories.find((category) => category.link === slug)
 
   return {
@@ -30,7 +29,7 @@ export async function generateMetadata({
 
 export async function generateStaticParams({params}: AsyncParamsLocale) {
   const {locale} = await params
-  const categories = await getCategories(locale)
+  const categories = await getLocalizedCategories(locale)
   return categories.map((ctg) => ({slug: ctg.link}))
 }
 
@@ -38,19 +37,14 @@ export default async function CategoryPage({params}: AsyncParamsLocaleSlug) {
   const {locale, slug} = await params
   setRequestLocale(locale)
 
-  const categories = await getCategories(locale)
+  const categories = await getLocalizedCategories(locale)
   const category = categories.find((ctg) => ctg.link === slug)
 
   return (
-    <FadeUp
-      delay={0}
-      duration={1.5}
-    >
-      <Container>
-        <Section>
-          {category ? <Category category={category} /> : <CategoryNotFound />}
-        </Section>
-      </Container>
-    </FadeUp>
+    <Container>
+      <Section>
+        {category ? <Category category={category} /> : <CategoryNotFound />}
+      </Section>
+    </Container>
   )
 }

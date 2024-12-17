@@ -1,14 +1,23 @@
 import {MetadataRoute} from 'next'
-import enMessages from '@/messages/en.json'
 import {routing, getPathname} from '@/src/i18n/routing'
 
 type Href = Parameters<typeof getPathname>[0]['href']
 
+const slugs = [
+  'coffee',
+  'beverage',
+  'refreshment',
+  'energy',
+  'spirit',
+  'cocktail',
+  'beer',
+  'food',
+  'pizza',
+  'burger',
+  'salad',
+  'snack'
+]
 const host = 'https://thechristmaslighthouse.gr'
-
-const slugs = Object.values(enMessages.Catalog).map(function (c) {
-  return c.categoryName.toLowerCase().replace(' ', '-')
-})
 
 function getEntry(href: Href): MetadataRoute.Sitemap[0] {
   return {

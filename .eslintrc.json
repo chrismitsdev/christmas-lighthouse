@@ -19,5 +19,14 @@
         "message": "Please import from `@/src/i18n/routing` instead."
       }
     ]
-  }
+  },
+  "overrides": [
+    {
+      "files": ["./src/app/(admin)/**", "./trash/**"],
+      "rules": {
+        "react/jsx-no-literals": "off",
+        "no-restricted-imports": "off"
+      }
+    }
+  ]
 }

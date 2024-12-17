@@ -3,12 +3,12 @@
 import * as React from 'react'
 import {
   Root,
-  Value,
-  Portal,
-  Group,
   Trigger,
+  Value,
   Icon,
+  Portal,
   Content,
+  Group,
   Viewport,
   Label,
   Item,
@@ -24,127 +24,119 @@ const SelectValue = Value
 const SelectPortal = Portal
 const SelectGroup = Group
 
-const SelectTrigger = React.forwardRef<
-  React.ElementRef<typeof Trigger>,
-  React.ComponentPropsWithoutRef<typeof Trigger>
->(({className, children, ...props}, ref) => (
-  <Trigger
-    className={cn(
-      'px-2.5 py-[7px] flex items-center justify-between gap-1 text-sm rounded border outline-none hover:border-border-hover disabled:cursor-not-allowed disabled:opacity-50 data-open:border-border-hover group',
-      className
-    )}
-    ref={ref}
-    {...props}
-  >
-    {children}
-    <Icon
-      className='opacity-50 group-data-open:opacity-100 group-data-open:rotate-180 transition-transform'
-      asChild
+function SelectTrigger({
+  className,
+  children,
+  ...props
+}: React.ComponentPropsWithRef<typeof Trigger>) {
+  return (
+    <Trigger
+      className={cn(
+        'p-4 flex items-center justify-between gap-1 bg-app-surface text-brand-gray-1 border rounded outline-none duration-300 hover:border-border-hover/50 data-open:bg-brand-gray-12 data-open:border-border-hover disabled:cursor-not-allowed disabled:opacity-50 group',
+        className
+      )}
+      {...props}
     >
-      <ChevronDown size={16} />
-    </Icon>
-  </Trigger>
-))
+      {children}
+      <Icon
+        className='opacity-50 group-data-open:opacity-100 group-data-open:rotate-180 transition-transform'
+        asChild
+      >
+        <ChevronDown />
+      </Icon>
+    </Trigger>
+  )
+}
 
-const SelectContent = React.forwardRef<
-  React.ElementRef<typeof Content>,
-  React.ComponentPropsWithoutRef<typeof Content>
->(
-  (
-    {
-      className,
-      children,
-      position = 'popper',
-      side = 'bottom',
-      sideOffset = 8,
-      ...props
-    },
-    ref
-  ) => (
+function SelectContent({
+  className,
+  children,
+  position = 'popper',
+  side = 'bottom',
+  sideOffset = 8,
+  ...props
+}: React.ComponentPropsWithRef<typeof Content>) {
+  return (
     <Content
       position={position}
       side={side}
       sideOffset={sideOffset}
       className={cn(
-        'relative z-50 bg-app-background max-h-[--radix-select-content-available-height] overflow-hidden border data-open:border-border-hover rounded',
+        'relative z-50 bg-brand-gray-12 min-w-[--radix-select-trigger-width] max-h-[--radix-select-content-available-height] overflow-hidden border border-border-hover rounded',
         className
       )}
-      ref={ref}
       {...props}
     >
       {children}
     </Content>
   )
-)
+}
 
-const SelectViewport = React.forwardRef<
-  React.ElementRef<typeof Viewport>,
-  React.ComponentPropsWithoutRef<typeof Viewport>
->(({className, ...props}, ref) => (
-  <Viewport
-    className={cn('p-1', className)}
-    ref={ref}
-    {...props}
-  />
-))
+function SelectViewport({
+  className,
+  ...props
+}: React.ComponentPropsWithRef<typeof Viewport>) {
+  return (
+    <Viewport
+      className={cn('p-1', className)}
+      {...props}
+    />
+  )
+}
 
-const SelectLabel = React.forwardRef<
-  React.ElementRef<typeof Label>,
-  React.ComponentPropsWithoutRef<typeof Label>
->(({className, ...props}, ref) => (
-  <Label
-    className={cn('py-1.5 pl-8 pr-2 text-sm ', className)}
-    ref={ref}
-    {...props}
-  />
-))
+function SelectLabel({
+  className,
+  ...props
+}: React.ComponentPropsWithRef<typeof Label>) {
+  return (
+    <Label
+      className={cn('py-1.5 pl-8 pr-2 text-sm ', className)}
+      {...props}
+    />
+  )
+}
 
-const SelectItem = React.forwardRef<
-  React.ElementRef<typeof Item>,
-  React.ComponentPropsWithoutRef<typeof Item>
->(({className, children, ...props}, ref) => (
-  <Item
-    className={cn(
-      'px-1.5 py-2 relative w-full flex items-center justify-start gap-2.5  bg-inherit select-none rounded text-sm  outline-none data-disabled:pointer-events-none data-disabled:opacity-50 data-highlighted:bg-brand-gray-11/30',
-      className
-    )}
-    ref={ref}
-    {...props}
-  >
-    {children}
-  </Item>
-))
+function SelectItem({
+  className,
+  children,
+  ...props
+}: React.ComponentPropsWithRef<typeof Item>) {
+  return (
+    <Item
+      className={cn(
+        'px-3 py-2 relative w-full flex items-center justify-start gap-2.5  bg-inherit text-brand-gray-1 select-none rounded text-sm outline-none data-disabled:pointer-events-none data-disabled:opacity-50 data-highlighted:bg-brand-gray-11/30',
+        className
+      )}
+      {...props}
+    >
+      {children}
+    </Item>
+  )
+}
 
-const SelectItemIndicator = React.forwardRef<
-  React.ElementRef<typeof ItemIndicator>,
-  React.ComponentPropsWithoutRef<typeof ItemIndicator>
->(({...props}, ref) => (
-  <ItemIndicator
-    ref={ref}
-    {...props}
-  />
-))
+function SelectItemIndicator({
+  ...props
+}: React.ComponentPropsWithRef<typeof ItemIndicator>) {
+  return <ItemIndicator {...props} />
+}
 
-const SelectItemText = React.forwardRef<
-  React.ElementRef<typeof ItemText>,
-  React.ComponentPropsWithoutRef<typeof ItemText>
->(({...props}, ref) => (
-  <ItemText
-    ref={ref}
-    {...props}
-  />
-))
+function SelectItemText({
+  ...props
+}: React.ComponentPropsWithRef<typeof ItemText>) {
+  return <ItemText {...props} />
+}
 
-const SelectSeparator = React.forwardRef<
-  React.ElementRef<typeof Separator>,
-  React.ComponentPropsWithoutRef<typeof Separator>
->(({className, ...props}, ref) => (
-  <Separator
-    className={cn('my-1 h-px bg-brand-gray-5', className)}
-    ref={ref}
-    {...props}
-  />
-))
+function SelectSeparator({
+  className,
+  ...props
+}: React.ComponentPropsWithRef<typeof Separator>) {
+  return (
+    <Separator
+      className={cn('my-1 h-px bg-brand-gray-5', className)}
+      {...props}
+    />
+  )
+}
 
 Select.displayName = 'Select'
 SelectValue.displayName = 'SelectValue'

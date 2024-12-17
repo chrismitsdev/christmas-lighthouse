@@ -1,11 +1,11 @@
-import * as React from 'react'
 import Image from 'next/image'
 import {useTranslations} from 'next-intl'
 import {PhoneIcon} from 'lucide-react'
 import {Container} from '@/src/components/shared/container'
-import {Button} from '@/src/components/ui/button'
+import {LinkToAdmin} from '@/src/components/shared/link-to-admin'
 import {FacebookIcon} from '@/src/components/icons/facebook-icon'
 import {InstagramIcon} from '@/src/components/icons/instagram-icon'
+import {Button} from '@/src/components/ui/button'
 import {Typography} from '@/src/components/ui/typography'
 import {Separator} from '@/src/components/ui/separator'
 import logo from '@/public/logo.png'
@@ -78,8 +78,7 @@ function Footer() {
               </Typography>
             </div>
           </div>
-
-          <div className='space-x-4'>
+          <div className='space-x-3'>
             <Button
               aria-label='Facebook link'
               variant='icon-button'
@@ -129,6 +128,7 @@ function Footer() {
           >
             {`Designed & Developed by CM`}
           </Typography>
+          <LinkToAdmin>{t('admin')}</LinkToAdmin>
         </article>
       </Container>
     </footer>

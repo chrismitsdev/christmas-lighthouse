@@ -1,4 +1,6 @@
 import {ImageResponse} from 'next/og'
+import {join} from 'node:path'
+import {readFile} from 'node:fs/promises'
 import {getTranslations} from 'next-intl/server'
 
 type ParamsLocale = {
@@ -7,7 +9,6 @@ type ParamsLocale = {
   }
 }
 
-export const runtime = 'edge'
 export const alt = 'The Christmas Lighthouse'
 export const size = {
   width: 1200,
@@ -17,10 +18,8 @@ export const contentType = 'image/png'
 
 export default async function Image({params: {locale}}: ParamsLocale) {
   const t = await getTranslations({locale, namespace: 'pages.metadata'})
-  const assetUrl = new URL('../../../public/o-logo.png', import.meta.url)
-  const assetResponse = await fetch(assetUrl)
-  const assetBuffer = await assetResponse.arrayBuffer()
-  const base64String = Buffer.from(assetBuffer).toString('base64')
+  const assetUrl = await readFile(join(process.cwd(), 'public/logo.png'))
+  const base64String = Buffer.from(assetUrl).toString('base64')
   const imgSrc = `data:image/png;base64,${base64String}`
 
   return new ImageResponse(
@@ -43,7 +42,7 @@ export default async function Image({params: {locale}}: ParamsLocale) {
           <img
             src={imgSrc}
             alt='The Christmas Lighthouse Logo'
-            width={300}
+            width={350}
           />
         </picture>
         <span>{`${t('index')} | The Christmas Lighthouse`}</span>

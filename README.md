@@ -13,3 +13,6 @@ You can take a look at the website [here](https://thechristmaslighthouse.gr).
 - [Radix UI](https://www.radix-ui.com/primitives) for its accessible, unstyled primitives
 - [shadcn/ui](https://ui.shadcn.com/) as a reference on the implementation of components
 - [Lucide React](https://lucide.dev/) icon library
+- [Neon DB](https://neon.tech/home) fully managed serverless PostgreSQL database
+- [Drizzle ORM](https://orm.drizzle.team/) as a type-safe way to interact with the DB
+- [Valibot](https://valibot.dev/) schema & data validation library

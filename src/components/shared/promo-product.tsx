@@ -1,14 +1,14 @@
 import Image from 'next/image'
 import {useTranslations} from 'next-intl'
-import {Link} from '@/src/i18n/routing'
 import {MegaphoneIcon, ChevronUpIcon, ChevronDownIcon} from 'lucide-react'
+import {Link} from '@/src/i18n/routing'
 import {
   Collapsible,
   CollapsibleTrigger,
   CollapsibleContent
 } from '@/src/components/ui/collapsible'
 import {Typography} from '@/src/components/ui/typography'
-import product from '@/public/gluhwein.webp'
+import gluhwein from '@/public/gluhwein.webp'
 
 function PromoProduct() {
   const t = useTranslations('components.promo-product')
@@ -22,7 +22,7 @@ function PromoProduct() {
           asChild
         >
           <h2>
-            <MegaphoneIcon strokeWidth={2.2} />
+            <MegaphoneIcon />
             <span>{'Glühwein'}</span>
           </h2>
         </Typography>
@@ -41,7 +41,7 @@ function PromoProduct() {
         <div className='p-4 grid gap-y-4 gap-x-6 sm:grid-cols-[84px,1fr]'>
           <Image
             className='rounded'
-            src={product}
+            src={gluhwein}
             alt='Gluhwein'
           />
           <div className='space-y-4 sm:space-y-1.5'>

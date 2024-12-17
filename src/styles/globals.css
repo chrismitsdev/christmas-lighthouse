@@ -46,6 +46,7 @@
     --app-background: 235 57% 5%;
     --app-foreground: var(--brand-gray-8);
     --app-surface: var(--brand-gray-12) / 0.4;
+    --app-surface-solid: 232 35% 8%;
 
     --border: var(--brand-gray-12);
     --border-hover: var(--brand-gray-11);
@@ -55,6 +56,10 @@
 
   * {
     @apply border-border;
+
+    &::selection {
+      @apply bg-brand-gold-9 text-brand-blue-12;
+    }
   }
 
   body {

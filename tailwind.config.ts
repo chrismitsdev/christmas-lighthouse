@@ -11,7 +11,11 @@ const config: Config = {
       bottom: 'side="bottom"',
       left: 'side="left"',
       disabled: 'disabled',
-      highlighted: 'highlighted=""'
+      highlighted: 'highlighted=""',
+      selected: 'state="selected"',
+      checked: 'state="checked"',
+      unchecked: 'state="unchecked"',
+      active: 'state="active"'
     },
     container: {
       center: true,
@@ -22,7 +26,12 @@ const config: Config = {
         app: {
           background: 'hsl(var(--app-background))',
           foreground: 'hsl(var(--app-foreground))',
-          surface: 'hsl(var(--app-surface))'
+          surface: {
+            DEFAULT: 'hsl(var(--app-surface))',
+            solid: 'hsl(var(--app-surface-solid))'
+          }
+          // surface: 'hsl(var(--app-surface))',
+          // ['surface-solid']: 'hsl(var(--app-surface-solid))'
         },
         brand: {
           blue: {
@@ -105,12 +114,17 @@ const config: Config = {
           to: {
             height: '0'
           }
+        },
+        shimmer: {
+          from: {transform: 'translateX(-100%)'},
+          to: {transform: 'translateX(100%)'}
         }
       },
       animation: {
         appear: 'appear 750ms ease-in-out',
         'collapse-open': 'collapse-open 500ms ease-in-out',
-        'collapse-close': 'collapse-close 300ms ease-in-out'
+        'collapse-close': 'collapse-close 300ms ease-in-out',
+        shimmer: 'shimmer 1.25s infinite'
       }
     }
   },

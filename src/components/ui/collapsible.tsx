@@ -7,19 +7,20 @@ import {cn} from '@/src/lib/utils'
 const Collapsible = Root
 const CollapsibleTrigger = Trigger
 
-const CollapsibleContent = React.forwardRef<
-  React.ElementRef<typeof Content>,
-  React.ComponentPropsWithoutRef<typeof Content>
->(({className, ...props}, ref) => (
-  <Content
-    className={cn(
-      'overflow-hidden data-open:animate-collapse-open data-closed:animate-collapse-close',
-      className
-    )}
-    ref={ref}
-    {...props}
-  />
-))
+function CollapsibleContent({
+  className,
+  ...props
+}: React.ComponentPropsWithRef<typeof Content>) {
+  return (
+    <Content
+      className={cn(
+        'overflow-hidden data-open:animate-collapse-open data-closed:animate-collapse-close',
+        className
+      )}
+      {...props}
+    />
+  )
+}
 
 Collapsible.displayName = 'Collapsible'
 CollapsibleTrigger.displayName = 'CollapsibleTrigger'
