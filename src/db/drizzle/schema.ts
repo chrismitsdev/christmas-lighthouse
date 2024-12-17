@@ -1,4 +1,4 @@
-import {SQL, sql, type InferSelectModel} from 'drizzle-orm'
+import {type InferSelectModel, sql, SQL} from 'drizzle-orm'
 import {
   pgTable,
   serial,
