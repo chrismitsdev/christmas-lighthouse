@@ -1,4 +1,6 @@
-import {EllipsisIcon, PencilIcon, Trash2Icon} from 'lucide-react'
+'use client'
+
+import {EllipsisIcon, EditIcon, Trash2Icon} from 'lucide-react'
 import {type Category} from '@/src/db/drizzle/schema'
 import {
   Table,
@@ -85,7 +87,7 @@ function CategoriesTable({categories}: {categories: Category[]}) {
                         <DropdownMenuContent align='end'>
                           <DialogTrigger asChild>
                             <DropdownMenuItem>
-                              <PencilIcon size={16} />
+                              <EditIcon size={16} />
                               <span>Επεξεργασία</span>
                             </DropdownMenuItem>
                           </DialogTrigger>
@@ -101,7 +103,9 @@ function CategoriesTable({categories}: {categories: Category[]}) {
 
                     <DialogPortal>
                       <DialogOverlay />
-                      <DialogContent>
+                      <DialogContent
+                        onOpenAutoFocus={(e) => e.preventDefault()}
+                      >
                         <DialogHeader>
                           <DialogTitle>Επεξεργασία κατηγορίας</DialogTitle>
                           <DialogDescription>

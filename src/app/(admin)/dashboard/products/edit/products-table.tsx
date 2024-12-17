@@ -1,7 +1,7 @@
 'use client'
 
 import * as React from 'react'
-import {EllipsisIcon, PencilIcon, Trash2Icon} from 'lucide-react'
+import {EllipsisIcon, EditIcon, Trash2Icon} from 'lucide-react'
 import {type Product, type Category} from '@/src/db/drizzle/schema'
 import {formatCurrency} from '@/src/lib/utils'
 import {
@@ -145,7 +145,7 @@ function ProductsTable({categories, products}: ProductTableProps) {
                           <DropdownMenuContent align='end'>
                             <DialogTrigger asChild>
                               <DropdownMenuItem>
-                                <PencilIcon size={16} />
+                                <EditIcon size={16} />
                                 <span>Επεξεργασία</span>
                               </DropdownMenuItem>
                             </DialogTrigger>
@@ -161,7 +161,9 @@ function ProductsTable({categories, products}: ProductTableProps) {
 
                       <DialogPortal>
                         <DialogOverlay />
-                        <DialogContent>
+                        <DialogContent
+                          onOpenAutoFocus={(e) => e.preventDefault()}
+                        >
                           <DialogHeader>
                             <DialogTitle>Επεξεργασία προϊόντος</DialogTitle>
                             <DialogDescription>

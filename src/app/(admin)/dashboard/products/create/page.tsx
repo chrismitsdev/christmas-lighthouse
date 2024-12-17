@@ -20,7 +20,7 @@ export default async function ProductsCreatePage() {
     <Section>
       <Container>
         <DashboardPageCard
-          title='Δημιουργία προϊόντων'
+          title='Δημιουργία προϊόντος'
           desc='Σε αυτή τη σελίδα μπορείτε να δημιουργήσετε νέα προϊόντα.'
         >
           <span>ProductsCreatePage</span>

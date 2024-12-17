@@ -140,7 +140,7 @@ function DashboardPageCard(props: DashboardPageCardProps) {
         <div className='min-h-56 flex flex-wrap gap-8'>
           <Link
             href={createHref}
-            className='p-8 space-y-4 bg-app-surface border rounded basis-0 grow'
+            className='p-8 space-y-4 bg-app-surface border rounded basis-0 grow transition hover:bg-brand-gray-12 hover:border-border-hover'
           >
             <div className='h-full flex flex-col justify-center items-center gap-4'>
               <PlusIcon size={32} />
@@ -149,7 +149,7 @@ function DashboardPageCard(props: DashboardPageCardProps) {
           </Link>
           <Link
             href={editHref}
-            className='p-8 space-y-4 bg-app-surface border rounded basis-0 grow'
+            className='p-8 space-y-4 bg-app-surface border rounded basis-0 grow transition hover:bg-brand-gray-12 hover:border-border-hover'
           >
             <div className='h-full flex flex-col justify-center items-center gap-4'>
               <EditIcon size={32} />
