@@ -52,45 +52,54 @@ function Category({category, collapsible = false}: CategoryProps) {
           </CollapsibleTrigger>
           <CollapsibleContent>
             <CardContent>
-              {category.products.map((product, i, a) => (
-                <React.Fragment key={product.name}>
-                  <div className='grid grid-cols-[1fr_auto] gap-y-2 gap-x-1'>
-                    <Typography
-                      variant='small'
-                      className='col-span-1'
-                    >
-                      {product.name}
-                    </Typography>
-                    {product.description !== null && (
-                      <div className='flex flex-wrap gap-1.5 row-start-2'>
-                        {product.description.map((desc) => (
-                          <Badge
-                            key={desc}
-                            variant='secondary'
-                          >
-                            {desc}
-                          </Badge>
-                        ))}
-                      </div>
-                    )}
-                    <Typography variant='small'>
-                      {formatCurrency(product.price)}
-                    </Typography>
-                  </div>
+              {category.products.map(function (product, i, a) {
+                return (
+                  <React.Fragment key={product.name}>
+                    <div className='grid grid-cols-[1fr_auto] gap-y-2 gap-x-1'>
+                      <Typography
+                        className='col-span-1 sm:text-base'
+                        variant='small'
+                      >
+                        {product.name}
+                      </Typography>
+                      {product.description !== null && (
+                        <div className='flex flex-wrap gap-1.5 row-start-2'>
+                          {product.description.map(function (desc) {
+                            return (
+                              <Badge
+                                key={desc}
+                                variant='secondary'
+                              >
+                                {desc}
+                              </Badge>
+                            )
+                          })}
+                        </div>
+                      )}
+                      <Typography
+                        className='sm:text-base'
+                        variant='small'
+                      >
+                        {formatCurrency(product.price)}
+                      </Typography>
+                    </div>
 
-                  {i !== a.length - 1 && <Separator />}
-                </React.Fragment>
-              ))}
+                    {i !== a.length - 1 && <Separator />}
+                  </React.Fragment>
+                )
+              })}
             </CardContent>
 
             {category.notes !== null && (
               <CardFooter>
                 <ul className='pl-4 space-y-2 list-disc'>
-                  {category.notes.map((note) => (
-                    <li key={note}>
-                      <Typography variant='small'>{note}</Typography>
-                    </li>
-                  ))}
+                  {category.notes.map(function (note) {
+                    return (
+                      <li key={note}>
+                        <Typography variant='small'>{note}</Typography>
+                      </li>
+                    )
+                  })}
                 </ul>
               </CardFooter>
             )}
@@ -109,45 +118,54 @@ function Category({category, collapsible = false}: CategoryProps) {
         </CardTitle>
       </CardHeader>
       <CardContent>
-        {category.products.map((product, i, a) => (
-          <React.Fragment key={product.name}>
-            <div className='grid grid-cols-[1fr_auto] gap-y-2 gap-x-1'>
-              <Typography
-                variant='small'
-                className='col-span-1'
-              >
-                {product.name}
-              </Typography>
-              {product.description !== null && (
-                <div className='flex flex-wrap gap-1.5 row-start-2'>
-                  {product.description.map((desc) => (
-                    <Badge
-                      key={desc}
-                      variant='secondary'
-                    >
-                      {desc}
-                    </Badge>
-                  ))}
-                </div>
-              )}
-              <Typography variant='small'>
-                {formatCurrency(product.price)}
-              </Typography>
-            </div>
+        {category.products.map(function (product, i, a) {
+          return (
+            <React.Fragment key={product.name}>
+              <div className='grid grid-cols-[1fr_auto] gap-y-2 gap-x-1'>
+                <Typography
+                  className='col-span-1 sm:text-base'
+                  variant='small'
+                >
+                  {product.name}
+                </Typography>
+                {product.description !== null && (
+                  <div className='flex flex-wrap gap-1.5 row-start-2'>
+                    {product.description.map(function (desc) {
+                      return (
+                        <Badge
+                          key={desc}
+                          variant='secondary'
+                        >
+                          {desc}
+                        </Badge>
+                      )
+                    })}
+                  </div>
+                )}
+                <Typography
+                  className='sm:text-base'
+                  variant='small'
+                >
+                  {formatCurrency(product.price)}
+                </Typography>
+              </div>
 
-            {i !== a.length - 1 && <Separator />}
-          </React.Fragment>
-        ))}
+              {i !== a.length - 1 && <Separator />}
+            </React.Fragment>
+          )
+        })}
       </CardContent>
 
       {category.notes !== null && (
         <CardFooter>
           <ul className='pl-4 space-y-2 list-disc'>
-            {category.notes.map((note) => (
-              <li key={note}>
-                <Typography variant='small'>{note}</Typography>
-              </li>
-            ))}
+            {category.notes.map(function (note) {
+              return (
+                <li key={note}>
+                  <Typography variant='small'>{note}</Typography>
+                </li>
+              )
+            })}
           </ul>
         </CardFooter>
       )}
