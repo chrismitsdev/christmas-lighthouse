@@ -22,11 +22,8 @@ export default async function Image({
 }: ParamsLocaleSlug) {
   const categories = await getLocalizedCategories(locale)
   const category = categories.find((category) => category.link === slug)
-  const assetData = await readFile(
-    join(process.cwd(), 'public/opengraph.png'),
-    'base64'
-  )
-  const imgSrc = `data:image/png;base64,${assetData}`
+  const assetData = await readFile(join(process.cwd(), 'opengraph.png'))
+  const imgSrc = `data:image/png;base64,${assetData.toString('base64')}`
 
   return new ImageResponse(
     (
@@ -84,9 +81,11 @@ export default async function Image({
 // }: ParamsLocaleSlug) {
 //   const categories = await getLocalizedCategories(locale)
 //   const category = categories.find((category) => category.link === slug)
-//   const assetUrl = await readFile(join(process.cwd(), 'public/opengraph.png'))
-//   const base64String = Buffer.from(assetUrl).toString('base64')
-//   const imgSrc = `data:image/png;base64,${base64String}`
+//   // const assetData = await readFile(
+//   //   join(process.cwd(), 'public/opengraph.png'),
+//   //   'base64'
+//   // )
+//   // const imgSrc = `data:image/png;base64,${assetData}`
 
 //   return new ImageResponse(
 //     (
