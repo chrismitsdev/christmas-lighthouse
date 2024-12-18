@@ -1,6 +1,4 @@
 import {ImageResponse} from 'next/og'
-import {join} from 'node:path'
-import {readFile} from 'node:fs/promises'
 import {getLocalizedCategories} from '@/src/db/menu'
 
 type ParamsLocaleSlug = {
@@ -10,6 +8,7 @@ type ParamsLocaleSlug = {
   }
 }
 
+export const runtime = 'edge'
 export const alt = 'The Christmas Lighthouse'
 export const size = {
   width: 1200,
@@ -22,8 +21,11 @@ export default async function Image({
 }: ParamsLocaleSlug) {
   const categories = await getLocalizedCategories(locale)
   const category = categories.find((category) => category.link === slug)
-  const assetData = await readFile(join(process.cwd(), 'opengraph.png'))
-  const imgSrc = `data:image/png;base64,${assetData.toString('base64')}`
+  const assetUrl = new URL('../../../../public/opengraph.png', import.meta.url)
+  const assetResponse = await fetch(assetUrl)
+  const assetBuffer = await assetResponse.arrayBuffer()
+  const base64String = Buffer.from(assetBuffer).toString('base64')
+  const imgSrc = `data:image/png;base64,${base64String}`
 
   return new ImageResponse(
     (
@@ -69,6 +71,7 @@ export default async function Image({
 //   }
 // }
 
+// export const runtime = 'edge'
 // export const alt = 'The Christmas Lighthouse'
 // export const size = {
 //   width: 1200,
@@ -81,11 +84,8 @@ export default async function Image({
 // }: ParamsLocaleSlug) {
 //   const categories = await getLocalizedCategories(locale)
 //   const category = categories.find((category) => category.link === slug)
-//   // const assetData = await readFile(
-//   //   join(process.cwd(), 'public/opengraph.png'),
-//   //   'base64'
-//   // )
-//   // const imgSrc = `data:image/png;base64,${assetData}`
+//   const assetData = await readFile(join(process.cwd(), 'opengraph.png'))
+//   const imgSrc = `data:image/png;base64,${assetData.toString('base64')}`
 
 //   return new ImageResponse(
 //     (
