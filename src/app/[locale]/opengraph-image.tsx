@@ -15,7 +15,8 @@ export const contentType = 'image/png'
 
 export default async function Image({params: {locale}}: ParamsLocale) {
   const t = await getTranslations({locale, namespace: 'pages.metadata'})
-  const assetUrl = new URL('./o-logo.png', import.meta.url)
+  // const assetUrl = new URL('./o-logo.png', import.meta.url)
+  const assetUrl = new URL('../../../public/opengraph.png', import.meta.url)
   const assetResponse = await fetch(assetUrl)
   const assetBuffer = await assetResponse.arrayBuffer()
   const base64String = Buffer.from(assetBuffer).toString('base64')
