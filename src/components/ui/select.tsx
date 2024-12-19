@@ -32,14 +32,14 @@ function SelectTrigger({
   return (
     <Trigger
       className={cn(
-        'p-4 flex items-center justify-between gap-1 bg-app-surface text-brand-gray-1 border rounded outline-none duration-300 hover:border-border-hover/50 data-open:bg-brand-gray-12 data-open:border-border-hover disabled:cursor-not-allowed disabled:opacity-50 group',
+        'p-4 flex items-center justify-between gap-1 bg-app-surface text-brand-gray-1 border rounded outline-none duration-300 hover:border-border-hover/50 data-open:bg-brand-gray-12 data-open:border-border-hover data-placeholder:text-sm data-placeholder:text-app-foreground/25 sm:data-placeholder:text-base disabled:cursor-not-allowed disabled:opacity-50 group',
         className
       )}
       {...props}
     >
       {children}
       <Icon
-        className='opacity-50 group-data-open:opacity-100 group-data-open:rotate-180 transition-transform'
+        className='text-brand-gray-1 opacity-50 transition-transform group-data-open:opacity-100 group-data-open:rotate-180'
         asChild
       >
         <ChevronDown />
@@ -104,7 +104,7 @@ function SelectItem({
   return (
     <Item
       className={cn(
-        'px-3 py-2 relative w-full flex items-center justify-start gap-2.5  bg-inherit text-brand-gray-1 select-none rounded text-sm outline-none data-disabled:pointer-events-none data-disabled:opacity-50 data-highlighted:bg-brand-gray-11/30',
+        'px-3 py-2 relative w-full flex items-center justify-start gap-2 bg-inherit text-brand-gray-1 text-sm select-none rounded outline-none data-disabled:pointer-events-none data-disabled:opacity-50 data-highlighted:bg-brand-gray-11/30',
         className
       )}
       {...props}

@@ -76,7 +76,7 @@ function DropdownMenuItem({
   return (
     <Item
       className={cn(
-        'px-1.5 py-2 relative w-full flex items-center justify-start gap-2.5  bg-inherit select-none rounded text-sm  outline-none data-disabled:pointer-events-none data-disabled:opacity-50 data-highlighted:bg-brand-gray-11/30',
+        'px-3 py-2 relative w-full flex items-center justify-start gap-2  bg-inherit text-brand-gray-1 text-sm select-none rounded outline-none data-disabled:pointer-events-none data-disabled:opacity-50 data-highlighted:bg-brand-gray-11/30',
         inset && 'pl-8',
         className
       )}
@@ -94,7 +94,7 @@ function DropdownMenuCheckboxItem({
   return (
     <CheckboxItem
       className={cn(
-        'py-1.5 pl-8 pr-2 relative flex items-center cursor-default select-none rounded-sm text-sm outline-none transition-colors focus:bg-accent focus:text-accent-foreground data-disabled:pointer-events-none data-disabled:opacity-50',
+        'py-1.5 pl-8 pr-2 relative flex items-center cursor-default select-none rounded-sm text-sm outline-none transition-colors data-disabled:pointer-events-none data-disabled:opacity-50',
         className
       )}
       checked={checked}
@@ -118,7 +118,7 @@ function DropdownMenuRadioItem({
   return (
     <RadioItem
       className={cn(
-        'py-1.5 pl-8 pr-2 relative flex items-center cursor-default select-none rounded-sm text-sm outline-none transition-colors focus:bg-accent focus:text-accent-foreground data-disabled:pointer-events-none data-disabled:opacity-50',
+        'py-1.5 pl-8 pr-2 relative flex items-center cursor-default select-none rounded-sm text-sm outline-none transition-colors data-disabled:pointer-events-none data-disabled:opacity-50',
         className
       )}
       {...props}
@@ -175,7 +175,7 @@ function DropdownMenuSubContent({
   return (
     <SubContent
       className={cn(
-        'p-1 z-50 min-w-[8rem] overflow-hidden rounded-md border bg-popover text-popover-foreground shadow-lg data-open:animate-in data-open:fade-in-0 data-open:zoom-in-95 data-closed:animate-out data-closed:fade-out-0  data-closed:zoom-out-95 data-top:slide-in-from-bottom-2 data-right:slide-in-from-left-2 data-bottom:slide-in-from-top-2 data-left:slide-in-from-right-2',
+        'p-1 z-50 min-w-[8rem] overflow-hidden rounded-md border shadow-lg data-open:animate-in data-open:fade-in-0 data-open:zoom-in-95 data-closed:animate-out data-closed:fade-out-0  data-closed:zoom-out-95 data-top:slide-in-from-bottom-2 data-right:slide-in-from-left-2 data-bottom:slide-in-from-top-2 data-left:slide-in-from-right-2',
         className
       )}
       {...props}

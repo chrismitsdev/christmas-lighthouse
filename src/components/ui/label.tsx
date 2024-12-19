@@ -8,6 +8,7 @@ const labelVariants = cva(
     'inline-block',
     'text-brand-gray-10',
     'font-bold',
+    'align-bottom',
     'peer-disabled:cursor-not-allowed',
     'peer-disabled:opacity-70'
   ],

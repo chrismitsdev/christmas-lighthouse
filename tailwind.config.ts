@@ -15,7 +15,8 @@ const config: Config = {
       selected: 'state="selected"',
       checked: 'state="checked"',
       unchecked: 'state="unchecked"',
-      active: 'state="active"'
+      active: 'state="active"',
+      placeholder: 'placeholder'
     },
     container: {
       center: true,
