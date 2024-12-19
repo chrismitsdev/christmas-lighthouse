@@ -37,7 +37,7 @@ function DropdownMenuContent({
   return (
     <Content
       className={cn(
-        'p-1 relative z-50 bg-app-background max-h-[--radix-select-content-available-height] overflow-hidden border border-border-hover rounded',
+        'p-1 relative z-50 bg-brand-gray-12 min-w-[--radix-dropdown-menu-trigger-width] max-h-[--radix-dropdown-menu-content-available-height] overflow-hidden border border-border-hover rounded',
         className
       )}
       sideOffset={sideOffset}

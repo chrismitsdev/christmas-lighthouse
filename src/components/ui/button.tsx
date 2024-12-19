@@ -18,6 +18,7 @@ const buttonVariants = cva(
     'border',
     'rounded',
     'cursor-pointer',
+    'duration-300',
     '[&:not(:disabled)]:hover:bg-brand-gray-12',
     '[&:not(:disabled)]:hover:border-border-hover',
     'active:bg-brand-gray-11/50',
@@ -41,8 +42,9 @@ const buttonVariants = cva(
         ],
         'icon-button': [
           'p-[7px]',
-          'data-open:bg-app-background',
-          'data-open:border-border-hover'
+          'data-open:bg-brand-gray-12',
+          'data-open:border-border-hover',
+          '[&:not(:disabled)]:hover:border-border-hover/50'
         ]
       }
     },
