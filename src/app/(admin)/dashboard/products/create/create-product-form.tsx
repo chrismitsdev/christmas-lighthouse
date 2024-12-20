@@ -1,38 +1,93 @@
 'use client'
 
 import * as React from 'react'
-import {EditIcon} from 'lucide-react'
-import {type Product} from '@/src/db/drizzle/schema'
+import {type Category} from '@/src/db/drizzle/schema'
 import {
-  type UpdateProductFormData,
-  type UpdateProductFormErrors,
-  updateProductAction
-} from '@/src/app/(admin)/dashboard/products/edit/action'
+  type CreateProductFormData,
+  type CreateProductFormErrors,
+  createProductAction
+} from '@/src/app/(admin)/dashboard/products/create/action'
+import {
+  Select,
+  SelectTrigger,
+  SelectValue,
+  SelectPortal,
+  SelectContent,
+  SelectViewport,
+  SelectItem,
+  SelectItemText
+} from '@/src/components/ui/select'
+import {PlusIcon} from 'lucide-react'
 import {Label} from '@/src/components/ui/label'
 import {Input} from '@/src/components/ui/input'
 import {Switch} from '@/src/components/ui/switch'
 import {Button} from '@/src/components/ui/button'
+import {cn} from '@/src/lib/utils'
 
 const initialState = {
-  data: {} as UpdateProductFormData,
-  errors: {} as UpdateProductFormErrors
+  data: {} as CreateProductFormData,
+  errors: {} as CreateProductFormErrors
 }
 
-function UpdateProductForm({product}: {product: Product}) {
-  const updateProductActionWithId = updateProductAction.bind(null, product.id)
+function CreateProductForm({categories}: {categories: Category[]}) {
   const [state, action, isPending] = React.useActionState(
-    updateProductActionWithId,
+    createProductAction,
     initialState
   )
 
   return (
     <form
-      id='update-product-form'
+      id='create-product-form'
       action={action}
       noValidate
     >
       <div className='space-y-10'>
         <div className='space-y-2'>
+          <div>
+            <Label htmlFor='category_id'>Κατηγορία προϊόντος</Label>
+            <div className='min-h-[74px]'>
+              <Select
+                name='category_id'
+                defaultValue={state.data.category_id || undefined}
+              >
+                <SelectTrigger
+                  id='category_id'
+                  name='category_id'
+                  className={cn(
+                    'w-full',
+                    state.errors.category_id &&
+                      'border-red-400/50 hover:border-red-400/50 data-open:border-red-400/50'
+                  )}
+                >
+                  <SelectValue placeholder='Επιλέξτε κατηγορία' />
+                </SelectTrigger>
+                <SelectPortal>
+                  <SelectContent>
+                    <SelectViewport>
+                      {categories.map(function (category) {
+                        return (
+                          <SelectItem
+                            key={category.id}
+                            value={category.id}
+                          >
+                            <SelectItemText>{category.elName}</SelectItemText>
+                          </SelectItem>
+                        )
+                      })}
+                    </SelectViewport>
+                  </SelectContent>
+                </SelectPortal>
+              </Select>
+              {state.errors.category_id && (
+                <span
+                  className='block text-[10px] leading-4 text-right text-red-300 tracking-widest'
+                  aria-live='polite'
+                >
+                  {state.errors.category_id}
+                </span>
+              )}
+            </div>
+          </div>
           <div>
             <Label htmlFor='el_name'>Ελληνική ονομασία</Label>
             <Input
@@ -40,7 +95,7 @@ function UpdateProductForm({product}: {product: Product}) {
               name='el_name'
               type='text'
               placeholder='Πληκτρολογήστε ελληνική ονομασία'
-              defaultValue={state.data.el_name ?? product.elName}
+              defaultValue={state.data.el_name || ''}
               error={state.errors.el_name}
               disabled={isPending}
             />
@@ -52,7 +107,7 @@ function UpdateProductForm({product}: {product: Product}) {
               name='en_name'
               type='text'
               placeholder='Πληκτρολογήστε αγγλική ονομασία'
-              defaultValue={state.data.en_name ?? product.enName}
+              defaultValue={state.data.en_name || ''}
               error={state.errors.en_name}
               disabled={isPending}
             />
@@ -65,7 +120,7 @@ function UpdateProductForm({product}: {product: Product}) {
               type='text'
               inputMode='numeric'
               placeholder='Πληκτρολογήστε τιμή προϊόντος'
-              defaultValue={state.data.price ?? product.price}
+              defaultValue={state.data.price || ''}
               error={state.errors.price}
               disabled={isPending}
             />
@@ -77,7 +132,7 @@ function UpdateProductForm({product}: {product: Product}) {
               name='el_description'
               type='text'
               placeholder='Πληκτρολογήστε ελληνική περιγραφή'
-              defaultValue={product.elDescription?.join(', ') || ''}
+              defaultValue={state.data.el_description || ''}
               error={state.errors.el_description}
               disabled={isPending}
             />
@@ -89,7 +144,7 @@ function UpdateProductForm({product}: {product: Product}) {
               name='en_description'
               type='text'
               placeholder='Πληκτρολογήστε αγγλική περιγραφή'
-              defaultValue={product.enDescription?.join(', ') || ''}
+              defaultValue={state.data.en_description || ''}
               error={state.errors.en_description}
               disabled={isPending}
             />
@@ -99,19 +154,15 @@ function UpdateProductForm({product}: {product: Product}) {
             <Switch
               id='active'
               name='active'
-              defaultChecked={Boolean(state.data.active) || product.active}
+              defaultChecked={Boolean(state.data.active) || true}
               disabled={isPending}
             />
           </div>
         </div>
         <div className='flex justify-end'>
-          <Button
-            type='submit'
-            disabled={isPending}
-            isLoading={isPending}
-          >
-            <span>Επεξεργασία</span>
-            <EditIcon />
+          <Button>
+            <span>Δημιουργία</span>
+            <PlusIcon />
           </Button>
         </div>
       </div>
@@ -119,6 +170,6 @@ function UpdateProductForm({product}: {product: Product}) {
   )
 }
 
-UpdateProductForm.displayName = 'UpdateProductForm'
+CreateProductForm.displayName = 'CreateProductForm'
 
-export {UpdateProductForm}
+export {CreateProductForm}
