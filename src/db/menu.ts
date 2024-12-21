@@ -217,6 +217,19 @@ export async function createProduct(
   return query[0]
 }
 
+// CREATE new category
+export async function createCategory(
+  newCategory: Omit<Category, 'id'>
+): Promise<Category> {
+  const query = await db.insert(categoryTable).values(newCategory).returning()
+
+  if (query.length < 1) {
+    throw new Error('Could not create new category (createCategory fn)')
+  }
+
+  return query[0]
+}
+
 // UPDATE single product by product id
 export async function updateProduct(
   productId: number,

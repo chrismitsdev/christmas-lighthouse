@@ -160,8 +160,12 @@ function CreateProductForm({categories}: {categories: Category[]}) {
           </div>
         </div>
         <div className='flex justify-end'>
-          <Button>
-            <span>Δημιουργία</span>
+          <Button
+            type='submit'
+            disabled={isPending}
+            isLoading={isPending}
+          >
+            <span>Δημιουργία προϊόντος</span>
             <PlusIcon />
           </Button>
         </div>
