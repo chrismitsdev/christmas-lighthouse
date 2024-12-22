@@ -60,7 +60,7 @@ function DashboardSidebar() {
   return (
     <Sidebar>
       <SidebarContent>
-        <SidebarHeader>
+        <SidebarHeader className='py-4 sm:py-8'>
           <Link href='/dashboard'>
             <Image
               src={logo}
