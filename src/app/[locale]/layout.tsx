@@ -4,7 +4,6 @@ import type {Metadata} from 'next'
 import {Manrope} from 'next/font/google'
 import {notFound} from 'next/navigation'
 import {setRequestLocale} from 'next-intl/server'
-import {SpeedInsights} from '@vercel/speed-insights/next'
 import {routing} from '@/src/i18n/routing'
 import {Header} from '@/src/components/shared/header'
 import {Footer} from '@/src/components/shared/footer'
@@ -54,7 +53,6 @@ export default function LocaleLayout(
           style={{zIndex: 100}}
           snowflakeCount={40}
         />
-        <SpeedInsights />
       </body>
     </html>
   )
