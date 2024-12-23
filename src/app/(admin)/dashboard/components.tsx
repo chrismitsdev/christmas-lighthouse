@@ -125,7 +125,7 @@ function DashboardPageCard(props: DashboardPageCardProps) {
     const {title, desc, createHref, editHref} = props
 
     return (
-      <div className='p-4 py-8 min-h-[calc(100vh-128px-73px)] flex flex-col gap-y-6 bg-app-surface border rounded sm:p-16 sm:gap-y-16 sm:min-h-[calc(100vh-128px-105px)]'>
+      <div className='p-4 py-8 min-h-[calc(100vh-128px-73px)] flex flex-col gap-y-12 bg-app-surface border rounded sm:p-16 sm:gap-y-16 sm:min-h-[calc(100vh-128px-105px)]'>
         <div className='space-y-4'>
           {title && <Typography variant='h3'>{title}</Typography>}
           {desc && (
@@ -167,7 +167,7 @@ function DashboardPageCard(props: DashboardPageCardProps) {
   >
 
   return (
-    <div className='p-4 py-8 min-h-[calc(100vh-128px-73px)] flex flex-col gap-y-6 bg-app-surface border rounded sm:p-16 sm:gap-y-16 sm:min-h-[calc(100vh-128px-105px)]'>
+    <div className='p-4 py-8 min-h-[calc(100vh-128px-73px)] flex flex-col gap-y-12 bg-app-surface border rounded sm:p-16 sm:gap-y-16 sm:min-h-[calc(100vh-128px-105px)]'>
       <div className='space-y-4'>
         <Typography variant='h3'>{title}</Typography>
         <Typography

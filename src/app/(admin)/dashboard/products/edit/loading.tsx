@@ -12,7 +12,10 @@ export default function Loading() {
             <Skeleton className='h-4 max-w-lg' />
           </div>
           <div className='flex-1 flex flex-col gap-4'>
-            <Skeleton className='h-[58px] w-56' />
+            <div className='flex justify-between flex-wrap gap-2'>
+              <Skeleton className='h-[58px] w-56' />
+              <Skeleton className='h-[58px] w-40' />
+            </div>
             <Skeleton className='flex-1' />
           </div>
         </div>

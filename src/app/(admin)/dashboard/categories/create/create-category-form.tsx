@@ -21,6 +21,7 @@ function CreateCategoryForm() {
     createCategoryAction,
     initialState
   )
+
   return (
     <form
       id='create-category-form'

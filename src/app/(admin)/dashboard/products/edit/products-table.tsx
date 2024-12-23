@@ -1,7 +1,15 @@
 'use client'
 
 import * as React from 'react'
-import {EllipsisIcon, EditIcon, Trash2Icon} from 'lucide-react'
+import Link from 'next/link'
+import {
+  EllipsisIcon,
+  EditIcon,
+  Trash2Icon,
+  PlusIcon,
+  CheckIcon,
+  XIcon
+} from 'lucide-react'
 import {type Product, type Category} from '@/src/db/drizzle/schema'
 import {formatCurrency} from '@/src/lib/utils'
 import {
@@ -78,30 +86,41 @@ function ProductsTable({categories, products}: ProductTableProps) {
 
   return (
     <div className='space-y-4'>
-      <Select
-        value={categoryFilter}
-        onValueChange={setCategoryFilter}
-      >
-        <SelectTrigger className='w-full sm:w-56'>
-          <SelectValue />
-        </SelectTrigger>
-        <SelectPortal>
-          <SelectContent>
-            <SelectViewport>
-              {categories.map(function (category) {
-                return (
-                  <SelectItem
-                    key={category.id}
-                    value={category.id}
-                  >
-                    <SelectItemText>{category.elName}</SelectItemText>
-                  </SelectItem>
-                )
-              })}
-            </SelectViewport>
-          </SelectContent>
-        </SelectPortal>
-      </Select>
+      <div className='flex justify-between flex-wrap gap-2'>
+        <Select
+          value={categoryFilter}
+          onValueChange={setCategoryFilter}
+        >
+          <SelectTrigger className='w-full sm:w-56 order-2 sm:order-1'>
+            <SelectValue />
+          </SelectTrigger>
+          <SelectPortal>
+            <SelectContent>
+              <SelectViewport>
+                {categories.map(function (category) {
+                  return (
+                    <SelectItem
+                      key={category.id}
+                      value={category.id}
+                    >
+                      <SelectItemText>{category.elName}</SelectItemText>
+                    </SelectItem>
+                  )
+                })}
+              </SelectViewport>
+            </SelectContent>
+          </SelectPortal>
+        </Select>
+        <Button
+          className='w-full sm:w-auto order-1 sm:order-2'
+          asChild
+        >
+          <Link href='/dashboard/products/create'>
+            <span>Νέο προϊόν</span>
+            <PlusIcon />
+          </Link>
+        </Button>
+      </div>
 
       <Table>
         <TableHeader>
@@ -110,6 +129,9 @@ function ProductsTable({categories, products}: ProductTableProps) {
             <TableHead className='w-52 sm:w-auto'>Ελληνική ονομασία</TableHead>
             <TableHead className='hidden sm:table-cell'>
               Αγγλική ονομασία
+            </TableHead>
+            <TableHead className='w-24 hidden text-center sm:table-cell'>
+              Ενεργό
             </TableHead>
             <TableHead className='w-24 hidden sm:table-cell'>Τιμή</TableHead>
             <TableHead className='text-right'>Ενέργειες</TableHead>
@@ -125,6 +147,15 @@ function ProductsTable({categories, products}: ProductTableProps) {
                 <TableCell>{product.elName}</TableCell>
                 <TableCell className='hidden sm:table-cell'>
                   {product.enName}
+                </TableCell>
+                <TableCell className='py-0 hidden text-center sm:table-cell'>
+                  <Badge>
+                    {product.active ? (
+                      <CheckIcon size={20} />
+                    ) : (
+                      <XIcon size={20} />
+                    )}
+                  </Badge>
                 </TableCell>
                 <TableCell className='hidden sm:table-cell'>
                   {formatCurrency(product.price)}

@@ -22,37 +22,35 @@ import {type Product} from '@/src/db/drizzle/schema'
 import {numberRegex, splitAndTrim} from '@/src/lib/utils'
 import {createProduct} from '@/src/db/menu'
 
-const CreateProductSchema = pipe(
-  object({
-    category_id: pipe(
-      string('Πρέπει να είναι αλφαριθμητική συμβολοσειρά.'),
-      nonEmpty('Υποχρεωτικό πεδίο')
-    ),
-    el_name: pipe(
-      string('Πρέπει να είναι αλφαριθμητική συμβολοσειρά.'),
-      trim(),
-      nonEmpty('Υποχρεωτικό πεδίο')
-    ),
-    en_name: pipe(
-      string('Πρέπει να είναι αλφαριθμητική συμβολοσειρά.'),
-      trim(),
-      nonEmpty('Υποχρεωτικό πεδίο')
-    ),
-    price: pipe(
-      string('Πρέπει να είναι αριθμητική συμβολοσειρά'),
-      trim(),
-      nonEmpty('Υποχρεωτικό πεδίο'),
-      regex(numberRegex, 'Επιτρέπονται μόνο αριθμοί (δεκαδικοί ή ακέραιοι)'),
-      transform((input) => Number.parseFloat(input)),
-      number('Επιτρέπονται μόνο αριθμοί (δεκαδικοί ή ακέραιοι)'),
-      check((input) => input > 0, 'Η τιμή δεν μπορεί να είναι μηδενική'),
-      transform((input) => input.toString())
-    ),
-    active: union([undefined_(), literal('on')]),
-    el_description: union([literal(''), string()]),
-    en_description: union([literal(''), string()])
-  })
-)
+const CreateProductSchema = object({
+  category_id: pipe(
+    string('Πρέπει να είναι αλφαριθμητική συμβολοσειρά.'),
+    nonEmpty('Υποχρεωτικό πεδίο')
+  ),
+  el_name: pipe(
+    string('Πρέπει να είναι αλφαριθμητική συμβολοσειρά.'),
+    trim(),
+    nonEmpty('Υποχρεωτικό πεδίο')
+  ),
+  en_name: pipe(
+    string('Πρέπει να είναι αλφαριθμητική συμβολοσειρά.'),
+    trim(),
+    nonEmpty('Υποχρεωτικό πεδίο')
+  ),
+  price: pipe(
+    string('Πρέπει να είναι αριθμητική συμβολοσειρά'),
+    trim(),
+    nonEmpty('Υποχρεωτικό πεδίο'),
+    regex(numberRegex, 'Επιτρέπονται μόνο αριθμοί (δεκαδικοί ή ακέραιοι)'),
+    transform((input) => Number.parseFloat(input)),
+    number('Επιτρέπονται μόνο αριθμοί (δεκαδικοί ή ακέραιοι)'),
+    check((input) => input > 0, 'Η τιμή δεν μπορεί να είναι μηδενική'),
+    transform((input) => input.toString())
+  ),
+  active: union([undefined_(), literal('on')]),
+  el_description: union([literal(''), string()]),
+  en_description: union([literal(''), string()])
+})
 
 export type CreateProductFormData = InferOutput<typeof CreateProductSchema>
 export type CreateProductFormErrors = Partial<
