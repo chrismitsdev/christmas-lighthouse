@@ -11,7 +11,12 @@ export default function Loading() {
             <Skeleton className='h-8 max-w-60' />
             <Skeleton className='h-4 max-w-lg' />
           </div>
-          <Skeleton className='w-full flex-1' />
+          <div className='flex-1 flex flex-col gap-4'>
+            <div className='flex justify-end'>
+              <Skeleton className='h-[58px] w-48' />
+            </div>
+            <Skeleton className='w-full flex-1' />
+          </div>
         </div>
       </Container>
     </Section>

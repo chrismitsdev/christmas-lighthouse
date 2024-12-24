@@ -84,7 +84,7 @@ const ProductSchema = array(
   })
 )
 
-const CustomCategoriesSchema = array(
+const LocalizedCategoriesSchema = array(
   object({
     categoryId: string(),
     categoryName: string(),
@@ -123,7 +123,7 @@ export const getLocalizedCategories = React.cache(async function (
     )
   }
 
-  const result = safeParse(CustomCategoriesSchema, query)
+  const result = safeParse(LocalizedCategoriesSchema, query)
 
   if (!result.success) {
     throw new Error('Invalid query schema (getLocalizedCategories fn)')
@@ -202,6 +202,32 @@ export async function getCategories(): Promise<Category[]> {
   }
 
   return result.output
+}
+
+// CREATE new product
+export async function createProduct(
+  newProduct: Omit<Product, 'id'>
+): Promise<Product> {
+  const query = await db.insert(productTable).values(newProduct).returning()
+
+  if (query.length < 1) {
+    throw new Error('Could not create new product (createProduct fn)')
+  }
+
+  return query[0]
+}
+
+// CREATE new category
+export async function createCategory(
+  newCategory: Omit<Category, 'id'>
+): Promise<Category> {
+  const query = await db.insert(categoryTable).values(newCategory).returning()
+
+  if (query.length < 1) {
+    throw new Error('Could not create new category (createCategory fn)')
+  }
+
+  return query[0]
 }
 
 // UPDATE single product by product id
