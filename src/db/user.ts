@@ -5,13 +5,6 @@ import {type User, userTable} from '@/src/db/drizzle/schema'
 
 type UserWithoutHashPassword = Omit<User, 'passwordHash'>
 
-async function verifyPasswordHash(
-  hash: string,
-  password: string
-): Promise<boolean> {
-  return await verify(hash, password)
-}
-
 async function hashPassword(password: string): Promise<string> {
   return await hash(password, {
     memoryCost: 19456,
@@ -21,18 +14,23 @@ async function hashPassword(password: string): Promise<string> {
   })
 }
 
-async function checkEmailAvailability(email: string): Promise<boolean> {
-  const user = await db.query.userTable.findFirst({
-    where: eq(userTable.email, email),
-    columns: {
-      passwordHash: false
-    }
-  })
-
-  return user?.email !== email
+async function verifyPasswordHash(
+  hash: string,
+  password: string
+): Promise<boolean> {
+  return await verify(hash, password)
 }
 
-// Before executing this fn, make sure to check for email availability
+async function checkEmailAvailability(email: string): Promise<boolean> {
+  const query = await db
+    .select()
+    .from(userTable)
+    .where(eq(userTable.email, email))
+
+  return query.length < 1
+}
+
+// Before executing this fn, make sure to checkEmailAvailability
 async function createUser(
   email: string,
   username: string,

@@ -37,7 +37,7 @@ function DeleteCategoryForm({
             htmlFor='delete-products'
             size='regular'
           >
-            Διαγραφή επίσης όλων των συνδεδεμένων προϊόντων
+            Διαγραφή όλων των προϊόντων που έχουν αυτή την κατηγορία.
           </Label>
         </div>
         <div className='flex items-center justify-end gap-4'>

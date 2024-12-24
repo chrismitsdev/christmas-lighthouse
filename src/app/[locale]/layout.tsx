@@ -1,5 +1,4 @@
 import '@/src/styles/globals.css'
-import * as React from 'react'
 import type {Metadata} from 'next'
 import {Manrope} from 'next/font/google'
 import {notFound} from 'next/navigation'
@@ -25,14 +24,18 @@ export const metadata: Metadata = {
 }
 
 export function generateStaticParams() {
-  return routing.locales.map((locale) => ({locale}))
+  return routing.locales.map(function (locale) {
+    return {
+      locale
+    }
+  })
 }
 
-export default function LocaleLayout(
-  props: React.PropsWithChildren<AsyncParamsLocale>
-) {
-  const params = React.use(props.params)
-  const locale = params.locale
+export default async function LocaleLayout({
+  params,
+  children
+}: React.PropsWithChildren<AsyncParamsLocale>) {
+  const {locale} = await params
 
   if (!routing.locales.includes(locale)) {
     notFound()
@@ -47,7 +50,7 @@ export default function LocaleLayout(
     >
       <body className='relative min-h-screen grid grid-rows-[auto,auto,1fr,auto]'>
         <Header />
-        <main>{props.children}</main>
+        <main>{children}</main>
         <Footer />
         <Snowfall
           style={{zIndex: 100}}
