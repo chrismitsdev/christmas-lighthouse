@@ -18,7 +18,7 @@ function TooltipContent({
   return (
     <Content
       className={cn(
-        'px-3 py-1.5 z-50 text-sm bg-app-background text-app-foreground border rounded overflow-hidden shadow-md',
+        'px-3 py-1.5 z-50 bg-brand-gray-12 border border-border-hover rounded overflow-hidden shadow-md',
         className
       )}
       side={side}

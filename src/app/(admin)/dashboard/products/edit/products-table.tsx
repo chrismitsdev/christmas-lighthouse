@@ -67,12 +67,12 @@ import {Badge} from '@/src/components/ui/badge'
 import {UpdateProductForm} from '@/src/app/(admin)/dashboard/products/edit/update-product-form'
 import {DeleteProductForm} from '@/src/app/(admin)/dashboard/products/edit/delete-product-form'
 
-type ProductTableProps = {
+type ProductsTableProps = {
   categories: Category[]
   products: Product[]
 }
 
-function ProductsTable({categories, products}: ProductTableProps) {
+function ProductsTable({categories, products}: ProductsTableProps) {
   const [categoryFilter, setCategoryFilter] = React.useState(categories[0].id)
 
   const filteredProducts = React.useMemo(

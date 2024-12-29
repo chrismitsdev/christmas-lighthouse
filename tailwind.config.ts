@@ -5,6 +5,7 @@ const config: Config = {
   theme: {
     data: {
       open: 'state="open"',
+      ['delayed-open']: 'state="delayed-open"',
       closed: 'state="closed"',
       top: 'side="top"',
       right: 'side="right"',
@@ -31,8 +32,6 @@ const config: Config = {
             DEFAULT: 'hsl(var(--app-surface))',
             solid: 'hsl(var(--app-surface-solid))'
           }
-          // surface: 'hsl(var(--app-surface))',
-          // ['surface-solid']: 'hsl(var(--app-surface-solid))'
         },
         brand: {
           blue: {

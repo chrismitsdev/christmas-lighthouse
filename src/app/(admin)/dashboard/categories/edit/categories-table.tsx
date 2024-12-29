@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import {PlusIcon, EllipsisIcon, EditIcon, Trash2Icon} from 'lucide-react'
-import {type Category} from '@/src/db/drizzle/schema'
+import {type Category, type Product} from '@/src/db/drizzle/schema'
 import {
   Table,
   TableHeader,
@@ -42,13 +42,26 @@ import {
   AlertDialogFooter,
   AlertDialogCancel
 } from '@/src/components/ui/alert-dialog'
+import {
+  TooltipProvider,
+  Tooltip,
+  TooltipPortal,
+  TooltipContent
+} from '@/src/components/ui/tooltip'
 import {ScrollArea} from '@/src/components/ui/scroll-area'
 import {Button} from '@/src/components/ui/button'
 import {Badge} from '@/src/components/ui/badge'
+import {Typography} from '@/src/components/ui/typography'
 import {UpdateCategoryForm} from '@/src/app/(admin)/dashboard/categories/edit/update-category-form'
 import {DeleteCategoryForm} from '@/src/app/(admin)/dashboard/categories/edit/delete-category-form'
+import {TooltipTrigger} from '@radix-ui/react-tooltip'
 
-function CategoriesTable({categories}: {categories: Category[]}) {
+type CategoriesTableProps = {
+  categories: Category[]
+  products: Product[]
+}
+
+function CategoriesTable({categories, products}: CategoriesTableProps) {
   return (
     <div className='space-y-4'>
       <div className='flex justify-end'>
@@ -71,11 +84,18 @@ function CategoriesTable({categories}: {categories: Category[]}) {
             <TableHead className='hidden sm:table-cell'>
               Αγγλική ονομασία
             </TableHead>
-            <TableHead className='text-right'>Ενέργειες</TableHead>
+            <TableHead className='hidden sm:table-cell'>
+              Αριθμός προϊόντων
+            </TableHead>
+            <TableHead className='w-28 text-right'>Ενέργειες</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
           {categories?.map(function (category) {
+            const categoryProducts = products.filter(function (product) {
+              return product.categoryId === category.id
+            })
+
             return (
               <TableRow key={category.id}>
                 <TableCell className='hidden sm:table-cell'>
@@ -84,6 +104,32 @@ function CategoriesTable({categories}: {categories: Category[]}) {
                 <TableCell>{category.elName}</TableCell>
                 <TableCell className='hidden sm:table-cell'>
                   {category.enName}
+                </TableCell>
+                <TableCell className='hidden cursor-default sm:table-cell'>
+                  <TooltipProvider>
+                    <Tooltip>
+                      <TooltipTrigger asChild>
+                        <Badge className='data-delayed-open:border-border-hover'>
+                          {categoryProducts.length}
+                        </Badge>
+                      </TooltipTrigger>
+                      <TooltipPortal>
+                        <TooltipContent side='top'>
+                          {categoryProducts.map(function (product) {
+                            return (
+                              <Typography
+                                key={product.elName}
+                                className='leading-5'
+                                variant='mini'
+                              >
+                                {product.elName}
+                              </Typography>
+                            )
+                          })}
+                        </TooltipContent>
+                      </TooltipPortal>
+                    </Tooltip>
+                  </TooltipProvider>
                 </TableCell>
                 <TableCell className='py-0 text-right'>
                   <AlertDialog>
