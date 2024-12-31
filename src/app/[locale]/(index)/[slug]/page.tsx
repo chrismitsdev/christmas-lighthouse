@@ -27,13 +27,15 @@ export async function generateMetadata({
   }
 }
 
+// Pass all possible values for the "slug" to Next.js,
+// to enable static rendering for the <SlugPage /> at build time.
 export async function generateStaticParams({params}: AsyncParamsLocale) {
   const {locale} = await params
   const categories = await getLocalizedCategories(locale)
-  return categories.map((ctg) => ({slug: ctg.link}))
+  return categories.map((c) => ({slug: c.link}))
 }
 
-export default async function CategoryPage({params}: AsyncParamsLocaleSlug) {
+export default async function SlugPage({params}: AsyncParamsLocaleSlug) {
   const {locale, slug} = await params
   setRequestLocale(locale)
 

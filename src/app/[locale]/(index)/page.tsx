@@ -14,7 +14,7 @@ export async function generateMetadata(): Promise<Metadata> {
   }
 }
 
-export default async function CategoriesPage({params}: AsyncParamsLocale) {
+export default async function IndexPage({params}: AsyncParamsLocale) {
   const {locale} = await params
   setRequestLocale(locale)
 

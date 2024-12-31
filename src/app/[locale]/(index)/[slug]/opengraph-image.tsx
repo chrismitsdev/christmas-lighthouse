@@ -21,7 +21,10 @@ export default async function Image({
 }: ParamsLocaleSlug) {
   const categories = await getLocalizedCategories(locale)
   const category = categories.find((category) => category.link === slug)
-  const assetUrl = new URL('../../../../public/opengraph.png', import.meta.url)
+  const assetUrl = new URL(
+    '../../../../../public/opengraph.png',
+    import.meta.url
+  )
   const assetResponse = await fetch(assetUrl)
   const assetBuffer = await assetResponse.arrayBuffer()
   const base64String = Buffer.from(assetBuffer).toString('base64')
