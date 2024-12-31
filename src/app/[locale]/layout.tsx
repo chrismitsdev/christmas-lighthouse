@@ -23,12 +23,10 @@ export const metadata: Metadata = {
   }
 }
 
+// Pass all possible values for the "locale" to Next.js,
+// to enable static rendering for all pages within this layout
 export function generateStaticParams() {
-  return routing.locales.map(function (locale) {
-    return {
-      locale
-    }
-  })
+  return routing.locales.map((locale) => ({locale}))
 }
 
 export default async function LocaleLayout({
@@ -50,7 +48,7 @@ export default async function LocaleLayout({
     >
       <body className='relative min-h-screen grid grid-rows-[auto,auto,1fr,auto]'>
         <Header />
-        <main>{children}</main>
+        {children}
         <Footer />
         <Snowfall
           style={{zIndex: 100}}
