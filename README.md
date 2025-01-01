@@ -5,7 +5,9 @@ At the moment, contains only the product catalogue.
 
 A website, built with Next.js, serves as a dynamic digital menu for a café, accessible via QR codes at the tables. It features seamless localization, supporting both English and Greek, ensuring a user-friendly experience for diverse customers. The site includes a secure backoffice system, allowing administrators to log in and efficiently manage menu categories and products with full CRUD functionality.
 
-You can take a look at the website [here](https://thechristmaslighthouse.gr).
+<!-- You can take a look at the website [here](https://thechristmaslighthouse.gr). -->
+
+You can take a look at the website <a href="https://thechristmaslighthouse.gr" target="_blank">here</a>.
 
 **Core project tools:**
 
