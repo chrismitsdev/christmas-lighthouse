@@ -56,7 +56,7 @@ const LoginFormSchema = pipeAsync(
         const user = await getUserFromEmail(input.email)
 
         if (user === null) {
-          throw new Error('Το email διαχειριστή δεν είναι σωστό')
+          return false
         }
 
         const passwordHash = await getUserPasswordHash(user.id)
