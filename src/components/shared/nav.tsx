@@ -30,7 +30,7 @@ function Nav({locale, categoriesPromise}: NavProps) {
   return (
     <nav
       aria-label='Categories navigation'
-      className='sticky top-0 z-50 flex justify-center bg-inherit overflow-x-hidden shadow-navigation-divider'
+      className='sticky top-0 z-50 flex justify-center bg-inherit overflow-x-hidden inset-shadow-nav-divider'
     >
       <ScrollArea
         orientation='horizontal'

@@ -3,6 +3,7 @@
 @import './colors.css';
 @import './data-attributes.css';
 @import './radiuses.css';
+@import './shadows.css';
 
 @utility container {
   margin-inline: auto;

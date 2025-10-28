@@ -22,8 +22,8 @@ const badgeVariants = cva(
   {
     variants: {
       variant: {
-        primary: ['bg-brand-gray-11/40', 'border-brand-gray-11/40'],
-        secondary: ['bg-brand-gold-11/40', 'border-brand-gold-11/40'],
+        primary: ['bg-brand-gray-11/40', 'border-brand-gray-11/40!'],
+        secondary: ['bg-brand-gold-11/40', 'border-brand-gold-11/40!'],
         success: ['bg-green-900/50', 'border-green-900'],
         error: ['bg-red-900/50', 'border-red-900']
       }
