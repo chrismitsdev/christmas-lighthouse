@@ -17,15 +17,15 @@ export default function Loading() {
             </div>
           </CardHeader>
           <CardContent>
-            <SlugSkeleton className='w-40' />
-            <SlugSkeleton className='w-32' />
-            <SlugSkeleton className='w-28' />
-            <SlugSkeleton className='w-24' />
-            <SlugSkeleton className='w-36' />
-            <SlugSkeleton className='w-40' />
-            <SlugSkeleton className='w-20' />
-            <SlugSkeleton className='w-32' />
-            <SlugSkeleton
+            <SlugPageSkeleton className='w-40' />
+            <SlugPageSkeleton className='w-32' />
+            <SlugPageSkeleton className='w-28' />
+            <SlugPageSkeleton className='w-24' />
+            <SlugPageSkeleton className='w-36' />
+            <SlugPageSkeleton className='w-40' />
+            <SlugPageSkeleton className='w-20' />
+            <SlugPageSkeleton className='w-32' />
+            <SlugPageSkeleton
               className='w-40'
               withSeparator={false}
             />
@@ -36,7 +36,7 @@ export default function Loading() {
   )
 }
 
-function SlugSkeleton({
+function SlugPageSkeleton({
   className,
   withSeparator = true
 }: {

@@ -1,3 +1,4 @@
+import {use} from 'react'
 import type {Metadata} from 'next'
 import {setRequestLocale, getTranslations} from 'next-intl/server'
 import {getLocalizedCategories} from '@/src/db/menu'
@@ -14,11 +15,11 @@ export async function generateMetadata(): Promise<Metadata> {
   }
 }
 
-export default async function IndexPage({params}: AsyncParamsLocale) {
-  const {locale} = await params
-  setRequestLocale(locale)
+export default function IndexPage({params}: Params) {
+  const {locale} = use(params)
+  const categories = use(getLocalizedCategories(locale))
 
-  const categories = await getLocalizedCategories(locale)
+  setRequestLocale(locale)
 
   return (
     <Container>

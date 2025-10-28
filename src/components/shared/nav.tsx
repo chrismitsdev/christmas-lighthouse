@@ -1,7 +1,8 @@
 'use client'
 
 import * as React from 'react'
-import {Link, usePathname} from '@/src/i18n/routing'
+import {type Locale} from 'next-intl'
+import {Link, usePathname} from '@/src/i18n/navigation'
 import {type CategoryWithProducts} from '@/src/db/menu'
 import {TOTAL_CATEGORIES} from '@/src/lib/constants'
 import {cn} from '@/src/lib/utils'
@@ -43,7 +44,7 @@ function Nav({locale, categoriesPromise}: NavProps) {
                 key={title}
                 href={`/${link}`}
                 className={cn(
-                  'p-4 relative flex-shrink-0 duration-200 select-none opacity-50 after:absolute after:inset-x-0 after:-bottom-1.5 after:h-1.5 after:bg-border-hover after:rounded-t-lg after:duration-200 sm:px-3',
+                  'p-4 relative shrink-0 duration-200 select-none opacity-50 after:absolute after:inset-x-0 after:-bottom-1.5 after:h-1.5 after:bg-border-hover after:rounded-t-lg after:duration-200 sm:px-3',
                   pathname === link && 'opacity-100 after:bottom-0'
                 )}
               >

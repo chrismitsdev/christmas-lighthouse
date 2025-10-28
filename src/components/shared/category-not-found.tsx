@@ -1,6 +1,5 @@
-import * as React from 'react'
 import {useTranslations} from 'next-intl'
-import {Link} from '@/src/i18n/routing'
+import {Link} from '@/src/i18n/navigation'
 import {TriangleAlertIcon, ArrowLeftIcon} from 'lucide-react'
 import {Typography} from '@/src/components/ui/typography'
 import {Button} from '@/src/components/ui/button'

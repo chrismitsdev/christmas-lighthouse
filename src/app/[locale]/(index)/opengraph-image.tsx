@@ -2,7 +2,7 @@ import {ImageResponse} from 'next/og'
 import {getTranslations} from 'next-intl/server'
 
 type ParamsLocale = {
-  params: Awaited<AsyncParamsLocale['params']>
+  params: Awaited<Params['params']>
 }
 
 export const runtime = 'edge'

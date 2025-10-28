@@ -64,7 +64,7 @@ function ScrollAreaViewport({
       <Viewport
         className={cn(
           'h-full w-full rounded-[inherit]',
-          isFlex && '[&>div]:!flex',
+          isFlex && '[&>div]:flex!',
           className
         )}
         {...props}
@@ -86,7 +86,7 @@ function ScrollAreaViewport({
   return (
     <div
       className={cn(
-        'relative before:absolute before:-left-1 before:top-0 before:z-10 before:block before:h-full before:w-8 before:opacity-0 before:bg-gradient-to-rs before:from-primary before:pointer-events-none after:absolute after:-right-1 after:top-0 after:z-10 after:block after:h-full after:w-8 after:bg-gradient-to-l after:from-primary after:pointer-events-none',
+        'relative before:absolute before:-left-1 before:top-0 before:z-10 before:block before:h-full before:w-8 before:opacity-0 before:bg-gradient-to-rs before:from-primary before:pointer-events-none after:absolute after:-right-1 after:top-0 after:z-10 after:block after:h-full after:w-8 after:bg-linear-to-l after:from-primary after:pointer-events-none',
         canScrollLeft && 'before:opacity-100',
         !canScrollRight && 'after:opacity-0'
       )}

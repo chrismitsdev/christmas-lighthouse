@@ -1,8 +1,7 @@
 'use client'
 
-import * as React from 'react'
 import {useLocale} from 'next-intl'
-import {usePathname, useRouter} from '@/src/i18n/routing'
+import {usePathname, useRouter} from '@/src/i18n/navigation'
 import {
   Select,
   SelectTrigger,
@@ -23,12 +22,12 @@ type LocaleSwitcherProps = {
 }
 
 function LocaleSwitcher({grLabel, enLabel}: LocaleSwitcherProps) {
-  const locale = useLocale() as Locale
+  const locale = useLocale()
   const router = useRouter()
   const pathname = usePathname()
 
-  function onSelectChange(locale: Locale) {
-    router.replace(pathname, {locale})
+  function onSelectChange(l: typeof locale) {
+    router.replace(pathname, {locale: l})
   }
 
   return (

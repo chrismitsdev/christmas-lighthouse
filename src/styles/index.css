@@ -1,0 +1,24 @@
+@import 'tailwindcss';
+@import './colors.css';
+@import './data-attribute.css';
+@import './radius.css';
+
+@utility container {
+  margin-inline: auto;
+}
+
+/* General styling */
+* {
+  @apply border-border;
+
+  &::selection {
+    @apply bg-brand-gold-9 text-brand-blue-12;
+  }
+}
+
+body {
+  @apply bg-app-background text-app-foreground;
+  font-feature-settings:
+    'rlig' 1,
+    'calt' 1;
+}

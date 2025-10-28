@@ -3,7 +3,7 @@ import {getLocalizedCategories} from '@/src/db/menu'
 
 type ParamsLocaleSlug = {
   params: {
-    locale: Awaited<AsyncParamsLocale['params']>['locale']
+    locale: Awaited<Params['params']>['locale']
     slug: string
   }
 }

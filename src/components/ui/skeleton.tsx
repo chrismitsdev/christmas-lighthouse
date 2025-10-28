@@ -19,7 +19,7 @@ function Skeleton({className, asChild = false, ...props}: SkeletonProps) {
       )}
       {...props}
     >
-      <div className='w-full absolute inset-0 -translate-x-full bg-gradient-to-r from-brand-gray-12 via-brand-gray-11/25 to-brand-gray-12 animate-shimmer' />
+      <div className='w-full absolute inset-0 -translate-x-full bg-linear-to-r from-brand-gray-12 via-brand-gray-11/25 to-brand-gray-12 animate-shimmer' />
     </Comp>
   )
 }

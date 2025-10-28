@@ -1,4 +1,4 @@
-import '@/src/styles/globals.css'
+import '@/src/styles/index.css'
 import type {Metadata} from 'next'
 import {Manrope} from 'next/font/google'
 
