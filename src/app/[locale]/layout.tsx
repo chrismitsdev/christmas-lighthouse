@@ -49,7 +49,7 @@ export default function LocaleLayout({
       lang={locale}
       className={font.className}
     >
-      <body className='relative min-h-screen grid grid-rows-[auto,auto,1fr,auto]'>
+      <body className='relative min-h-screen grid grid-rows-[auto_auto_1fr_auto]'>
         <NextIntlClientProvider>
           <Header />
           {children}
