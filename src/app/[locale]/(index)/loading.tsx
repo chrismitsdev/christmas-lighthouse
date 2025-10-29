@@ -21,7 +21,6 @@ export default function Loading() {
         <IndexPageSkeleton className='w-48' />
         <IndexPageSkeleton className='w-32' />
         <IndexPageSkeleton className='w-36' />
-        <IndexPageSkeleton className='w-40' />
       </Section>
     </Container>
   )
@@ -30,7 +29,7 @@ export default function Loading() {
 function IndexPageSkeleton({className}: {className?: string}) {
   return (
     <Card>
-      <CardHeader className='border-transparent'>
+      <CardHeader className='border-transparent!'>
         <div className='flex items-center gap-2'>
           <Skeleton className='h-6 w-6' />
           <Skeleton className={cn('h-6', className)} />

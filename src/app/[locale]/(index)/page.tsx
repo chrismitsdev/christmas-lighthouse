@@ -6,7 +6,6 @@ import {Container} from '@/src/components/shared/container'
 import {Section} from '@/src/components/shared/section'
 import {PromoProduct} from '@/src/components/shared/promo-product'
 import {Category} from '@/src/components/shared/category'
-import {Skeleton} from '@/src/components/ui/skeleton'
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations('pages.metadata')
@@ -22,18 +21,21 @@ export default function IndexPage({params}: Params) {
 
   setRequestLocale(locale)
 
+  const renderedCategories = categories.map(function (category) {
+    return (
+      <Category
+        key={category.title}
+        category={category}
+        collapsible
+      />
+    )
+  })
+
   return (
     <Container>
       <Section className='space-y-4'>
         <PromoProduct />
-        <Skeleton className='h-20' />
-        {/*{categories.map((category) => (
-          <Category
-            key={category.title}
-            category={category}
-            collapsible
-          />
-        ))}*/}
+        {renderedCategories}
       </Section>
     </Container>
   )
