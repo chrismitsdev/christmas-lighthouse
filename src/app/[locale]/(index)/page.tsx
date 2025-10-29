@@ -11,31 +11,29 @@ export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations('pages.metadata')
 
   return {
-    title: `${t('index')} | The Christmas Lighthouse`
+    title: t('index')
   }
 }
 
-export default function IndexPage({params}: Params) {
-  const {locale} = use(params)
+export default function IndexPage({params}: PageProps<'/[locale]'>) {
+  const {locale} = use(params as Params['params'])
   const categories = use(getLocalizedCategories(locale))
 
   setRequestLocale(locale)
-
-  const renderedCategories = categories.map(function (category) {
-    return (
-      <Category
-        key={category.title}
-        category={category}
-        collapsible
-      />
-    )
-  })
 
   return (
     <Container>
       <Section className='space-y-4'>
         <PromoProduct />
-        {renderedCategories}
+        {categories.map(function (category) {
+          return (
+            <Category
+              key={category.title}
+              category={category}
+              collapsible
+            />
+          )
+        })}
       </Section>
     </Container>
   )

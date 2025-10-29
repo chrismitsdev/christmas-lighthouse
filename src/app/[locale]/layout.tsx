@@ -24,7 +24,10 @@ export const metadata: Metadata = {
       'el-GR': '/gr'
     }
   },
-  title: 'The Christmas Lighthouse',
+  title: {
+    template: '%s | The Christmas Lighthouse',
+    default: 'The Christmas Lighthouse'
+  },
   description: 'The Christmas Lighthouse amusement park menu',
   formatDetection: {
     email: true,
@@ -35,8 +38,8 @@ export const metadata: Metadata = {
 export default function LocaleLayout({
   params,
   children
-}: React.PropsWithChildren<Params>) {
-  const {locale} = use(params)
+}: LayoutProps<'/[locale]'>) {
+  const {locale} = use(params as Params['params'])
 
   if (!hasLocale(routing.locales, locale)) {
     notFound()

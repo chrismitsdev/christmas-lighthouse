@@ -62,7 +62,7 @@ function NavSkeleton() {
   return (
     <nav
       aria-label='Categories navigation'
-      className='sticky top-0 z-50 flex justify-center bg-inherit overflow-x-hidden shadow-navigation-divider'
+      className='sticky top-0 z-50 flex justify-center bg-inherit overflow-x-hidden inset-shadow-nav-divider'
     >
       <Container className='px-1 flex overflow-hidden'>
         {Array.from({length: TOTAL_CATEGORIES + 1}).map(function (_, i) {

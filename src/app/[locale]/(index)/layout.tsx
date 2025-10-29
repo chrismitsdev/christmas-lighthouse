@@ -6,8 +6,8 @@ import {NavSkeleton, Nav} from '@/src/components/shared/nav'
 export default function IndexLayout({
   params,
   children
-}: React.PropsWithChildren<Params>) {
-  const {locale} = use(params)
+}: LayoutProps<'/[locale]'>) {
+  const {locale} = use(params as Params['params'])
   setRequestLocale(locale)
 
   const categoriesPromise = getLocalizedCategories(locale)

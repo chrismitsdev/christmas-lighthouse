@@ -30,30 +30,38 @@ export async function generateMetadata({
   }
 
   return {
-    title: `${category.title} | The Christmas Lighthouse`
+    title: category.title
   }
 }
 
-// Pass all possible values for the "slug" to Next.js,
-// to enable static rendering for the <SlugPage /> at build time.
-export async function generateStaticParams({params}: Params) {
-  const {locale} = await params
-  const categories = await getLocalizedCategories(locale)
-  return categories.map((c) => ({slug: c.link}))
-}
+export default function SlugPage({params}: PageProps<'/[locale]/[slug]'>) {
+  const {locale, slug} = use(params as ParamsWithSlug['params'])
 
-export default function SlugPage({params}: ParamsWithSlug) {
-  const {locale, slug} = use(params)
   setRequestLocale(locale)
 
   const categories = use(getLocalizedCategories(locale))
   const category = categories.find((ctg) => ctg.link === slug)
 
+  if (!category?.title) {
+    return <CategoryNotFound />
+  }
+
   return (
     <Container>
       <Section>
-        {category ? <Category category={category} /> : <CategoryNotFound />}
+        <Category category={category} />
       </Section>
     </Container>
   )
+}
+
+export async function generateStaticParams({params}: Params) {
+  const {locale} = await params
+  const categories = await getLocalizedCategories(locale)
+
+  return categories.map(function (category) {
+    return {
+      slug: category.link
+    }
+  })
 }
