@@ -6,6 +6,7 @@ import {Container} from '@/src/components/shared/container'
 import {Section} from '@/src/components/shared/section'
 import {PromoProduct} from '@/src/components/shared/promo-product'
 import {Category} from '@/src/components/shared/category'
+import {Skeleton} from '@/src/components/ui/skeleton'
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations('pages.metadata')
@@ -25,13 +26,14 @@ export default function IndexPage({params}: Params) {
     <Container>
       <Section className='space-y-4'>
         <PromoProduct />
-        {categories.map((category) => (
+        <Skeleton className='h-20' />
+        {/*{categories.map((category) => (
           <Category
             key={category.title}
             category={category}
             collapsible
           />
-        ))}
+        ))}*/}
       </Section>
     </Container>
   )

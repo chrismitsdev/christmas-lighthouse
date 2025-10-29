@@ -54,11 +54,6 @@ export default async function middleware(
 }
 
 export const config: MiddlewareConfig = {
-  // Match all pathnames except for
-  // - … if they start with `/api`, `/trpc`, `/_next` or `/_vercel`
-  // - … the ones containing a dot (e.g. `favicon.ico`)
-  matcher: '/((?!api|trpc|_next|_vercel|.*\\..*).*)'
-
   // Match only internationalized pathnames
-  // matcher: ['/', '/(el|en)/:path*']
+  matcher: ['/', '/(el|en)/:path*']
 }
