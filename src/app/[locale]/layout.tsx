@@ -1,7 +1,8 @@
-import '@/src/styles/globals.css'
+import '@/src/styles/index.css'
 import type {Metadata} from 'next'
 import {Manrope} from 'next/font/google'
 import {notFound} from 'next/navigation'
+import {NextIntlClientProvider, hasLocale} from 'next-intl'
 import {setRequestLocale} from 'next-intl/server'
 import {routing} from '@/src/i18n/routing'
 import {Header} from '@/src/components/shared/header'
@@ -15,7 +16,17 @@ const font = Manrope({
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://thechristmaslighthouse.gr'),
-  title: 'The Christmas Lighthouse',
+  alternates: {
+    canonical: '/',
+    languages: {
+      'en-US': '/en',
+      'el-GR': '/gr'
+    }
+  },
+  title: {
+    template: '%s | The Christmas Lighthouse',
+    default: 'The Christmas Lighthouse'
+  },
   description: 'The Christmas Lighthouse amusement park menu',
   formatDetection: {
     email: true,
@@ -23,19 +34,13 @@ export const metadata: Metadata = {
   }
 }
 
-// Pass all possible values for the "locale" to Next.js,
-// to enable static rendering for all pages within this layout
-export function generateStaticParams() {
-  return routing.locales.map((locale) => ({locale}))
-}
-
 export default async function LocaleLayout({
   params,
   children
-}: React.PropsWithChildren<AsyncParamsLocale>) {
-  const {locale} = await params
+}: LayoutProps<'/[locale]'>) {
+  const {locale} = (await params) as Params['params']
 
-  if (!routing.locales.includes(locale)) {
+  if (!hasLocale(routing.locales, locale)) {
     notFound()
   }
 
@@ -46,10 +51,12 @@ export default async function LocaleLayout({
       lang={locale}
       className={font.className}
     >
-      <body className='relative min-h-screen grid grid-rows-[auto,auto,1fr,auto]'>
-        <Header />
-        {children}
-        <Footer />
+      <body className='relative min-h-screen grid grid-rows-[auto_auto_1fr_auto]'>
+        <NextIntlClientProvider>
+          <Header />
+          {children}
+          <Footer />
+        </NextIntlClientProvider>
         <Snowfall
           style={{zIndex: 100}}
           snowflakeCount={40}
@@ -57,4 +64,12 @@ export default async function LocaleLayout({
       </body>
     </html>
   )
+}
+
+export function generateStaticParams() {
+  return routing.locales.map(function (locale) {
+    return {
+      locale
+    }
+  })
 }

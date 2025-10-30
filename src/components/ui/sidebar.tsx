@@ -1,6 +1,14 @@
 'use client'
 
-import * as React from 'react'
+// import * as React from 'react'
+import {
+  createContext,
+  use,
+  useState,
+  useMemo,
+  useCallback,
+  useEffect
+} from 'react'
 import {Slot} from '@radix-ui/react-slot'
 import {PanelLeft} from 'lucide-react'
 import {type VariantProps, cva} from 'class-variance-authority'
@@ -35,10 +43,10 @@ type SidebarContext = {
   toggleSidebar: () => void
 }
 
-const SidebarContext = React.createContext<SidebarContext | null>(null)
+const SidebarContext = createContext<SidebarContext | null>(null)
 
 function useSidebar() {
-  const context = React.useContext(SidebarContext)
+  const context = use(SidebarContext)
 
   if (!context) {
     throw new Error('useSidebar must be used within a SidebarProvider.')
@@ -63,15 +71,15 @@ function SidebarProvider({
   open?: boolean
   onOpenChange?: (open: boolean) => void
 }) {
-  const [openMobile, setOpenMobile] = React.useState(false)
+  const [openMobile, setOpenMobile] = useState(false)
   const isMobile = useIsMobile()
 
   // This is the internal state of the sidebar.
   // We use openProp and setOpenProp for control from outside the component.
-  const [_open, _setOpen] = React.useState(defaultOpen)
+  const [_open, _setOpen] = useState(defaultOpen)
   const open = openProp ?? _open
 
-  const setOpen = React.useCallback(
+  const setOpen = useCallback(
     function (value: boolean | ((value: boolean) => boolean)) {
       const openState = typeof value === 'function' ? value(open) : value
 
@@ -88,7 +96,7 @@ function SidebarProvider({
   )
 
   // Helper to toggle the sidebar.
-  const toggleSidebar = React.useCallback(
+  const toggleSidebar = useCallback(
     function () {
       return isMobile
         ? setOpenMobile((open) => !open)
@@ -101,7 +109,7 @@ function SidebarProvider({
   // This makes it easier to style the sidebar with Tailwind classes.
   const state = open ? 'expanded' : 'collapsed'
 
-  const contextValue = React.useMemo<SidebarContext>(
+  const contextValue = useMemo<SidebarContext>(
     function () {
       return {
         state,
@@ -117,7 +125,7 @@ function SidebarProvider({
   )
 
   // Adds a keyboard shortcut to toggle the sidebar.
-  React.useEffect(
+  useEffect(
     function () {
       function handleKeyDown(e: KeyboardEvent) {
         if (e.key === SIDEBAR_KEYBOARD_SHORTCUT && (e.metaKey || e.ctrlKey)) {
@@ -135,7 +143,7 @@ function SidebarProvider({
   )
 
   return (
-    <SidebarContext.Provider value={contextValue}>
+    <SidebarContext value={contextValue}>
       <TooltipProvider delayDuration={0}>
         <div
           className={cn(
@@ -154,7 +162,7 @@ function SidebarProvider({
           {children}
         </div>
       </TooltipProvider>
-    </SidebarContext.Provider>
+    </SidebarContext>
   )
 }
 
@@ -225,7 +233,7 @@ function Sidebar({
         className={cn(
           'relative h-svh w-[--sidebar-width] bg-transparent transition-[width] ease-linear duration-200 group-data-[collapsible=offcanvas]:w-0 group-data-[side=right]:rotate-180',
           variant === 'floating' || variant === 'inset'
-            ? 'group-data-[collapsible=icon]:w-[calc(var(--sidebar-width-icon)_+_theme(spacing.4))]'
+            ? 'group-data-[collapsible=icon]:w-[calc(var(--sidebar-width-icon)+(--spacing(4)))]'
             : 'group-data-[collapsible=icon]:w-[--sidebar-width-icon]'
         )}
       />
@@ -237,7 +245,7 @@ function Sidebar({
             : 'right-0 group-data-[collapsible=offcanvas]:right-[calc(var(--sidebar-width)*-1)]',
           // Adjust the padding for floating and inset variants.
           variant === 'floating' || variant === 'inset'
-            ? 'p-2 group-data-[collapsible=icon]:w-[calc(var(--sidebar-width-icon)_+_theme(spacing.4)_+2px)]'
+            ? 'p-2 group-data-[collapsible=icon]:w-[calc(var(--sidebar-width-icon)+(--spacing(4))+2px)]'
             : 'group-data-[collapsible=icon]:w-[--sidebar-width-icon] group-data-[side=left]:border-r group-data-[side=right]:border-l',
           className
         )}
@@ -339,7 +347,7 @@ function SidebarRail({
   return (
     <button
       className={cn(
-        'absolute inset-y-0 z-20 hidden w-4 -translate-x-1/2 transition-all ease-linear after:absolute after:inset-y-0 after:left-1/2 after:w-[2px] hover:after:bg-sidebar-border group-data-[side=left]:-right-4 group-data-[side=right]:left-0 sm:flex [[data-side=left]_&]:cursor-w-resize [[data-side=right]_&]:cursor-e-resize [[data-side=left][data-state=collapsed]_&]:cursor-e-resize [[data-side=right][data-state=collapsed]_&]:cursor-w-resize group-data-[collapsible=offcanvas]:translate-x-0 group-data-[collapsible=offcanvas]:after:left-full group-data-[collapsible=offcanvas]:hover:bg-sidebar [[data-side=left][data-collapsible=offcanvas]_&]:-right-2 [[data-side=right][data-collapsible=offcanvas]_&]:-left-2',
+        'absolute inset-y-0 z-20 hidden w-4 -translate-x-1/2 transition-all ease-linear after:absolute after:inset-y-0 after:left-1/2 after:w-0.5 hover:after:bg-sidebar-border group-data-[side=left]:-right-4 group-data-[side=right]:left-0 sm:flex in-data-left:cursor-w-resize in-data-right:cursor-e-resize [[data-side=left][data-state=collapsed]_&]:cursor-e-resize [[data-side=right][data-state=collapsed]_&]:cursor-w-resize group-data-[collapsible=offcanvas]:translate-x-0 group-data-[collapsible=offcanvas]:after:left-full group-data-[collapsible=offcanvas]:hover:bg-sidebar [[data-side=left][data-collapsible=offcanvas]_&]:-right-2 [[data-side=right][data-collapsible=offcanvas]_&]:-left-2',
         className
       )}
       data-sidebar='rail'
@@ -359,7 +367,7 @@ function SidebarInset({
   return (
     <main
       className={cn(
-        'relative flex-1 flex flex-col min-h-svh peer-data-[variant=inset]:min-h-[calc(100svh-theme(spacing.4))] md:peer-data-[variant=inset]:m-2 md:peer-data-[state=collapsed]:peer-data-[variant=inset]:ml-2 md:peer-data-[variant=inset]:ml-0 md:peer-data-[variant=inset]:rounded-xl md:peer-data-[variant=inset]:shadow',
+        'relative flex-1 flex flex-col min-h-svh peer-data-[variant=inset]:min-h-[calc(100svh-(--spacing(4)))] md:peer-data-[variant=inset]:m-2 md:peer-data-[state=collapsed]:peer-data-[variant=inset]:ml-2 md:peer-data-[variant=inset]:ml-0 md:peer-data-[variant=inset]:rounded-xl md:peer-data-[variant=inset]:shadow',
         className
       )}
       {...props}
@@ -667,17 +675,19 @@ function SidebarGroupAction({
 function SidebarMenuSkeleton({
   className,
   showIcon = false,
+  random,
   ...props
 }: React.DetailedHTMLProps<
   React.HTMLAttributes<HTMLDivElement>,
   HTMLDivElement
 > & {
+  random?: number
   showIcon?: boolean
 }) {
   // Random width between 50 to 90%.
-  const width = React.useMemo(() => {
-    return `${Math.floor(Math.random() * 40) + 50}%`
-  }, [])
+  const width = useMemo(() => {
+    return `${Math.floor(random ?? 1 * 40) + 50}%`
+  }, [random])
 
   return (
     <div

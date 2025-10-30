@@ -1,4 +1,3 @@
-// eslint-disable-next-line
 import Link from 'next/link'
 import {getCurrentSession} from '@/src/db/session'
 

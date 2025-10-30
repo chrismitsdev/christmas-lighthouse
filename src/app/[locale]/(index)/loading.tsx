@@ -8,29 +8,28 @@ export default function Loading() {
   return (
     <Container>
       <Section className='space-y-4'>
-        <IndexSkeleton className='w-28' />
-        <IndexSkeleton className='w-40' />
-        <IndexSkeleton className='w-32' />
-        <IndexSkeleton className='w-28' />
-        <IndexSkeleton className='w-56' />
-        <IndexSkeleton className='w-28' />
-        <IndexSkeleton className='w-32' />
-        <IndexSkeleton className='w-44' />
-        <IndexSkeleton className='w-40' />
-        <IndexSkeleton className='w-52' />
-        <IndexSkeleton className='w-48' />
-        <IndexSkeleton className='w-32' />
-        <IndexSkeleton className='w-36' />
-        <IndexSkeleton className='w-40' />
+        <IndexPageSkeleton className='w-28' />
+        <IndexPageSkeleton className='w-40' />
+        <IndexPageSkeleton className='w-32' />
+        <IndexPageSkeleton className='w-28' />
+        <IndexPageSkeleton className='w-56' />
+        <IndexPageSkeleton className='w-28' />
+        <IndexPageSkeleton className='w-32' />
+        <IndexPageSkeleton className='w-44' />
+        <IndexPageSkeleton className='w-40' />
+        <IndexPageSkeleton className='w-52' />
+        <IndexPageSkeleton className='w-48' />
+        <IndexPageSkeleton className='w-32' />
+        <IndexPageSkeleton className='w-36' />
       </Section>
     </Container>
   )
 }
 
-function IndexSkeleton({className}: {className?: string}) {
+function IndexPageSkeleton({className}: {className?: string}) {
   return (
     <Card>
-      <CardHeader style={{borderColor: 'transparent'}}>
+      <CardHeader className='border-transparent!'>
         <div className='flex items-center gap-2'>
           <Skeleton className='h-6 w-6' />
           <Skeleton className={cn('h-6', className)} />

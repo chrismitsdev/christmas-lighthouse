@@ -32,7 +32,7 @@ export default async function middleware(
   const originHeader = request.headers.get('Origin')
   // NOTE: May need to use `X-Forwarded-Host` instead
   const hostHeader = request.headers.get('Host')
-  // const xHostHeader = request.headers.get('X-Forwarded-Host')
+  // const hostHeader = request.headers.get('X-Forwarded-Host')
 
   if (originHeader === null || hostHeader === null) {
     return new NextResponse(null, {status: 403})
@@ -57,18 +57,3 @@ export const config: MiddlewareConfig = {
   // Match only internationalized pathnames
   matcher: ['/', '/(el|en)/:path*']
 }
-
-// import {type MiddlewareConfig} from 'next/server'
-// import createMiddleware from 'next-intl/middleware'
-// import {routing} from '@/src/i18n/routing'
-
-// export default createMiddleware(routing)
-
-// // export const config: MiddlewareConfig = {
-// //   matcher: ['/((?!_next|.*\\..*).*)']
-// // }
-
-// export const config: MiddlewareConfig = {
-//   // Match only internationalized pathnames
-//   matcher: ['/', '/(el|en)/:path*']
-// }

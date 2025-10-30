@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import {useTranslations} from 'next-intl'
 import {MegaphoneIcon, ChevronUpIcon, ChevronDownIcon} from 'lucide-react'
-import {Link} from '@/src/i18n/routing'
+import {Link} from '@/src/i18n/navigation'
 import {
   Collapsible,
   CollapsibleTrigger,
@@ -14,8 +14,8 @@ function PromoProduct() {
   const t = useTranslations('components.promo-product')
 
   return (
-    <Collapsible className='bg-brand-gold-12/40 border border-brand-gold-11/20 rounded overflow-hidden'>
-      <CollapsibleTrigger className='px-4 py-6 w-full flex border-b border-b-brand-gold-11/20 bg-brand-gold-12/25 data-closed:border-b-transparent data-open:duration-500 data-closed:active:bg-brand-gold-12/50 group'>
+    <Collapsible className='bg-brand-gold-12/40 border border-brand-gold-11/20! rounded overflow-hidden'>
+      <CollapsibleTrigger className='px-4 py-6 w-full flex bg-brand-gold-12/25 border-b border-b-brand-gold-11/20! data-open:duration-500 data-closed:duration-300 data-closed:border-b-transparent! data-closed:active:bg-brand-gold-12/50 group'>
         <Typography
           className='flex items-center gap-2 grow'
           variant='h4'
@@ -38,7 +38,7 @@ function PromoProduct() {
         </span>
       </CollapsibleTrigger>
       <CollapsibleContent>
-        <div className='p-4 grid gap-y-4 gap-x-6 sm:grid-cols-[84px,1fr]'>
+        <div className='p-4 grid gap-y-4 gap-x-6 sm:grid-cols-[84px_1fr]'>
           <Image
             className='rounded'
             src={gluhwein}

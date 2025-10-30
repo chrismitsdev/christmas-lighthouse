@@ -1,0 +1,48 @@
+@theme {
+  --color-brand-blue-1: hsl(210 100% 99%);
+  --color-brand-blue-2: hsl(213 100% 97%);
+  --color-brand-blue-3: hsl(213 100% 94%);
+  --color-brand-blue-4: hsl(213 100% 91%);
+  --color-brand-blue-5: hsl(213 100% 87%);
+  --color-brand-blue-6: hsl(213 100% 82%);
+  --color-brand-blue-7: hsl(213 100% 76%);
+  --color-brand-blue-8: hsl(213 100% 71%);
+  --color-brand-blue-9: hsl(220 54% 36%);
+  --color-brand-blue-10: hsl(224 63% 30%);
+  --color-brand-blue-11: hsl(224 64% 53%);
+  --color-brand-blue-12: hsl(227 65% 27%);
+
+  --color-brand-gold-1: hsl(47 39% 98%);
+  --color-brand-gold-2: hsl(47 55% 96%);
+  --color-brand-gold-3: hsl(45 70% 90%);
+  --color-brand-gold-4: hsl(44 67% 87%);
+  --color-brand-gold-5: hsl(43 66% 82%);
+  --color-brand-gold-6: hsl(43 60% 75%);
+  --color-brand-gold-7: hsl(42 47% 69%);
+  --color-brand-gold-8: hsl(42 39% 61%);
+  --color-brand-gold-9: hsl(42 28% 50%);
+  --color-brand-gold-10: hsl(42 27% 45%);
+  --color-brand-gold-11: hsl(41 35% 37%);
+  --color-brand-gold-12: hsl(42 36% 18%);
+
+  --color-brand-gray-1: hsl(224 85% 98%);
+  --color-brand-gray-2: hsl(229 80% 97%);
+  --color-brand-gray-3: hsl(226 46% 94%);
+  --color-brand-gray-4: hsl(226 37% 92%);
+  --color-brand-gray-5: hsl(226 29% 89%);
+  --color-brand-gray-6: hsl(226 26% 86%);
+  --color-brand-gray-7: hsl(225 22% 81%);
+  --color-brand-gray-8: hsl(225 18% 74%);
+  --color-brand-gray-9: hsl(228 12% 58%);
+  --color-brand-gray-10: hsl(228 11% 54%);
+  --color-brand-gray-11: hsl(229 12% 42%);
+  --color-brand-gray-12: hsl(229 20% 14%);
+
+  --color-app-background: hsl(235 57% 5%);
+  --color-app-foreground: var(--color-brand-gray-8);
+  --color-app-surface: hsl(229 20% 14% / 0.4);
+  --color-app-surface-solid: hsl(232 35% 8%);
+
+  --color-border: var(--color-brand-gray-12);
+  --color-border-hover: var(--color-brand-gray-11);
+}

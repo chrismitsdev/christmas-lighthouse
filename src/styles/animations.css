@@ -1,0 +1,44 @@
+@theme {
+  --animate-appear: appear 750ms ease-in-out;
+  --animate-collapse-open: collapse-open 500ms ease-in-out;
+  --animate-collapse-close: collapse-close 300ms ease-in-out;
+  --animate-shimmer: shimmer 1.25s infinite;
+}
+
+@keyframes appear {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}
+
+@keyframes collapse-open {
+  from {
+    height: 0;
+  }
+  to {
+    height: var(--radix-collapsible-content-height);
+  }
+}
+
+@keyframes collapse-close {
+  from {
+    height: var(--radix-collapsible-content-height);
+  }
+  to {
+    height: 0;
+  }
+}
+
+@keyframes shimmer {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}

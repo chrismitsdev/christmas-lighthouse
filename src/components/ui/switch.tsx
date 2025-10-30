@@ -11,7 +11,7 @@ function Switch({
   return (
     <Root
       className={cn(
-        'relative w-14 h-7 rounded-full cursor-pointer transition-colors disabled:cursor-not-allowed disabled:opacity-50 data-unchecked:bg-brand-gray-12 data-unchecked:active:bg-brand-gray-11/25 data-checked:bg-border-hover data-checked:active:bg-border-hover/75 group',
+        'relative w-14 h-7 rounded-full cursor-pointer transition-colors data-unchecked:bg-brand-gray-12 data-unchecked:active:bg-brand-gray-11/25 data-checked:bg-border-hover data-checked:active:bg-border-hover/75 disabled:cursor-not-allowed disabled:opacity-50 group',
         className
       )}
       {...props}

@@ -40,7 +40,7 @@ export async function createSession(
   const session: Session = {
     id: sessionId,
     userId,
-    expiresAt: new Date(Date.now() + 1000 * 60 * 60 * 24 * 30)
+    expiresAt: new Date(Date.now() + 1000 * 60 * 60 * 24 * 30) // now + 30 days
   }
   await db.insert(sessionTable).values(session)
   return session

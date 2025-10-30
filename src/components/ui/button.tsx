@@ -19,12 +19,12 @@ const buttonVariants = cva(
     'rounded',
     'cursor-pointer',
     'duration-300',
-    '[&:not(:disabled)]:hover:bg-brand-gray-12',
-    '[&:not(:disabled)]:hover:border-border-hover',
+    'not-disabled:hover:bg-brand-gray-12',
+    'not-disabled:hover:border-border-hover',
     'active:bg-brand-gray-11/50',
     'disabled:opacity-30',
     'data-disabled:opacity-30',
-    '[&>*]:shrink-0'
+    '*:shrink-0'
   ],
   {
     variants: {
@@ -37,14 +37,14 @@ const buttonVariants = cva(
         danger: [
           'bg-red-900/50',
           'border-red-900',
-          '[&:not(:disabled)]:hover:bg-red-900',
-          '[&:not(:disabled)]:hover:border-red-900/50'
+          'not-disabled:hover:bg-red-900',
+          'not-disabled:hover:border-red-900/50'
         ],
         'icon-button': [
           'p-[7px]',
           'data-open:bg-brand-gray-12',
           'data-open:border-border-hover',
-          '[&:not(:disabled)]:hover:border-border-hover/50'
+          'not-disabled:hover:border-border-hover/50'
         ]
       }
     },
@@ -86,7 +86,7 @@ function Button({
         })
       )}
       disabled={disabled}
-      {...(asChild && disabled ? {['data-disabled']: disabled} : {})}
+      {...(asChild && disabled ? {'data-disabled': disabled} : {})}
       {...props}
     >
       <Slottable>{children}</Slottable>

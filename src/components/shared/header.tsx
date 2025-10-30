@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import {useTranslations} from 'next-intl'
-import {Link} from '@/src/i18n/routing'
+import {Link} from '@/src/i18n/navigation'
 import {Container} from '@/src/components/shared/container'
 import {LocaleSwitcher} from '@/src/components/shared/locale-switcher'
 import logo from '@/public/logo.png'

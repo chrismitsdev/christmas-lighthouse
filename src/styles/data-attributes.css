@@ -1,0 +1,36 @@
+/* State - hidden/visible */
+@custom-variant data-hidden (&[data-state~="hidden"]);
+@custom-variant data-visible (&[data-state~="visible"]);
+
+/* State - open/closed */
+@custom-variant data-open (&[data-state~="open"]);
+@custom-variant data-closed (&[data-state~="closed"]);
+
+/* State - checked/unchecked */
+@custom-variant data-checked (&[data-state~="checked"]);
+@custom-variant data-unchecked (&[data-state~="unchecked"]);
+
+/* State - active/inactive */
+@custom-variant data-active (&[data-state~="active"]);
+@custom-variant data-inactive (&[data-state~="inactive"]);
+
+/* Side */
+@custom-variant data-top (&[data-side~="top"]);
+@custom-variant data-right (&[data-side~="right"]);
+@custom-variant data-bottom (&[data-side~="bottom"]);
+@custom-variant data-left (&[data-side~="left"]);
+
+/* Status */
+@custom-variant data-success (&[data-status~="success"]);
+@custom-variant data-error (&[data-status~="error"]);
+@custom-variant data-info (&[data-status~="info"]);
+@custom-variant data-warning (&[data-status~="warning"]);
+
+/* Orientation */
+@custom-variant data-horizontal (&[data-orientation~="horizontal"]);
+@custom-variant data-vertical (&[data-orientation~="vertical"]);
+
+/* Misc */
+@custom-variant data-highlighted (&[data-highlighted]);
+@custom-variant data-placeholder (&[data-placeholder]);
+@custom-variant data-disabled (&[data-disabled]);

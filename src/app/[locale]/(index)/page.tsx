@@ -10,27 +10,29 @@ export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations('pages.metadata')
 
   return {
-    title: `${t('index')} | The Christmas Lighthouse`
+    title: t('index')
   }
 }
 
-export default async function IndexPage({params}: AsyncParamsLocale) {
-  const {locale} = await params
-  setRequestLocale(locale)
-
+export default async function IndexPage({params}: PageProps<'/[locale]'>) {
+  const {locale} = (await params) as Params['params']
   const categories = await getLocalizedCategories(locale)
+
+  setRequestLocale(locale)
 
   return (
     <Container>
       <Section className='space-y-4'>
         <PromoProduct />
-        {categories.map((category) => (
-          <Category
-            key={category.title}
-            category={category}
-            collapsible
-          />
-        ))}
+        {categories.map(function (category) {
+          return (
+            <Category
+              key={category.title}
+              category={category}
+              collapsible
+            />
+          )
+        })}
       </Section>
     </Container>
   )
