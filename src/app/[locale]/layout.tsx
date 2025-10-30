@@ -1,5 +1,4 @@
 import '@/src/styles/index.css'
-import {use} from 'react'
 import type {Metadata} from 'next'
 import {Manrope} from 'next/font/google'
 import {notFound} from 'next/navigation'
@@ -35,11 +34,11 @@ export const metadata: Metadata = {
   }
 }
 
-export default function LocaleLayout({
+export default async function LocaleLayout({
   params,
   children
 }: LayoutProps<'/[locale]'>) {
-  const {locale} = use(params as Params['params'])
+  const {locale} = (await params) as Params['params']
 
   if (!hasLocale(routing.locales, locale)) {
     notFound()

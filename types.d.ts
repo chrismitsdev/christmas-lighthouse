@@ -13,9 +13,16 @@ declare module 'next-intl' {
 
 declare global {
   type Params = {
-    params: Promise<{
+    params: {
       locale: Locale
-    }>
+    }
+  }
+
+  type ParamsWithSlug = {
+    params: {
+      locale: Locale
+      slug: string
+    }
   }
 
   type CustomIconProps = React.SVGProps<SVGSVGElement> & {

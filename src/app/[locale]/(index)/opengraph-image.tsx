@@ -1,11 +1,8 @@
+import type {ServerRuntime} from 'next'
 import {ImageResponse} from 'next/og'
 import {getTranslations} from 'next-intl/server'
 
-type ParamsLocale = {
-  params: Awaited<Params['params']>
-}
-
-export const runtime = 'edge'
+export const runtime: ServerRuntime = 'edge'
 export const alt = 'The Christmas Lighthouse'
 export const size = {
   width: 1200,
@@ -13,7 +10,8 @@ export const size = {
 }
 export const contentType = 'image/png'
 
-export default async function Image({params: {locale}}: ParamsLocale) {
+export default async function Image({params}: PageProps<'/[locale]'>) {
+  const {locale} = (await params) as Params['params']
   const t = await getTranslations({locale, namespace: 'pages.metadata'})
   const assetUrl = new URL('../../../../public/opengraph.png', import.meta.url)
   const assetResponse = await fetch(assetUrl)

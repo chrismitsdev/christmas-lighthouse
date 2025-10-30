@@ -1,14 +1,8 @@
+import type {ServerRuntime} from 'next'
 import {ImageResponse} from 'next/og'
 import {getLocalizedCategories} from '@/src/db/menu'
 
-type ParamsLocaleSlug = {
-  params: {
-    locale: Awaited<Params['params']>['locale']
-    slug: string
-  }
-}
-
-export const runtime = 'edge'
+export const runtime: ServerRuntime = 'edge'
 export const alt = 'The Christmas Lighthouse'
 export const size = {
   width: 1200,
@@ -16,9 +10,8 @@ export const size = {
 }
 export const contentType = 'image/png'
 
-export default async function Image({
-  params: {locale, slug}
-}: ParamsLocaleSlug) {
+export default async function Image({params}: PageProps<'/[locale]/[slug]'>) {
+  const {locale, slug} = (await params) as ParamsWithSlug['params']
   const categories = await getLocalizedCategories(locale)
   const category = categories.find((category) => category.link === slug)
   const assetUrl = new URL(

@@ -1,24 +1,15 @@
-import {use} from 'react'
 import type {Metadata} from 'next'
-import type {Locale} from 'next-intl'
 import {setRequestLocale, getTranslations} from 'next-intl/server'
-import {getLocalizedCategories} from '@/src/db/menu'
+import {getLocalizedCategories, getCategories} from '@/src/db/menu'
 import {Container} from '@/src/components/shared/container'
 import {Section} from '@/src/components/shared/section'
 import {Category} from '@/src/components/shared/category'
 import {CategoryNotFound} from '@/src/components/shared/category-not-found'
 
-type ParamsWithSlug = {
-  params: Promise<{
-    locale: Locale
-    slug: string
-  }>
-}
-
 export async function generateMetadata({
   params
-}: ParamsWithSlug): Promise<Metadata> {
-  const {locale, slug} = await params
+}: PageProps<'/[locale]/[slug]'>): Promise<Metadata> {
+  const {locale, slug} = (await params) as ParamsWithSlug['params']
   const t = await getTranslations({locale})
   const categories = await getLocalizedCategories(locale)
   const category = categories.find((category) => category.link === slug)
@@ -34,13 +25,14 @@ export async function generateMetadata({
   }
 }
 
-export default function SlugPage({params}: PageProps<'/[locale]/[slug]'>) {
-  const {locale, slug} = use(params as ParamsWithSlug['params'])
+export default async function SlugPage({
+  params
+}: PageProps<'/[locale]/[slug]'>) {
+  const {locale, slug} = (await params) as Awaited<ParamsWithSlug['params']>
+  const categories = await getLocalizedCategories(locale)
+  const category = categories.find((ctg) => ctg.link === slug)
 
   setRequestLocale(locale)
-
-  const categories = use(getLocalizedCategories(locale))
-  const category = categories.find((ctg) => ctg.link === slug)
 
   if (!category?.title) {
     return <CategoryNotFound />
@@ -55,13 +47,12 @@ export default function SlugPage({params}: PageProps<'/[locale]/[slug]'>) {
   )
 }
 
-export async function generateStaticParams({params}: Params) {
-  const {locale} = await params
-  const categories = await getLocalizedCategories(locale)
+export async function generateStaticParams() {
+  const categories = await getCategories()
 
   return categories.map(function (category) {
     return {
-      slug: category.link
+      slug: category.id
     }
   })
 }

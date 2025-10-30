@@ -1,21 +1,25 @@
-import {Fragment, Suspense, use} from 'react'
+import {Fragment, Suspense} from 'react'
 import {setRequestLocale} from 'next-intl/server'
 import {getLocalizedCategories} from '@/src/db/menu'
-import {NavSkeleton, Nav} from '@/src/components/shared/nav'
+import {
+  CategoryNavigation,
+  CategoryNavigationSkeleton
+} from '@/src/components/shared/category-navigation'
 
-export default function IndexLayout({
+export default async function IndexLayout({
   params,
   children
 }: LayoutProps<'/[locale]'>) {
-  const {locale} = use(params as Params['params'])
+  const {locale} = (await params) as Params['params']
+
   setRequestLocale(locale)
 
   const categoriesPromise = getLocalizedCategories(locale)
 
   return (
     <Fragment>
-      <Suspense fallback={<NavSkeleton />}>
-        <Nav
+      <Suspense fallback={<CategoryNavigationSkeleton />}>
+        <CategoryNavigation
           locale={locale}
           categoriesPromise={categoriesPromise}
         />

@@ -10,12 +10,12 @@ import {Container} from '@/src/components/shared/container'
 import {Skeleton} from '@/src/components/ui/skeleton'
 import {ScrollArea} from '@/src/components/ui/scroll-area'
 
-type NavProps = {
+type Props = {
   locale: Locale
   categoriesPromise: Promise<CategoryWithProducts[]>
 }
 
-function Nav({locale, categoriesPromise}: NavProps) {
+function CategoryNavigation({locale, categoriesPromise}: Props) {
   const categories = React.use(categoriesPromise)
   const pathname = usePathname().replace('/', '')
 
@@ -58,7 +58,7 @@ function Nav({locale, categoriesPromise}: NavProps) {
   )
 }
 
-function NavSkeleton() {
+function CategoryNavigationSkeleton() {
   return (
     <nav
       aria-label='Categories navigation'
@@ -78,7 +78,7 @@ function NavSkeleton() {
   )
 }
 
-Nav.displayName = 'Nav'
-NavSkeleton.displayName = 'NavSkeleton'
+CategoryNavigation.displayName = 'CategoryNavigation'
+CategoryNavigationSkeleton.displayName = 'CategoryNavigationSkeleton'
 
-export {Nav, NavSkeleton}
+export {CategoryNavigation, CategoryNavigationSkeleton}

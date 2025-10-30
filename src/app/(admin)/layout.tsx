@@ -8,10 +8,10 @@ const font = Manrope({
 })
 
 export const metadata: Metadata = {
-  title: 'The Christmas Lighthouse'
+  title: 'Διαχειριστικό'
 }
 
-export default function AdminLayout({children}: React.PropsWithChildren) {
+export default function AdminLayout({children}: LayoutProps<'/'>) {
   return (
     <html
       lang='el-GR'
