@@ -6,11 +6,14 @@ import {Section} from '@/src/components/shared/section'
 import {PromoProduct} from '@/src/components/shared/promo-product'
 import {Category} from '@/src/components/shared/category'
 
-export async function generateMetadata(): Promise<Metadata> {
-  const t = await getTranslations('pages.metadata')
+export async function generateMetadata({
+  params
+}: PageProps<'/[locale]'>): Promise<Metadata> {
+  const {locale} = (await params) as Params['params']
+  const t = await getTranslations({locale})
 
   return {
-    title: t('index')
+    title: t('pages.metadata.index')
   }
 }
 

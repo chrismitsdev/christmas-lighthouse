@@ -2,7 +2,6 @@ import Image from 'next/image'
 import {useTranslations} from 'next-intl'
 import {PhoneIcon} from 'lucide-react'
 import {Container} from '@/src/components/shared/container'
-import {LinkToAdmin} from '@/src/components/shared/link-to-admin'
 import {FacebookIcon} from '@/src/components/icons/facebook-icon'
 import {InstagramIcon} from '@/src/components/icons/instagram-icon'
 import {Button} from '@/src/components/ui/button'
@@ -115,7 +114,7 @@ function Footer() {
           </div>
         </article>
         <Separator />
-        <article className='py-6 flex flex-col items-start justify-between gap-4 sm:items-center sm:flex-row'>
+        <article className='py-6 flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-center'>
           <Typography
             variant='mini'
             className='font-extralight'
@@ -128,7 +127,6 @@ function Footer() {
           >
             {`Designed & Developed by CM`}
           </Typography>
-          <LinkToAdmin>{t('admin')}</LinkToAdmin>
         </article>
       </Container>
     </footer>

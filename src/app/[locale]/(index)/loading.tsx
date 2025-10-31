@@ -8,9 +8,9 @@ export default function Loading() {
   return (
     <Container>
       <Section className='space-y-4'>
-        <IndexPageSkeleton className='w-28' />
-        <IndexPageSkeleton className='w-40' />
-        <IndexPageSkeleton className='w-32' />
+        <IndexPageSkeleton className='w-22' />
+        <IndexPageSkeleton className='w-20' />
+        <IndexPageSkeleton className='w-24' />
         <IndexPageSkeleton className='w-28' />
         <IndexPageSkeleton className='w-56' />
         <IndexPageSkeleton className='w-28' />
