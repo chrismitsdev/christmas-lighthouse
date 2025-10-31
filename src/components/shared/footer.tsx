@@ -1,16 +1,12 @@
 import Image from 'next/image'
-import {Suspense} from 'react'
 import {useTranslations} from 'next-intl'
 import {PhoneIcon} from 'lucide-react'
 import {Container} from '@/src/components/shared/container'
-import {LinkToAdmin} from '@/src/components/shared/link-to-admin'
 import {FacebookIcon} from '@/src/components/icons/facebook-icon'
 import {InstagramIcon} from '@/src/components/icons/instagram-icon'
 import {Button} from '@/src/components/ui/button'
 import {Typography} from '@/src/components/ui/typography'
 import {Separator} from '@/src/components/ui/separator'
-import {Skeleton} from '@/src/components/ui/skeleton'
-import {Copyright} from '@/src/components/shared/copyright'
 import logo from '@/public/logo.png'
 
 function Footer() {
@@ -118,19 +114,19 @@ function Footer() {
           </div>
         </article>
         <Separator />
-        <article className='py-6 flex flex-col items-start justify-between gap-4 sm:items-center sm:flex-row'>
-          <Suspense fallback={<Skeleton className='h-4 w-44' />}>
-            <Copyright />
-          </Suspense>
+        <article className='py-6 flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-center'>
+          <Typography
+            variant='mini'
+            className='font-extralight'
+          >
+            {`© ${new Date().getFullYear()} The Christmas Lighthouse`}
+          </Typography>
           <Typography
             variant='mini'
             className='font-extralight'
           >
             {`Designed & Developed by CM`}
           </Typography>
-          <Suspense fallback={<Skeleton className='h-4 w-18' />}>
-            <LinkToAdmin>{t('admin')}</LinkToAdmin>
-          </Suspense>
         </article>
       </Container>
     </footer>
