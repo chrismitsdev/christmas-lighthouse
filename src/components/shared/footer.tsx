@@ -7,6 +7,7 @@ import {InstagramIcon} from '@/src/components/icons/instagram-icon'
 import {Button} from '@/src/components/ui/button'
 import {Typography} from '@/src/components/ui/typography'
 import {Separator} from '@/src/components/ui/separator'
+import {LinkToAdmin} from '@/src/components/shared/link-to-admin'
 import logo from '@/public/logo.png'
 
 function Footer() {
@@ -127,6 +128,7 @@ function Footer() {
           >
             {`Designed & Developed by CM`}
           </Typography>
+          {process.env.NODE_ENV !== 'production' && <LinkToAdmin />}
         </article>
       </Container>
     </footer>
