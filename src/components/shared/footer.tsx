@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import {Suspense} from 'react'
 import {useTranslations} from 'next-intl'
 import {PhoneIcon} from 'lucide-react'
 import {Container} from '@/src/components/shared/container'
@@ -8,6 +9,7 @@ import {InstagramIcon} from '@/src/components/icons/instagram-icon'
 import {Button} from '@/src/components/ui/button'
 import {Typography} from '@/src/components/ui/typography'
 import {Separator} from '@/src/components/ui/separator'
+import {Skeleton} from '@/src/components/ui/skeleton'
 import logo from '@/public/logo.png'
 
 function Footer() {
@@ -128,7 +130,10 @@ function Footer() {
           >
             {`Designed & Developed by CM`}
           </Typography>
-          <LinkToAdmin>{t('admin')}</LinkToAdmin>
+
+          <Suspense fallback={<Skeleton className='h-4 w-18' />}>
+            <LinkToAdmin>{t('admin')}</LinkToAdmin>
+          </Suspense>
         </article>
       </Container>
     </footer>
