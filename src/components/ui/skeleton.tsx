@@ -14,7 +14,7 @@ function Skeleton({className, asChild = false, ...props}: SkeletonProps) {
   return (
     <Comp
       className={cn(
-        'relative overflow-hidden bg-brand-gray-12 rounded',
+        'relative overflow-hidden bg-brand-gray-12 rounded-sm',
         className
       )}
       {...props}

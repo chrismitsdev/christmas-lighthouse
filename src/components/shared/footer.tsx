@@ -10,6 +10,7 @@ import {Button} from '@/src/components/ui/button'
 import {Typography} from '@/src/components/ui/typography'
 import {Separator} from '@/src/components/ui/separator'
 import {Skeleton} from '@/src/components/ui/skeleton'
+import {Copyright} from '@/src/components/shared/copyright'
 import logo from '@/public/logo.png'
 
 function Footer() {
@@ -118,19 +119,15 @@ function Footer() {
         </article>
         <Separator />
         <article className='py-6 flex flex-col items-start justify-between gap-4 sm:items-center sm:flex-row'>
-          <Typography
-            variant='mini'
-            className='font-extralight'
-          >
-            {`© ${new Date().getFullYear()} The Christmas Lighthouse`}
-          </Typography>
+          <Suspense fallback={<Skeleton className='h-4 w-44' />}>
+            <Copyright />
+          </Suspense>
           <Typography
             variant='mini'
             className='font-extralight'
           >
             {`Designed & Developed by CM`}
           </Typography>
-
           <Suspense fallback={<Skeleton className='h-4 w-18' />}>
             <LinkToAdmin>{t('admin')}</LinkToAdmin>
           </Suspense>
