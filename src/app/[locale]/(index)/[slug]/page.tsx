@@ -28,7 +28,7 @@ export async function generateMetadata({
 export default async function SlugPage({
   params
 }: PageProps<'/[locale]/[slug]'>) {
-  const {locale, slug} = (await params) as Awaited<ParamsWithSlug['params']>
+  const {locale, slug} = (await params) as ParamsWithSlug['params']
   const categories = await getLocalizedCategories(locale)
   const category = categories.find((ctg) => ctg.link === slug)
 

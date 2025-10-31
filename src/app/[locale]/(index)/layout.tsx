@@ -11,10 +11,9 @@ export default async function IndexLayout({
   children
 }: LayoutProps<'/[locale]'>) {
   const {locale} = (await params) as Params['params']
+  const categoriesPromise = getLocalizedCategories(locale)
 
   setRequestLocale(locale)
-
-  const categoriesPromise = getLocalizedCategories(locale)
 
   return (
     <Fragment>
