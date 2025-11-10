@@ -4,7 +4,21 @@
       "index-page": "Αρχική",
       "menu-page": "Μενού"
     },
-    "index": {}
+    "index": {
+      "links": {
+        "home": "Αρχική",
+        "about": "Πληροφορίες Πάρκου",
+        "attractions": "Αξιοθέατα",
+        "parade": "Χριστουγεννιάτικη Παρέλαση 2025",
+        "games": "Παιχνίδια & Υπηρεσίες",
+        "contact": "Επικοινωνία"
+      }
+    },
+    "menu": {
+      "links": {
+        "all-categories": "Όλες οι κατηγορίες"
+      }
+    }
   },
   "components": {
     "localeSwitcher": {

@@ -38,7 +38,7 @@ export default async function Image({params}: PageProps<'/[locale]'>) {
             width={350}
           />
         </picture>
-        <span>{t('menu-page')}</span>
+        <span>{t('index-page')}</span>
         <span>The Christmas Lighthouse</span>
       </div>
     ),

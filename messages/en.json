@@ -4,7 +4,21 @@
       "index-page": "Home",
       "menu-page": "Menu"
     },
-    "index": {}
+    "index": {
+      "links": {
+        "home": "Home",
+        "about": "Park Info",
+        "attractions": "Attractions",
+        "parade": "Christmas Parade 2025",
+        "games": "Games & Services",
+        "contact": "Contact"
+      }
+    },
+    "menu": {
+      "links": {
+        "all-categories": "All categories"
+      }
+    }
   },
   "components": {
     "localeSwitcher": {

@@ -3,8 +3,8 @@ import {setRequestLocale, getTranslations} from 'next-intl/server'
 import {getLocalizedCategories, getCategories} from '@/src/db/menu'
 import {Container} from '@/src/components/shared/container'
 import {Section} from '@/src/components/shared/section'
-import {Category} from '@/src/components/shared/category'
-import {CategoryNotFound} from '@/src/components/shared/category-not-found'
+import {Category} from '@/src/components/page/menu/category'
+import {CategoryNotFound} from '@/src/components/page/menu/category-not-found'
 
 export async function generateMetadata({
   params

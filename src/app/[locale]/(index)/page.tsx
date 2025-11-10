@@ -1,10 +1,14 @@
-import type {Metadata} from 'next'
 import {Fragment} from 'react'
+import type {Metadata} from 'next'
 import {setRequestLocale} from 'next-intl/server'
 import {getTranslations} from 'next-intl/server'
-import {VideoSection} from '@/src/app/[locale]/(index)/(components)/video-section'
-import {ImageSection} from '@/src/app/[locale]/(index)/(components)/image-section'
-import {About} from '@/src/app/[locale]/(index)/(components)/about'
+import {IndexNavigation} from '@/src/components/page/index/index-navigation'
+import {Hero} from '@/src/components/page/index/hero'
+import {About} from '@/src/components/page/index/about'
+import {Attractions} from '@/src/components/page/index/attractions'
+import {Parade} from '@/src/components/page/index/parade'
+import {Games} from '@/src/components/page/index/games'
+import {Contact} from '@/src/components/page/index/contact'
 
 export async function generateMetadata({
   params
@@ -24,10 +28,16 @@ export default async function IndexPage({params}: PageProps<'/[locale]'>) {
 
   return (
     <Fragment>
-      <VideoSection />
-      <ImageSection>
+      <IndexNavigation />
+
+      <main>
+        <Hero />
         <About />
-      </ImageSection>
+        <Attractions />
+        <Parade />
+        <Games />
+        <Contact />
+      </main>
     </Fragment>
   )
 }

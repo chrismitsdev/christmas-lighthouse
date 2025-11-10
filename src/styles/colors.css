@@ -1,3 +1,7 @@
+:root {
+  --background-color: #050714;
+}
+
 @theme {
   --color-brand-blue-1: hsl(210 100% 99%);
   --color-brand-blue-2: hsl(213 100% 97%);

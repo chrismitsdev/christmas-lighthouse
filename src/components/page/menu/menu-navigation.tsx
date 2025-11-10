@@ -1,28 +1,23 @@
 'use client'
 
-import {use} from 'react'
-import {type Locale} from 'next-intl'
+import {useTranslations} from 'next-intl'
 import {Link, usePathname} from '@/src/i18n/navigation'
 import {type CategoryWithProducts} from '@/src/db/menu'
-import {NUMBER_OF_CATEGORIES} from '@/src/lib/constants'
 import {cn} from '@/src/lib/utils'
-import {Container} from '@/src/components/shared/container'
-import {Skeleton} from '@/src/components/ui/skeleton'
 import {ScrollArea} from '@/src/components/ui/scroll-area'
 
 type Props = {
-  locale: Locale
-  categoriesPromise: Promise<CategoryWithProducts[]>
+  categories: CategoryWithProducts[]
 }
 
-function CategoryNavigation({locale, categoriesPromise}: Props) {
-  const categories = use(categoriesPromise)
+function MenuNavigation({categories}: Props) {
+  const t = useTranslations('pages.menu.links')
   const pathname = usePathname().replace('/menu/', '')
 
   const links = [
     {
       link: '',
-      title: locale === 'el' ? 'Όλες οι κατηγορίες' : 'All categories'
+      title: t('all-categories')
     },
     ...categories
   ]
@@ -60,27 +55,6 @@ function CategoryNavigation({locale, categoriesPromise}: Props) {
   )
 }
 
-function CategoryNavigationSkeleton() {
-  return (
-    <nav
-      aria-label='Categories navigation'
-      className='sticky top-0 z-50 flex justify-center bg-inherit overflow-x-hidden inset-shadow-nav-divider'
-    >
-      <Container className='px-1 flex overflow-hidden'>
-        {Array.from({length: NUMBER_OF_CATEGORIES + 1}).map(function (_, i) {
-          return (
-            <Skeleton
-              key={i + 1}
-              className='my-[18px] basis-20 mx-4 h-5 shrink-0 rounded-sm sm:basis-auto sm:flex-1 sm:mx-3'
-            />
-          )
-        })}
-      </Container>
-    </nav>
-  )
-}
+MenuNavigation.displayName = 'MenuNavigation'
 
-CategoryNavigation.displayName = 'CategoryNavigation'
-CategoryNavigationSkeleton.displayName = 'CategoryNavigationSkeleton'
-
-export {CategoryNavigation, CategoryNavigationSkeleton}
+export {MenuNavigation}
