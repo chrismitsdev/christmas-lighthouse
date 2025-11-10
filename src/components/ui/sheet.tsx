@@ -1,6 +1,5 @@
 'use client'
 
-import * as React from 'react'
 import {
   Root,
   Trigger,
@@ -66,12 +65,15 @@ const sheetContentVariants = cva(
   }
 )
 
+interface SheetContentProps
+  extends React.ComponentPropsWithRef<typeof Content>,
+    VariantProps<typeof sheetContentVariants> {}
+
 function SheetContent({
   side = 'right',
   className,
   ...props
-}: React.ComponentPropsWithRef<typeof Content> &
-  VariantProps<typeof sheetContentVariants>) {
+}: SheetContentProps) {
   return (
     <Content
       className={cn(sheetContentVariants({side, className}))}
@@ -83,32 +85,11 @@ function SheetContent({
 function SheetHeader({
   className,
   ...props
-}: React.DetailedHTMLProps<
-  React.HTMLAttributes<HTMLDivElement>,
-  HTMLDivElement
->) {
+}: React.ComponentPropsWithRef<'div'>) {
   return (
     <div
       className={cn(
         'flex flex-col space-y-2 text-center sm:text-left',
-        className
-      )}
-      {...props}
-    />
-  )
-}
-
-function SheetFooter({
-  className,
-  ...props
-}: React.DetailedHTMLProps<
-  React.HTMLAttributes<HTMLDivElement>,
-  HTMLDivElement
->) {
-  return (
-    <div
-      className={cn(
-        'flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2',
         className
       )}
       {...props}
@@ -135,6 +116,21 @@ function SheetDescription({
   return (
     <Description
       className={cn('text-sm text-muted-foreground', className)}
+      {...props}
+    />
+  )
+}
+
+function SheetFooter({
+  className,
+  ...props
+}: React.ComponentPropsWithRef<'div'>) {
+  return (
+    <div
+      className={cn(
+        'flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2',
+        className
+      )}
       {...props}
     />
   )

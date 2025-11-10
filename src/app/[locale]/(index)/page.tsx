@@ -1,10 +1,10 @@
 import type {Metadata} from 'next'
-import {setRequestLocale, getTranslations} from 'next-intl/server'
-import {getLocalizedCategories} from '@/src/db/menu'
-import {Container} from '@/src/components/shared/container'
-import {Section} from '@/src/components/shared/section'
-import {PromoProduct} from '@/src/components/shared/promo-product'
-import {Category} from '@/src/components/shared/category'
+import {Fragment} from 'react'
+import {setRequestLocale} from 'next-intl/server'
+import {getTranslations} from 'next-intl/server'
+import {VideoSection} from '@/src/app/[locale]/(index)/(components)/video-section'
+import {ImageSection} from '@/src/app/[locale]/(index)/(components)/image-section'
+import {About} from '@/src/app/[locale]/(index)/(components)/about'
 
 export async function generateMetadata({
   params
@@ -13,30 +13,21 @@ export async function generateMetadata({
   const t = await getTranslations({locale})
 
   return {
-    title: t('pages.metadata.index')
+    title: t('pages.metadata.index-page')
   }
 }
 
 export default async function IndexPage({params}: PageProps<'/[locale]'>) {
   const {locale} = (await params) as Params['params']
-  const categories = await getLocalizedCategories(locale)
 
   setRequestLocale(locale)
 
   return (
-    <Container>
-      <Section className='space-y-4'>
-        <PromoProduct />
-        {categories.map(function (category) {
-          return (
-            <Category
-              key={category.title}
-              category={category}
-              collapsible
-            />
-          )
-        })}
-      </Section>
-    </Container>
+    <Fragment>
+      <VideoSection />
+      <ImageSection>
+        <About />
+      </ImageSection>
+    </Fragment>
   )
 }

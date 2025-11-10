@@ -1,6 +1,5 @@
 'use client'
 
-import * as React from 'react'
 import {Root, Image, Fallback} from '@radix-ui/react-avatar'
 import {cn} from '@/src/lib/utils'
 

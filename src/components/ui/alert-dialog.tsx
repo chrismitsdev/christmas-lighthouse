@@ -1,6 +1,5 @@
 'use client'
 
-import * as React from 'react'
 import {
   Root,
   Trigger,
@@ -53,10 +52,7 @@ function AlertDialogContent({
 function AlertDialogHeader({
   className,
   ...props
-}: React.DetailedHTMLProps<
-  React.HTMLAttributes<HTMLDivElement>,
-  HTMLDivElement
->) {
+}: React.ComponentPropsWithRef<'div'>) {
   return (
     <div
       className={cn('space-y-4 flex flex-col', className)}
@@ -95,10 +91,7 @@ function AlertDialogDescription({
 function AlertDialogFooter({
   className,
   ...props
-}: React.DetailedHTMLProps<
-  React.HTMLAttributes<HTMLDivElement>,
-  HTMLDivElement
->) {
+}: React.ComponentPropsWithRef<'div'>) {
   return (
     <div
       className={cn('flex justify-end items-center gap-4', className)}

@@ -2,11 +2,7 @@ import * as React from 'react'
 import {Slot} from '@radix-ui/react-slot'
 import {cn} from '@/src/lib/utils'
 
-type SkeletonProps = React.DetailedHTMLProps<
-  React.HTMLAttributes<HTMLDivElement>,
-  HTMLDivElement
-> &
-  AsChild
+interface SkeletonProps extends React.ComponentPropsWithRef<'div'>, AsChild {}
 
 function Skeleton({className, asChild = false, ...props}: SkeletonProps) {
   const Comp = asChild ? Slot : 'div'

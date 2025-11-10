@@ -11,13 +11,16 @@ export const metadata: Metadata = {
   title: 'Διαχειριστικό'
 }
 
-export default function AdminLayout({children}: LayoutProps<'/'>) {
+export default function AdminLayout(props: LayoutProps<'/'>) {
   return (
     <html
       lang='el-GR'
       className={font.className}
     >
-      <body>{children}</body>
+      <body
+        className='bg-app-background text-app-foreground'
+        {...props}
+      />
     </html>
   )
 }

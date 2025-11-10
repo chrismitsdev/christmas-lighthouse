@@ -52,10 +52,7 @@ function DialogContent({
 function DialogHeader({
   className,
   ...props
-}: React.DetailedHTMLProps<
-  React.HTMLAttributes<HTMLDivElement>,
-  HTMLDivElement
->) {
+}: React.ComponentPropsWithRef<'div'>) {
   return (
     <div
       className={cn(
@@ -94,13 +91,7 @@ function DialogDescription({
   )
 }
 
-function DialogMain({
-  className,
-  ...props
-}: React.DetailedHTMLProps<
-  React.HTMLAttributes<HTMLDivElement>,
-  HTMLDivElement
->) {
+function DialogMain({className, ...props}: React.ComponentPropsWithRef<'div'>) {
   return (
     <div
       className={cn('px-4 pt-4 pb-8 sm:px-12 sm:pb-12', className)}

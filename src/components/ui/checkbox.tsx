@@ -1,6 +1,5 @@
 'use client'
 
-import * as React from 'react'
 import {Root, Indicator} from '@radix-ui/react-checkbox'
 import {Check} from 'lucide-react'
 import {cn} from '@/src/lib/utils'

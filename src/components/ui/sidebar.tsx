@@ -1,6 +1,5 @@
 'use client'
 
-// import * as React from 'react'
 import {
   createContext,
   use,
@@ -55,6 +54,12 @@ function useSidebar() {
   return context
 }
 
+interface SidebarProviderProps extends React.ComponentPropsWithRef<'div'> {
+  defaultOpen?: boolean
+  open?: boolean
+  onOpenChange?: (open: boolean) => void
+}
+
 function SidebarProvider({
   defaultOpen = true,
   open: openProp,
@@ -63,14 +68,7 @@ function SidebarProvider({
   style,
   children,
   ...props
-}: React.DetailedHTMLProps<
-  React.HTMLAttributes<HTMLDivElement>,
-  HTMLDivElement
-> & {
-  defaultOpen?: boolean
-  open?: boolean
-  onOpenChange?: (open: boolean) => void
-}) {
+}: SidebarProviderProps) {
   const [openMobile, setOpenMobile] = useState(false)
   const isMobile = useIsMobile()
 

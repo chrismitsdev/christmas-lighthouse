@@ -1,13 +1,7 @@
 import * as React from 'react'
 import {cn} from '@/src/lib/utils'
 
-function Table({
-  className,
-  ...props
-}: React.DetailedHTMLProps<
-  React.TableHTMLAttributes<HTMLTableElement>,
-  HTMLTableElement
->) {
+function Table({className, ...props}: React.ComponentPropsWithRef<'table'>) {
   return (
     <div className='relative w-full overflow-auto bg-brand-gray-12/25 border rounded'>
       <table
@@ -24,10 +18,7 @@ function Table({
 function TableHeader({
   className,
   ...props
-}: React.DetailedHTMLProps<
-  React.HTMLAttributes<HTMLTableSectionElement>,
-  HTMLTableSectionElement
->) {
+}: React.ComponentPropsWithRef<'thead'>) {
   return (
     <thead
       className={cn('bg-brand-gray-12', className)}
@@ -36,22 +27,11 @@ function TableHeader({
   )
 }
 
-function TableRow({
-  ...props
-}: React.DetailedHTMLProps<
-  React.HTMLAttributes<HTMLTableRowElement>,
-  HTMLTableRowElement
->) {
+function TableRow({...props}: React.ComponentPropsWithRef<'tr'>) {
   return <tr {...props} />
 }
 
-function TableHead({
-  className,
-  ...props
-}: React.DetailedHTMLProps<
-  React.ThHTMLAttributes<HTMLTableCellElement>,
-  HTMLTableCellElement
->) {
+function TableHead({className, ...props}: React.ComponentPropsWithRef<'th'>) {
   return (
     <th
       className={cn(
@@ -63,22 +43,11 @@ function TableHead({
   )
 }
 
-function TableBody({
-  ...props
-}: React.DetailedHTMLProps<
-  React.HTMLAttributes<HTMLTableSectionElement>,
-  HTMLTableSectionElement
->) {
+function TableBody({...props}: React.ComponentPropsWithRef<'tbody'>) {
   return <tbody {...props} />
 }
 
-function TableCell({
-  className,
-  ...props
-}: React.DetailedHTMLProps<
-  React.TdHTMLAttributes<HTMLTableCellElement>,
-  HTMLTableCellElement
->) {
+function TableCell({className, ...props}: React.ComponentPropsWithRef<'td'>) {
   return (
     <td
       className={cn('p-4 truncate border-b', className)}
@@ -90,10 +59,7 @@ function TableCell({
 function TableFooter({
   className,
   ...props
-}: React.DetailedHTMLProps<
-  React.HTMLAttributes<HTMLTableSectionElement>,
-  HTMLTableSectionElement
->) {
+}: React.ComponentPropsWithRef<'tfoot'>) {
   return (
     <tfoot
       className={cn('border-t', className)}
@@ -105,10 +71,7 @@ function TableFooter({
 function TableCaption({
   className,
   ...props
-}: React.DetailedHTMLProps<
-  React.HTMLAttributes<HTMLTableCaptionElement>,
-  HTMLTableCaptionElement
->) {
+}: React.ComponentPropsWithRef<'caption'>) {
   return (
     <caption
       className={cn('mt-4', className)}

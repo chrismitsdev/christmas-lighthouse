@@ -1,4 +1,5 @@
-import * as React from 'react'
+'use client'
+
 import {cva, type VariantProps} from 'class-variance-authority'
 import {Slot} from '@radix-ui/react-slot'
 import {cn} from '@/src/lib/utils'
@@ -24,17 +25,15 @@ const typographyVariants = cva(['block', 'leading-6'], {
   compoundVariants: [
     {
       variant: ['h1', 'h2', 'h3', 'h4'],
-      className: ['tracking-tight', 'leading-6']
+      className: ['tracking-tight']
     }
   ]
 })
 
-type TypographyProps = React.DetailedHTMLProps<
-  React.HTMLAttributes<HTMLElement>,
-  HTMLElement
-> &
-  VariantProps<typeof typographyVariants> &
-  AsChild
+interface TypographyProps
+  extends React.ComponentPropsWithRef<'span'>,
+    VariantProps<typeof typographyVariants>,
+    AsChild {}
 
 function Typography({
   variant,

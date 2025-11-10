@@ -1,6 +1,5 @@
 'use client'
 
-import * as React from 'react'
 import {
   Root,
   Trigger,
@@ -23,6 +22,8 @@ const Select = Root
 const SelectValue = Value
 const SelectPortal = Portal
 const SelectGroup = Group
+const SelectItemIndicator = ItemIndicator
+const SelectItemText = ItemText
 
 function SelectTrigger({
   className,
@@ -32,7 +33,7 @@ function SelectTrigger({
   return (
     <Trigger
       className={cn(
-        'p-4 flex items-center justify-between gap-1 bg-app-surface text-brand-gray-1 border rounded outline-none duration-300 hover:border-border-hover/50 data-open:bg-brand-gray-12 data-open:border-border-hover data-placeholder:text-sm data-placeholder:text-app-foreground/25 sm:data-placeholder:text-base disabled:cursor-not-allowed disabled:opacity-50 group',
+        'p-4 flex items-center justify-between gap-1 bg-app-surface text-brand-gray-1 border border-brand-gray-12 rounded outline-none duration-300 hover:border-border-hover/50 data-open:bg-brand-gray-12 data-open:border-border-hover data-placeholder:text-sm data-placeholder:text-app-foreground/25 sm:data-placeholder:text-base disabled:cursor-not-allowed disabled:opacity-50 group',
         className
       )}
       {...props}
@@ -112,18 +113,6 @@ function SelectItem({
       {children}
     </Item>
   )
-}
-
-function SelectItemIndicator({
-  ...props
-}: React.ComponentPropsWithRef<typeof ItemIndicator>) {
-  return <ItemIndicator {...props} />
-}
-
-function SelectItemText({
-  ...props
-}: React.ComponentPropsWithRef<typeof ItemText>) {
-  return <ItemText {...props} />
 }
 
 function SelectSeparator({

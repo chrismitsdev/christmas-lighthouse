@@ -1,4 +1,3 @@
-import * as React from 'react'
 import {Root} from '@radix-ui/react-label'
 import {cn} from '@/src/lib/utils'
 import {type VariantProps, cva} from 'class-variance-authority'
@@ -25,11 +24,9 @@ const labelVariants = cva(
   }
 )
 
-type LabelProps = React.DetailedHTMLProps<
-  React.LabelHTMLAttributes<HTMLLabelElement>,
-  HTMLLabelElement
-> &
-  VariantProps<typeof labelVariants>
+interface LabelProps
+  extends React.ComponentPropsWithRef<typeof Root>,
+    VariantProps<typeof labelVariants> {}
 
 function Label({className, size = 'small', ...props}: LabelProps) {
   return (

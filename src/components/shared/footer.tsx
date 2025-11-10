@@ -8,63 +8,50 @@ import {Button} from '@/src/components/ui/button'
 import {Typography} from '@/src/components/ui/typography'
 import {Separator} from '@/src/components/ui/separator'
 import {LinkToAdmin} from '@/src/components/shared/link-to-admin'
-import logo from '@/public/logo.png'
+import logo from '@/public/images/logo.png'
 
 function Footer() {
   const t = useTranslations('components.footer')
 
   return (
-    <footer className='py-12 bg-app-surface border-t'>
+    <footer className='py-12 bg-app-surface border-t border-t-brand-gray-12'>
       <Container>
         <article className='py-6 space-y-16 sm:space-y-0 sm:flex sm:justify-between sm:flex-wrap sm:gap-4'>
           <Image
             src={logo}
             alt='Footer logo'
-            className='w-auto sm:h-32'
+            className='w-auto sm:h-24'
           />
-          <div className='space-y-3'>
-            <Typography className='uppercase font-bold'>
-              {t('operating.column-title')}
+          <div className='space-y-4'>
+            <Typography
+              className='uppercase font-bold'
+              asChild
+            >
+              <h5>{t('operating.column-title')}</h5>
             </Typography>
             <div className='space-y-2'>
+              <Typography variant='small'>{t('operating.title')}</Typography>
               <Typography
-                variant='small'
-                className='underline'
+                variant='mini'
+                className='font-extralight'
               >
-                {t('operating.zone-1.title')}
+                {t('operating.description-1')}
               </Typography>
               <Typography
                 variant='mini'
                 className='font-extralight'
               >
-                {t('operating.zone-1.description-1')}
-              </Typography>
-              <Typography
-                variant='mini'
-                className='font-extralight'
-              >
-                {t('operating.zone-1.description-2')}
-              </Typography>
-            </div>
-            <div className='space-y-2'>
-              <Typography
-                variant='small'
-                className='underline'
-              >
-                {t('operating.zone-2.title')}
-              </Typography>
-              <Typography
-                variant='mini'
-                className='font-extralight'
-              >
-                {t('operating.zone-2.description-1')}
+                {t('operating.description-2')}
               </Typography>
             </div>
           </div>
 
-          <div className='space-y-3'>
-            <Typography className='uppercase font-bold'>
-              {t('information.column-title')}
+          <div className='space-y-4'>
+            <Typography
+              className='uppercase font-bold'
+              asChild
+            >
+              <h5>{t('information.column-title')}</h5>
             </Typography>
             <div className='space-y-2'>
               <Typography variant='small'>
@@ -128,7 +115,9 @@ function Footer() {
           >
             {`Designed & Developed by CM`}
           </Typography>
-          {process.env.NODE_ENV !== 'production' && <LinkToAdmin />}
+          {process.env.NODE_ENV !== 'production' && (
+            <LinkToAdmin>{t('admin')}</LinkToAdmin>
+          )}
         </article>
       </Container>
     </footer>

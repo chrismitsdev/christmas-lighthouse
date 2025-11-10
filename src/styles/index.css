@@ -8,16 +8,9 @@
 
 /* General styling */
 * {
-  @apply border-border;
+  /*@apply border-border;*/
 
   &::selection {
     @apply bg-brand-gold-9 text-brand-blue-12;
   }
-}
-
-body {
-  @apply bg-app-background text-app-foreground;
-  font-feature-settings:
-    'rlig' 1,
-    'calt' 1;
 }

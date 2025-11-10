@@ -1,6 +1,5 @@
 'use client'
 
-import * as React from 'react'
 import {useFormStatus} from 'react-dom'
 import {Button} from '@/src/components/ui/button'
 

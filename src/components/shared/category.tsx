@@ -1,4 +1,4 @@
-import * as React from 'react'
+import {Fragment} from 'react'
 import {ChevronUpIcon, ChevronDownIcon} from 'lucide-react'
 import {type CategoryWithProducts} from '@/src/db/menu'
 import {cn, formatCurrency} from '@/src/lib/utils'
@@ -54,7 +54,7 @@ function Category({category, collapsible = false}: CategoryProps) {
             <CardContent>
               {category.products.map(function (product, i, a) {
                 return (
-                  <React.Fragment key={product.name}>
+                  <Fragment key={product.name}>
                     <div className='grid grid-cols-[1fr_auto] gap-y-2 gap-x-1'>
                       <Typography
                         className='col-span-1 sm:text-base'
@@ -85,7 +85,7 @@ function Category({category, collapsible = false}: CategoryProps) {
                     </div>
 
                     {i !== a.length - 1 && <Separator />}
-                  </React.Fragment>
+                  </Fragment>
                 )
               })}
             </CardContent>
@@ -120,7 +120,7 @@ function Category({category, collapsible = false}: CategoryProps) {
       <CardContent>
         {category.products.map(function (product, i, a) {
           return (
-            <React.Fragment key={product.name}>
+            <Fragment key={product.name}>
               <div className='grid grid-cols-[1fr_auto] gap-y-2 gap-x-1'>
                 <Typography
                   className='col-span-1 sm:text-base'
@@ -151,7 +151,7 @@ function Category({category, collapsible = false}: CategoryProps) {
               </div>
 
               {i !== a.length - 1 && <Separator />}
-            </React.Fragment>
+            </Fragment>
           )
         })}
       </CardContent>

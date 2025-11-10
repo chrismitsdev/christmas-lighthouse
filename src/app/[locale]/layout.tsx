@@ -5,7 +5,6 @@ import {notFound} from 'next/navigation'
 import {NextIntlClientProvider, hasLocale} from 'next-intl'
 import {setRequestLocale} from 'next-intl/server'
 import {routing} from '@/src/i18n/routing'
-import {Header} from '@/src/components/shared/header'
 import {Footer} from '@/src/components/shared/footer'
 import {Snowfall} from '@/src/components/shared/snow-fall'
 
@@ -51,9 +50,8 @@ export default async function LocaleLayout({
       lang={locale}
       className={font.className}
     >
-      <body className='relative min-h-screen grid grid-rows-[auto_auto_1fr_auto]'>
+      <body className='bg-app-background text-app-foreground'>
         <NextIntlClientProvider>
-          <Header />
           {children}
           <Footer />
         </NextIntlClientProvider>

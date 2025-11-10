@@ -1,6 +1,5 @@
 'use client'
 
-import * as React from 'react'
 import {Root, Trigger, Content} from '@radix-ui/react-collapsible'
 import {cn} from '@/src/lib/utils'
 

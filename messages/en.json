@@ -1,8 +1,10 @@
 {
   "pages": {
     "metadata": {
-      "index": "All categories"
-    }
+      "index-page": "Home",
+      "menu-page": "Menu"
+    },
+    "index": {}
   },
   "components": {
     "localeSwitcher": {
@@ -15,23 +17,13 @@
       "label": "Category not found",
       "button": "Back"
     },
-    "promo-product": {
-      "intro": "Warm up your holidays with our delightful Glühwein – the perfect choice for the magical Christmas season!",
-      "description": "Glühwein is a traditional mulled wine with spices, served warm during winter.",
-      "link": "More"
-    },
     "footer": {
       "operating": {
         "column-title": "Opening hours",
-        "zone-1": {
-          "title": "November 30, 2024 - December 20, 2024",
-          "description-1": "Monday to Friday: 18:00 - 23:30",
-          "description-2": "Weekends & Holidays: 11:00 - 23:30"
-        },
-        "zone-2": {
-          "title": "December 21, 2024 - January 6, 2025",
-          "description-1": "Daily: 11:00 - 23:30"
-        }
+        "title": "November 22, 2025 - January 11, 2026",
+        "description-1": "Monday to Friday: 18:00 - 23:30",
+        "description-2": "Weekends & Holidays: 11:00 - 23:30",
+        "description-3": "Daily: 11:00 - 23:30"
       },
       "information": {
         "column-title": "Information",

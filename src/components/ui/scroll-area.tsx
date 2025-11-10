@@ -1,6 +1,6 @@
 'use client'
 
-import * as React from 'react'
+import {useState} from 'react'
 import {
   Root,
   Viewport,
@@ -9,6 +9,14 @@ import {
   Corner
 } from '@radix-ui/react-scroll-area'
 import {cn} from '@/src/lib/utils'
+
+interface ScrollAreaProps extends React.ComponentPropsWithRef<typeof Root> {
+  hasCorner?: boolean
+  orientation?: 'horizontal' | 'vertical'
+  invisible?: boolean
+  showShadows?: boolean
+  isFlex?: boolean
+}
 
 function ScrollArea({
   className,
@@ -19,13 +27,7 @@ function ScrollArea({
   showShadows = false,
   isFlex = false,
   ...props
-}: React.ComponentPropsWithRef<typeof Root> & {
-  hasCorner?: boolean
-  orientation?: 'horizontal' | 'vertical'
-  invisible?: boolean
-  showShadows?: boolean
-  isFlex?: boolean
-}) {
+}: ScrollAreaProps) {
   return (
     <Root
       className={cn('relative overflow-hidden', className)}
@@ -46,18 +48,21 @@ function ScrollArea({
   )
 }
 
+interface ScrollAreaViewportProps
+  extends React.ComponentPropsWithRef<typeof Viewport> {
+  showShadows?: boolean
+  isFlex?: boolean
+}
+
 function ScrollAreaViewport({
   className,
   showShadows,
   children,
   isFlex,
   ...props
-}: React.ComponentPropsWithRef<typeof Viewport> & {
-  showShadows?: boolean
-  isFlex?: boolean
-}) {
-  const [canScrollLeft, setCanScrollLeft] = React.useState<boolean>(false)
-  const [canScrollRight, setCanScrollRight] = React.useState<boolean>(true)
+}: ScrollAreaViewportProps) {
+  const [canScrollLeft, setCanScrollLeft] = useState<boolean>(false)
+  const [canScrollRight, setCanScrollRight] = useState<boolean>(true)
 
   if (!showShadows) {
     return (
@@ -105,14 +110,17 @@ function ScrollAreaViewport({
   )
 }
 
+interface ScrollBarProps
+  extends React.ComponentPropsWithRef<typeof ScrollAreaScrollbar> {
+  invisible?: boolean
+}
+
 function ScrollBar({
   className,
   orientation,
   invisible,
   ...props
-}: React.ComponentPropsWithRef<typeof ScrollAreaScrollbar> & {
-  invisible?: boolean
-}) {
+}: ScrollBarProps) {
   return (
     <ScrollAreaScrollbar
       className={cn(

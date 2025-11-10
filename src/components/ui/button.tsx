@@ -1,4 +1,3 @@
-import * as React from 'react'
 import {Slot, Slottable} from '@radix-ui/react-slot'
 import {cva, VariantProps} from 'class-variance-authority'
 import {Spinner} from '@/src/components/ui/spinner'
@@ -14,8 +13,9 @@ const buttonVariants = cva(
     'gap-3',
     'bg-app-surface',
     'text-app-foreground',
-    'font-bold',
     'border',
+    'border-brand-gray-12',
+    'font-bold',
     'rounded',
     'cursor-pointer',
     'duration-300',
@@ -54,14 +54,12 @@ const buttonVariants = cva(
   }
 )
 
-type ButtonProps = React.DetailedHTMLProps<
-  React.ButtonHTMLAttributes<HTMLButtonElement>,
-  HTMLButtonElement
-> &
-  AsChild &
-  VariantProps<typeof buttonVariants> & {
-    isLoading?: boolean
-  }
+interface ButtonProps
+  extends React.ComponentPropsWithRef<'button'>,
+    VariantProps<typeof buttonVariants>,
+    AsChild {
+  isLoading?: boolean
+}
 
 function Button({
   asChild = false,

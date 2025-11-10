@@ -1,1 +1,1 @@
-export const TOTAL_CATEGORIES = 12
+export const NUMBER_OF_CATEGORIES = 12
