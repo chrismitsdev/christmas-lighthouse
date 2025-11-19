@@ -49,7 +49,7 @@ export default async function LocaleLayout({
   return (
     <html
       lang={locale}
-      className={font.className}
+      className={`scroll-smooth ${font.className}`}
     >
       <body className='bg-app-background text-app-foreground'>
         <NextIntlClientProvider>

@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import Image from 'next/image'
+import {CustomImage} from '@/src/components/ui/custom-image'
 import {
   HomeIcon,
   ScrollTextIcon,
@@ -23,7 +23,7 @@ import {Typography} from '@/src/components/ui/typography'
 import {Badge} from '@/src/components/ui/badge'
 import {Separator} from '@/src/components/ui/separator'
 import {LogoutForm} from '@/src/app/(admin)/dashboard/logout-form'
-import logo from '@/public/logo.png'
+import logo from '@/public/shared/logo.png'
 
 function DashboardHeader({
   user,
@@ -33,7 +33,7 @@ function DashboardHeader({
 }) {
   return (
     <header
-      className='p-4 sticky top-0 z-[1] flex items-center justify-between bg-app-surface-solid border-b sm:p-8'
+      className='p-4 sticky top-0 z-1 flex items-center justify-between bg-app-surface border-b sm:p-8'
       {...props}
     >
       <div className='flex items-center gap-4'>
@@ -62,7 +62,7 @@ function DashboardSidebar() {
       <SidebarContent>
         <SidebarHeader className='py-4 sm:py-8'>
           <Link href='/dashboard'>
-            <Image
+            <CustomImage
               src={logo}
               alt='The Christmas Lighthouse logo'
               height={40}

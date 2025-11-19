@@ -1,8 +1,8 @@
 'use client'
 
 import {useState} from 'react'
-import {cn} from '@/src/lib/utils'
 import {type LucideIcon, EyeIcon, EyeOffIcon} from 'lucide-react'
+import {cn} from '@/src/lib/utils'
 
 interface InputProps extends React.ComponentPropsWithRef<'input'> {
   icon?: React.ReactElement<LucideIcon>

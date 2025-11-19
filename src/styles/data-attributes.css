@@ -33,4 +33,4 @@
 /* Misc */
 @custom-variant data-highlighted (&[data-highlighted]);
 @custom-variant data-placeholder (&[data-placeholder]);
-@custom-variant data-disabled (&[data-disabled]);
+@custom-variant data-disabled (&[data-disabled~="true"]);

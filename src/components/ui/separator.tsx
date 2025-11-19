@@ -12,7 +12,7 @@ function Separator({
   return (
     <Root
       className={cn(
-        'shrink-0 bg-border',
+        'shrink-0 bg-brand-gray-12',
         orientation === 'horizontal' ? 'w-full h-px' : 'w-px h-full',
         className
       )}

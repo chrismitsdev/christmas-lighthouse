@@ -1,72 +1,92 @@
 import {Slot, Slottable} from '@radix-ui/react-slot'
-import {cva, VariantProps} from 'class-variance-authority'
-import {Spinner} from '@/src/components/ui/spinner'
+import {cva, type VariantProps} from 'class-variance-authority'
 import {cn} from '@/src/lib/utils'
+import {Spinner} from '@/src/components/ui/spinner'
 
 const buttonVariants = cva(
   [
-    'p-4',
     'relative',
     'inline-flex',
-    'items-center',
     'justify-center',
-    'gap-3',
-    'bg-app-surface',
+    'items-center',
+    'whitespace-nowrap',
+    'transition',
+    'shrink-0',
+    'outline-none',
     'text-app-foreground',
-    'border',
-    'border-brand-gray-12',
-    'font-bold',
-    'rounded',
-    'cursor-pointer',
-    'duration-300',
-    'not-disabled:hover:bg-brand-gray-12',
-    'not-disabled:hover:border-border-hover',
-    'active:bg-brand-gray-11/50',
-    'disabled:opacity-30',
+    '[&_svg]:pointer-events-none',
+    'data-disabled:pointer-events-none',
     'data-disabled:opacity-30',
-    '*:shrink-0'
+    'focus-visible:ring'
   ],
   {
     variants: {
       variant: {
-        regular: [
-          'sm:px-5',
-          'data-open:bg-app-background',
-          'data-open:border-border-hover'
+        default: [
+          'bg-brand-gray-12',
+          'hover:bg-brand-gray-11',
+          'active:bg-brand-gray-10'
         ],
-        danger: [
-          'bg-red-900/50',
-          'border-red-900',
-          'not-disabled:hover:bg-red-900',
-          'not-disabled:hover:border-red-900/50'
+        outline: [
+          'bg-transparent',
+          'border',
+          'border-brand-gray-11',
+          'hover:border-brand-gray-10',
+          'active:border-brand-gray-9'
         ],
-        'icon-button': [
-          'p-[7px]',
-          'data-open:bg-brand-gray-12',
-          'data-open:border-border-hover',
-          'not-disabled:hover:border-border-hover/50'
+        ghost: [
+          'bg-transparent',
+          'hover:bg-brand-gray-11',
+          'active:bg-brand-gray-10'
+        ]
+      },
+      size: {
+        sm: ['h-6', 'px-2', 'text-sm', 'gap-x-1', 'rounded-sm', 'font-normal'],
+        default: [
+          'h-10',
+          'px-4',
+          'text-base',
+          'gap-x-1.5',
+          'rounded-md',
+          'font-semibold'
+        ],
+        lg: [
+          'h-14',
+          'px-6',
+          'text-lg',
+          'gap-x-2',
+          'rounded-lg',
+          'font-extrabold'
         ]
       }
     },
     defaultVariants: {
-      variant: 'regular'
+      variant: 'default',
+      size: 'default'
     }
   }
 )
 
+const spinnerLookup = {
+  sm: 16,
+  default: 20,
+  lg: 24
+}
+
 interface ButtonProps
-  extends React.ComponentPropsWithRef<'button'>,
+  extends Omit<React.ComponentPropsWithRef<'button'>, 'color'>,
     VariantProps<typeof buttonVariants>,
     AsChild {
   isLoading?: boolean
 }
 
 function Button({
-  asChild = false,
-  variant,
   className,
+  variant,
+  size,
+  disabled,
   isLoading = false,
-  disabled = false,
+  asChild = false,
   children,
   ...props
 }: ButtonProps) {
@@ -77,20 +97,18 @@ function Button({
       className={cn(
         buttonVariants({
           variant,
-          className: cn(
-            isLoading && '[&>*:not(span:last-child)]:invisible',
-            className
-          )
+          size,
+          className: [isLoading && '*:not-last:invisible', className]
         })
       )}
       disabled={disabled}
-      {...(asChild && disabled ? {'data-disabled': disabled} : {})}
+      {...(disabled && {'data-disabled': disabled})}
       {...props}
     >
       <Slottable>{children}</Slottable>
       {isLoading && (
         <span className='absolute inset-0 flex items-center justify-center'>
-          <Spinner size={24} />
+          <Spinner size={spinnerLookup[size || 'default']} />
         </span>
       )}
     </Comp>

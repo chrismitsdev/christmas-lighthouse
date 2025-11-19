@@ -13,7 +13,7 @@ import {
 } from '@radix-ui/react-dialog'
 import {XIcon} from 'lucide-react'
 import {cn} from '@/src/lib/utils'
-import {Button} from '@/src/components/ui/button'
+import {IconButton} from '@/src/components/ui/icon-button'
 
 const Dialog = Root
 const DialogTrigger = Trigger
@@ -26,7 +26,7 @@ function DialogOverlay({
   return (
     <Overlay
       className={cn(
-        'fixed inset-0 z-50 bg-black/50 backdrop-blur-[2px]',
+        'fixed inset-0 z-50 bg-black/50 backdrop-blur-[2px] data-open:animate-overlay-open data-closed:animate-overlay-closed',
         className
       )}
       {...props}
@@ -41,7 +41,7 @@ function DialogContent({
   return (
     <Content
       className={cn(
-        'fixed left-1/2 top-1/2 z-50 -translate-x-1/2 -translate-y-1/2 max-h-[calc(100%-32px)] max-w-xl w-[calc(100%-32px)] bg-app-surface-solid border rounded outline-none grid',
+        'max-h-[calc(100%-32px)] max-w-xl w-[calc(100%-32px)] fixed left-1/2 top-1/2 z-50 -translate-1/2 grid bg-app-surface border border-brand-gray-12 rounded-lg data-open:animate-dialog-open data-closed:animate-dialog-closed',
         className
       )}
       {...props}
@@ -91,7 +91,7 @@ function DialogDescription({
   )
 }
 
-function DialogMain({className, ...props}: React.ComponentPropsWithRef<'div'>) {
+function DialogBody({className, ...props}: React.ComponentPropsWithRef<'div'>) {
   return (
     <div
       className={cn('px-4 pt-4 pb-8 sm:px-12 sm:pb-12', className)}
@@ -110,12 +110,12 @@ function DialogClose({
       {...props}
       asChild
     >
-      <Button
-        className='p-[3px] rounded-sm'
-        variant='danger'
+      <IconButton
+        variant='outline'
+        size='sm'
       >
-        <XIcon size={16} />
-      </Button>
+        <XIcon />
+      </IconButton>
     </Close>
   )
 }
@@ -128,7 +128,7 @@ DialogContent.displayName = 'DialogContent'
 DialogHeader.displayName = 'DialogHeader'
 DialogTitle.displayName = 'DialogTitle'
 DialogDescription.displayName = 'DialogDescription'
-DialogMain.displayName = 'DialogMain'
+DialogBody.displayName = 'DialogBody'
 DialogClose.displayName = 'DialogClose'
 
 export {
@@ -140,6 +140,6 @@ export {
   DialogHeader,
   DialogTitle,
   DialogDescription,
-  DialogMain,
+  DialogBody,
   DialogClose
 }

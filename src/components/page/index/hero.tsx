@@ -1,98 +1,88 @@
-import Image from 'next/image'
+import {useTranslations} from 'next-intl'
+import {StarIcon} from 'lucide-react'
+import {cn} from '@/src/lib/utils'
 import {Section} from '@/src/components/shared/section'
 import {Typography} from '@/src/components/ui/typography'
-import {
-  ScrollArea,
-  ScrollViewport,
-  ScrollBar
-} from '@/src/components/ui/scroll-area'
-
-export interface Artwork {
-  artist: string
-  art: string
-}
-
-export const works: Artwork[] = [
-  {
-    artist: 'Ornella Binni',
-    art: 'https://images.unsplash.com/photo-1465869185982-5a1a7522cbcb?auto=format&fit=crop&w=300&q=80'
-  },
-  {
-    artist: 'Tom Byrom',
-    art: 'https://images.unsplash.com/photo-1548516173-3cabfa4607e9?auto=format&fit=crop&w=300&q=80'
-  },
-  {
-    artist: 'Vladimir Malyavko',
-    art: 'https://images.unsplash.com/photo-1494337480532-3725c85fd2ab?auto=format&fit=crop&w=300&q=80'
-  }
-]
+import {CustomImage} from '@/src/components/ui/custom-image'
+import heroDesktop from '@/public/sections/hero/images/hero-desktop.webp'
+import heroMobile from '@/public/sections/hero/images/hero-mobile.webp'
 
 function Hero() {
+  const t = useTranslations('pages.index.sections.hero')
+
   return (
     <Section className='pt-0'>
-      <div className='h-[calc(100vh-128px)] flex items-center justify-center border-10 border-red-600'>
-        {/*<Typography variant='h1'>Hero</Typography>*/}
-        <div className='flex flex-col gap-24'>
-          <ScrollArea
-            className='h-72 w-48 rounded-md border'
-            type='always'
-          >
-            <ScrollViewport>
-              <ul>
-                {Array.from({length: 40}).map(function (_, i) {
-                  return (
-                    <Typography
-                      key={i}
-                      asChild
-                    >
-                      <li>Tag {i + 1}</li>
-                    </Typography>
-                  )
-                })}
-              </ul>
-            </ScrollViewport>
-
-            <ScrollBar />
-          </ScrollArea>
-
-          <ScrollArea
-            className='w-96 rounded-md border whitespace-nowrap'
-            type='always'
-          >
-            <ScrollViewport>
-              <div className='flex w-max space-x-4 p-4'>
-                {works.map((artwork) => (
-                  <figure
-                    key={artwork.artist}
-                    className='shrink-0'
-                  >
-                    <div className='overflow-hidden rounded-md'>
-                      <Image
-                        src={artwork.art}
-                        alt={`Photo by ${artwork.artist}`}
-                        className='aspect-3/4 h-fit w-fit object-cover'
-                        width={300}
-                        height={400}
-                      />
-                    </div>
-                    <figcaption className='text-muted-foreground pt-2 text-xs'>
-                      Photo by{' '}
-                      <span className='text-foreground font-semibold'>
-                        {artwork.artist}
-                      </span>
-                    </figcaption>
-                  </figure>
-                ))}
-              </div>
-            </ScrollViewport>
-            <ScrollBar orientation='horizontal' />
-          </ScrollArea>
+      <div className='h-[calc(100vh-172px)] relative'>
+        <div className='absolute inset-0 bg-black/50' />
+        <CustomImage
+          className='w-full h-full object-fill sm:hidden'
+          src={heroMobile}
+          alt='Hero image'
+        />
+        <CustomImage
+          className='hidden w-full h-full object-cover object-top sm:block'
+          src={heroDesktop}
+          alt='Hero image'
+        />
+        <div className='px-4 py-8 space-y-10 absolute bottom-0 inset-x-0 sm:p-8'>
+          <div className='space-y-10 text-brand-gold-4 text-center'>
+            <Typography
+              variant='h1'
+              className='text-3xl font-serif font-bold sm:text-6xl'
+              asChild
+            >
+              <h1>{t('title')}</h1>
+            </Typography>
+            <div className='inline-flex items-center justify-center gap-x-2'>
+              <StarIcon
+                className='size-5'
+                fill='currentColor'
+              />
+              <Typography
+                variant='lead'
+                className='font-semibold'
+              >
+                22.11.2025 - 11.01.2026
+              </Typography>
+              <StarIcon
+                className='size-5'
+                fill='currentColor'
+              />
+            </div>
+          </div>
+          <div className='flex flex-wrap justify-center gap-x-4 gap-y-2'>
+            <CtaLink
+              className='bg-brand-blue-12 text-brand-blue-3 border border-brand-blue-11 hover:bg-brand-blue-11'
+              href='#experiences'
+            >
+              {t('plan-button')}
+            </CtaLink>
+            <CtaLink
+              className='bg-brand-gold-12 text-brand-gold-3 border border-brand-gold-11 hover:bg-brand-gold-11'
+              href='#parade'
+            >
+              {t('parade-button')}
+            </CtaLink>
+          </div>
         </div>
       </div>
     </Section>
   )
 }
 
+function CtaLink({className, ...props}: React.ComponentPropsWithRef<'a'>) {
+  return (
+    <a
+      className={cn(
+        'px-6 h-14 inline-flex justify-center items-center gap-x-2 text-lg font-bold font-serif rounded-lg cursor-pointer sm:text-xl min-w-38',
+        className
+      )}
+      {...props}
+    />
+  )
+}
+
 Hero.displayName = 'Hero'
+CtaLink.displayName = 'CtaLink'
 
 export {Hero}

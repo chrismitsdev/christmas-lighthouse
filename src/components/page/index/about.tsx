@@ -1,12 +1,148 @@
+import {useTranslations} from 'next-intl'
+import {CalendarDaysIcon, ClockIcon, MapPinIcon} from 'lucide-react'
+import {Container} from '@/src/components/shared/container'
 import {Section} from '@/src/components/shared/section'
+import {SectionHeader} from '@/src/components/shared/section-header'
 import {Typography} from '@/src/components/ui/typography'
+import {CustomImage} from '@/src/components/ui/custom-image'
+import {
+  Card,
+  CardImage,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+  CardContent
+} from '@/src/components/ui/card'
+import {
+  Scrollarea,
+  ScrollareaViewport,
+  ScrollareaScrollbar
+} from '@/src/components/ui/scroll-area'
+import {images} from '@/public/sections/about/images'
 
-function About() {
+function About({id}: {id: string}) {
+  const t = useTranslations('pages.index.sections.about')
+
   return (
-    <Section>
-      <div className='h-screen flex items-center justify-center border-10 border-blue-600'>
-        <Typography variant='h1'>About</Typography>
-      </div>
+    <Section id={id}>
+      <Container>
+        <SectionHeader
+          title={t('section-header.title')}
+          description={t('section-header.description')}
+        />
+
+        <div className='space-y-20'>
+          <Card className='sm:[--card-padding:--spacing(8)] max-w-xl mx-auto'>
+            <CardHeader>
+              <CardTitle>{t('info-card.title')}</CardTitle>
+              <CardDescription>{t('info-card.description')}</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className='space-y-6'>
+                <article className='space-y-2'>
+                  <div className='flex gap-x-3'>
+                    <CalendarDaysIcon className='h-7 w-5' />
+                    <Typography variant='large'>
+                      {t('info-card.season.title')}
+                    </Typography>
+                  </div>
+                  <Typography className='sm:pl-8'>
+                    {t('info-card.season.description')}
+                  </Typography>
+                </article>
+                <article className='space-y-2'>
+                  <div className='flex gap-x-3'>
+                    <ClockIcon className='h-7 w-5' />
+                    <Typography variant='large'>
+                      {t('info-card.hours.title')}
+                    </Typography>
+                  </div>
+                  <div className='space-y-2 sm:px-6'>
+                    <div className='p-2 space-y-1 bg-brand-gold-12/50 text-brand-gold-4 border border-brand-gold-11/25 rounded'>
+                      <Typography>
+                        {t('info-card.hours.zone-1.date-range')}
+                      </Typography>
+                      <Typography variant='small'>
+                        {t('info-card.hours.zone-1.entry-1')}
+                      </Typography>
+                      <Typography variant='small'>
+                        {t('info-card.hours.zone-1.entry-2')}
+                      </Typography>
+                    </div>
+                    <div className='p-2 space-y-1 bg-brand-gold-12/50 text-brand-gold-4 border border-brand-gold-11/25 rounded'>
+                      <Typography>
+                        {t('info-card.hours.zone-2.date-range')}
+                      </Typography>
+                      <Typography variant='small'>
+                        {t('info-card.hours.zone-2.entry-1')}
+                      </Typography>
+                    </div>
+                  </div>
+                </article>
+                <article className='space-y-2'>
+                  <div className='flex gap-x-3'>
+                    <MapPinIcon className='h-7 w-5' />
+                    <Typography variant='large'>
+                      {t('info-card.location.title')}
+                    </Typography>
+                  </div>
+                  <Typography className='sm:pl-8'>
+                    {t('info-card.location.description')}
+                  </Typography>
+                </article>
+              </div>
+            </CardContent>
+          </Card>
+
+          <div className='hidden sm:flex sm:gap-10'>
+            <Card className='row-start-2'>
+              <CardImage
+                src={images[1]}
+                alt='About section image 2'
+              />
+            </Card>
+            <Card className='row-start-2 col-start-3'>
+              <CardImage
+                src={images[6]}
+                alt='About section image 1'
+              />
+            </Card>
+            <Card className='row-start-3 col-start-2'>
+              <CardImage
+                src={images[3]}
+                alt='About section image 3'
+              />
+            </Card>
+          </div>
+
+          <Scrollarea
+            className='bg-app-surface border border-brand-gray-12 rounded-lg sm:hidden'
+            type='auto'
+          >
+            <ScrollareaViewport>
+              <div className='p-1 pb-4 w-max flex gap-4'>
+                {images.map(function (image, i) {
+                  return (
+                    <div
+                      key={image.src}
+                      className='overflow-hidden rounded-sm'
+                    >
+                      <CustomImage
+                        className='aspect-3/4 w-fit h-96 object-cover'
+                        src={image}
+                        alt={`Scrollarea image ${i + 1}`}
+                        draggable={false}
+                      />
+                    </div>
+                  )
+                })}
+              </div>
+            </ScrollareaViewport>
+
+            <ScrollareaScrollbar orientation='horizontal' />
+          </Scrollarea>
+        </div>
+      </Container>
     </Section>
   )
 }

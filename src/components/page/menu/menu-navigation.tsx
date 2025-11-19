@@ -4,7 +4,12 @@ import {useTranslations} from 'next-intl'
 import {Link, usePathname} from '@/src/i18n/navigation'
 import {type CategoryWithProducts} from '@/src/db/menu'
 import {cn} from '@/src/lib/utils'
-import {ScrollArea} from '@/src/components/ui/scroll-area'
+import {
+  Scrollarea,
+  ScrollareaViewport,
+  ScrollareaScrollbar
+} from '@/src/components/ui/scroll-area'
+import {Typography} from '@/src/components/ui/typography'
 
 type Props = {
   categories: CategoryWithProducts[]
@@ -14,7 +19,7 @@ function MenuNavigation({categories}: Props) {
   const t = useTranslations('pages.menu.links')
   const pathname = usePathname().replace('/menu/', '')
 
-  const links = [
+  const menuLinks = [
     {
       link: '',
       title: t('all-categories')
@@ -24,33 +29,37 @@ function MenuNavigation({categories}: Props) {
 
   return (
     <nav
-      aria-label='Categories navigation'
-      className='sticky top-0 z-50 flex justify-center bg-inherit overflow-x-hidden inset-shadow-nav-divider'
+      aria-label='Menu page navigation'
+      className='sticky top-0 z-10 bg-app-surface inset-shadow-nav-divider'
     >
-      <ScrollArea
-        orientation='horizontal'
-        invisible
-        isFlex
-      >
-        <div className='px-1 flex items-center shrink-0'>
-          {links.map(function ({title, link}) {
-            const href = !link ? '/menu' : `/menu/${link}`
+      <Scrollarea>
+        <ScrollareaViewport>
+          <div className='px-1 flex items-center justify-center'>
+            {menuLinks.map(function ({title, link}) {
+              const href = !link ? '/menu' : `/menu/${link}`
 
-            return (
-              <Link
-                key={title}
-                href={href}
-                className={cn(
-                  'p-4 relative shrink-0 duration-200 select-none opacity-50 after:absolute after:inset-x-0 after:-bottom-1.5 after:h-1.5 after:bg-border-hover after:rounded-t-lg after:duration-200 sm:px-3',
-                  pathname === (link || href) && 'opacity-100 after:bottom-0'
-                )}
-              >
-                {title}
-              </Link>
-            )
-          })}
-        </div>
-      </ScrollArea>
+              return (
+                <Typography
+                  key={title}
+                  className={cn(
+                    'p-4 relative shrink-0 select-none text-nowrap opacity-30 duration-200 after:absolute after:inset-x-0 after:-bottom-1.5 after:h-1.5 after:bg-border-hover after:rounded-t-lg after:duration-200 sm:px-3',
+                    pathname === (link || href) && 'opacity-100 after:bottom-0'
+                  )}
+                  variant='small'
+                  draggable={false}
+                  asChild
+                >
+                  <Link href={href}>{title}</Link>
+                </Typography>
+              )
+            })}
+          </div>
+        </ScrollareaViewport>
+        <ScrollareaScrollbar
+          orientation='horizontal'
+          invisible
+        />
+      </Scrollarea>
     </nav>
   )
 }

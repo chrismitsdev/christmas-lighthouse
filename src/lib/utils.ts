@@ -37,6 +37,16 @@ export function joinAndSpace(arr: string[] | null): string | null {
   return arr.join(', ')
 }
 
+export function compareDate(date: string): boolean {
+  const today = new Date()
+  today.setHours(0, 0, 0, 0)
+
+  const dateToCheck = new Date(date)
+  dateToCheck.setHours(0, 0, 0, 0)
+
+  return dateToCheck.getTime() >= today.getTime()
+}
+
 // Regex
 export const greekLettersOnly =
   /^[\u0391-\u03A9\u03B1-\u03C9\u0386\u0388-\u038A\u038C\u038E-\u03CE\s]+$/

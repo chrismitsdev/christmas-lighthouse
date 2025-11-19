@@ -4,7 +4,7 @@ import {Slot} from '@radix-ui/react-slot'
 import {ChevronLeftIcon, ChevronRightIcon} from 'lucide-react'
 import {cn} from '@/src/lib/utils'
 import {CarouselProvider, useCarousel} from './context'
-import {Button} from '@/src/components/ui/button'
+import {IconButton} from '@/src/components/ui/icon-button'
 
 function Carousel({
   className,
@@ -75,41 +75,37 @@ function CarouselSlide({
 
 function CarouselPrevButton({
   className,
-  variant = 'icon-button',
   children,
   ...props
-}: React.ComponentPropsWithRef<typeof Button>) {
+}: React.ComponentPropsWithRef<typeof IconButton>) {
   const {onPrevButtonClick} = useCarousel()
 
   return (
-    <Button
-      className={cn('absolute top-1/2 -translate-y-1/2 left-0', className)}
-      variant={variant}
+    <IconButton
+      className={cn('absolute top-1/2 -translate-y-1/2 left-2', className)}
       onClick={onPrevButtonClick}
       {...props}
     >
       {!children && <ChevronLeftIcon />}
-    </Button>
+    </IconButton>
   )
 }
 
 function CarouselNextButton({
   className,
-  variant = 'icon-button',
   children,
   ...props
-}: React.ComponentPropsWithRef<typeof Button>) {
+}: React.ComponentPropsWithRef<typeof IconButton>) {
   const {onNextButtonClick} = useCarousel()
 
   return (
-    <Button
-      className={cn('absolute top-1/2 -translate-y-1/2 right-0', className)}
-      variant={variant}
+    <IconButton
+      className={cn('absolute top-1/2 -translate-y-1/2 right-2', className)}
       onClick={onNextButtonClick}
       {...props}
     >
       {!children && <ChevronRightIcon />}
-    </Button>
+    </IconButton>
   )
 }
 

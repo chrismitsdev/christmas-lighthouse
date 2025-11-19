@@ -27,7 +27,7 @@ import {
   DialogHeader,
   DialogTitle,
   DialogDescription,
-  DialogMain,
+  DialogBody,
   DialogClose
 } from '@/src/components/ui/dialog'
 import {
@@ -48,8 +48,13 @@ import {
   TooltipPortal,
   TooltipContent
 } from '@/src/components/ui/tooltip'
-import {ScrollArea} from '@/src/components/ui/scroll-area'
+import {
+  Scrollarea,
+  ScrollareaViewport,
+  ScrollareaScrollbar
+} from '@/src/components/ui/scroll-area'
 import {Button} from '@/src/components/ui/button'
+import {IconButton} from '@/src/components/ui/icon-button'
 import {Badge} from '@/src/components/ui/badge'
 import {Typography} from '@/src/components/ui/typography'
 import {UpdateCategoryForm} from '@/src/app/(admin)/dashboard/categories/edit/update-category-form'
@@ -139,9 +144,9 @@ function CategoriesTable({categories, products}: CategoriesTableProps) {
                           className='outline-none'
                           asChild
                         >
-                          <Button variant='icon-button'>
+                          <IconButton>
                             <EllipsisIcon size={16} />
-                          </Button>
+                          </IconButton>
                         </DropdownMenuTrigger>
                         <DropdownMenuPortal>
                           <DropdownMenuContent align='end'>
@@ -175,14 +180,17 @@ function CategoriesTable({categories, products}: CategoriesTableProps) {
                               </span>
                             </DialogDescription>
                           </DialogHeader>
-                          <ScrollArea
+                          <Scrollarea
                             className='max-h-[calc(100svh-116px-26px)]'
                             type='always'
                           >
-                            <DialogMain>
-                              <UpdateCategoryForm category={category} />
-                            </DialogMain>
-                          </ScrollArea>
+                            <ScrollareaViewport>
+                              <DialogBody>
+                                <UpdateCategoryForm category={category} />
+                              </DialogBody>
+                            </ScrollareaViewport>
+                            <ScrollareaScrollbar />
+                          </Scrollarea>
                           <DialogClose />
                         </DialogContent>
                       </DialogPortal>

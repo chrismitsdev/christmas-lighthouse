@@ -5,10 +5,10 @@ import {getTranslations} from 'next-intl/server'
 import {IndexNavigation} from '@/src/components/page/index/index-navigation'
 import {Hero} from '@/src/components/page/index/hero'
 import {About} from '@/src/components/page/index/about'
-import {Attractions} from '@/src/components/page/index/attractions'
+import {Experiences} from '@/src/components/page/index/experiences'
 import {Parade} from '@/src/components/page/index/parade'
+import {Schedule} from '@/src/components/page/index/schedule'
 import {Games} from '@/src/components/page/index/games'
-import {Contact} from '@/src/components/page/index/contact'
 
 export async function generateMetadata({
   params
@@ -30,13 +30,13 @@ export default async function IndexPage({params}: PageProps<'/[locale]'>) {
     <Fragment>
       <IndexNavigation />
 
-      <main>
+      <main className='[--section-padding:80px] [--nav-height:52px]'>
         <Hero />
-        <About />
-        <Attractions />
-        <Parade />
-        <Games />
-        <Contact />
+        <About id='about' />
+        <Experiences id='experiences' />
+        <Parade id='parade' />
+        <Schedule id='schedule' />
+        <Games id='games' />
       </main>
     </Fragment>
   )

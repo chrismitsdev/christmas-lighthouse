@@ -46,7 +46,7 @@ import {
   DialogHeader,
   DialogTitle,
   DialogDescription,
-  DialogMain,
+  DialogBody,
   DialogClose
 } from '@/src/components/ui/dialog'
 import {
@@ -61,8 +61,13 @@ import {
   AlertDialogFooter,
   AlertDialogCancel
 } from '@/src/components/ui/alert-dialog'
-import {ScrollArea} from '@/src/components/ui/scroll-area'
+import {
+  Scrollarea,
+  ScrollareaViewport,
+  ScrollareaScrollbar
+} from '@/src/components/ui/scroll-area'
 import {Button} from '@/src/components/ui/button'
+import {IconButton} from '@/src/components/ui/icon-button'
 import {Badge} from '@/src/components/ui/badge'
 import {UpdateProductForm} from '@/src/app/(admin)/dashboard/products/edit/update-product-form'
 import {DeleteProductForm} from '@/src/app/(admin)/dashboard/products/edit/delete-product-form'
@@ -152,10 +157,7 @@ function ProductsTable({categories, products}: ProductsTableProps) {
                   {formatCurrency(product.price)}
                 </TableCell>
                 <TableCell className='py-0 hidden text-center sm:table-cell'>
-                  <Badge
-                    className='!p-[3px]'
-                    variant={product.active ? 'success' : 'error'}
-                  >
+                  <Badge variant={product.active ? 'success' : 'error'}>
                     {product.active ? (
                       <CheckIcon size={16} />
                     ) : (
@@ -171,9 +173,9 @@ function ProductsTable({categories, products}: ProductsTableProps) {
                           className='outline-none'
                           asChild
                         >
-                          <Button variant='icon-button'>
+                          <IconButton>
                             <EllipsisIcon size={16} />
-                          </Button>
+                          </IconButton>
                         </DropdownMenuTrigger>
                         <DropdownMenuPortal>
                           <DropdownMenuContent align='end'>
@@ -207,14 +209,17 @@ function ProductsTable({categories, products}: ProductsTableProps) {
                               </span>
                             </DialogDescription>
                           </DialogHeader>
-                          <ScrollArea
+                          <Scrollarea
                             className='max-h-[calc(100svh-116px-26px)]'
                             type='always'
                           >
-                            <DialogMain>
-                              <UpdateProductForm product={product} />
-                            </DialogMain>
-                          </ScrollArea>
+                            <ScrollareaViewport>
+                              <DialogBody>
+                                <UpdateProductForm product={product} />
+                              </DialogBody>
+                            </ScrollareaViewport>
+                            <ScrollareaScrollbar />
+                          </Scrollarea>
                           <DialogClose />
                         </DialogContent>
                       </DialogPortal>

@@ -13,7 +13,7 @@ import {
   TooltipProvider,
   TooltipTrigger
 } from '@/src/components/ui/tooltip'
-import {Button} from '@/src/components/ui/button'
+import {IconButton} from '@/src/components/ui/icon-button'
 import {Input} from '@/src/components/ui/input'
 import {Separator} from '@/src/components/ui/separator'
 import {Sheet, SheetContent, SheetTitle} from '@/src/components/ui/sheet'
@@ -235,14 +235,12 @@ function Sidebar({
 function SidebarTrigger({
   onClick,
   ...props
-}: React.ComponentPropsWithRef<typeof Button>) {
+}: React.ComponentPropsWithRef<typeof IconButton>) {
   const {toggleSidebar} = useSidebar()
 
   return (
-    <Button
+    <IconButton
       aria-label='Toggle Sidebar'
-      data-sidebar='trigger'
-      variant='icon-button'
       onClick={(event) => {
         onClick?.(event)
         toggleSidebar()
@@ -250,7 +248,7 @@ function SidebarTrigger({
       {...props}
     >
       <PanelLeft />
-    </Button>
+    </IconButton>
   )
 }
 
@@ -264,7 +262,7 @@ function SidebarContent({
   return (
     <div
       className={cn(
-        'pt-0 px-4 min-h-0 flex flex-1 flex-col bg-app-surface-solid overflow-auto group-data-[collapsible=icon]:overflow-hidden sm:px-8',
+        'pt-0 px-4 min-h-0 flex flex-1 flex-col bg-app-surface overflow-auto group-data-[collapsible=icon]:overflow-hidden sm:px-8',
         className
       )}
       data-sidebar='content'

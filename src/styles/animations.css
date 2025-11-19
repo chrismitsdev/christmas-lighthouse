@@ -1,44 +1,182 @@
 @theme {
-  --animate-appear: appear 750ms ease-in-out;
-  --animate-collapse-open: collapse-open 500ms ease-in-out;
-  --animate-collapse-close: collapse-close 300ms ease-in-out;
+  /* Custom bezier curves */
+  --ease-opening: cubic-bezier(0.25, 0.8, 0.5, 1);
+  --ease-closing: cubic-bezier(0.4, 0, 1, 1);
+
+  /* Overlays (Dialog & Sheet) */
+  --animate-overlay-open: overlay-open 500ms var(--ease-opening);
+  --animate-overlay-closed: overlay-closed 300ms var(--ease-closing);
+
+  /* SheetContent */
+  --animate-sheet-top-open: sheet-top-open 500ms var(--ease-opening);
+  --animate-sheet-right-open: sheet-right-open 500ms var(--ease-opening);
+  --animate-sheet-bottom-open: sheet-bottom-open 500ms var(--ease-opening);
+  --animate-sheet-left-open: sheet-left-open 500ms var(--ease-opening);
+  --animate-sheet-top-closed: sheet-top-closed 300ms var(--ease-closing);
+  --animate-sheet-right-closed: sheet-right-closed 300ms var(--ease-closing);
+  --animate-sheet-bottom-closed: sheet-bottom-closed 300ms var(--ease-closing);
+  --animate-sheet-left-closed: sheet-left-closed 300ms var(--ease-closing);
+
+  /* DialogContent */
+  --animate-dialog-open: dialog-open 500ms var(--ease-opening);
+  --animate-dialog-closed: dialog-closed 300ms var(--ease-closing);
+
+  /* CollapsibleContent */
+  --animate-collapsible-open: collapsible-open 500ms var(--ease-opening);
+  --animate-collapsible-closed: collapsible-closed 300ms var(--ease-closing);
+
+  /* Misc */
   --animate-shimmer: shimmer 1.25s infinite;
-}
 
-@keyframes appear {
-  from {
-    opacity: 0;
-    transform: translateY(16px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0px);
-  }
-}
+  /*\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\*/
+  /*\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\*/
+  /*\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\*/
 
-@keyframes collapse-open {
-  from {
-    height: 0;
+  /* Overlays (Dialog & Sheet) */
+  @keyframes overlay-open {
+    from {
+      opacity: 0;
+      backdrop-filter: blur(0);
+    }
+    to {
+      opacity: 1;
+      backdrop-filter: blur(2px);
+    }
   }
-  to {
-    height: var(--radix-collapsible-content-height);
-  }
-}
 
-@keyframes collapse-close {
-  from {
-    height: var(--radix-collapsible-content-height);
+  @keyframes overlay-closed {
+    from {
+      opacity: 1;
+      backdrop-filter: blur(2px);
+    }
+    to {
+      opacity: 0;
+      backdrop-filter: blur(0);
+    }
   }
-  to {
-    height: 0;
-  }
-}
 
-@keyframes shimmer {
-  from {
-    transform: translateX(-100%);
+  /* SheetContent */
+  @keyframes sheet-top-open {
+    from {
+      transform: translateY(-100%);
+    }
+    to {
+      transform: translateY(0);
+    }
   }
-  to {
-    transform: translateX(100%);
+
+  @keyframes sheet-top-closed {
+    from {
+      transform: translateY(0);
+    }
+    to {
+      transform: translateY(-100%);
+    }
+  }
+
+  @keyframes sheet-right-open {
+    from {
+      transform: translateX(100%);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes sheet-right-closed {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(100%);
+    }
+  }
+
+  @keyframes sheet-bottom-open {
+    from {
+      transform: translateY(100%);
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes sheet-bottom-closed {
+    from {
+      transform: translateY(0);
+    }
+    to {
+      transform: translateY(100%);
+    }
+  }
+
+  @keyframes sheet-left-open {
+    from {
+      transform: translateX(-100%);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes sheet-left-closed {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-100%);
+    }
+  }
+
+  /* DialogContent */
+  @keyframes dialog-open {
+    from {
+      opacity: 0;
+      transform: translate(0, 24px);
+    }
+    to {
+      opacity: 1;
+      transform: translate(0, 0);
+    }
+  }
+
+  @keyframes dialog-closed {
+    from {
+      opacity: 1;
+      transform: translate(0, 0);
+    }
+    to {
+      opacity: 0;
+      transform: translate(0, 24px);
+    }
+  }
+
+  /* CollapsibleContent */
+  @keyframes collapsible-open {
+    from {
+      height: 0;
+    }
+    to {
+      height: var(--radix-collapsible-content-height);
+    }
+  }
+
+  @keyframes collapsible-closed {
+    from {
+      height: var(--radix-collapsible-content-height);
+    }
+    to {
+      height: 0;
+    }
+  }
+
+  /* Misc */
+  @keyframes shimmer {
+    from {
+      transform: translateX(-100%);
+    }
+    to {
+      transform: translateX(100%);
+    }
   }
 }

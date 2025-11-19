@@ -5,7 +5,6 @@ import {Button} from '@/src/components/ui/button'
 
 function SubmitActionButton({
   type = 'submit',
-  variant = 'danger',
   ...props
 }: React.ComponentPropsWithoutRef<typeof Button>) {
   const {pending} = useFormStatus()
@@ -13,7 +12,6 @@ function SubmitActionButton({
   return (
     <Button
       type={type}
-      variant={variant}
       {...props}
       disabled={pending}
       isLoading={pending}

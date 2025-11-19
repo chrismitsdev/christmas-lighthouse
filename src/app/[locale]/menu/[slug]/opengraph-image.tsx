@@ -10,7 +10,9 @@ export const size = {
 
 export const contentType = 'image/png'
 
-export default async function Image({params}: PageProps<'/[locale]/[slug]'>) {
+export default async function Image({
+  params
+}: PageProps<'/[locale]/menu/[slug]'>) {
   const {locale, slug} = (await params) as ParamsWithSlug['params']
   const categories = await getLocalizedCategories(locale)
   const category = categories.find((category) => category.link === slug)

@@ -1,11 +1,11 @@
 import Image from 'next/image'
 import {Link} from '@/src/i18n/navigation'
 import {Container} from '@/src/components/shared/container'
-import logo from '@/public/images/logo.png'
+import logo from '@/public/shared/logo.png'
 
 function Header() {
   return (
-    <header className='py-6'>
+    <header className='pt-6 pb-4 bg-app-surface'>
       <Container>
         <div className='flex justify-center items-center'>
           <Link href='/'>
