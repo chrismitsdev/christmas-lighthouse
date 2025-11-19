@@ -79,7 +79,7 @@
           "info-card": {
             "title": "Sunday, November 30, 2025",
             "subtitle": "The grand parade will illuminate the streets of Alexandroupoli!",
-            "description": "To make the season even brighter for those in need, special Christmas merchandise like our festive caps will be available forpurchase. All proceeds will benefit the <sos>SOS Children's Villages (Παιδικά Χωριά SOS)</sos>, helping to bring joy and support to children and families."
+            "description": "To make the season even brighter for those in need, special Christmas merchandise like our festive caps will be available forpurchase. All proceeds will benefit the <sos>SOS Children's Villages</sos>, helping to bring joy and support to children and families."
           }
         },
         "schedule": {
@@ -203,12 +203,6 @@
             "table-soccer": "Table soccer",
             "trampoline": "Trampoline",
             "ufo": "UFO"
-          }
-        },
-        "contact": {
-          "section-header": {
-            "title": "",
-            "description": ""
           }
         }
       }

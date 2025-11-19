@@ -31,7 +31,7 @@ function Parade({id}: {id: string}) {
                 sos: (chunks) => (
                   <a
                     className='underline inline-flex space-x-1 font-bold'
-                    href='https://sos-villages.gr/en/sos-home-english/'
+                    href='https://sos-villages.gr/'
                     target='_blank'
                   >
                     <span>{chunks}</span>
