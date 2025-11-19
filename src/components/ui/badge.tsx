@@ -4,6 +4,7 @@ import {Slot} from '@radix-ui/react-slot'
 
 const badgeVariants = cva(
   [
+    'py-1',
     'px-2',
     'inline-flex',
     'items-center',
@@ -14,15 +15,17 @@ const badgeVariants = cva(
     'text-xs',
     'font-semibold',
     'transition-colors',
-    'sm:py-px',
-    'sm:text-sm',
-    'sm:rounded'
+    'sm:text-sm'
   ],
   {
     variants: {
       variant: {
-        primary: ['bg-brand-gray-11/40', 'border-brand-gray-11/40!'],
-        secondary: ['bg-brand-gold-11/40', 'border-brand-gold-11/40!'],
+        primary: ['bg-brand-gray-12', 'border-brand-gray-11'],
+        secondary: [
+          'bg-brand-gold-12/50',
+          'border-brand-gold-11/25',
+          'text-brand-gold-4'
+        ],
         success: ['bg-green-900/50', 'border-green-900'],
         error: ['bg-red-900/50', 'border-red-900']
       }
@@ -39,7 +42,7 @@ interface BadgeProps
     AsChild {}
 
 function Badge({variant, asChild = false, className, ...props}: BadgeProps) {
-  const Comp = asChild ? Slot : 'div'
+  const Comp = asChild ? Slot : 'span'
 
   return (
     <Comp

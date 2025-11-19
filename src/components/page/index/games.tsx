@@ -29,6 +29,14 @@ import {
   ScrollareaViewport,
   ScrollareaScrollbar
 } from '@/src/components/ui/scroll-area'
+import {
+  Carousel,
+  CarouselViewport,
+  CarouselSlidesContainer,
+  CarouselSlide,
+  CarouselPrevButton,
+  CarouselNextButton
+} from '@/src/components/ui/carousel'
 import * as gamesGalleries from '@/public/sections/games/images'
 
 type Gallery = {
@@ -81,9 +89,9 @@ function Games({id}: {id: string}) {
         >
           <span className='size-8'>
             <CustomImage
-              className='size-full object-cover rounded-sm'
+              className='size-full object-cover rounded-xs'
               src={gallery.images[0]}
-              alt={`${gallery.key} image`}
+              alt={`${gallery.key} gallery image thumbnail`}
               sizes='32px'
             />
           </span>
@@ -93,25 +101,24 @@ function Games({id}: {id: string}) {
     )
   })
 
-  const renderedImages = selectedGallery.images.map(function (image, i) {
+  const renderedSlides = selectedGallery.images.map(function (image, i) {
     return (
-      <div
-        key={image.src}
-        className='overflow-hidden rounded-sm'
+      <CarouselSlide
+        key={i}
+        className='p-2 bg-app-surface border border-brand-gray-12 rounded-xl'
       >
         <CustomImage
-          className='max-w-[calc(100vw-32px)] w-full aspect-3/4 object-cover sm:h-96'
+          className='w-full h-full object-cover rounded-sm not-sm:aspect-square'
           src={image}
-          alt={`Scrollarea image ${i + 1}`}
-          draggable={false}
+          alt={`${selectedGallery.key} gallery image slide ${i + 1}`}
         />
-      </div>
+      </CarouselSlide>
     )
   })
 
   return (
     <Section id={id}>
-      <Container>
+      <Container className='max-w-7xl'>
         <SectionHeader
           title={t('section-header.title')}
           description={t('section-header.description')}
@@ -121,7 +128,10 @@ function Games({id}: {id: string}) {
           onOpenChange={setSheetOpen}
         >
           <SheetTrigger asChild>
-            <button className='w-full py-6 px-4 mb-10 space-y-1 bg-app-surface border border-brand-gray-12 rounded-lg text-left sm:px-6'>
+            <button
+              className='py-6 px-4 mb-10 space-y-1 bg-app-surface border border-brand-gray-12 rounded-lg text-left pointer-coarse:active:bg-brand-gray-11 not-sm:w-full sm:min-w-96 sm:px-6'
+              type='button'
+            >
               <div className='flex items-center justify-between'>
                 <Typography
                   variant='lead'
@@ -148,7 +158,7 @@ function Games({id}: {id: string}) {
               </SheetHeader>
               <Separator />
               <Scrollarea
-                className='h-[calc(100%-104px)]'
+                className='h-[calc(100%-105px)]'
                 type='always'
               >
                 <ScrollareaViewport>
@@ -167,16 +177,13 @@ function Games({id}: {id: string}) {
           </SheetPortal>
         </Sheet>
 
-        <Scrollarea
-          className='bg-app-surface border border-brand-gray-12 rounded-lg'
-          type='auto'
-        >
-          <ScrollareaViewport>
-            <div className='p-1 pb-4 w-max flex gap-4'>{renderedImages}</div>
-          </ScrollareaViewport>
-
-          <ScrollareaScrollbar orientation='horizontal' />
-        </Scrollarea>
+        <Carousel>
+          <CarouselViewport>
+            <CarouselSlidesContainer>{renderedSlides}</CarouselSlidesContainer>
+          </CarouselViewport>
+          <CarouselPrevButton size='sm' />
+          <CarouselNextButton size='sm' />
+        </Carousel>
       </Container>
     </Section>
   )

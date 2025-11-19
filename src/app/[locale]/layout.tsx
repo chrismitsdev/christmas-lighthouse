@@ -50,6 +50,7 @@ export default async function LocaleLayout({
     <html
       lang={locale}
       className={`scroll-smooth ${font.className}`}
+      data-scroll-behavior='smooth'
     >
       <body className='bg-app-background text-app-foreground'>
         <NextIntlClientProvider>

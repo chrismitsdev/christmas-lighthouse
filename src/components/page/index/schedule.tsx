@@ -74,21 +74,25 @@ function Schedule({id}: {id: string}) {
                     <div className='flex'>
                       <ScheduleArticle className='from-brand-gold-12/50'>
                         <SunIcon className='absolute top-4 right-4 text-brand-gold-12 sm:top-6 sm:right-6 sm:size-14' />
-                        <Typography className='font-bold text-brand-gold-4'>
-                          {t('labels.morning')}
-                        </Typography>
-                        <Typography className='text-brand-gold-4'>
-                          {t(`events.${event.key}.morning`)}
-                        </Typography>
+                        <div className='relative space-y-2'>
+                          <Typography className='font-bold text-brand-gold-4'>
+                            {t('labels.morning')}
+                          </Typography>
+                          <Typography className='text-brand-gold-4'>
+                            {t(`events.${event.key}.morning`)}
+                          </Typography>
+                        </div>
                       </ScheduleArticle>
                       <ScheduleArticle className='from-brand-blue-12/50'>
                         <MoonIcon className='absolute top-4 right-4 text-brand-blue-12 sm:top-6 sm:right-6 sm:size-14' />
-                        <Typography className='font-bold text-brand-blue-4'>
-                          {t('labels.afternoon')}
-                        </Typography>
-                        <Typography className='text-brand-blue-4'>
-                          {t(`events.${event.key}.afternoon`)}
-                        </Typography>
+                        <div className='relative space-y-2'>
+                          <Typography className='font-bold text-brand-blue-4'>
+                            {t('labels.afternoon')}
+                          </Typography>
+                          <Typography className='text-brand-blue-4'>
+                            {t(`events.${event.key}.afternoon`)}
+                          </Typography>
+                        </div>
                       </ScheduleArticle>
                     </div>
                   </CollapsibleContent>

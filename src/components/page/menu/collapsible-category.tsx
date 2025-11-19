@@ -1,24 +1,23 @@
 import {Fragment} from 'react'
 import {type CategoryWithProducts} from '@/src/db/menu'
 import {formatCurrency} from '@/src/lib/utils'
-import {
-  Card,
-  CardHeader,
-  CardContent,
-  CardFooter
-} from '@/src/components/ui/card'
 import {Typography} from '@/src/components/ui/typography'
 import {Badge} from '@/src/components/ui/badge'
 import {Separator} from '@/src/components/ui/separator'
+import {
+  Collapsible,
+  CollapsibleTrigger,
+  CollapsibleContent
+} from '@/src/components/ui/collapsible'
 
 type Props = {
   category: CategoryWithProducts
 }
 
-function Category({category}: Props) {
+function CollapsibleCategory({category}: Props) {
   return (
-    <Card className='overflow-hidden'>
-      <CardHeader className='p-6 bg-brand-gray-12'>
+    <Collapsible>
+      <CollapsibleTrigger>
         <span className='flex items-center gap-2 grow'>
           {category.icon}
           <Typography
@@ -28,8 +27,8 @@ function Category({category}: Props) {
             {category.title}
           </Typography>
         </span>
-      </CardHeader>
-      <CardContent className='p-0'>
+      </CollapsibleTrigger>
+      <CollapsibleContent>
         {category.products.map(function (product, i, a) {
           return (
             <Fragment key={product.id}>
@@ -56,25 +55,25 @@ function Category({category}: Props) {
             </Fragment>
           )
         })}
-      </CardContent>
 
-      {category.notes !== null && (
-        <CardFooter className='p-6 bg-brand-gray-12'>
-          <ul className='pl-4 space-y-2 list-disc'>
-            {category.notes.map(function (note) {
-              return (
-                <li key={note}>
-                  <Typography variant='small'>{note}</Typography>
-                </li>
-              )
-            })}
-          </ul>
-        </CardFooter>
-      )}
-    </Card>
+        {category.notes !== null && (
+          <div className='p-6 bg-brand-gray-12'>
+            <ul className='pl-4 space-y-2 list-disc'>
+              {category.notes.map(function (note) {
+                return (
+                  <li key={note}>
+                    <Typography variant='small'>{note}</Typography>
+                  </li>
+                )
+              })}
+            </ul>
+          </div>
+        )}
+      </CollapsibleContent>
+    </Collapsible>
   )
 }
 
-Category.displayName = 'Category'
+CollapsibleCategory.displayName = 'CollapsibleCategory'
 
-export {Category}
+export {CollapsibleCategory}

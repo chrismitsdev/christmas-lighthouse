@@ -1,7 +1,5 @@
 import {cn} from '@/src/lib/utils'
 import {Section} from '@/src/components/shared/section'
-import {Container} from '@/src/components/shared/container'
-import {Card, CardHeader} from '@/src/components/ui/card'
 import {Skeleton} from '@/src/components/ui/skeleton'
 
 const skeletonWidths = [
@@ -21,31 +19,28 @@ const skeletonWidths = [
 
 export default function Loading() {
   return (
-    <Container>
-      <Section className='space-y-4'>
-        {skeletonWidths.map(function (width, i) {
-          return (
-            <IndexPageSkeleton
-              key={i}
-              className={width}
-            />
-          )
-        })}
-      </Section>
-    </Container>
+    <Section className='space-y-6'>
+      {skeletonWidths.map(function (width, i) {
+        return (
+          <MenuPageSkeleton
+            key={i}
+            className={width}
+          />
+        )
+      })}
+    </Section>
   )
 }
 
-function IndexPageSkeleton({className}: {className?: string}) {
+function MenuPageSkeleton({className}: {className?: string}) {
   return (
-    <Card>
-      <CardHeader className='border-transparent!'>
-        <div className='flex items-center gap-2'>
-          <Skeleton className='h-6 w-6' />
-          <Skeleton className={cn('h-6', className)} />
-          <Skeleton className='h-6 w-6 ml-auto' />
-        </div>
-      </CardHeader>
-    </Card>
+    <div className='p-6 w-full bg-app-surface rounded-lg border border-brand-gray-12'>
+      <div className='flex items-center gap-2'>
+        <Skeleton className='h-6 w-6' />
+        <Skeleton className={cn('h-6', className)} />
+      </div>
+    </div>
   )
 }
+
+MenuPageSkeleton.displayName = 'MenuPageSkeleton'

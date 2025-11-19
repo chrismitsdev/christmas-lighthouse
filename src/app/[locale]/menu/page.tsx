@@ -1,11 +1,8 @@
-import {Fragment} from 'react'
 import type {Metadata} from 'next'
 import {setRequestLocale, getTranslations} from 'next-intl/server'
 import {getLocalizedCategories} from '@/src/db/menu'
-import {Container} from '@/src/components/shared/container'
 import {Section} from '@/src/components/shared/section'
-import {MenuNavigation} from '@/src/components/page/menu/menu-navigation'
-import {Category} from '@/src/components/page/menu/category'
+import {CollapsibleCategory} from '@/src/components/page/menu/collapsible-category'
 
 export async function generateMetadata({
   params
@@ -25,24 +22,15 @@ export default async function MenuPage({params}: PageProps<'/[locale]/menu'>) {
   setRequestLocale(locale)
 
   return (
-    <Fragment>
-      <MenuNavigation categories={categories} />
-
-      <main>
-        <Container>
-          <Section className='space-y-4'>
-            {categories.map(function (category) {
-              return (
-                <Category
-                  key={category.title}
-                  category={category}
-                  collapsible
-                />
-              )
-            })}
-          </Section>
-        </Container>
-      </main>
-    </Fragment>
+    <Section className='space-y-6'>
+      {categories.map(function (category) {
+        return (
+          <CollapsibleCategory
+            key={category.title}
+            category={category}
+          />
+        )
+      })}
+    </Section>
   )
 }

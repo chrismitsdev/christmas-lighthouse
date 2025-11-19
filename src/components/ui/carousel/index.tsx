@@ -65,7 +65,8 @@ function CarouselSlide({
   return (
     <Comp
       className={cn(
-        'mr-4 min-w-0 grow-0 shrink-0 basis-full select-none',
+        // 'mr-4 min-w-0 grow-0 shrink-0 basis-full select-none',
+        'mr-4 shrink-0 grow-0 basis-full select-none',
         className
       )}
       {...props}

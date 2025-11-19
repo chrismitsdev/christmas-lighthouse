@@ -1,7 +1,6 @@
 import type {Metadata} from 'next'
 import {setRequestLocale, getTranslations} from 'next-intl/server'
 import {getLocalizedCategories, getCategories} from '@/src/db/menu'
-import {Container} from '@/src/components/shared/container'
 import {Section} from '@/src/components/shared/section'
 import {Category} from '@/src/components/page/menu/category'
 import {CategoryNotFound} from '@/src/components/page/menu/category-not-found'
@@ -39,11 +38,9 @@ export default async function SlugPage({
   }
 
   return (
-    <Container>
-      <Section>
-        <Category category={category} />
-      </Section>
-    </Container>
+    <Section>
+      <Category category={category} />
+    </Section>
   )
 }
 
