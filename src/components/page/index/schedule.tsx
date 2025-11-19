@@ -1,11 +1,10 @@
 import {type Messages, useTranslations, useFormatter} from 'next-intl'
 import {SunIcon, MoonIcon} from 'lucide-react'
-import {compareDate} from '@/src/lib/utils'
+import {cn, compareDate} from '@/src/lib/utils'
 import {Container} from '@/src/components/shared/container'
 import {Section} from '@/src/components/shared/section'
 import {SectionHeader} from '@/src/components/shared/section-header'
 import {Typography} from '@/src/components/ui/typography'
-import {Separator} from '@/src/components/ui/separator'
 import {
   Collapsible,
   CollapsibleTrigger,
@@ -73,32 +72,24 @@ function Schedule({id}: {id: string}) {
                   </CollapsibleTrigger>
                   <CollapsibleContent>
                     <div className='flex'>
-                      <article className='p-4 bg-linear-to-t from-brand-gold-12/50 text-brand-gold-4 relative flex-1 sm:p-6'>
+                      <ScheduleArticle className='from-brand-gold-12/50'>
                         <SunIcon className='absolute top-4 right-4 text-brand-gold-12 sm:top-6 sm:right-6 sm:size-14' />
-                        <div className='relative space-y-2'>
-                          <Typography className='font-bold'>
-                            {t('labels.morning')}
-                          </Typography>
-                          <Typography>
-                            {t(`events.${event.key}.morning`)}
-                          </Typography>
-                        </div>
-                      </article>
-                      <Separator
-                        className='h-auto'
-                        orientation='vertical'
-                      />
-                      <article className='p-4 bg-linear-to-t from-brand-blue-12/50 text-brand-blue-4 relative flex-1 sm:p-6'>
+                        <Typography className='font-bold text-brand-gold-4'>
+                          {t('labels.morning')}
+                        </Typography>
+                        <Typography className='text-brand-gold-4'>
+                          {t(`events.${event.key}.morning`)}
+                        </Typography>
+                      </ScheduleArticle>
+                      <ScheduleArticle className='from-brand-blue-12/50'>
                         <MoonIcon className='absolute top-4 right-4 text-brand-blue-12 sm:top-6 sm:right-6 sm:size-14' />
-                        <div className='relative space-y-2'>
-                          <Typography className='font-bold'>
-                            {t('labels.afternoon')}
-                          </Typography>
-                          <Typography>
-                            {t(`events.${event.key}.afternoon`)}
-                          </Typography>
-                        </div>
-                      </article>
+                        <Typography className='font-bold text-brand-blue-4'>
+                          {t('labels.afternoon')}
+                        </Typography>
+                        <Typography className='text-brand-blue-4'>
+                          {t(`events.${event.key}.afternoon`)}
+                        </Typography>
+                      </ScheduleArticle>
                     </div>
                   </CollapsibleContent>
                 </Collapsible>
@@ -109,6 +100,20 @@ function Schedule({id}: {id: string}) {
     </Section>
   )
 }
+
+function ScheduleArticle({
+  className,
+  ...props
+}: React.PropsWithChildren<{className: string}>) {
+  return (
+    <article
+      className={cn('relative p-4 bg-linear-to-t flex-1 sm:p-6', className)}
+      {...props}
+    />
+  )
+}
+
+ScheduleArticle.displayName = 'ScheduleArticle'
 
 Schedule.displayName = 'Schedule'
 
