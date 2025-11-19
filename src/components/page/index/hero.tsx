@@ -12,7 +12,7 @@ function Hero() {
 
   return (
     <Section className='pt-0'>
-      <div className='h-[calc(100vh-172px)] relative'>
+      <div className='h-[calc(100svh-172px)] relative'>
         <div className='absolute inset-0 bg-black/50' />
         <CustomImage
           className='w-full h-full object-fill sm:hidden'

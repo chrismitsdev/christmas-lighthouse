@@ -62,7 +62,6 @@ function Games({id}: {id: string}) {
   const [selectedGallery, setSelectedGallery] = useState<Gallery>(galleries[0])
   const [sheetOpen, setSheetOpen] = useState<boolean>(false)
   const t = useTranslations('pages.index.sections.games')
-  const isMobile = useIsMobile()
 
   function handleItemClick(gallery: Gallery) {
     setSelectedGallery(gallery)
@@ -142,7 +141,7 @@ function Games({id}: {id: string}) {
           </SheetTrigger>
           <SheetPortal>
             <SheetOverlay />
-            <SheetContent side={isMobile ? 'bottom' : 'left'}>
+            <SheetContent side='left'>
               <SheetClose size='sm' />
               <SheetHeader>
                 <SheetTitle>{t('sheet.title')}</SheetTitle>
