@@ -1,29 +1,28 @@
 @theme {
-  /* Custom bezier curves */
-  --ease-opening: cubic-bezier(0.25, 0.8, 0.5, 1);
-  --ease-closing: cubic-bezier(0.4, 0, 1, 1);
+  /* Custom bezier curve */
+  --ease-tcl: cubic-bezier(0.32, 0.72, 0, 1);
 
   /* Overlays (Dialog & Sheet) */
-  --animate-overlay-open: overlay-open 500ms var(--ease-opening);
-  --animate-overlay-closed: overlay-closed 300ms var(--ease-closing);
+  --animate-overlay-open: overlay-open 750ms var(--ease-tcl);
+  --animate-overlay-closed: overlay-closed 375ms var(--ease-tcl);
 
   /* SheetContent */
-  --animate-sheet-top-open: sheet-top-open 500ms var(--ease-opening);
-  --animate-sheet-right-open: sheet-right-open 500ms var(--ease-opening);
-  --animate-sheet-bottom-open: sheet-bottom-open 500ms var(--ease-opening);
-  --animate-sheet-left-open: sheet-left-open 500ms var(--ease-opening);
-  --animate-sheet-top-closed: sheet-top-closed 300ms var(--ease-closing);
-  --animate-sheet-right-closed: sheet-right-closed 300ms var(--ease-closing);
-  --animate-sheet-bottom-closed: sheet-bottom-closed 300ms var(--ease-closing);
-  --animate-sheet-left-closed: sheet-left-closed 300ms var(--ease-closing);
+  --animate-sheet-top-open: sheet-top-open 750ms var(--ease-tcl);
+  --animate-sheet-right-open: sheet-right-open 750ms var(--ease-tcl);
+  --animate-sheet-bottom-open: sheet-bottom-open 750ms var(--ease-tcl);
+  --animate-sheet-left-open: sheet-left-open 750ms var(--ease-tcl);
+  --animate-sheet-top-closed: sheet-top-closed 375ms var(--ease-tcl);
+  --animate-sheet-right-closed: sheet-right-closed 375ms var(--ease-tcl);
+  --animate-sheet-bottom-closed: sheet-bottom-closed 375ms var(--ease-tcl);
+  --animate-sheet-left-closed: sheet-left-closed 375ms var(--ease-tcl);
 
   /* DialogContent */
-  --animate-dialog-open: dialog-open 500ms var(--ease-opening);
-  --animate-dialog-closed: dialog-closed 300ms var(--ease-closing);
+  --animate-dialog-open: dialog-open 750ms var(--ease-tcl);
+  --animate-dialog-closed: dialog-closed 375ms var(--ease-tcl);
 
   /* CollapsibleContent */
-  --animate-collapsible-open: collapsible-open 500ms var(--ease-opening);
-  --animate-collapsible-closed: collapsible-closed 300ms var(--ease-closing);
+  --animate-collapsible-open: collapsible-open 750ms var(--ease-tcl);
+  --animate-collapsible-closed: collapsible-closed 375ms var(--ease-tcl);
 
   /* Misc */
   --animate-shimmer: shimmer 1.25s infinite;

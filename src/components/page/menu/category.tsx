@@ -29,8 +29,10 @@ function Category({category}: {category: CategoryWithProducts}) {
         {category.products.map((product, i, a) => (
           <Fragment key={product.id}>
             <div className='px-6 py-4 grid grid-cols-[1fr_auto] gap-2'>
-              <Typography>{product.name}</Typography>
-              <Typography>{formatCurrency(product.price)}</Typography>
+              <Typography variant='small'>{product.name}</Typography>
+              <Typography variant='small'>
+                {formatCurrency(product.price)}
+              </Typography>
               {product.description !== null && (
                 <div className='flex flex-wrap gap-2'>
                   {product.description.map((description) => (

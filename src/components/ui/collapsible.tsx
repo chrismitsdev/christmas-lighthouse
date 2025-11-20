@@ -54,7 +54,7 @@ function CollapsibleContent({
   return (
     <Content
       className={cn(
-        'overflow-hidden data-open:animate-collapsible-open data-closed:animate-collapsible-closed',
+        'overflow-hidden data-open:animate-collapsible-open data-closed:animate-collapsible-closed will-change-[height]',
         className
       )}
       {...props}

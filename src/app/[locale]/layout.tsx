@@ -64,7 +64,7 @@ export default async function LocaleLayout({
             width: '100vw',
             height: '100vh'
           }}
-          snowflakeCount={40}
+          snowflakeCount={30}
         />
       </body>
     </html>
