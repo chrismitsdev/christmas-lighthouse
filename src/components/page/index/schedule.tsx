@@ -1,15 +1,15 @@
-import {type Messages, useTranslations, useFormatter} from 'next-intl'
-import {SunIcon, MoonIcon} from 'lucide-react'
-import {cn, compareDate} from '@/src/lib/utils'
+import {MoonIcon, SunIcon} from 'lucide-react'
+import {type Messages, useFormatter, useTranslations} from 'next-intl'
 import {Container} from '@/src/components/shared/container'
 import {Section} from '@/src/components/shared/section'
 import {SectionHeader} from '@/src/components/shared/section-header'
-import {Typography} from '@/src/components/ui/typography'
 import {
   Collapsible,
-  CollapsibleTrigger,
-  CollapsibleContent
+  CollapsibleContent,
+  CollapsibleTrigger
 } from '@/src/components/ui/collapsible'
+import {Typography} from '@/src/components/ui/typography'
+import {cn, compareDate} from '@/src/lib/utils'
 
 type Event = {
   key: keyof Messages['pages']['index']['sections']['schedule']['events']
@@ -52,53 +52,49 @@ function Schedule({id}: {id: string}) {
         />
         <div className='space-y-4'>
           {events
-            .filter(function (event) {
-              return compareDate(event.timestamp)
-            })
-            .map(function (event) {
-              return (
-                <Collapsible key={event.key}>
-                  <CollapsibleTrigger className='not-sm:px-4'>
-                    <Typography
-                      variant='large'
-                      className='leading-6'
-                    >
-                      {format.dateTime(new Date(event.timestamp), {
-                        day: 'numeric',
-                        month: 'long',
-                        year: 'numeric'
-                      })}
-                    </Typography>
-                  </CollapsibleTrigger>
-                  <CollapsibleContent>
-                    <div className='flex'>
-                      <ScheduleArticle className='from-brand-gold-12/50'>
-                        <SunIcon className='absolute top-4 right-4 text-brand-gold-12 sm:top-6 sm:right-6 sm:size-14' />
-                        <div className='relative space-y-2'>
-                          <Typography className='font-bold text-brand-gold-4'>
-                            {t('labels.morning')}
-                          </Typography>
-                          <Typography className='text-brand-gold-4'>
-                            {t(`events.${event.key}.morning`)}
-                          </Typography>
-                        </div>
-                      </ScheduleArticle>
-                      <ScheduleArticle className='from-brand-blue-12/50'>
-                        <MoonIcon className='absolute top-4 right-4 text-brand-blue-12 sm:top-6 sm:right-6 sm:size-14' />
-                        <div className='relative space-y-2'>
-                          <Typography className='font-bold text-brand-blue-4'>
-                            {t('labels.afternoon')}
-                          </Typography>
-                          <Typography className='text-brand-blue-4'>
-                            {t(`events.${event.key}.afternoon`)}
-                          </Typography>
-                        </div>
-                      </ScheduleArticle>
-                    </div>
-                  </CollapsibleContent>
-                </Collapsible>
-              )
-            })}
+            .filter((event) => compareDate(event.timestamp))
+            .map((event) => (
+              <Collapsible key={event.key}>
+                <CollapsibleTrigger className='not-sm:px-4'>
+                  <Typography
+                    variant='large'
+                    className='leading-6'
+                  >
+                    {format.dateTime(new Date(event.timestamp), {
+                      day: 'numeric',
+                      month: 'long',
+                      year: 'numeric'
+                    })}
+                  </Typography>
+                </CollapsibleTrigger>
+                <CollapsibleContent>
+                  <div className='flex'>
+                    <ScheduleArticle className='from-brand-gold-12/50'>
+                      <SunIcon className='absolute top-4 right-4 text-brand-gold-12 sm:top-6 sm:right-6 sm:size-14' />
+                      <div className='relative space-y-2'>
+                        <Typography className='font-bold text-brand-gold-4'>
+                          {t('labels.morning')}
+                        </Typography>
+                        <Typography className='text-brand-gold-4'>
+                          {t(`events.${event.key}.morning`)}
+                        </Typography>
+                      </div>
+                    </ScheduleArticle>
+                    <ScheduleArticle className='from-brand-blue-12/50'>
+                      <MoonIcon className='absolute top-4 right-4 text-brand-blue-12 sm:top-6 sm:right-6 sm:size-14' />
+                      <div className='relative space-y-2'>
+                        <Typography className='font-bold text-brand-blue-4'>
+                          {t('labels.afternoon')}
+                        </Typography>
+                        <Typography className='text-brand-blue-4'>
+                          {t(`events.${event.key}.afternoon`)}
+                        </Typography>
+                      </div>
+                    </ScheduleArticle>
+                  </div>
+                </CollapsibleContent>
+              </Collapsible>
+            ))}
         </div>
       </Container>
     </Section>

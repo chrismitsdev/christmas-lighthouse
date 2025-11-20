@@ -1,4 +1,8 @@
-import {NextRequest, NextResponse, type MiddlewareConfig} from 'next/server'
+import {
+  type MiddlewareConfig,
+  type NextRequest,
+  NextResponse
+} from 'next/server'
 import createMiddleware from 'next-intl/middleware'
 import {routing} from '@/src/i18n/routing'
 

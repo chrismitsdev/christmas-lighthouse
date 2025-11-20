@@ -1,8 +1,8 @@
-import {db} from '@/src/db/drizzle'
-import {migrate} from 'drizzle-orm/neon-http/migrator'
 import chalk from 'chalk'
+import {migrate} from 'drizzle-orm/neon-http/migrator'
+import {db} from '@/src/db/drizzle'
 
-const main = async function () {
+const main = async () => {
   try {
     await migrate(db, {
       migrationsFolder: './src/db/migrations'

@@ -1,18 +1,18 @@
 'use client'
 
-import {use} from 'react'
 import {useTranslations} from 'next-intl'
-import {Link, usePathname} from '@/src/i18n/navigation'
-import {type CategoryWithProducts} from '@/src/db/menu'
-import {cn} from '@/src/lib/utils'
+import {use} from 'react'
 import {Container} from '@/src/components/shared/container'
-import {Skeleton} from '@/src/components/ui/skeleton'
 import {
   Scrollarea,
-  ScrollareaViewport,
-  ScrollareaScrollbar
+  ScrollareaScrollbar,
+  ScrollareaViewport
 } from '@/src/components/ui/scroll-area'
+import {Skeleton} from '@/src/components/ui/skeleton'
 import {Typography} from '@/src/components/ui/typography'
+import type {CategoryWithProducts} from '@/src/db/menu'
+import {Link, usePathname} from '@/src/i18n/navigation'
+import {cn} from '@/src/lib/utils'
 
 const TOTAL_CATEGORIES = 12
 
@@ -41,7 +41,7 @@ function MenuNavigation({categoriesPromise}: Props) {
       <Scrollarea>
         <ScrollareaViewport>
           <div className='px-1 flex items-center justify-center'>
-            {menuLinks.map(function ({title, link}) {
+            {menuLinks.map(({title, link}) => {
               const href = !link ? '/menu' : `/menu/${link}`
 
               return (
@@ -77,14 +77,14 @@ function MenuNavigationSkeleton() {
       className='sticky top-0 z-50 flex justify-center bg-app-surface overflow-x-hidden inset-shadow-nav-divider'
     >
       <Container className='px-1 flex overflow-hidden'>
-        {Array.from({length: TOTAL_CATEGORIES + 1}).map(function (_, i) {
-          return (
+        {Array.from(Array(TOTAL_CATEGORIES))
+          .keys()
+          .map((iterator) => (
             <Skeleton
-              key={i + 1}
+              key={iterator + 1}
               className='my-4 basis-20 mx-4 h-5 shrink-0 rounded-sm sm:basis-auto sm:flex-1 sm:mx-3'
             />
-          )
-        })}
+          ))}
       </Container>
     </nav>
   )

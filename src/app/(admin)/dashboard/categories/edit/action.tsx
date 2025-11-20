@@ -2,19 +2,19 @@
 
 import {revalidatePath} from 'next/cache'
 import {
+  flatten,
   type InferOutput,
+  literal,
+  nonEmpty,
   object,
   pipe,
-  union,
+  safeParse,
   string,
-  nonEmpty,
   trim,
-  literal,
-  flatten,
-  safeParse
+  union
 } from 'valibot'
-import {type Category} from '@/src/db/drizzle/schema'
-import {updateCategory, deleteCategoryWithProducts} from '@/src/db/menu'
+import type {Category} from '@/src/db/drizzle/schema'
+import {deleteCategoryWithProducts, updateCategory} from '@/src/db/menu'
 import {splitAndTrim} from '@/src/lib/utils'
 
 const UpdateCategorySchema = object({

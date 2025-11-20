@@ -1,21 +1,17 @@
 import {Fragment} from 'react'
-import {type CategoryWithProducts} from '@/src/db/menu'
-import {formatCurrency} from '@/src/lib/utils'
+import {Badge} from '@/src/components/ui/badge'
 import {
   Card,
-  CardHeader,
   CardContent,
-  CardFooter
+  CardFooter,
+  CardHeader
 } from '@/src/components/ui/card'
-import {Typography} from '@/src/components/ui/typography'
-import {Badge} from '@/src/components/ui/badge'
 import {Separator} from '@/src/components/ui/separator'
+import {Typography} from '@/src/components/ui/typography'
+import type {CategoryWithProducts} from '@/src/db/menu'
+import {formatCurrency} from '@/src/lib/utils'
 
-type Props = {
-  category: CategoryWithProducts
-}
-
-function Category({category}: Props) {
+function Category({category}: {category: CategoryWithProducts}) {
   return (
     <Card className='overflow-hidden'>
       <CardHeader className='p-6 bg-brand-gray-12'>
@@ -30,44 +26,38 @@ function Category({category}: Props) {
         </span>
       </CardHeader>
       <CardContent className='p-0'>
-        {category.products.map(function (product, i, a) {
-          return (
-            <Fragment key={product.id}>
-              <div className='px-6 py-4 grid grid-cols-[1fr_auto] gap-2'>
-                <Typography>{product.name}</Typography>
-                <Typography>{formatCurrency(product.price)}</Typography>
-                {product.description !== null && (
-                  <div className='flex flex-wrap gap-2'>
-                    {product.description.map(function (description) {
-                      return (
-                        <Badge
-                          key={description}
-                          variant='secondary'
-                        >
-                          {description}
-                        </Badge>
-                      )
-                    })}
-                  </div>
-                )}
-              </div>
+        {category.products.map((product, i, a) => (
+          <Fragment key={product.id}>
+            <div className='px-6 py-4 grid grid-cols-[1fr_auto] gap-2'>
+              <Typography>{product.name}</Typography>
+              <Typography>{formatCurrency(product.price)}</Typography>
+              {product.description !== null && (
+                <div className='flex flex-wrap gap-2'>
+                  {product.description.map((description) => (
+                    <Badge
+                      key={description}
+                      variant='secondary'
+                    >
+                      {description}
+                    </Badge>
+                  ))}
+                </div>
+              )}
+            </div>
 
-              {i !== a.length - 1 && <Separator className='w-auto mx-6' />}
-            </Fragment>
-          )
-        })}
+            {i !== a.length - 1 && <Separator className='w-auto mx-6' />}
+          </Fragment>
+        ))}
       </CardContent>
 
       {category.notes !== null && (
         <CardFooter className='p-6 bg-brand-gray-12'>
           <ul className='pl-4 space-y-2 list-disc'>
-            {category.notes.map(function (note) {
-              return (
-                <li key={note}>
-                  <Typography variant='small'>{note}</Typography>
-                </li>
-              )
-            })}
+            {category.notes.map((note) => (
+              <li key={note}>
+                <Typography variant='small'>{note}</Typography>
+              </li>
+            ))}
           </ul>
         </CardFooter>
       )}

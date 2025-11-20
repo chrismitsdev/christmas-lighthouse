@@ -1,24 +1,24 @@
-import {useTranslations} from 'next-intl'
 import {CalendarDaysIcon, ClockIcon, MapPinIcon} from 'lucide-react'
+import {useTranslations} from 'next-intl'
+import {images} from '@/public/sections/about/images'
 import {Container} from '@/src/components/shared/container'
 import {Section} from '@/src/components/shared/section'
 import {SectionHeader} from '@/src/components/shared/section-header'
-import {Typography} from '@/src/components/ui/typography'
-import {CustomImage} from '@/src/components/ui/custom-image'
 import {
   Card,
-  CardImage,
-  CardHeader,
-  CardTitle,
+  CardContent,
   CardDescription,
-  CardContent
+  CardHeader,
+  CardImage,
+  CardTitle
 } from '@/src/components/ui/card'
+import {CustomImage} from '@/src/components/ui/custom-image'
 import {
   Scrollarea,
-  ScrollareaViewport,
-  ScrollareaScrollbar
+  ScrollareaScrollbar,
+  ScrollareaViewport
 } from '@/src/components/ui/scroll-area'
-import {images} from '@/public/sections/about/images'
+import {Typography} from '@/src/components/ui/typography'
 
 function About({id}: {id: string}) {
   const t = useTranslations('pages.index.sections.about')
@@ -121,21 +121,19 @@ function About({id}: {id: string}) {
           >
             <ScrollareaViewport>
               <div className='p-1 pb-4 w-max flex gap-4'>
-                {images.map(function (image, i) {
-                  return (
-                    <div
-                      key={image.src}
-                      className='overflow-hidden rounded-sm'
-                    >
-                      <CustomImage
-                        className='aspect-3/4 w-fit h-96 object-cover'
-                        src={image}
-                        alt={`Scrollarea image ${i + 1}`}
-                        draggable={false}
-                      />
-                    </div>
-                  )
-                })}
+                {images.map((image, i) => (
+                  <div
+                    key={image.src}
+                    className='overflow-hidden rounded-sm'
+                  >
+                    <CustomImage
+                      className='aspect-3/4 w-fit h-96 object-cover'
+                      src={image}
+                      alt={`Scrollarea image ${i + 1}`}
+                      draggable={false}
+                    />
+                  </div>
+                ))}
               </div>
             </ScrollareaViewport>
 

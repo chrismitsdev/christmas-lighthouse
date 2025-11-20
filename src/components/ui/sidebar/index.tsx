@@ -1,23 +1,23 @@
 'use client'
 
-import {useState, useMemo, useCallback, useEffect} from 'react'
 import {Slot} from '@radix-ui/react-slot'
+import {cva, type VariantProps} from 'class-variance-authority'
 import {PanelLeft} from 'lucide-react'
-import {type VariantProps, cva} from 'class-variance-authority'
-import {cn} from '@/src/lib/utils'
-import {SidebarContext, useSidebar} from './context'
-import {useIsMobile} from '@/src/hooks/use-is-mobile'
+import {useCallback, useEffect, useMemo, useState} from 'react'
+import {IconButton} from '@/src/components/ui/icon-button'
+import {Input} from '@/src/components/ui/input'
+import {Separator} from '@/src/components/ui/separator'
+import {Sheet, SheetContent, SheetTitle} from '@/src/components/ui/sheet'
+import {Skeleton} from '@/src/components/ui/skeleton'
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger
 } from '@/src/components/ui/tooltip'
-import {IconButton} from '@/src/components/ui/icon-button'
-import {Input} from '@/src/components/ui/input'
-import {Separator} from '@/src/components/ui/separator'
-import {Sheet, SheetContent, SheetTitle} from '@/src/components/ui/sheet'
-import {Skeleton} from '@/src/components/ui/skeleton'
+import {useIsMobile} from '@/src/hooks/use-is-mobile'
+import {cn} from '@/src/lib/utils'
+import {SidebarContext, useSidebar} from './context'
 
 const SIDEBAR_COOKIE_NAME = 'sidebar:state'
 const SIDEBAR_COOKIE_MAX_AGE = 60 * 60 * 24 * 7
@@ -50,7 +50,7 @@ function SidebarProvider({
   const open = openProp ?? _open
 
   const setOpen = useCallback(
-    function (value: boolean | ((value: boolean) => boolean)) {
+    async (value: boolean | ((value: boolean) => boolean)) => {
       const openState = typeof value === 'function' ? value(open) : value
 
       if (setOpenProp) {
@@ -59,58 +59,51 @@ function SidebarProvider({
         _setOpen(openState)
       }
 
-      // This sets the cookie to keep the sidebar state.
-      document.cookie = `${SIDEBAR_COOKIE_NAME}=${openState}; path=/; max-age=${SIDEBAR_COOKIE_MAX_AGE}`
+      await cookieStore.set({
+        name: SIDEBAR_COOKIE_NAME,
+        value: String(openState),
+        path: '/',
+        expires: Date.now() + SIDEBAR_COOKIE_MAX_AGE
+      })
     },
     [setOpenProp, open]
   )
 
   // Helper to toggle the sidebar.
   const toggleSidebar = useCallback(
-    function () {
-      return isMobile
-        ? setOpenMobile((open) => !open)
-        : setOpen((open) => !open)
-    },
-    [isMobile, setOpen, setOpenMobile]
+    () =>
+      isMobile ? setOpenMobile((open) => !open) : setOpen((open) => !open),
+    [isMobile, setOpen]
   )
 
   // We add a state so that we can do data-state="expanded" or "collapsed".
   // This makes it easier to style the sidebar with Tailwind classes.
   const state = open ? 'expanded' : 'collapsed'
 
-  const contextValue = useMemo<SidebarContext>(
-    function () {
-      return {
-        state,
-        open,
-        setOpen,
-        isMobile,
-        openMobile,
-        setOpenMobile,
-        toggleSidebar
-      }
-    },
-    [state, open, setOpen, isMobile, openMobile, setOpenMobile, toggleSidebar]
-  )
+  const contextValue = useMemo<SidebarContext>(() => {
+    return {
+      state,
+      open,
+      setOpen,
+      isMobile,
+      openMobile,
+      setOpenMobile,
+      toggleSidebar
+    }
+  }, [state, open, setOpen, isMobile, openMobile, toggleSidebar])
 
   // Adds a keyboard shortcut to toggle the sidebar.
-  useEffect(
-    function () {
-      function handleKeyDown(e: KeyboardEvent) {
-        if (e.key === SIDEBAR_KEYBOARD_SHORTCUT && (e.metaKey || e.ctrlKey)) {
-          e.preventDefault()
-          toggleSidebar()
-        }
+  useEffect(() => {
+    function handleKeyDown(e: KeyboardEvent) {
+      if (e.key === SIDEBAR_KEYBOARD_SHORTCUT && (e.metaKey || e.ctrlKey)) {
+        e.preventDefault()
+        toggleSidebar()
       }
+    }
 
-      window.addEventListener('keydown', handleKeyDown)
-      return function () {
-        return window.removeEventListener('keydown', handleKeyDown)
-      }
-    },
-    [toggleSidebar]
-  )
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [toggleSidebar])
 
   return (
     <SidebarContext value={contextValue}>

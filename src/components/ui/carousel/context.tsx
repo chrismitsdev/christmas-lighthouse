@@ -1,6 +1,6 @@
 import Autoplay from 'embla-carousel-autoplay'
-import {createContext, use, useState, useCallback, useMemo} from 'react'
 import useEmblaCarousel, {type UseEmblaCarouselType} from 'embla-carousel-react'
+import {createContext, use, useCallback, useMemo, useState} from 'react'
 
 type EmblaApiType = ReturnType<typeof useEmblaCarousel>[1]
 
@@ -19,58 +19,49 @@ function CarouselProvider({children}: React.PropsWithChildren) {
   const [emblaRef, emblaApi] = useEmblaCarousel({loop: true}, [Autoplay({})])
   const [slideIndex, setSlideIndex] = useState<number>(0)
 
-  const onPrevButtonClick = useCallback(
-    function () {
-      if (!emblaApi) return
+  const onPrevButtonClick = useCallback(() => {
+    if (!emblaApi) return
 
-      if (emblaApi.plugins()?.autoplay) {
-        emblaApi.plugins().autoplay.stop()
-      }
+    if (emblaApi.plugins()?.autoplay) {
+      emblaApi.plugins().autoplay.stop()
+    }
 
-      emblaApi.scrollPrev()
-    },
-    [emblaApi]
-  )
+    emblaApi.scrollPrev()
+  }, [emblaApi])
 
-  const onNextButtonClick = useCallback(
-    function () {
-      if (!emblaApi) return
+  const onNextButtonClick = useCallback(() => {
+    if (!emblaApi) return
 
-      if (emblaApi.plugins()?.autoplay) {
-        emblaApi.plugins().autoplay.stop()
-      }
+    if (emblaApi.plugins()?.autoplay) {
+      emblaApi.plugins().autoplay.stop()
+    }
 
-      emblaApi.scrollNext()
-    },
-    [emblaApi]
-  )
+    emblaApi.scrollNext()
+  }, [emblaApi])
 
-  const onSlideSelect = useCallback(function (emblaApi: EmblaApiType) {
+  const onSlideSelect = useCallback((emblaApi: EmblaApiType) => {
     if (!emblaApi) return
 
     setSlideIndex(emblaApi.selectedScrollSnap())
   }, [])
 
-  const contextValue = useMemo(
-    function (): CarouselContextType {
-      return {
-        emblaRef,
-        emblaApi,
-        slideIndex,
-        onPrevButtonClick,
-        onNextButtonClick,
-        onSlideSelect
-      }
-    },
-    [
+  const contextValue = useMemo((): CarouselContextType => {
+    return {
       emblaRef,
       emblaApi,
       slideIndex,
       onPrevButtonClick,
       onNextButtonClick,
       onSlideSelect
-    ]
-  )
+    }
+  }, [
+    emblaRef,
+    emblaApi,
+    slideIndex,
+    onPrevButtonClick,
+    onNextButtonClick,
+    onSlideSelect
+  ])
 
   return <CarouselContext value={contextValue}>{children}</CarouselContext>
 }

@@ -1,14 +1,14 @@
 'use client'
 
-import {useState} from 'react'
-import {cn} from '@/src/lib/utils'
 import {type Messages, useTranslations} from 'next-intl'
+import {useState} from 'react'
 import {
   Scrollarea,
-  ScrollareaViewport,
-  ScrollareaScrollbar
+  ScrollareaScrollbar,
+  ScrollareaViewport
 } from '@/src/components/ui/scroll-area'
 import {Typography} from '@/src/components/ui/typography'
+import {cn} from '@/src/lib/utils'
 
 type IndexLink = keyof Messages['pages']['index']['navigation']['links']
 
@@ -32,23 +32,21 @@ function IndexNavigation() {
       <Scrollarea>
         <ScrollareaViewport>
           <div className='flex items-center justify-center'>
-            {indexLinks.map(function (link) {
-              return (
-                <Typography
-                  key={link}
-                  className={cn(
-                    'p-4 relative shrink-0 select-none text-nowrap opacity-30 duration-200 after:absolute after:inset-x-0 after:-bottom-1.5 after:h-1.5 after:bg-brand-gray-11 after:rounded-t-lg after:duration-200 sm:px-3',
-                    activeSection === link && 'opacity-100 after:bottom-0'
-                  )}
-                  variant='small'
-                  draggable={false}
-                  onClick={() => setActiveSection(link)}
-                  asChild
-                >
-                  <a href={`#${link}`}>{t(link)}</a>
-                </Typography>
-              )
-            })}
+            {indexLinks.map((link) => (
+              <Typography
+                key={link}
+                className={cn(
+                  'p-4 relative shrink-0 select-none text-nowrap opacity-30 duration-200 after:absolute after:inset-x-0 after:-bottom-1.5 after:h-1.5 after:bg-brand-gray-11 after:rounded-t-lg after:duration-200 sm:px-3',
+                  activeSection === link && 'opacity-100 after:bottom-0'
+                )}
+                variant='small'
+                draggable={false}
+                onClick={() => setActiveSection(link)}
+                asChild
+              >
+                <a href={`#${link}`}>{t(link)}</a>
+              </Typography>
+            ))}
           </div>
         </ScrollareaViewport>
         <ScrollareaScrollbar

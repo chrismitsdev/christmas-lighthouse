@@ -3,7 +3,7 @@ import * as schema from '@/src/db/drizzle/schema'
 
 export const db = drizzle(
   process.env.NODE_ENV === 'production'
-    ? process.env.DATABASE_URL!
-    : process.env.DATABASE_URL_TEST_BRANCH!,
+    ? (process.env.DATABASE_URL as string)
+    : (process.env.DATABASE_URL_TEST_BRANCH as string),
   {schema}
 )

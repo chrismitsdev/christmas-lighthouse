@@ -1,7 +1,8 @@
 'use client'
 
+import {EyeIcon, EyeOffIcon, type LucideIcon} from 'lucide-react'
 import {useState} from 'react'
-import {type LucideIcon, EyeIcon, EyeOffIcon} from 'lucide-react'
+import {IconButton} from '@/src/components/ui/icon-button'
 import {cn} from '@/src/lib/utils'
 
 interface InputProps extends React.ComponentPropsWithRef<'input'> {
@@ -26,7 +27,7 @@ function Input({
   return (
     <div
       className={cn(!noErrorMessages && 'min-h-[74px]')}
-      {...(disabled ? {['data-disabled']: disabled} : {})}
+      {...(disabled ? {'data-disabled': disabled} : {})}
     >
       <div className='relative group'>
         <input
@@ -52,15 +53,16 @@ function Input({
           </span>
         )}
         {isPasswordType && (
-          <span
-            className='p-1 absolute bg-brand-gray-11/25 right-3 top-1/2 -translate-y-1/2 rounded cursor-pointer hover:bg-brand-gray-11/50 sm:right-4'
-            title={passVisible ? 'Hide password' : 'Show password'}
+          <IconButton
+            type='button'
+            className='absolute right-3 top-1/2 -translate-y-1/2'
+            size='sm'
             aria-label={passVisible ? 'Hide password' : 'Show password'}
             aria-pressed={passVisible}
             onClick={() => setPassVisible((v) => !v)}
           >
             {passVisible ? <EyeOffIcon size={16} /> : <EyeIcon size={16} />}
-          </span>
+          </IconButton>
         )}
       </div>
       {error && (

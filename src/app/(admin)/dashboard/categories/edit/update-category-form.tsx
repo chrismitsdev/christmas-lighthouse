@@ -1,16 +1,16 @@
 'use client'
 
-import * as React from 'react'
 import {EditIcon} from 'lucide-react'
-import {type Category} from '@/src/db/drizzle/schema'
-import {Label} from '@/src/components/ui/label'
-import {Input} from '@/src/components/ui/input'
-import {Button} from '@/src/components/ui/button'
+import * as React from 'react'
 import {
   type UpdateCategoryFormData,
   type UpdateCategoryFormErrors,
   updateCategoryAction
 } from '@/src/app/(admin)/dashboard/categories/edit/action'
+import {Button} from '@/src/components/ui/button'
+import {Input} from '@/src/components/ui/input'
+import {Label} from '@/src/components/ui/label'
+import type {Category} from '@/src/db/drizzle/schema'
 
 const initialState = {
   data: {} as UpdateCategoryFormData,

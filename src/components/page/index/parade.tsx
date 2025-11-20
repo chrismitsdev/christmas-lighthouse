@@ -1,5 +1,5 @@
-import {useTranslations} from 'next-intl'
 import {ExternalLinkIcon} from 'lucide-react'
+import {useTranslations} from 'next-intl'
 import {Container} from '@/src/components/shared/container'
 import {Section} from '@/src/components/shared/section'
 import {SectionHeader} from '@/src/components/shared/section-header'
@@ -33,6 +33,7 @@ function Parade({id}: {id: string}) {
                     className='underline inline-flex space-x-1 font-bold'
                     href='https://sos-villages.gr/'
                     target='_blank'
+                    rel='noopener'
                   >
                     <span>{chunks}</span>
                     <ExternalLinkIcon className='w-4 h-6' />
@@ -41,6 +42,7 @@ function Parade({id}: {id: string}) {
               })}
             </Typography>
           </div>
+          {/* biome-ignore lint: No talking on video */}
           <video
             className='mx-auto w-full rounded-lg'
             poster='/sections/parade/images/parade-poster-video.webp'

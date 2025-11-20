@@ -1,20 +1,20 @@
 'use client'
 
-import * as React from 'react'
 import {
-  UserIcon,
-  MailIcon,
   KeySquareIcon,
-  SendHorizontalIcon
+  MailIcon,
+  SendHorizontalIcon,
+  UserIcon
 } from 'lucide-react'
-import {type User} from '@/src/db/drizzle/schema'
+import * as React from 'react'
 import {
   type UpdateAccountFormData,
   type UpdateAccountFormErrors,
   updateAccountAction
 } from '@/src/app/(admin)/dashboard/account/actions'
-import {Input} from '@/src/components/ui/input'
 import {Button} from '@/src/components/ui/button'
+import {Input} from '@/src/components/ui/input'
+import type {User} from '@/src/db/drizzle/schema'
 
 const initialState = {
   data: {} as UpdateAccountFormData,

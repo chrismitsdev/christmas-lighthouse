@@ -1,43 +1,43 @@
 'use client'
 
-import {useState} from 'react'
 import {PlusIcon} from 'lucide-react'
-import {type StaticImageData} from 'next/image'
+import type {StaticImageData} from 'next/image'
 import {type Messages, useTranslations} from 'next-intl'
+import {useState} from 'react'
+import * as gamesGalleries from '@/public/sections/games/images'
 import {Container} from '@/src/components/shared/container'
 import {Section} from '@/src/components/shared/section'
 import {SectionHeader} from '@/src/components/shared/section-header'
-import {CustomImage} from '@/src/components/ui/custom-image'
-import {Typography} from '@/src/components/ui/typography'
 import {Button} from '@/src/components/ui/button'
+import {
+  Carousel,
+  CarouselNextButton,
+  CarouselPrevButton,
+  CarouselSlide,
+  CarouselSlidesContainer,
+  CarouselViewport
+} from '@/src/components/ui/carousel'
+import {CustomImage} from '@/src/components/ui/custom-image'
 import {IconButton} from '@/src/components/ui/icon-button'
+import {
+  Scrollarea,
+  ScrollareaScrollbar,
+  ScrollareaViewport
+} from '@/src/components/ui/scroll-area'
 import {Separator} from '@/src/components/ui/separator'
 import {
   Sheet,
-  SheetTrigger,
-  SheetPortal,
-  SheetOverlay,
-  SheetContent,
-  SheetHeader,
-  SheetTitle,
-  SheetDescription,
   SheetBody,
-  SheetClose
+  SheetClose,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetOverlay,
+  SheetPortal,
+  SheetTitle,
+  SheetTrigger
 } from '@/src/components/ui/sheet'
-import {
-  Scrollarea,
-  ScrollareaViewport,
-  ScrollareaScrollbar
-} from '@/src/components/ui/scroll-area'
-import {
-  Carousel,
-  CarouselViewport,
-  CarouselSlidesContainer,
-  CarouselSlide,
-  CarouselPrevButton,
-  CarouselNextButton
-} from '@/src/components/ui/carousel'
-import * as gamesGalleries from '@/public/sections/games/images'
+import {Typography} from '@/src/components/ui/typography'
 
 type Gallery = {
   key: keyof Messages['pages']['index']['sections']['games']['galleries']
@@ -75,46 +75,39 @@ function Games({id}: {id: string}) {
     setSheetOpen(false)
   }
 
-  const renderedSheetItems = galleries.map(function (gallery) {
-    return (
-      <li
-        key={gallery.key}
-        role='listitem'
+  const renderedSheetItems = galleries.map((gallery) => (
+    <li key={gallery.key}>
+      <Button
+        className='w-full justify-start'
+        variant={selectedGallery.key === gallery.key ? 'default' : 'ghost'}
+        size='lg'
+        onClick={() => handleItemClick(gallery)}
       >
-        <Button
-          className='w-full justify-start'
-          variant={selectedGallery.key === gallery.key ? 'default' : 'ghost'}
-          size='lg'
-          onClick={() => handleItemClick(gallery)}
-        >
-          <span className='size-8'>
-            <CustomImage
-              className='size-full object-cover rounded-xs'
-              src={gallery.images[0]}
-              alt={`${gallery.key} gallery image thumbnail`}
-              sizes='32px'
-            />
-          </span>
-          <Typography>{t(`galleries.${gallery.key}`)}</Typography>
-        </Button>
-      </li>
-    )
-  })
+        <span className='size-8'>
+          <CustomImage
+            className='size-full object-cover rounded-xs'
+            src={gallery.images[0]}
+            alt={`${gallery.key} gallery image thumbnail`}
+            sizes='32px'
+          />
+        </span>
+        <Typography>{t(`galleries.${gallery.key}`)}</Typography>
+      </Button>
+    </li>
+  ))
 
-  const renderedSlides = selectedGallery.images.map(function (image, i) {
-    return (
-      <CarouselSlide
-        key={i}
-        className='p-2 bg-app-surface border border-brand-gray-12 rounded-xl'
-      >
-        <CustomImage
-          className='w-full h-full object-cover rounded-sm not-sm:aspect-square'
-          src={image}
-          alt={`${selectedGallery.key} gallery image slide ${i + 1}`}
-        />
-      </CarouselSlide>
-    )
-  })
+  const renderedSlides = selectedGallery.images.map((image, i) => (
+    <CarouselSlide
+      key={image.src}
+      className='p-2 bg-app-surface border border-brand-gray-12 rounded-xl'
+    >
+      <CustomImage
+        className='w-full h-full object-cover rounded-sm not-sm:aspect-square'
+        src={image}
+        alt={`${selectedGallery.key} gallery image slide ${i + 1}`}
+      />
+    </CarouselSlide>
+  ))
 
   return (
     <Section id={id}>
@@ -163,12 +156,7 @@ function Games({id}: {id: string}) {
               >
                 <ScrollareaViewport>
                   <SheetBody className='pb-20'>
-                    <ul
-                      className='space-y-2'
-                      role='list'
-                    >
-                      {renderedSheetItems}
-                    </ul>
+                    <ul className='space-y-2'>{renderedSheetItems}</ul>
                   </SheetBody>
                 </ScrollareaViewport>
                 <ScrollareaScrollbar />

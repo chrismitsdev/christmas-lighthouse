@@ -16,32 +16,30 @@ export default async function Image({params}: PageProps<'/[locale]'>) {
   const {base64Src, font} = await getOpengraphData()
 
   return new ImageResponse(
-    (
-      <div
-        style={{
-          fontSize: 48,
-          backgroundColor: '#050713',
-          color: '#B2B7C7',
-          width: '100%',
-          height: '100%',
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          rowGap: 48
-        }}
-      >
-        <picture>
-          <img
-            src={base64Src}
-            alt='The Christmas Lighthouse Logo'
-            width={350}
-          />
-        </picture>
-        <span>{t('index-page')}</span>
-        <span>The Christmas Lighthouse</span>
-      </div>
-    ),
+    <div
+      style={{
+        fontSize: 48,
+        backgroundColor: '#050713',
+        color: '#B2B7C7',
+        width: '100%',
+        height: '100%',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        rowGap: 48
+      }}
+    >
+      <picture>
+        <img
+          src={base64Src}
+          alt='The Christmas Lighthouse Logo'
+          width={350}
+        />
+      </picture>
+      <span>{t('index-page')}</span>
+      <span>The Christmas Lighthouse</span>
+    </div>,
     {
       ...size,
       fonts: [{name: 'Manrope', data: font, style: 'normal'}]

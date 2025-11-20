@@ -1,7 +1,7 @@
 'use client'
 
-import {Root, Trigger, Content} from '@radix-ui/react-collapsible'
-import {ChevronUpIcon, ChevronDownIcon} from 'lucide-react'
+import {Content, Root, Trigger} from '@radix-ui/react-collapsible'
+import {ChevronDownIcon, ChevronUpIcon} from 'lucide-react'
 import {cn} from '@/src/lib/utils'
 
 function Collapsible({

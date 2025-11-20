@@ -1,13 +1,13 @@
-import {type InferSelectModel, sql, SQL} from 'drizzle-orm'
+import {type InferSelectModel, type SQL, sql} from 'drizzle-orm'
 import {
+  boolean,
+  integer,
   pgTable,
+  real,
   serial,
   text,
-  varchar,
-  integer,
-  boolean,
-  real,
-  timestamp
+  timestamp,
+  varchar
 } from 'drizzle-orm/pg-core'
 
 export const userTable = pgTable('user', {
@@ -30,7 +30,7 @@ export const sessionTable = pgTable('session', {
 
 export const categoryTable = pgTable('category', {
   id: text('id')
-    .generatedAlwaysAs(function (): SQL {
+    .generatedAlwaysAs((): SQL => {
       const lower = sql<string>`lower(${categoryTable.enName})`
       const replaced = sql<string>`replace(${lower}, ' ', '-')`
       return replaced

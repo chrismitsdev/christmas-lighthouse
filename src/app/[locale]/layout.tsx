@@ -4,10 +4,10 @@ import {Manrope} from 'next/font/google'
 import {notFound} from 'next/navigation'
 import {hasLocale, NextIntlClientProvider} from 'next-intl'
 import {setRequestLocale} from 'next-intl/server'
-import {routing} from '@/src/i18n/routing'
-import {Header} from '@/src/components/shared/header'
 import {Footer} from '@/src/components/shared/footer'
+import {Header} from '@/src/components/shared/header'
 import {Snowfall} from '@/src/components/shared/snow-fall'
+import {routing} from '@/src/i18n/routing'
 
 const font = Manrope({
   subsets: ['latin'],
@@ -72,9 +72,5 @@ export default async function LocaleLayout({
 }
 
 export function generateStaticParams() {
-  return routing.locales.map(function (locale) {
-    return {
-      locale
-    }
-  })
+  return routing.locales.map((locale) => ({locale}))
 }

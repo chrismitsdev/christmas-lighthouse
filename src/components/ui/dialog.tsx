@@ -1,19 +1,18 @@
 'use client'
 
-import * as React from 'react'
 import {
-  Root,
-  Trigger,
-  Portal,
-  Overlay,
+  Close,
   Content,
-  Title,
   Description,
-  Close
+  Overlay,
+  Portal,
+  Root,
+  Title,
+  Trigger
 } from '@radix-ui/react-dialog'
 import {XIcon} from 'lucide-react'
-import {cn} from '@/src/lib/utils'
 import {IconButton} from '@/src/components/ui/icon-button'
+import {cn} from '@/src/lib/utils'
 
 const Dialog = Root
 const DialogTrigger = Trigger

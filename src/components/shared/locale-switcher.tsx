@@ -1,20 +1,20 @@
 'use client'
 
 import {type Locale, useLocale, useTranslations} from 'next-intl'
-import {usePathname, useRouter} from '@/src/i18n/navigation'
+import {EnglandFlagIcon} from 'src/components/icons/flags/england-flag-icon'
+import {GreekFlagIcon} from '@/src/components/icons/flags/greek-flag-icon'
 import {
   Select,
-  SelectTrigger,
-  SelectPortal,
   SelectContent,
-  SelectViewport,
-  SelectValue,
   SelectItem,
-  SelectItemText
+  SelectItemText,
+  SelectPortal,
+  SelectTrigger,
+  SelectValue,
+  SelectViewport
 } from '@/src/components/ui/select'
-import {GreekFlagIcon} from '@/src/components/icons/flags/greek-flag-icon'
-import {EnglandFlagIcon} from 'src/components/icons/flags/england-flag-icon'
 import {Spinner} from '@/src/components/ui/spinner'
+import {usePathname, useRouter} from '@/src/i18n/navigation'
 
 const options = [
   {icon: EnglandFlagIcon, label: 'en'},
@@ -47,17 +47,15 @@ function LocaleSwitcher() {
       <SelectPortal>
         <SelectContent>
           <SelectViewport>
-            {options.map(function ({icon: Icon, label}) {
-              return (
-                <SelectItem
-                  key={label}
-                  value={label}
-                >
-                  <Icon />
-                  <SelectItemText>{t(label as Locale)}</SelectItemText>
-                </SelectItem>
-              )
-            })}
+            {options.map(({icon: Icon, label}) => (
+              <SelectItem
+                key={label}
+                value={label}
+              >
+                <Icon />
+                <SelectItemText>{t(label as Locale)}</SelectItemText>
+              </SelectItem>
+            ))}
           </SelectViewport>
         </SelectContent>
       </SelectPortal>

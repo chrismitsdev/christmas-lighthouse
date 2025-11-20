@@ -1,33 +1,31 @@
-import {cn} from '@/src/lib/utils'
 import {Section} from '@/src/components/shared/section'
 import {Skeleton} from '@/src/components/ui/skeleton'
+import {cn} from '@/src/lib/utils'
 
 const skeletonWidths = [
   'w-20',
   'w-24',
   'w-28',
   'w-56',
-  'w-28',
+  'w-30',
   'w-32',
   'w-44',
   'w-40',
   'w-52',
   'w-48',
-  'w-32',
+  'w-34',
   'w-36'
 ] as const
 
 export default function Loading() {
   return (
     <Section className='space-y-6'>
-      {skeletonWidths.map(function (width, i) {
-        return (
-          <MenuPageSkeleton
-            key={i}
-            className={width}
-          />
-        )
-      })}
+      {skeletonWidths.map((width) => (
+        <MenuPageSkeleton
+          key={width}
+          className={width}
+        />
+      ))}
     </Section>
   )
 }

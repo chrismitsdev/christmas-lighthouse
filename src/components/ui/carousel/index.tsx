@@ -2,9 +2,9 @@
 
 import {Slot} from '@radix-ui/react-slot'
 import {ChevronLeftIcon, ChevronRightIcon} from 'lucide-react'
+import {IconButton} from '@/src/components/ui/icon-button'
 import {cn} from '@/src/lib/utils'
 import {CarouselProvider, useCarousel} from './context'
-import {IconButton} from '@/src/components/ui/icon-button'
 
 function Carousel({
   className,

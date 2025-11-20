@@ -24,9 +24,7 @@ export function splitAndTrim(
 ): string[] | null {
   if (!str || str === '') return null
 
-  return str.split(',').map(function (el) {
-    return el.trim()
-  })
+  return str.split(',').map((el) => el.trim())
 }
 
 export function joinAndSpace(arr: string[] | null): string | null {
