@@ -58,6 +58,5 @@ export default async function middleware(
 }
 
 export const config: MiddlewareConfig = {
-  // Match only internationalized pathnames
-  matcher: ['/', '/menu', '/menu/*', '/(el|en)/:path*']
+  matcher: '/((?!api|trpc|_next|_vercel|login|dashboard(?:/.*)?|.*\\..*).*)'
 }
