@@ -4,7 +4,7 @@ import {redirect} from 'next/navigation'
 import {getCurrentSession} from '@/src/db/session'
 import {Section} from '@/src/components/shared/section'
 import {LoginForm} from '@/src/app/(admin)/login/login-form'
-import logo from '@/public/logo.png'
+import logo from '@/public/shared/logo.png'
 
 export const metadata: Metadata = {
   title: 'Σύνδεση | Διαχειριστικό'

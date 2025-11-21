@@ -1,17 +1,17 @@
 'use client'
 
-import * as React from 'react'
 import {EditIcon} from 'lucide-react'
-import {type Product} from '@/src/db/drizzle/schema'
+import * as React from 'react'
 import {
   type UpdateProductFormData,
   type UpdateProductFormErrors,
   updateProductAction
 } from '@/src/app/(admin)/dashboard/products/edit/action'
-import {Label} from '@/src/components/ui/label'
-import {Input} from '@/src/components/ui/input'
-import {Switch} from '@/src/components/ui/switch'
 import {Button} from '@/src/components/ui/button'
+import {Input} from '@/src/components/ui/input'
+import {Label} from '@/src/components/ui/label'
+import {Switch} from '@/src/components/ui/switch'
+import type {Product} from '@/src/db/drizzle/schema'
 
 const initialState = {
   data: {} as UpdateProductFormData,

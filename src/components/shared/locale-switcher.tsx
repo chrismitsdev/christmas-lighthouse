@@ -1,30 +1,31 @@
 'use client'
 
-import {useLocale} from 'next-intl'
-import {usePathname, useRouter} from '@/src/i18n/navigation'
+import {type Locale, useLocale, useTranslations} from 'next-intl'
+import {EnglandFlagIcon} from 'src/components/icons/flags/england-flag-icon'
+import {GreekFlagIcon} from '@/src/components/icons/flags/greek-flag-icon'
 import {
   Select,
-  SelectTrigger,
-  SelectPortal,
   SelectContent,
-  SelectViewport,
-  SelectValue,
   SelectItem,
-  SelectItemText
+  SelectItemText,
+  SelectPortal,
+  SelectTrigger,
+  SelectValue,
+  SelectViewport
 } from '@/src/components/ui/select'
-import {GreekFlagIcon} from '@/src/components/icons/flags/greek-flag-icon'
-import {EnglandFlagIcon} from 'src/components/icons/flags/england-flag-icon'
 import {Spinner} from '@/src/components/ui/spinner'
+import {usePathname, useRouter} from '@/src/i18n/navigation'
 
-type LocaleSwitcherProps = {
-  grLabel: string
-  enLabel: string
-}
+const options = [
+  {icon: EnglandFlagIcon, label: 'en'},
+  {icon: GreekFlagIcon, label: 'el'}
+]
 
-function LocaleSwitcher({grLabel, enLabel}: LocaleSwitcherProps) {
+function LocaleSwitcher() {
   const locale = useLocale()
   const router = useRouter()
   const pathname = usePathname()
+  const t = useTranslations('components.localeSwitcher.values')
 
   function onSelectChange(l: typeof locale) {
     router.replace(pathname, {locale: l})
@@ -46,14 +47,15 @@ function LocaleSwitcher({grLabel, enLabel}: LocaleSwitcherProps) {
       <SelectPortal>
         <SelectContent>
           <SelectViewport>
-            <SelectItem value='el'>
-              <GreekFlagIcon />
-              <SelectItemText>{grLabel}</SelectItemText>
-            </SelectItem>
-            <SelectItem value='en'>
-              <EnglandFlagIcon />
-              <SelectItemText>{enLabel}</SelectItemText>
-            </SelectItem>
+            {options.map(({icon: Icon, label}) => (
+              <SelectItem
+                key={label}
+                value={label}
+              >
+                <Icon />
+                <SelectItemText>{t(label as Locale)}</SelectItemText>
+              </SelectItem>
+            ))}
           </SelectViewport>
         </SelectContent>
       </SelectPortal>

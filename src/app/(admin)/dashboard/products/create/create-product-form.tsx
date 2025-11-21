@@ -1,27 +1,27 @@
 'use client'
 
+import {PlusIcon} from 'lucide-react'
 import * as React from 'react'
-import {type Category} from '@/src/db/drizzle/schema'
 import {
   type CreateProductFormData,
   type CreateProductFormErrors,
   createProductAction
 } from '@/src/app/(admin)/dashboard/products/create/action'
+import {Button} from '@/src/components/ui/button'
+import {Input} from '@/src/components/ui/input'
+import {Label} from '@/src/components/ui/label'
 import {
   Select,
+  SelectContent,
+  SelectItem,
+  SelectItemText,
+  SelectPortal,
   SelectTrigger,
   SelectValue,
-  SelectPortal,
-  SelectContent,
-  SelectViewport,
-  SelectItem,
-  SelectItemText
+  SelectViewport
 } from '@/src/components/ui/select'
-import {PlusIcon} from 'lucide-react'
-import {Label} from '@/src/components/ui/label'
-import {Input} from '@/src/components/ui/input'
 import {Switch} from '@/src/components/ui/switch'
-import {Button} from '@/src/components/ui/button'
+import type {Category} from '@/src/db/drizzle/schema'
 import {cn} from '@/src/lib/utils'
 
 const initialState = {
@@ -64,16 +64,14 @@ function CreateProductForm({categories}: {categories: Category[]}) {
                 <SelectPortal>
                   <SelectContent>
                     <SelectViewport>
-                      {categories.map(function (category) {
-                        return (
-                          <SelectItem
-                            key={category.id}
-                            value={category.id}
-                          >
-                            <SelectItemText>{category.elName}</SelectItemText>
-                          </SelectItem>
-                        )
-                      })}
+                      {categories.map((category) => (
+                        <SelectItem
+                          key={category.id}
+                          value={category.id}
+                        >
+                          <SelectItemText>{category.elName}</SelectItemText>
+                        </SelectItem>
+                      ))}
                     </SelectViewport>
                   </SelectContent>
                 </SelectPortal>

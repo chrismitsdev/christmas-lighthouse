@@ -1,60 +1,65 @@
 'use client'
 
+import {TooltipTrigger} from '@radix-ui/react-tooltip'
+import {EditIcon, EllipsisIcon, PlusIcon, Trash2Icon} from 'lucide-react'
 import Link from 'next/link'
-import {PlusIcon, EllipsisIcon, EditIcon, Trash2Icon} from 'lucide-react'
-import {type Category, type Product} from '@/src/db/drizzle/schema'
-import {
-  Table,
-  TableHeader,
-  TableRow,
-  TableHead,
-  TableBody,
-  TableCell
-} from '@/src/components/ui/table'
-import {
-  DropdownMenu,
-  DropdownMenuTrigger,
-  DropdownMenuPortal,
-  DropdownMenuContent,
-  DropdownMenuItem
-} from '@/src/components/ui/dropdown-menu'
-import {
-  Dialog,
-  DialogTrigger,
-  DialogPortal,
-  DialogOverlay,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogDescription,
-  DialogMain,
-  DialogClose
-} from '@/src/components/ui/dialog'
+import {DeleteCategoryForm} from '@/src/app/(admin)/dashboard/categories/edit/delete-category-form'
+import {UpdateCategoryForm} from '@/src/app/(admin)/dashboard/categories/edit/update-category-form'
 import {
   AlertDialog,
-  AlertDialogTrigger,
-  AlertDialogPortal,
-  AlertDialogOverlay,
+  AlertDialogCancel,
   AlertDialogContent,
-  AlertDialogHeader,
-  AlertDialogTitle,
   AlertDialogDescription,
   AlertDialogFooter,
-  AlertDialogCancel
+  AlertDialogHeader,
+  AlertDialogOverlay,
+  AlertDialogPortal,
+  AlertDialogTitle,
+  AlertDialogTrigger
 } from '@/src/components/ui/alert-dialog'
-import {
-  TooltipProvider,
-  Tooltip,
-  TooltipPortal,
-  TooltipContent
-} from '@/src/components/ui/tooltip'
-import {ScrollArea} from '@/src/components/ui/scroll-area'
-import {Button} from '@/src/components/ui/button'
 import {Badge} from '@/src/components/ui/badge'
+import {Button} from '@/src/components/ui/button'
+import {
+  Dialog,
+  DialogBody,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogOverlay,
+  DialogPortal,
+  DialogTitle,
+  DialogTrigger
+} from '@/src/components/ui/dialog'
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuPortal,
+  DropdownMenuTrigger
+} from '@/src/components/ui/dropdown-menu'
+import {IconButton} from '@/src/components/ui/icon-button'
+import {
+  Scrollarea,
+  ScrollareaScrollbar,
+  ScrollareaViewport
+} from '@/src/components/ui/scroll-area'
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow
+} from '@/src/components/ui/table'
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipPortal,
+  TooltipProvider
+} from '@/src/components/ui/tooltip'
 import {Typography} from '@/src/components/ui/typography'
-import {UpdateCategoryForm} from '@/src/app/(admin)/dashboard/categories/edit/update-category-form'
-import {DeleteCategoryForm} from '@/src/app/(admin)/dashboard/categories/edit/delete-category-form'
-import {TooltipTrigger} from '@radix-ui/react-tooltip'
+import type {Category, Product} from '@/src/db/drizzle/schema'
 
 type CategoriesTableProps = {
   categories: Category[]
@@ -91,10 +96,10 @@ function CategoriesTable({categories, products}: CategoriesTableProps) {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {categories?.map(function (category) {
-            const categoryProducts = products.filter(function (product) {
-              return product.categoryId === category.id
-            })
+          {categories?.map((category) => {
+            const categoryProducts = products.filter(
+              (product) => product.categoryId === category.id
+            )
 
             return (
               <TableRow key={category.id}>
@@ -115,17 +120,15 @@ function CategoriesTable({categories, products}: CategoriesTableProps) {
                       </TooltipTrigger>
                       <TooltipPortal>
                         <TooltipContent side='top'>
-                          {categoryProducts.map(function (product) {
-                            return (
-                              <Typography
-                                key={product.elName}
-                                className='leading-5'
-                                variant='mini'
-                              >
-                                {product.elName}
-                              </Typography>
-                            )
-                          })}
+                          {categoryProducts.map((product) => (
+                            <Typography
+                              key={product.elName}
+                              className='leading-5'
+                              variant='mini'
+                            >
+                              {product.elName}
+                            </Typography>
+                          ))}
                         </TooltipContent>
                       </TooltipPortal>
                     </Tooltip>
@@ -139,9 +142,9 @@ function CategoriesTable({categories, products}: CategoriesTableProps) {
                           className='outline-none'
                           asChild
                         >
-                          <Button variant='icon-button'>
+                          <IconButton>
                             <EllipsisIcon size={16} />
-                          </Button>
+                          </IconButton>
                         </DropdownMenuTrigger>
                         <DropdownMenuPortal>
                           <DropdownMenuContent align='end'>
@@ -175,14 +178,17 @@ function CategoriesTable({categories, products}: CategoriesTableProps) {
                               </span>
                             </DialogDescription>
                           </DialogHeader>
-                          <ScrollArea
+                          <Scrollarea
                             className='max-h-[calc(100svh-116px-26px)]'
                             type='always'
                           >
-                            <DialogMain>
-                              <UpdateCategoryForm category={category} />
-                            </DialogMain>
-                          </ScrollArea>
+                            <ScrollareaViewport>
+                              <DialogBody>
+                                <UpdateCategoryForm category={category} />
+                              </DialogBody>
+                            </ScrollareaViewport>
+                            <ScrollareaScrollbar />
+                          </Scrollarea>
                           <DialogClose />
                         </DialogContent>
                       </DialogPortal>

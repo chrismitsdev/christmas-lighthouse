@@ -2,12 +2,12 @@ import '@/src/styles/index.css'
 import type {Metadata} from 'next'
 import {Manrope} from 'next/font/google'
 import {notFound} from 'next/navigation'
-import {NextIntlClientProvider, hasLocale} from 'next-intl'
+import {hasLocale, NextIntlClientProvider} from 'next-intl'
 import {setRequestLocale} from 'next-intl/server'
-import {routing} from '@/src/i18n/routing'
-import {Header} from '@/src/components/shared/header'
 import {Footer} from '@/src/components/shared/footer'
+import {Header} from '@/src/components/shared/header'
 import {Snowfall} from '@/src/components/shared/snow-fall'
+import {routing} from '@/src/i18n/routing'
 
 const font = Manrope({
   subsets: ['latin'],
@@ -49,17 +49,22 @@ export default async function LocaleLayout({
   return (
     <html
       lang={locale}
-      className={font.className}
+      className={`scroll-smooth ${font.className}`}
+      data-scroll-behavior='smooth'
     >
-      <body className='relative min-h-screen grid grid-rows-[auto_auto_1fr_auto]'>
+      <body className='bg-app-background text-app-foreground'>
         <NextIntlClientProvider>
           <Header />
           {children}
           <Footer />
         </NextIntlClientProvider>
         <Snowfall
-          style={{zIndex: 100}}
-          snowflakeCount={40}
+          style={{
+            position: 'fixed',
+            width: '100vw',
+            height: '100vh'
+          }}
+          snowflakeCount={30}
         />
       </body>
     </html>
@@ -67,9 +72,5 @@ export default async function LocaleLayout({
 }
 
 export function generateStaticParams() {
-  return routing.locales.map(function (locale) {
-    return {
-      locale
-    }
-  })
+  return routing.locales.map((locale) => ({locale}))
 }

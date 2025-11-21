@@ -1,32 +1,42 @@
-import * as React from 'react'
+import {CustomImage} from '@/src/components/ui/custom-image'
+import {Typography} from '@/src/components/ui/typography'
 import {cn} from '@/src/lib/utils'
 
-function Card({
-  className,
-  ...props
-}: React.DetailedHTMLProps<
-  React.HTMLAttributes<HTMLDivElement>,
-  HTMLDivElement
->) {
+function Card({className, ...props}: React.ComponentPropsWithRef<'div'>) {
   return (
     <div
-      className={cn('bg-app-surface border rounded overflow-hidden', className)}
+      className={cn(
+        'bg-app-surface border border-brand-gray-12 rounded-(--card-radius) [--card-padding:--spacing(4)] [--card-radius:var(--radius-lg)]',
+        className
+      )}
       {...props}
     />
   )
 }
 
-function CardHeader({
+function CardImage({
   className,
+  alt,
   ...props
-}: React.DetailedHTMLProps<
-  React.HTMLAttributes<HTMLDivElement>,
-  HTMLDivElement
->) {
+}: React.ComponentPropsWithRef<typeof CustomImage>) {
+  return (
+    <CustomImage
+      className={cn(
+        'aspect-square object-cover rounded-[inherit] select-none',
+        className
+      )}
+      alt={alt}
+      draggable={false}
+      {...props}
+    />
+  )
+}
+
+function CardHeader({className, ...props}: React.ComponentPropsWithRef<'div'>) {
   return (
     <div
       className={cn(
-        'px-4 py-6 space-y-1.5 flex flex-col bg-app-surface border-b',
+        'px-(--card-padding) pt-(--card-padding) space-y-4',
         className
       )}
       {...props}
@@ -35,70 +45,76 @@ function CardHeader({
 }
 
 function CardTitle({
-  className,
+  variant = 'h4',
+  children,
   ...props
-}: React.DetailedHTMLProps<
-  React.HTMLAttributes<HTMLHeadingElement>,
-  HTMLHeadingElement
->) {
+}: Omit<React.ComponentPropsWithRef<typeof Typography>, 'asChild'>) {
   return (
-    <h2
-      className={cn('text-xl leading-6 tracking-tight', className)}
+    <Typography
+      className='font-semibold'
+      variant={variant}
       {...props}
-    />
+      asChild
+    >
+      <h2>{children}</h2>
+    </Typography>
   )
 }
 
 function CardDescription({
-  className,
+  variant = 'large',
+  children,
   ...props
-}: React.DetailedHTMLProps<
-  React.HTMLAttributes<HTMLParagraphElement>,
-  HTMLParagraphElement
->) {
+}: Omit<React.ComponentPropsWithRef<typeof Typography>, 'asChild'>) {
   return (
-    <p
-      className={cn('text-base', className)}
+    <Typography
+      variant={variant}
       {...props}
-    />
+      asChild
+    >
+      <p>{children}</p>
+    </Typography>
   )
 }
 
 function CardContent({
   className,
   ...props
-}: React.DetailedHTMLProps<
-  React.HTMLAttributes<HTMLDivElement>,
-  HTMLDivElement
->) {
+}: React.ComponentPropsWithRef<'div'>) {
   return (
     <div
-      className={cn('p-4 space-y-4', className)}
+      className={cn('p-(--card-padding)', className)}
       {...props}
     />
   )
 }
 
-function CardFooter({
-  className,
-  ...props
-}: React.DetailedHTMLProps<
-  React.HTMLAttributes<HTMLDivElement>,
-  HTMLDivElement
->) {
+function CardFooter({className, ...props}: React.ComponentPropsWithRef<'div'>) {
   return (
     <div
-      className={cn('px-4 py-6 flex flex-col border-t', className)}
+      className={cn(
+        'px-(--card-padding) pb-(--card-padding) flex gap-4',
+        className
+      )}
       {...props}
     />
   )
 }
 
 Card.displayName = 'Card'
+CardImage.displayName = 'CardImage'
 CardHeader.displayName = 'CardHeader'
 CardTitle.displayName = 'CardTitle'
 CardDescription.displayName = 'CardDescription'
 CardContent.displayName = 'CardContent'
 CardFooter.displayName = 'CardFooter'
 
-export {Card, CardHeader, CardFooter, CardTitle, CardDescription, CardContent}
+export {
+  Card,
+  CardImage,
+  CardHeader,
+  CardFooter,
+  CardTitle,
+  CardDescription,
+  CardContent
+}

@@ -1,7 +1,216 @@
 {
   "pages": {
     "metadata": {
-      "index": "All categories"
+      "index-page": "Home",
+      "menu-page": "Menu"
+    },
+    "index": {
+      "navigation": {
+        "links": {
+          "about": "Information",
+          "experiences": "Experiences",
+          "parade": "Parade",
+          "schedule": "Activities",
+          "games": "Games",
+          "contact": "Contact"
+        }
+      },
+      "sections": {
+        "hero": {
+          "title": "The magic of Christmas under the lighthouse of Alexandroupolis",
+          "plan-button": "Visit",
+          "parade-button": "Parade"
+        },
+        "about": {
+          "section-header": {
+            "title": "Welcome to The Christmas Lighthouse",
+            "description": "Discover a magical holiday escape at the Port of Alexandroupoli. Our park is a festive wonderland filled with enchanting lights, joyful music, and unforgettable experiences for all ages."
+          },
+          "info-card": {
+            "title": "Park Information",
+            "description": "Located at the heart of the city's port, we transform the waterfront into a Christmas dream.",
+            "season": {
+              "title": "Operating period",
+              "description": "November 22, 2025 to January 11, 2026"
+            },
+            "hours": {
+              "title": "Opening hours",
+              "zone-1": {
+                "date-range": "November 22, 2025 to December 22, 2025",
+                "entry-1": "Monday to Friday from 18:00",
+                "entry-2": "Weekends & holidays from 11:00"
+              },
+              "zone-2": {
+                "date-range": "December 23, 2025 to January 6, 2026",
+                "entry-1": "Daily from 11:00"
+              }
+            },
+            "location": {
+              "title": "Location",
+              "description": "Port of Alexandroupoli, under the Lighthouse"
+            }
+          }
+        },
+        "experiences": {
+          "section-header": {
+            "title": "Our main experiences",
+            "description": "From graceful skating to festive celebrations, our magical experiences brings the holiday spirit to life for visitors of all ages. Discover the enclosed ice rink, join our heartwarming Christmas parade, and enjoy a full season of interactive events with Santa, elves, mascots, and more."
+          },
+          "cards": {
+            "ice-rink-card": {
+              "title": "Enclosed ice rink",
+              "description": "Glide across our fully enclosed ice rink, surrounded shimmering lights, festive décor, and the sound of holiday music filling the air."
+            },
+            "parade-card": {
+              "title": "Christmas parade",
+              "description": "Celebrate the season with Santa, lively elves, sparkling costumes, and captivating performances, all dedicated to raising funds for children and families in need."
+            },
+            "events-card": {
+              "title": "Interactive events",
+              "description": "Dive into a full lineup of festive activities—live storytelling, creative workshops, holiday crafts, face painting, and surprises for all ages."
+            }
+          }
+        },
+        "parade": {
+          "section-header": {
+            "title": "Christmas charity parade",
+            "description": "Experience the true meaning of Christmas in a vibrant parade that brings people together to support those in need."
+          },
+          "info-card": {
+            "title": "Sunday, November 30, 2025, 18:30",
+            "subtitle": "We invite you to join us as the grand parade lights up the streets of Alexandroupoli!",
+            "description": "To make the season even brighter for those in need, special Christmas merchandise like our festive caps will be available forpurchase. All proceeds will benefit the <sos>SOS Children's Villages</sos>, helping to bring joy and support to children and families."
+          }
+        },
+        "schedule": {
+          "section-header": {
+            "title": "Daily Christmas activities",
+            "description": "Discover the magical surprises waiting for you every day. Each date includes a morning activity and an afternoon event, giving families two unique moments of festive fun throughout the season."
+          },
+          "labels": {
+            "morning": "MORNING",
+            "afternoon": "AFTERNOON"
+          },
+          "events": {
+            "22/11": {
+              "morning": "The Christmas Lighthouse is here! We’re waiting for you with super surprises!",
+              "afternoon": "Ho! Ho! Ho! Santa is waiting for you with the most beautiful Christmas stories!"
+            },
+            "23/11": {
+              "morning": "Santa’s post office is ready to receive your letters!",
+              "afternoon": "Santa Gallery: Paint together with Santa and decorate his little house with your artwork!"
+            },
+            "29/11": {
+              "morning": "How many gifts can Santa’s sack fit? Guess!",
+              "afternoon": "Quiz games with Santa!"
+            },
+            "30/11": {
+              "morning": "Santa’s elf is waiting for you for Christmas face painting!",
+              "afternoon": "The Christmas Lighthouse parade has become a tradition! Joining us: Santa with his elf, Olaf, the Minion, Mickey, Minnie, Pikachu, T-Rex, our living Christmas tree, the Panda, and the Grinch. Come march with us for a good cause!"
+            },
+            "6/12": {
+              "morning": "Survivor with Santa’s helper",
+              "afternoon": "Fairy tales from around the world, told by Santa"
+            },
+            "7/12": {
+              "morning": "Santa lost Rudolph! What do we do now?",
+              "afternoon": "Mascots on stage! Your favorite characters from The Christmas Lighthouse are waiting for you for lots of dancing and games!"
+            },
+            "13/12": {
+              "morning": "Experiments with the candy fairy!",
+              "afternoon": "Santa is in trouble! He can only make it with your help!"
+            },
+            "14/12": {
+              "morning": "Around the world with Santa!",
+              "afternoon": "Make a wish with a teddy bear for a good cause! Get your teddy from the cashier and come to the ice rink for a magical night of wishes!"
+            },
+            "20/12": {
+              "morning": "Making Christmas cards together with Santa!",
+              "afternoon": "Santa, can you teach me how to climb down chimneys like you?"
+            },
+            "21/12": {
+              "morning": "Miss Santa is preparing super competitions! Who will be the winner?",
+              "afternoon": "The toy workshop has opened! The elves are waiting for you!"
+            },
+            "24/12": {
+              "morning": "Santa Santa? Are you here?",
+              "afternoon": "Mickey Mouse is dressed in his festive outfit and waiting for you for lots of fun!!!"
+            },
+            "25/12": {
+              "morning": "The Grinch is coming to “steal” Christmas!",
+              "afternoon": "Christmas “elf relay race”!"
+            },
+            "26/12": {
+              "morning": "Mickey Mouse is dressed for the holidays and waiting for you with big hugs!",
+              "afternoon": "Treasure hunt with our elf!"
+            },
+            "27/12": {
+              "morning": "Memory game with Minnie Mouse!",
+              "afternoon": "The chief elf is organizing the… Christmas Exathlon! Take part too!"
+            },
+            "28/12": {
+              "morning": "Pikachu, our favorite Pokémon, is coming to The Christmas Lighthouse for new adventures.",
+              "afternoon": "Lots of dancing and games with our little elf!"
+            },
+            "29/12": {
+              "morning": "A fluffy panda is turning The Christmas Lighthouse upside down!",
+              "afternoon": "Making origami with the elves!"
+            },
+            "30/12": {
+              "morning": "What’s yellow and wears blue clothes?? Of course, our favorite Minion!",
+              "afternoon": "A little angel is coming to The Christmas Lighthouse!"
+            },
+            "31/12": {
+              "morning": "Santa has a lot of work! Will he manage to deliver all the gifts to our little friends?",
+              "afternoon": "The elves’ list is ready! Will you be on the naughty list or the nice list?"
+            },
+            "1/1": {
+              "morning": "Happy New Year from The Christmas Lighthouse! Santa is waiting for you to wish you a wonderful new year!",
+              "afternoon": "New Year stories that only Santa knows how to tell!"
+            },
+            "2/1": {
+              "morning": "Santa is getting ready for the North Pole!",
+              "afternoon": "Reindeer, sleigh, jingle bells—check! Santa, have a safe trip!"
+            }
+          }
+        },
+        "games": {
+          "section-header": {
+            "title": "Games & activities",
+            "description": "Step into the heart of the park and enjoy the festive games that make Christmas come alive."
+          },
+          "sheet": {
+            "trigger": "See all available games",
+            "title": "Choose game",
+            "description": "Select a game from the list."
+          },
+          "galleries": {
+            "air-hockey": "Air hockey",
+            "basket": "Basketball",
+            "bumper-cars": "Bumper cars",
+            "bungee-trampoline": "Bungee trampoline",
+            "carnival-games": "Carnival games",
+            "cinema": "Cinema 7D",
+            "cranes": "Gift cranes",
+            "dryslope": "Dry slope",
+            "formula-cars": "Formula cars",
+            "hawaiian-surfing": "Hawaiian surfing",
+            "kiddy-rides": "Kiddy rides",
+            "lucky-games": "Lucky games",
+            "playground": "Playground",
+            "power-games": "Power games",
+            "survivor": "Survivor",
+            "table-soccer": "Table soccer",
+            "trampoline": "Trampoline",
+            "ufo": "UFO"
+          }
+        }
+      }
+    },
+    "menu": {
+      "links": {
+        "all-categories": "All categories"
+      }
     }
   },
   "components": {
@@ -15,23 +224,13 @@
       "label": "Category not found",
       "button": "Back"
     },
-    "promo-product": {
-      "intro": "Warm up your holidays with our delightful Glühwein – the perfect choice for the magical Christmas season!",
-      "description": "Glühwein is a traditional mulled wine with spices, served warm during winter.",
-      "link": "More"
-    },
     "footer": {
       "operating": {
         "column-title": "Opening hours",
-        "zone-1": {
-          "title": "November 30, 2024 - December 20, 2024",
-          "description-1": "Monday to Friday: 18:00 - 23:30",
-          "description-2": "Weekends & Holidays: 11:00 - 23:30"
-        },
-        "zone-2": {
-          "title": "December 21, 2024 - January 6, 2025",
-          "description-1": "Daily: 11:00 - 23:30"
-        }
+        "title": "November 22, 2025 - January 11, 2026",
+        "description-1": "Monday to Friday: 18:00 - 23:30",
+        "description-2": "Weekends & Holidays: 11:00 - 23:30",
+        "description-3": "Daily: 11:00 - 23:30"
       },
       "information": {
         "column-title": "Information",

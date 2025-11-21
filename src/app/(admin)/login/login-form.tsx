@@ -28,7 +28,7 @@ function LoginForm() {
   )
 
   return (
-    <div className='py-8 px-4 w-full bg-app-surface border rounded sm:py-16 sm:px-12'>
+    <div className='py-8 px-4 w-full bg-app-surface border border-brand-gray-12 rounded sm:py-16 sm:px-12'>
       <form
         action={action}
         noValidate
@@ -63,8 +63,9 @@ function LoginForm() {
           </div>
           <div className='flex justify-between'>
             <Button
-              asChild
               disabled={isPending}
+              size='lg'
+              asChild
             >
               <Link href='/'>
                 <HouseIcon size={20} />
@@ -72,6 +73,7 @@ function LoginForm() {
               </Link>
             </Button>
             <Button
+              size='lg'
               type='submit'
               isLoading={isPending}
               disabled={isPending}

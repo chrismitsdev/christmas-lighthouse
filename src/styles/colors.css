@@ -38,11 +38,7 @@
   --color-brand-gray-11: hsl(229 12% 42%);
   --color-brand-gray-12: hsl(229 20% 14%);
 
-  --color-app-background: hsl(235 57% 5%);
-  --color-app-foreground: var(--color-brand-gray-8);
-  --color-app-surface: hsl(229 20% 14% / 0.4);
-  --color-app-surface-solid: hsl(232 35% 8%);
-
-  --color-border: var(--color-brand-gray-12);
-  --color-border-hover: var(--color-brand-gray-11);
+  --color-app-background: hsl(232, 60%, 5%);
+  --color-app-foreground: var(--color-brand-gray-7);
+  --color-app-surface: hsl(236 32% 9%);
 }

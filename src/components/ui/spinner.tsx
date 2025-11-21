@@ -3,12 +3,14 @@ import {cn} from '@/src/lib/utils'
 function Spinner({className, size = 16, ...props}: CustomIconProps) {
   return (
     <svg
+      xmlns='http://www.w3.org/2000/svg'
       className={cn('animate-spin', className)}
       width={size}
       height={size}
       viewBox='0 0 24 24'
       fill='none'
-      xmlns='http://www.w3.org/2000/svg'
+      role='img'
+      aria-label='svg'
       {...props}
     >
       <circle

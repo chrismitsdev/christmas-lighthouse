@@ -1,17 +1,17 @@
-import * as React from 'react'
-import {cookies} from 'next/headers'
+import {sha256} from '@oslojs/crypto/sha2'
 import {
   encodeBase32LowerCaseNoPadding,
   encodeHexLowerCase
 } from '@oslojs/encoding'
-import {sha256} from '@oslojs/crypto/sha2'
 import {eq} from 'drizzle-orm'
+import {cookies} from 'next/headers'
+import * as React from 'react'
 import {db} from '@/src/db/drizzle'
 import {
   type Session,
+  sessionTable,
   type User,
-  userTable,
-  sessionTable
+  userTable
 } from '@/src/db/drizzle/schema'
 
 /* API USAGE *****************************************************************|
@@ -85,7 +85,7 @@ export async function invalidateSession(sessionId: string): Promise<void> {
 }
 
 export const getCurrentSession = React.cache(
-  async function (): Promise<SessionValidationResult> {
+  async (): Promise<SessionValidationResult> => {
     const cookieStore = await cookies()
     const token = cookieStore.get('session')?.value ?? null
 

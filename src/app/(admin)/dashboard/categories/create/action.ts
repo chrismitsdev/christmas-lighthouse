@@ -2,18 +2,18 @@
 
 import {revalidatePath} from 'next/cache'
 import {
+  flatten,
   type InferOutput,
+  literal,
+  nonEmpty,
   object,
   pipe,
+  safeParse,
   string,
   trim,
-  nonEmpty,
-  union,
-  literal,
-  safeParse,
-  flatten
+  union
 } from 'valibot'
-import {type Category} from '@/src/db/drizzle/schema'
+import type {Category} from '@/src/db/drizzle/schema'
 import {createCategory} from '@/src/db/menu'
 import {splitAndTrim} from '@/src/lib/utils'
 

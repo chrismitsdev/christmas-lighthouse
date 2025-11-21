@@ -24,9 +24,7 @@ export function splitAndTrim(
 ): string[] | null {
   if (!str || str === '') return null
 
-  return str.split(',').map(function (el) {
-    return el.trim()
-  })
+  return str.split(',').map((el) => el.trim())
 }
 
 export function joinAndSpace(arr: string[] | null): string | null {
@@ -35,6 +33,16 @@ export function joinAndSpace(arr: string[] | null): string | null {
   }
 
   return arr.join(', ')
+}
+
+export function compareDate(date: string): boolean {
+  const today = new Date()
+  today.setHours(0, 0, 0, 0)
+
+  const dateToCheck = new Date(date)
+  dateToCheck.setHours(0, 0, 0, 0)
+
+  return dateToCheck.getTime() >= today.getTime()
 }
 
 // Regex

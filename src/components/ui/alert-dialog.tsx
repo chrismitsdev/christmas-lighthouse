@@ -1,6 +1,5 @@
 'use client'
 
-import * as React from 'react'
 import {
   Root,
   Trigger,
@@ -42,7 +41,7 @@ function AlertDialogContent({
   return (
     <Content
       className={cn(
-        'px-4 py-6 fixed left-1/2 top-1/2 z-50 -translate-x-1/2 -translate-y-1/2 max-w-xl w-[calc(100%-32px)] bg-app-surface-solid border rounded sm:p-12',
+        'px-4 py-6 fixed left-1/2 top-1/2 z-50 -translate-x-1/2 -translate-y-1/2 max-w-xl w-[calc(100%-32px)] bg-app-surface border rounded sm:p-12',
         className
       )}
       {...props}
@@ -53,10 +52,7 @@ function AlertDialogContent({
 function AlertDialogHeader({
   className,
   ...props
-}: React.DetailedHTMLProps<
-  React.HTMLAttributes<HTMLDivElement>,
-  HTMLDivElement
->) {
+}: React.ComponentPropsWithRef<'div'>) {
   return (
     <div
       className={cn('space-y-4 flex flex-col', className)}
@@ -95,10 +91,7 @@ function AlertDialogDescription({
 function AlertDialogFooter({
   className,
   ...props
-}: React.DetailedHTMLProps<
-  React.HTMLAttributes<HTMLDivElement>,
-  HTMLDivElement
->) {
+}: React.ComponentPropsWithRef<'div'>) {
   return (
     <div
       className={cn('flex justify-end items-center gap-4', className)}

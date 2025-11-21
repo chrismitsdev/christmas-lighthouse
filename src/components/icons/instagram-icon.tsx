@@ -1,11 +1,13 @@
 function InstagramIcon({size = 24, ...props}: CustomIconProps) {
   return (
     <svg
-      role='img'
+      xmlns='http://www.w3.org/2000/svg'
       width={size}
       height={size}
       viewBox='0 0 24 24'
-      xmlns='http://www.w3.org/2000/svg'
+      fill='none'
+      role='img'
+      aria-label='svg'
       {...props}
     >
       <path

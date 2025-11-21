@@ -1,20 +1,19 @@
 'use client'
 
-import * as React from 'react'
 import {
-  Root,
-  Trigger,
-  Portal,
-  Overlay,
+  Close,
   Content,
-  Title,
   Description,
-  Close
+  Overlay,
+  Portal,
+  Root,
+  Title,
+  Trigger
 } from '@radix-ui/react-dialog'
+import {cva, type VariantProps} from 'class-variance-authority'
 import {XIcon} from 'lucide-react'
-import {type VariantProps, cva} from 'class-variance-authority'
+import {IconButton} from '@/src/components/ui/icon-button'
 import {cn} from '@/src/lib/utils'
-import {Button} from '@/src/components/ui/button'
 
 const Sheet = Root
 const SheetTrigger = Trigger
@@ -27,7 +26,7 @@ function SheetOverlay({
   return (
     <Overlay
       className={cn(
-        'fixed inset-0 z-50 bg-black/50 backdrop-blur-[2px]',
+        'fixed inset-0 z-10 bg-black/50 backdrop-blur-[2px] data-open:animate-overlay-open data-closed:animate-overlay-closed',
         className
       )}
       {...props}
@@ -36,42 +35,68 @@ function SheetOverlay({
 }
 
 const sheetContentVariants = cva(
-  ['p-6', 'fixed', 'z-50', 'gap-4', 'bg-app-surface-solid', 'shadow-lg'],
+  [
+    'w-[calc(100%-24px)]',
+    'h-[calc(100%-24px)]',
+    'fixed',
+    'z-20',
+    'gap-4',
+    'bg-app-surface',
+    'border',
+    'border-brand-gray-12',
+    'rounded-lg',
+    'shadow-lg'
+  ],
   {
     variants: {
       side: {
-        top: ['inset-x-0', 'top-0', 'border-b'],
-        right: [
-          'inset-y-0',
-          'right-0',
-          'h-full',
-          'w-3/4',
-          'border-l',
-          'sm:max-w-sm'
+        top: [
+          'top-3',
+          'data-open:animate-sheet-top-open',
+          'data-closed:animate-sheet-top-closed'
         ],
-        bottom: ['inset-x-0', 'bottom-0', 'border-t'],
+        right: [
+          'right-3',
+          'data-open:animate-sheet-right-open',
+          'data-closed:animate-sheet-right-closed'
+        ],
+        bottom: [
+          'bottom-3',
+          'data-open:animate-sheet-bottom-open',
+          'data-closed:animate-sheet-bottom-closed'
+        ],
         left: [
-          'inset-y-0',
-          'left-0',
-          'h-full',
-          'w-3/4',
-          'border-r',
-          'sm:max-w-sm'
+          'left-3',
+          'data-open:animate-sheet-left-open',
+          'data-closed:animate-sheet-left-closed'
         ]
       }
     },
+    compoundVariants: [
+      {
+        side: ['right', 'left'],
+        className: ['top-3', 'sm:max-w-lg']
+      },
+      {
+        side: ['top', 'bottom'],
+        className: ['left-3', 'sm:max-h-96']
+      }
+    ],
     defaultVariants: {
       side: 'right'
     }
   }
 )
 
+interface SheetContentProps
+  extends React.ComponentPropsWithRef<typeof Content>,
+    VariantProps<typeof sheetContentVariants> {}
+
 function SheetContent({
   side = 'right',
   className,
   ...props
-}: React.ComponentPropsWithRef<typeof Content> &
-  VariantProps<typeof sheetContentVariants>) {
+}: SheetContentProps) {
   return (
     <Content
       className={cn(sheetContentVariants({side, className}))}
@@ -83,34 +108,10 @@ function SheetContent({
 function SheetHeader({
   className,
   ...props
-}: React.DetailedHTMLProps<
-  React.HTMLAttributes<HTMLDivElement>,
-  HTMLDivElement
->) {
+}: React.ComponentPropsWithRef<'div'>) {
   return (
     <div
-      className={cn(
-        'flex flex-col space-y-2 text-center sm:text-left',
-        className
-      )}
-      {...props}
-    />
-  )
-}
-
-function SheetFooter({
-  className,
-  ...props
-}: React.DetailedHTMLProps<
-  React.HTMLAttributes<HTMLDivElement>,
-  HTMLDivElement
->) {
-  return (
-    <div
-      className={cn(
-        'flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2',
-        className
-      )}
+      className={cn('p-6 space-y-2', className)}
       {...props}
     />
   )
@@ -140,22 +141,42 @@ function SheetDescription({
   )
 }
 
+function SheetBody({className, ...props}: React.ComponentPropsWithRef<'div'>) {
+  return (
+    <div
+      className={cn('p-6', className)}
+      {...props}
+    />
+  )
+}
+
+function SheetFooter({
+  className,
+  ...props
+}: React.ComponentPropsWithRef<'div'>) {
+  return (
+    <div
+      className={cn(
+        'flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2',
+        className
+      )}
+      {...props}
+    />
+  )
+}
+
 function SheetClose({
   className,
   ...props
-}: React.ComponentPropsWithRef<typeof Close>) {
+}: React.ComponentPropsWithRef<typeof IconButton>) {
   return (
     <Close
       className={cn('absolute top-4 right-4', className)}
-      {...props}
       asChild
     >
-      <Button
-        className='p-[3px] rounded-sm'
-        variant='danger'
-      >
-        <XIcon size={16} />
-      </Button>
+      <IconButton {...props}>
+        <XIcon />
+      </IconButton>
     </Close>
   )
 }
@@ -168,6 +189,7 @@ SheetContent.displayName = 'SheetContent'
 SheetHeader.displayName = 'SheetHeader'
 SheetTitle.displayName = 'SheetTitle'
 SheetDescription.displayName = 'SheetDescription'
+SheetBody.displayName = 'SheetBody'
 SheetFooter.displayName = 'SheetFooter'
 SheetClose.displayName = 'SheetClose'
 
@@ -180,6 +202,7 @@ export {
   SheetHeader,
   SheetTitle,
   SheetDescription,
+  SheetBody,
   SheetFooter,
   SheetClose
 }

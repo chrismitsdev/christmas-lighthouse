@@ -1,37 +1,37 @@
-import * as React from 'react'
-import type {Locale} from 'next-intl'
+import {eq} from 'drizzle-orm'
 import {
-  object,
-  array,
-  string,
-  number,
-  null as null_,
-  union,
-  boolean,
-  safeParse
-} from 'valibot'
-import {
+  BeerIcon,
   CoffeeIcon,
-  MilkIcon,
   CupSodaIcon,
   GlassWaterIcon,
-  BeerIcon,
-  ZapIcon,
-  UtensilsIcon,
-  PizzaIcon,
-  SaladIcon,
+  HamburgerIcon,
   MartiniIcon,
-  PopcornIcon
+  MilkIcon,
+  PizzaIcon,
+  PopcornIcon,
+  SaladIcon,
+  UtensilsIcon,
+  ZapIcon
 } from 'lucide-react'
-import {eq} from 'drizzle-orm'
+import type {Locale} from 'next-intl'
+import * as React from 'react'
+import {
+  array,
+  boolean,
+  null as null_,
+  number,
+  object,
+  safeParse,
+  string,
+  union
+} from 'valibot'
 import {db} from '@/src/db/drizzle'
 import {
-  type Product,
   type Category,
   categoryTable,
+  type Product,
   productTable
 } from '@/src/db/drizzle/schema'
-import {BurgerIcon} from '@/src/components/icons/burger-icon'
 
 export type CategoryWithProducts = {
   title: string
@@ -51,13 +51,13 @@ const iconsMap = {
   coffee: CoffeeIcon,
   beverage: CupSodaIcon,
   refreshment: MilkIcon,
-  ['energy-drink']: ZapIcon,
+  'energy-drink': ZapIcon,
   spirit: GlassWaterIcon,
   cocktail: MartiniIcon,
   beer: BeerIcon,
   food: UtensilsIcon,
   pizza: PizzaIcon,
-  burger: BurgerIcon,
+  burger: HamburgerIcon,
   salad: SaladIcon,
   snack: PopcornIcon
 }
@@ -100,75 +100,75 @@ const LocalizedCategoriesSchema = array(
 
 // --- FRONT-FACING ---
 // GET localized categories with products
-export const getLocalizedCategories = React.cache(async function (
-  locale: Locale
-): Promise<CategoryWithProducts[]> {
-  const query = await db
-    .select({
-      categoryId: categoryTable.id,
-      categoryName: categoryTable[`${locale}Name`],
-      categoryNotes: categoryTable[`${locale}Notes`],
-      productId: productTable.id,
-      productName: productTable[`${locale}Name`],
-      productDescription: productTable[`${locale}Description`],
-      productPrice: productTable.price,
-      productActive: productTable.active
-    })
-    .from(categoryTable)
-    .innerJoin(productTable, eq(categoryTable.id, productTable.categoryId))
-    .where(eq(productTable.active, true))
-
-  if (query.length < 1) {
-    throw new Error(
-      'Could not get localized categories (getLocalizedCategories fn)'
-    )
-  }
-
-  const result = safeParse(LocalizedCategoriesSchema, query)
-
-  if (!result.success) {
-    throw new Error('Invalid query schema (getLocalizedCategories fn)')
-  }
-
-  const groupedCategories = result.output.reduce(
-    function (acc, item) {
-      const categoryId = item.categoryId as keyof typeof iconsMap
-
-      if (!acc[categoryId]) {
-        acc[categoryId] = {
-          title: item.categoryName,
-          notes: item.categoryNotes,
-          link: item.categoryId,
-          icon:
-            categoryId in iconsMap
-              ? React.createElement(iconsMap[categoryId])
-              : undefined,
-          products: []
-        }
-      }
-
-      if (item.productId !== null && item.productId !== undefined) {
-        acc[categoryId].products.push({
-          id: item.productId,
-          name: item.productName,
-          description: item.productDescription,
-          price: item.productPrice,
-          active: item.productActive
-        })
-      }
-
-      // Mutation - Sort products array by ascending productId
-      acc[categoryId].products.sort(function (product1, product2) {
-        return product1.id - product2.id
+export const getLocalizedCategories = React.cache(
+  async (locale: Locale): Promise<CategoryWithProducts[]> => {
+    const query = await db
+      .select({
+        categoryId: categoryTable.id,
+        categoryName: categoryTable[`${locale}Name`],
+        categoryNotes: categoryTable[`${locale}Notes`],
+        productId: productTable.id,
+        productName: productTable[`${locale}Name`],
+        productDescription: productTable[`${locale}Description`],
+        productPrice: productTable.price,
+        productActive: productTable.active
       })
+      .from(categoryTable)
+      .innerJoin(productTable, eq(categoryTable.id, productTable.categoryId))
+      .where(eq(productTable.active, true))
 
-      return acc
-    },
-    {} as Record<string, CategoryWithProducts>
-  )
+    if (query.length < 1) {
+      throw new Error(
+        'Could not get localized categories (getLocalizedCategories fn)'
+      )
+    }
 
-  return Object.values(groupedCategories)
-})
+    const result = safeParse(LocalizedCategoriesSchema, query)
+
+    if (!result.success) {
+      throw new Error('Invalid query schema (getLocalizedCategories fn)')
+    }
+
+    const groupedCategories = result.output.reduce(
+      (acc, item) => {
+        const categoryId = item.categoryId as keyof typeof iconsMap
+
+        if (!acc[categoryId]) {
+          acc[categoryId] = {
+            title: item.categoryName,
+            notes: item.categoryNotes,
+            link: item.categoryId,
+            icon:
+              categoryId in iconsMap
+                ? React.createElement(iconsMap[categoryId])
+                : undefined,
+            products: []
+          }
+        }
+
+        if (item.productId !== null && item.productId !== undefined) {
+          acc[categoryId].products.push({
+            id: item.productId,
+            name: item.productName,
+            description: item.productDescription,
+            price: item.productPrice,
+            active: item.productActive
+          })
+        }
+
+        // Mutation - Sort products array by ascending productId
+        acc[categoryId].products.sort(
+          (product1, product2) => product1.id - product2.id
+        )
+
+        return acc
+      },
+      {} as Record<string, CategoryWithProducts>
+    )
+
+    return Object.values(groupedCategories)
+  }
+)
 
 // --- BACK-OFFICE ---
 // GET all products

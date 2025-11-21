@@ -1,5 +1,5 @@
-import {eq} from 'drizzle-orm'
 import {hash, verify} from '@node-rs/argon2'
+import {eq} from 'drizzle-orm'
 import {db} from '@/src/db/drizzle'
 import {type User, userTable} from '@/src/db/drizzle/schema'
 
@@ -65,7 +65,7 @@ async function updateUser(
   email?: string,
   password?: string
 ): Promise<UserWithoutHashPassword> {
-  let passwordHash: string | undefined = undefined
+  let passwordHash: string | undefined
 
   if (password) {
     passwordHash = await hashPassword(password)

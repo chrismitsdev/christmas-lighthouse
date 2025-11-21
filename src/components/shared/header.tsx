@@ -1,28 +1,19 @@
 import Image from 'next/image'
-import {useTranslations} from 'next-intl'
-import {Link} from '@/src/i18n/navigation'
+import logo from '@/public/shared/logo.png'
 import {Container} from '@/src/components/shared/container'
-import {LocaleSwitcher} from '@/src/components/shared/locale-switcher'
-import logo from '@/public/logo.png'
 
 function Header() {
-  const t = useTranslations('components.localeSwitcher')
-
   return (
-    <header className='py-4'>
-      <Container className='flex items-start justify-between'>
-        <Link href='/'>
+    <header className='pt-6 pb-4 bg-app-surface'>
+      <Container>
+        <div className='flex justify-center items-center'>
           <Image
+            className='h-20 w-auto'
             src={logo}
             alt='Logo image'
-            height={64}
             priority
           />
-        </Link>
-        <LocaleSwitcher
-          grLabel={t('values.el')}
-          enLabel={t('values.en')}
-        />
+        </div>
       </Container>
     </header>
   )
@@ -31,3 +22,31 @@ function Header() {
 Header.displayName = 'Header'
 
 export {Header}
+
+// import Image from 'next/image'
+// import logo from '@/public/shared/logo.png'
+// import {Container} from '@/src/components/shared/container'
+// import {Link} from '@/src/i18n/navigation'
+
+// function Header() {
+//   return (
+//     <header className='pt-6 pb-4 bg-app-surface'>
+//       <Container>
+//         <div className='flex justify-center items-center'>
+//           <Link href='/'>
+//             <Image
+//               className='h-20 w-full'
+//               src={logo}
+//               alt='Logo image'
+//               priority
+//             />
+//           </Link>
+//         </div>
+//       </Container>
+//     </header>
+//   )
+// }
+
+// Header.displayName = 'Header'
+
+// export {Header}

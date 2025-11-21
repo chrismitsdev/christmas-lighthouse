@@ -2,30 +2,30 @@
 
 import {redirect} from 'next/navigation'
 import {
-  type InferOutput,
-  objectAsync,
-  pipeAsync,
-  string,
-  trim,
-  nonEmpty,
+  checkAsync,
   email,
   endsWith,
+  flatten,
   forwardAsync,
-  safeParseAsync,
+  type InferOutput,
+  nonEmpty,
+  objectAsync,
   partialCheckAsync,
-  checkAsync,
-  flatten
+  pipeAsync,
+  safeParseAsync,
+  string,
+  trim
 } from 'valibot'
+import {
+  createSession,
+  generateSessionToken,
+  setSessionTokenCookie
+} from '@/src/db/session'
 import {
   getUserFromEmail,
   getUserPasswordHash,
   verifyPasswordHash
 } from '@/src/db/user'
-import {
-  generateSessionToken,
-  createSession,
-  setSessionTokenCookie
-} from '@/src/db/session'
 
 const LoginFormSchema = pipeAsync(
   objectAsync({
@@ -35,11 +35,13 @@ const LoginFormSchema = pipeAsync(
       nonEmpty('Πληκτρολογήστε το email σας'),
       email('Μη έγκυρη μορφή email'),
       endsWith('@gmail.com', 'Μη αποδεκτός πάροχος email'),
-      checkAsync(async function (emailInput) {
+      checkAsync(async (emailInput) => {
         const user = await getUserFromEmail(emailInput)
+
         if (user === null) {
           return false
         }
+
         return true
       }, 'Το email διαχειριστή δεν είναι σωστό')
     ),
@@ -52,7 +54,7 @@ const LoginFormSchema = pipeAsync(
   forwardAsync(
     partialCheckAsync(
       [['email'], ['password']],
-      async function (input) {
+      async (input) => {
         const user = await getUserFromEmail(input.email)
 
         if (user === null) {

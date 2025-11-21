@@ -2,25 +2,25 @@
 
 import {revalidatePath} from 'next/cache'
 import {
+  check,
+  flatten,
   type InferOutput,
+  literal,
+  nonEmpty,
+  number,
   object,
   pipe,
-  union,
-  literal,
-  number,
-  check,
-  string,
-  trim,
-  flatten,
   regex,
-  nonEmpty,
+  safeParse,
+  string,
   transform,
+  trim,
   undefined_,
-  safeParse
+  union
 } from 'valibot'
-import {type Product} from '@/src/db/drizzle/schema'
-import {numberRegex, splitAndTrim} from '@/src/lib/utils'
+import type {Product} from '@/src/db/drizzle/schema'
 import {createProduct} from '@/src/db/menu'
+import {numberRegex, splitAndTrim} from '@/src/lib/utils'
 
 const CreateProductSchema = object({
   category_id: pipe(
