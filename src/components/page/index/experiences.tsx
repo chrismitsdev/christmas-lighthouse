@@ -54,7 +54,7 @@ function Experiences({id}: {id: string}) {
           description={t('section-header.description')}
         />
 
-        <div className='flex flex-wrap gap-10 sm:*:flex-1'>
+        <div className='flex flex-wrap gap-16 sm:*:flex-1'>
           {carouselCards.map((carouselCard) => (
             <Card key={carouselCard.key}>
               <Carousel className='rounded-t-[inherit]'>
@@ -73,10 +73,10 @@ function Experiences({id}: {id: string}) {
                 <CarouselPrevButton size='sm' />
                 <CarouselNextButton size='sm' />
               </Carousel>
-              <CardHeader>
+              <CardHeader className='not-sm:text-center'>
                 <CardTitle>{t(`cards.${carouselCard.key}.title`)}</CardTitle>
               </CardHeader>
-              <CardContent>
+              <CardContent className='not-sm:text-center'>
                 <Typography>
                   {t(`cards.${carouselCard.key}.description`)}
                 </Typography>

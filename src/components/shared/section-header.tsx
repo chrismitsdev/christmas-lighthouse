@@ -1,6 +1,6 @@
-import {cn} from '@/src/lib/utils'
-import {Typography} from '@/src/components/ui/typography'
 import {SparklesIcon} from 'lucide-react'
+import {Typography} from '@/src/components/ui/typography'
+import {cn} from '@/src/lib/utils'
 
 interface Props extends Omit<React.ComponentPropsWithRef<'div'>, 'title'> {
   title: string

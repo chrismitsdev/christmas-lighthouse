@@ -1,7 +1,7 @@
 import {Slot, Slottable} from '@radix-ui/react-slot'
 import {cva, type VariantProps} from 'class-variance-authority'
-import {cn} from '@/src/lib/utils'
 import {Spinner} from '@/src/components/ui/spinner'
+import {cn} from '@/src/lib/utils'
 
 const iconButtonVariants = cva(
   [

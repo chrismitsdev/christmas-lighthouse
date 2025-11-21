@@ -1,11 +1,11 @@
-import {useTranslations} from 'next-intl'
 import {StarIcon} from 'lucide-react'
-import {cn} from '@/src/lib/utils'
-import {Section} from '@/src/components/shared/section'
-import {Typography} from '@/src/components/ui/typography'
-import {CustomImage} from '@/src/components/ui/custom-image'
+import {useTranslations} from 'next-intl'
 import heroDesktop from '@/public/sections/hero/images/hero-desktop.webp'
 import heroMobile from '@/public/sections/hero/images/hero-mobile.webp'
+import {Section} from '@/src/components/shared/section'
+import {CustomImage} from '@/src/components/ui/custom-image'
+import {Typography} from '@/src/components/ui/typography'
+import {cn} from '@/src/lib/utils'
 
 function Hero() {
   const t = useTranslations('pages.index.sections.hero')

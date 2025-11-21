@@ -1,6 +1,6 @@
-import {cn} from '@/src/lib/utils'
 import {CustomImage} from '@/src/components/ui/custom-image'
 import {Typography} from '@/src/components/ui/typography'
+import {cn} from '@/src/lib/utils'
 
 function Card({className, ...props}: React.ComponentPropsWithRef<'div'>) {
   return (
@@ -51,6 +51,7 @@ function CardTitle({
 }: Omit<React.ComponentPropsWithRef<typeof Typography>, 'asChild'>) {
   return (
     <Typography
+      className='font-semibold'
       variant={variant}
       {...props}
       asChild

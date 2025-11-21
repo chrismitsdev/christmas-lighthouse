@@ -16,7 +16,7 @@ function Parade({id}: {id: string}) {
           description={t('section-header.description')}
         />
         <div className='space-y-10'>
-          <div className='pl-6 pr-4 py-4 mx-auto w-full space-y-4 bg-brand-gold-12/50 text-brand-gold-4 border-x-4 border-brand-gold-4 rounded-2xl sm:p-6'>
+          <div className='p-5 mx-auto w-full space-y-4 bg-brand-gold-12/50 text-brand-gold-4 border border-brand-gold-11 rounded-lg not-sm:text-center sm:p-6'>
             <div className='space-y-2'>
               <Typography
                 variant='h4'
@@ -42,6 +42,7 @@ function Parade({id}: {id: string}) {
               })}
             </Typography>
           </div>
+
           {/* biome-ignore lint: No talking on video */}
           <video
             className='mx-auto w-full rounded-lg'

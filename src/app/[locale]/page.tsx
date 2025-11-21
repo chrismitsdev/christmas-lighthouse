@@ -8,6 +8,7 @@ import {Hero} from '@/src/components/page/index/hero'
 import {IndexNavigation} from '@/src/components/page/index/index-navigation'
 import {Parade} from '@/src/components/page/index/parade'
 import {Schedule} from '@/src/components/page/index/schedule'
+import {ScrollTop} from '@/src/components/shared/scroll-top'
 
 export async function generateMetadata({
   params
@@ -36,6 +37,8 @@ export default async function IndexPage({params}: PageProps<'/[locale]'>) {
         <Schedule id='schedule' />
         <Games id='games' />
       </main>
+
+      <ScrollTop />
     </Fragment>
   )
 }
