@@ -1,15 +1,11 @@
-@import 'tailwindcss';
-@import './animations.css';
-@import './colors.css';
-@import './data-attributes.css';
-/*@import './radiuses.css';*/
-@import './shadows.css';
-@import './utilities.css';
+@import "tailwindcss";
+@import "./animations.css";
+@import "./colors.css";
+@import "./data-attributes.css";
+@import "./shadows.css";
+@import "./utilities.css";
 
-/* General styling */
 * {
-  /*@apply border-border;*/
-
   &::selection {
     @apply bg-brand-gold-9 text-brand-blue-12;
   }

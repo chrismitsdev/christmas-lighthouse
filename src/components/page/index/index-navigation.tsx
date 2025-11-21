@@ -1,7 +1,6 @@
 'use client'
 
 import {type Messages, useTranslations} from 'next-intl'
-import {useState} from 'react'
 import {
   Scrollarea,
   ScrollareaScrollbar,
@@ -22,26 +21,23 @@ const indexLinks: IndexLink[] = [
 
 function IndexNavigation() {
   const t = useTranslations('pages.index.navigation.links')
-  const [activeSection, setActiveSection] = useState('')
 
   return (
     <nav
       aria-label='Index page navigation'
-      className='sticky top-0 z-10 bg-app-surface inset-shadow-nav-divider'
+      className='sticky top-0 z-10 bg-app-surface inset-shadow-nav-divider after:absolute after:inset-x-0 after:top-full after:h-8 after:z-50 after:bg-linear-to-b after:from-app-surface'
     >
       <Scrollarea>
         <ScrollareaViewport>
-          <div className='flex items-center justify-center'>
+          <div className='px-1 flex items-center justify-center'>
             {indexLinks.map((link) => (
               <Typography
                 key={link}
                 className={cn(
-                  'p-4 relative shrink-0 select-none text-nowrap opacity-30 duration-200 after:absolute after:inset-x-0 after:-bottom-1.5 after:h-1.5 after:bg-brand-gray-11 after:rounded-t-lg after:duration-200 sm:px-3',
-                  activeSection === link && 'opacity-100 after:bottom-0'
+                  'p-4 relative shrink-0 select-none text-nowrap font-semibold sm:px-3'
                 )}
                 variant='small'
                 draggable={false}
-                onClick={() => setActiveSection(link)}
                 asChild
               >
                 <a href={`#${link}`}>{t(link)}</a>

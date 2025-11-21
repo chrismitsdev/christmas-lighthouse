@@ -17,26 +17,25 @@ function Parade({id}: {id: string}) {
         />
         <div className='space-y-10'>
           <div className='p-5 mx-auto w-full space-y-4 bg-brand-gold-12/50 text-brand-gold-4 border border-brand-gold-11 rounded-lg not-sm:text-center sm:p-6'>
-            <div className='space-y-2'>
-              <Typography
-                variant='h4'
-                asChild
-              >
-                <h4>{t('info-card.title')}</h4>
-              </Typography>
-              <Typography variant='lead'>{t('info-card.subtitle')}</Typography>
-            </div>
-            <Typography>
+            <Typography
+              className='font-bold underline underline-offset-8'
+              variant='large'
+              asChild
+            >
+              <h4>{t('info-card.title')}</h4>
+            </Typography>
+            <Typography>{t('info-card.subtitle')}</Typography>
+            <Typography variant='small'>
               {t.rich('info-card.description', {
                 sos: (chunks) => (
                   <a
-                    className='underline inline-flex space-x-1 font-bold'
+                    className='underline inline-flex items-center space-x-1 font-medium'
                     href='https://sos-villages.gr/'
                     target='_blank'
                     rel='noopener'
                   >
                     <span>{chunks}</span>
-                    <ExternalLinkIcon className='w-4 h-6' />
+                    <ExternalLinkIcon className='size-4' />
                   </a>
                 )
               })}

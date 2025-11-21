@@ -48,7 +48,7 @@ function MenuNavigation({categoriesPromise}: Props) {
                 <Typography
                   key={title}
                   className={cn(
-                    'p-4 relative shrink-0 select-none text-nowrap opacity-30 duration-200 after:absolute after:inset-x-0 after:-bottom-1.5 after:h-1.5 after:bg-border-hover after:rounded-t-lg after:duration-200 sm:px-3',
+                    'p-4 relative shrink-0 select-none text-nowrap font-semibold opacity-50 duration-200 after:absolute after:inset-x-0 after:-bottom-1.5 after:h-1.5 after:bg-brand-gray-11 after:rounded-t-lg after:duration-200 sm:px-3',
                     pathname === (link || href) && 'opacity-100 after:bottom-0'
                   )}
                   variant='small'
