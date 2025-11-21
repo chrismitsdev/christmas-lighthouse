@@ -13,7 +13,7 @@
     "clean": "rimraf .next node_modules pnpm-lock.yaml"
   },
   "devDependencies": {
-    "@biomejs/biome": "2.3.6",
+    "@biomejs/biome": "2.3.7",
     "@neondatabase/serverless": "^1.0.2",
     "@node-rs/argon2": "^2.0.2",
     "@oslojs/crypto": "^1.0.1",

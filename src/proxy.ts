@@ -59,5 +59,5 @@ export default async function middleware(
 
 export const config: MiddlewareConfig = {
   // Match only internationalized pathnames
-  matcher: ['/', '/(el|en)/:path*']
+  matcher: ['/', '/menu', '/menu/*', '/(el|en)/:path*']
 }
