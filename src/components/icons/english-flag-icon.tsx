@@ -1,4 +1,4 @@
-function EnglandFlagIcon({size = 24, ...props}: CustomIconProps) {
+function EnglishFlagIcon({size = 24, ...props}: CustomIconProps) {
   return (
     <svg
       width={size}
@@ -44,6 +44,6 @@ function EnglandFlagIcon({size = 24, ...props}: CustomIconProps) {
   )
 }
 
-EnglandFlagIcon.displayName = 'EnglandFlagIcon'
+EnglishFlagIcon.displayName = 'EnglishFlagIcon'
 
-export {EnglandFlagIcon}
+export {EnglishFlagIcon}

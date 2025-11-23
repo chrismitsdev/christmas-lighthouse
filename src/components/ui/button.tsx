@@ -87,6 +87,7 @@ function Button({
   disabled,
   isLoading = false,
   asChild = false,
+  type = 'button',
   children,
   ...props
 }: ButtonProps) {
@@ -102,6 +103,7 @@ function Button({
         })
       )}
       disabled={disabled}
+      type={type}
       {...(disabled && {'data-disabled': disabled})}
       {...props}
     >

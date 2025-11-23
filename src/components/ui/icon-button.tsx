@@ -40,9 +40,9 @@ const iconButtonVariants = cva(
         ]
       },
       size: {
-        sm: ['size-6', 'rounded-sm', '[&_svg]:size-4'],
-        default: ['size-10', 'rounded-md', '[&_svg]:size-5'],
-        lg: ['size-14', 'rounded-lg', '[&_svg]:size-6']
+        sm: ['size-6', 'rounded-sm', '[&>svg]:size-4'],
+        default: ['size-10', 'rounded-md', '[&>svg]:size-5'],
+        lg: ['size-14', 'rounded-lg', '[&>svg]:size-6']
       }
     },
     defaultVariants: {
@@ -66,6 +66,7 @@ function IconButton({
   disabled,
   isLoading = false,
   asChild = false,
+  type = 'button',
   children,
   ...props
 }: IconButtonProps) {
@@ -81,6 +82,7 @@ function IconButton({
         })
       )}
       disabled={disabled}
+      type={type}
       {...(disabled && {'data-disabled': disabled})}
       {...props}
     >
