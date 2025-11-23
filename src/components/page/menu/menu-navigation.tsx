@@ -14,8 +14,6 @@ import type {CategoryWithProducts} from '@/src/db/menu'
 import {Link, usePathname} from '@/src/i18n/navigation'
 import {cn} from '@/src/lib/utils'
 
-const TOTAL_CATEGORIES = 12
-
 type Props = {
   categoriesPromise: Promise<CategoryWithProducts[]>
 }
@@ -77,20 +75,32 @@ function MenuNavigationSkeleton() {
       className='sticky top-0 z-50 flex justify-center bg-app-surface overflow-x-hidden inset-shadow-nav-divider'
     >
       <Container className='px-1 flex overflow-hidden'>
-        {Array.from(Array(TOTAL_CATEGORIES))
-          .keys()
-          .map((iterator) => (
-            <Skeleton
-              key={iterator + 1}
-              className='my-4 basis-20 mx-4 h-5 shrink-0 rounded-sm sm:basis-auto sm:flex-1 sm:mx-3'
-            />
-          ))}
+        <MenuNavigationSkeletonItem />
+        <MenuNavigationSkeletonItem />
+        <MenuNavigationSkeletonItem />
+        <MenuNavigationSkeletonItem />
+        <MenuNavigationSkeletonItem />
+        <MenuNavigationSkeletonItem />
+        <MenuNavigationSkeletonItem />
+        <MenuNavigationSkeletonItem />
+        <MenuNavigationSkeletonItem />
+        <MenuNavigationSkeletonItem />
+        <MenuNavigationSkeletonItem />
+        <MenuNavigationSkeletonItem />
+        <MenuNavigationSkeletonItem />
       </Container>
     </nav>
   )
 }
 
+function MenuNavigationSkeletonItem() {
+  return (
+    <Skeleton className='my-4 basis-20 mx-4 h-5 shrink-0 rounded-sm sm:basis-auto sm:flex-1 sm:mx-3' />
+  )
+}
+
 MenuNavigation.displayName = 'MenuNavigation'
 MenuNavigationSkeleton.displayName = 'MenuNavigationSkeleton'
+MenuNavigationSkeletonItem.displayName = 'MenuNavigationSkeletonItem'
 
 export {MenuNavigation, MenuNavigationSkeleton}
