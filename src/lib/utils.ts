@@ -35,7 +35,7 @@ export function joinAndSpace(arr: string[] | null): string | null {
   return arr.join(', ')
 }
 
-export function compareDate(date: string): boolean {
+export function compareDates(date: string): boolean {
   const today = new Date()
   today.setHours(0, 0, 0, 0)
 
