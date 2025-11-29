@@ -25,7 +25,10 @@ function Parade({id}: {id: string}) {
               <h4>{t('info-card.title')}</h4>
             </Typography>
             <Typography>{t('info-card.subtitle')}</Typography>
-            <Typography variant='small'>
+            <Typography
+              variant='small'
+              className='not-sm:text-justify'
+            >
               {t.rich('info-card.description', {
                 sos: (chunks) => (
                   <a
