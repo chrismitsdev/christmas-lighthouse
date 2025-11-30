@@ -32,8 +32,6 @@ import {
   SheetContent,
   SheetDescription,
   SheetHeader,
-  SheetOverlay,
-  SheetPortal,
   SheetTitle,
   SheetTrigger
 } from '@/src/components/ui/sheet'
@@ -141,28 +139,25 @@ function Games({id}: {id: string}) {
               <Typography>{t('sheet.trigger')}</Typography>
             </button>
           </SheetTrigger>
-          <SheetPortal>
-            <SheetOverlay />
-            <SheetContent side='left'>
-              <SheetClose size='sm' />
-              <SheetHeader>
-                <SheetTitle>{t('sheet.title')}</SheetTitle>
-                <SheetDescription>{t('sheet.description')}</SheetDescription>
-              </SheetHeader>
-              <Separator />
-              <Scrollarea
-                className='h-[calc(100%-105px)]'
-                type='always'
-              >
-                <ScrollareaViewport>
-                  <SheetBody className='pb-20'>
-                    <ul className='space-y-2'>{renderedSheetItems}</ul>
-                  </SheetBody>
-                </ScrollareaViewport>
-                <ScrollareaScrollbar />
-              </Scrollarea>
-            </SheetContent>
-          </SheetPortal>
+          <SheetContent side='left'>
+            <SheetClose size='sm' />
+            <SheetHeader>
+              <SheetTitle>{t('sheet.title')}</SheetTitle>
+              <SheetDescription>{t('sheet.description')}</SheetDescription>
+            </SheetHeader>
+            <Separator />
+            <Scrollarea
+              className='h-[calc(100%-105px)]'
+              type='always'
+            >
+              <ScrollareaViewport>
+                <SheetBody className='pb-20'>
+                  <ul className='space-y-2'>{renderedSheetItems}</ul>
+                </SheetBody>
+              </ScrollareaViewport>
+              <ScrollareaScrollbar />
+            </Scrollarea>
+          </SheetContent>
         </Sheet>
 
         <Carousel>

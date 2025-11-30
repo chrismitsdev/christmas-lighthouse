@@ -8,12 +8,12 @@
 
   /* SheetContent */
   --animate-sheet-top-open: sheet-top-open 750ms var(--ease-tcl);
-  --animate-sheet-right-open: sheet-right-open 750ms var(--ease-tcl);
-  --animate-sheet-bottom-open: sheet-bottom-open 750ms var(--ease-tcl);
-  --animate-sheet-left-open: sheet-left-open 750ms var(--ease-tcl);
   --animate-sheet-top-closed: sheet-top-closed 375ms var(--ease-tcl);
+  --animate-sheet-right-open: sheet-right-open 750ms var(--ease-tcl);
   --animate-sheet-right-closed: sheet-right-closed 375ms var(--ease-tcl);
+  --animate-sheet-bottom-open: sheet-bottom-open 750ms var(--ease-tcl);
   --animate-sheet-bottom-closed: sheet-bottom-closed 375ms var(--ease-tcl);
+  --animate-sheet-left-open: sheet-left-open 750ms var(--ease-tcl);
   --animate-sheet-left-closed: sheet-left-closed 375ms var(--ease-tcl);
 
   /* DialogContent */
@@ -57,7 +57,7 @@
   /* SheetContent */
   @keyframes sheet-top-open {
     from {
-      transform: translateY(-100%);
+      transform: translateY(calc(-100% - var(--sheet-offset)));
     }
     to {
       transform: translateY(0);
@@ -69,13 +69,13 @@
       transform: translateY(0);
     }
     to {
-      transform: translateY(-100%);
+      transform: translateY(calc(-100% - var(--sheet-offset)));
     }
   }
 
   @keyframes sheet-right-open {
     from {
-      transform: translateX(100%);
+      transform: translateX(calc(100% + var(--sheet-offset)));
     }
     to {
       transform: translateX(0);
@@ -87,13 +87,13 @@
       transform: translateX(0);
     }
     to {
-      transform: translateX(100%);
+      transform: translateX(calc(100% + var(--sheet-offset)));
     }
   }
 
   @keyframes sheet-bottom-open {
     from {
-      transform: translateY(100%);
+      transform: translateY(calc(100% + var(--sheet-offset)));
     }
     to {
       transform: translateY(0);
@@ -105,13 +105,13 @@
       transform: translateY(0);
     }
     to {
-      transform: translateY(100%);
+      transform: translateY(calc(100% + var(--sheet-offset)));
     }
   }
 
   @keyframes sheet-left-open {
     from {
-      transform: translateX(-100%);
+      transform: translateX(calc(-100% - var(--sheet-offset)));
     }
     to {
       transform: translateX(0);
@@ -123,7 +123,7 @@
       transform: translateX(0);
     }
     to {
-      transform: translateX(-100%);
+      transform: translateX(calc(-100% - var(--sheet-offset)));
     }
   }
 

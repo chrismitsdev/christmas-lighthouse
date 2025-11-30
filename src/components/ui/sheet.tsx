@@ -36,8 +36,8 @@ function SheetOverlay({
 
 const sheetContentVariants = cva(
   [
-    'w-[calc(100%-24px)]',
-    'h-[calc(100%-24px)]',
+    '[--sheet-offset:--spacing(3)]',
+    'm-(--sheet-offset)',
     'fixed',
     'z-20',
     'gap-4',
@@ -45,28 +45,29 @@ const sheetContentVariants = cva(
     'border',
     'border-brand-gray-12',
     'rounded-lg',
-    'shadow-lg'
+    'shadow-lg',
+    'will-change-transform'
   ],
   {
     variants: {
       side: {
         top: [
-          'top-3',
+          'top-0',
           'data-open:animate-sheet-top-open',
           'data-closed:animate-sheet-top-closed'
         ],
         right: [
-          'right-3',
+          'right-0',
           'data-open:animate-sheet-right-open',
           'data-closed:animate-sheet-right-closed'
         ],
         bottom: [
-          'bottom-3',
+          'bottom-0',
           'data-open:animate-sheet-bottom-open',
           'data-closed:animate-sheet-bottom-closed'
         ],
         left: [
-          'left-3',
+          'left-0',
           'data-open:animate-sheet-left-open',
           'data-closed:animate-sheet-left-closed'
         ]
@@ -75,11 +76,11 @@ const sheetContentVariants = cva(
     compoundVariants: [
       {
         side: ['right', 'left'],
-        className: ['top-3', 'sm:max-w-lg']
+        className: ['inset-y-0', 'w-full', 'h-auto', 'sm:max-w-lg']
       },
       {
         side: ['top', 'bottom'],
-        className: ['left-3', 'sm:max-h-96']
+        className: ['inset-x-0', 'w-auto', 'h-full', 'sm:max-h-96']
       }
     ],
     defaultVariants: {
@@ -98,10 +99,13 @@ function SheetContent({
   ...props
 }: SheetContentProps) {
   return (
-    <Content
-      className={cn(sheetContentVariants({side, className}))}
-      {...props}
-    />
+    <SheetPortal>
+      <SheetOverlay />
+      <Content
+        className={cn(sheetContentVariants({side, className}))}
+        {...props}
+      />
+    </SheetPortal>
   )
 }
 
@@ -196,8 +200,6 @@ SheetClose.displayName = 'SheetClose'
 export {
   Sheet,
   SheetTrigger,
-  SheetPortal,
-  SheetOverlay,
   SheetContent,
   SheetHeader,
   SheetTitle,
