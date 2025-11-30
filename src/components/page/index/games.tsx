@@ -139,7 +139,7 @@ function Games({id}: {id: string}) {
               <Typography>{t('sheet.trigger')}</Typography>
             </button>
           </SheetTrigger>
-          <SheetContent side='left'>
+          <SheetContent side='bottom'>
             <SheetClose size='sm' />
             <SheetHeader>
               <SheetTitle>{t('sheet.title')}</SheetTitle>

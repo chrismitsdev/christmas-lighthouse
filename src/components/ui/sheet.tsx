@@ -46,7 +46,8 @@ const sheetContentVariants = cva(
     'border-brand-gray-12',
     'rounded-lg',
     'shadow-lg',
-    'will-change-transform'
+    'data-open:will-change-transform',
+    'data-closed:will-change-transform'
   ],
   {
     variants: {
@@ -76,11 +77,21 @@ const sheetContentVariants = cva(
     compoundVariants: [
       {
         side: ['right', 'left'],
-        className: ['inset-y-0', 'w-full', 'h-auto', 'sm:max-w-lg']
+        className: [
+          'inset-y-0',
+          'w-[calc(100%-calc(var(--sheet-offset)*2))]',
+          'h-auto',
+          'sm:max-w-lg'
+        ]
       },
       {
         side: ['top', 'bottom'],
-        className: ['inset-x-0', 'w-auto', 'h-full', 'sm:max-h-96']
+        className: [
+          'inset-x-0',
+          'w-auto',
+          'h-[calc(100%-calc(var(--sheet-offset)*2))]',
+          'sm:max-h-96'
+        ]
       }
     ],
     defaultVariants: {
