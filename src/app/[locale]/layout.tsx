@@ -1,4 +1,5 @@
 import '@/src/styles/index.css'
+import {Analytics} from '@vercel/analytics/next'
 import type {Metadata} from 'next'
 import {Manrope} from 'next/font/google'
 import {notFound} from 'next/navigation'
@@ -66,6 +67,7 @@ export default async function LocaleLayout({
           }}
           snowflakeCount={30}
         />
+        <Analytics />
       </body>
     </html>
   )
