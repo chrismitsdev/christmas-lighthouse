@@ -20,18 +20,23 @@ export const metadata: Metadata = {
   alternates: {
     canonical: '/',
     languages: {
-      'en-US': '/en',
-      'el-GR': '/gr'
+      el: '/el',
+      en: '/en'
     }
   },
   title: {
     template: '%s | The Christmas Lighthouse',
     default: 'The Christmas Lighthouse'
   },
-  description: 'The Christmas Lighthouse amusement park menu',
+  description:
+    'The Christmas Lighthouse is the festive Christmas park of Alexandroupoli featuring the ice rink, charity parade, interactive games, workshops and holiday events for all ages.',
   formatDetection: {
     email: true,
     telephone: true
+  },
+  robots: {
+    index: true,
+    follow: true
   }
 }
 

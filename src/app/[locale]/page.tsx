@@ -17,7 +17,9 @@ export async function generateMetadata({
   const t = await getTranslations({locale, namespace: 'pages.metadata'})
 
   return {
-    title: t('index-page')
+    title: {
+      absolute: `${t('index-page')} | The Christmas Lighthouse`
+    }
   }
 }
 
