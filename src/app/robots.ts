@@ -6,6 +6,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: '*',
       allow: '/'
     },
-    sitemap: `https://thechristmaslighthouse.gr/sitemap.xml`
+    sitemap: 'https://thechristmaslighthouse.gr/sitemap.xml'
   }
 }
