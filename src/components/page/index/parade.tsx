@@ -16,7 +16,7 @@ function Parade({id}: {id: string}) {
           description={t('section-header.description')}
         />
         <div className='space-y-10'>
-          <div className='p-5 mx-auto w-full space-y-4 bg-brand-gold-12/50 text-brand-gold-4 border border-brand-gold-11 rounded-lg not-sm:text-center sm:p-6'>
+          <div className='p-4 mx-auto w-full space-y-6 bg-brand-gold-12/50 text-brand-gold-4 border border-brand-gold-11 rounded-lg sm:p-6'>
             <Typography
               className='font-bold underline underline-offset-8'
               variant='large'
@@ -25,14 +25,22 @@ function Parade({id}: {id: string}) {
               <h4>{t('info-card.title')}</h4>
             </Typography>
             <Typography>{t('info-card.subtitle')}</Typography>
-            <Typography
-              variant='small'
-              className='not-sm:text-justify'
-            >
+            <Typography>
               {t.rich('info-card.description', {
+                axd: (chunks) => (
+                  <a
+                    className='underline inline-flex items-center space-x-0.5 font-medium'
+                    href='https://alexpolis.gr/'
+                    target='_blank'
+                    rel='noopener'
+                  >
+                    <span>{chunks}</span>
+                    <ExternalLinkIcon className='size-4' />
+                  </a>
+                ),
                 sos: (chunks) => (
                   <a
-                    className='underline inline-flex items-center space-x-1 font-medium'
+                    className='underline inline-flex items-center space-x-0.5 font-medium'
                     href='https://sos-villages.gr/'
                     target='_blank'
                     rel='noopener'
