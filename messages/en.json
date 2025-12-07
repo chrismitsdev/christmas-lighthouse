@@ -73,14 +73,15 @@
         },
         "parade": {
           "section-header": {
-            "title": "Christmas charity parade",
+            "title": "5th Christmas charity parade",
             "description": "This year’s beloved holiday celebration brought Alexandroupoli together once again with music, costumes, mascots, and Santa, uniting families in support of children and those in need."
           },
           "info-card": {
             "title": "Sunday, November 30, 2025 — 18:30",
             "subtitle": "Alexandroupoli’s biggest Christmas parade concluded successfully!",
             "description": "Held with the support of the <axd>Municipality of Alexandroupoli</axd>, the 5th Christmas Charity Parade filled the city streets with festive music, colourful characters, and joyful performances. The celebration continued with the official Christmas tree lighting, fireworks, and a holiday party at the park. Visitors supported the cause through food donations and the purchase of official Christmas accessories, with all proceeds benefiting the <sos>SOS Children’s Villages</sos>."
-          }
+          },
+          "video-description": "Watch highlights from the 5th Christmas Charity Parade in Alexandroupoli"
         },
         "schedule": {
           "section-header": {
