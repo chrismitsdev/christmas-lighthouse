@@ -162,7 +162,9 @@ function Games({id}: {id: string}) {
 
         <Carousel>
           <CarouselViewport>
-            <CarouselSlidesContainer>{renderedSlides}</CarouselSlidesContainer>
+            <CarouselSlidesContainer className='max-h-200'>
+              {renderedSlides}
+            </CarouselSlidesContainer>
           </CarouselViewport>
           <CarouselPrevButton size='sm' />
           <CarouselNextButton size='sm' />
