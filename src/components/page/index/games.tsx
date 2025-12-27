@@ -35,6 +35,7 @@ import {
   SheetTrigger
 } from '@/src/components/ui/sheet'
 import {Typography} from '@/src/components/ui/typography'
+import {useIsMobile} from '@/src/hooks/use-is-mobile'
 
 type Gallery = {
   key: keyof Messages['pages']['index']['sections']['games']['galleries']
@@ -52,6 +53,8 @@ const galleries: Gallery[] = [
   {key: 'dryslope', images: gamesGalleries.dryslopeGallery},
   {key: 'formula-cars', images: gamesGalleries.formulaCarsGallery},
   {key: 'hawaiian-surfing', images: gamesGalleries.hawaiianSurfingGallery},
+  {key: 'ice-rink', images: gamesGalleries.iceRinkGallery},
+  {key: 'junior-playground', images: gamesGalleries.juniorPlaygroundGallery},
   {key: 'kiddy-rides', images: gamesGalleries.kiddyRidesGallery},
   {key: 'lucky-games', images: gamesGalleries.luckyGamesGallery},
   {key: 'playground', images: gamesGalleries.playgroundGallery},
@@ -66,6 +69,7 @@ function Games({id}: {id: string}) {
   const [selectedGallery, setSelectedGallery] = useState<Gallery>(galleries[0])
   const [sheetOpen, setSheetOpen] = useState<boolean>(false)
   const t = useTranslations('pages.index.sections.games')
+  const isMobile = useIsMobile()
 
   function handleItemClick(gallery: Gallery) {
     setSelectedGallery(gallery)
@@ -119,7 +123,7 @@ function Games({id}: {id: string}) {
         >
           <SheetTrigger asChild>
             <button
-              className='py-6 px-4 mb-10 space-y-1 bg-app-surface border border-brand-gray-12 rounded-lg text-left pointer-coarse:active:bg-brand-gray-11 not-sm:w-full sm:min-w-96 sm:px-6'
+              className='p-4 mb-6 space-y-1 bg-app-surface border border-brand-gray-12 rounded-lg text-left pointer-coarse:active:bg-brand-gray-11 not-sm:w-full sm:min-w-96'
               type='button'
             >
               <div className='flex items-center justify-between'>
@@ -165,8 +169,8 @@ function Games({id}: {id: string}) {
               {renderedSlides}
             </CarouselSlidesContainer>
           </CarouselViewport>
-          <CarouselPrevButton size='sm' />
-          <CarouselNextButton size='sm' />
+          <CarouselPrevButton size={isMobile ? 'sm' : 'default'} />
+          <CarouselNextButton size={isMobile ? 'sm' : 'default'} />
         </Carousel>
       </Container>
     </Section>

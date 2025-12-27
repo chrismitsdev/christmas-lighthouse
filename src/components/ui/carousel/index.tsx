@@ -64,11 +64,7 @@ function CarouselSlide({
 
   return (
     <Comp
-      className={cn(
-        // 'mr-4 min-w-0 grow-0 shrink-0 basis-full select-none',
-        'mr-4 shrink-0 grow-0 basis-full select-none',
-        className
-      )}
+      className={cn('mr-4 shrink-0 grow-0 basis-full select-none', className)}
       {...props}
     />
   )
@@ -83,7 +79,7 @@ function CarouselPrevButton({
 
   return (
     <IconButton
-      className={cn('absolute top-1/2 -translate-y-1/2 left-2', className)}
+      className={cn('absolute top-1/2 -translate-y-1/2 left-3', className)}
       onClick={onPrevButtonClick}
       {...props}
     >
@@ -101,7 +97,7 @@ function CarouselNextButton({
 
   return (
     <IconButton
-      className={cn('absolute top-1/2 -translate-y-1/2 right-2', className)}
+      className={cn('absolute top-1/2 -translate-y-1/2 right-3', className)}
       onClick={onNextButtonClick}
       {...props}
     >
