@@ -15,8 +15,10 @@
 
 /* Leaflet popup styles */
 .leaflet-container {
-  .leaflet-pane {
-    @apply z-auto;
+  .leaflet-pane,
+  .leaflet-top.leaflet-left,
+  .leaflet-top.leaflet-left .leaflet-control-zoom {
+    @apply z-1;
   }
 
   a:not(.leaflet-control-zoom-in, .leaflet-control-zoom-out) {
