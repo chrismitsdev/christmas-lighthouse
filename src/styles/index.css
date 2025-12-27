@@ -15,6 +15,10 @@
 
 /* Leaflet popup styles */
 .leaflet-container {
+  .leaflet-pane {
+    @apply z-auto;
+  }
+
   a:not(.leaflet-control-zoom-in, .leaflet-control-zoom-out) {
     @apply text-inherit;
   }
