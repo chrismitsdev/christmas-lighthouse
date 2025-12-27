@@ -2,8 +2,8 @@
 
 import {
   MailIcon,
-  MessageCircleIcon,
   MessageSquareMoreIcon,
+  MessagesSquareIcon,
   SendHorizonalIcon,
   SmartphoneIcon,
   UserIcon
@@ -13,7 +13,12 @@ import {useActionState, useEffect} from 'react'
 import {Container} from '@/src/components/shared/container'
 import {Section} from '@/src/components/shared/section'
 import {Button} from '@/src/components/ui/button'
-import {Card, CardContent, CardFooter} from '@/src/components/ui/card'
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader
+} from '@/src/components/ui/card'
 import {Input} from '@/src/components/ui/input'
 import {Textarea} from '@/src/components/ui/textarea'
 import {toast} from '@/src/components/ui/toast'
@@ -69,6 +74,9 @@ function Contact({id}: {id: string}) {
           noValidate
         >
           <Card className='sm:[--card-padding:--spacing(20)]'>
+            <CardHeader className='flex justify-center'>
+              <MessagesSquareIcon className='size-20 text-brand-gray-11' />
+            </CardHeader>
             <CardContent className='space-y-6'>
               <Input
                 defaultValue={state.data.fullname}

@@ -40,7 +40,7 @@ function Input({
     >
       <input
         className={cn(
-          'px-4 py-3.75 block w-full bg-brand-gray-12 text-brand-gray-1 border border-transparent rounded outline-none duration-300 placeholder:text-sm placeholder:text-brand-gray-11 group-focus-within:border-brand-gray-11 disabled:opacity-30 sm:placeholder:text-base',
+          'px-4 py-3.75 block w-full bg-brand-gray-12 text-app-foreground font-semibold border border-brand-gray-12 rounded outline-none duration-300 placeholder:text-sm placeholder:text-brand-gray-11 group-focus-within:border-brand-gray-11 disabled:opacity-30 sm:placeholder:text-base',
           icon && 'pl-10 sm:pl-12',
           error && 'border-red-300 group-focus-within:border-red-300',
           isPasswordType && 'pr-10 sm:pr-12',
@@ -57,7 +57,7 @@ function Input({
       {icon && (
         <span
           aria-hidden='true'
-          className='absolute left-3 top-4.5 text-brand-gray-11 group-focus-within:text-brand-gray-1 duration-300 [&>svg]:size-4 sm:left-4 sm:[&>svg]:size-5'
+          className='absolute left-3 top-5 text-brand-gray-11 group-focus-within:text-brand-gray-1 duration-300 [&>svg]:size-4 sm:left-4 sm:[&>svg]:size-5 sm:top-4.5'
         >
           {icon}
         </span>
