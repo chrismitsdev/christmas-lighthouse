@@ -68,12 +68,6 @@ function Contact({id}: {id: string}) {
           noValidate
         >
           <Card className='sm:[--card-padding:--spacing(20)]'>
-            {/*<CardHeader>
-              <CardTitle>{t('section-header.title')}</CardTitle>
-              <CardDescription>
-                {t('section-header.description')}
-              </CardDescription>
-            </CardHeader>*/}
             <CardContent className='space-y-4'>
               <Input
                 defaultValue={state.data.fullname}

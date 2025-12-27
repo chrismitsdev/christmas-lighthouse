@@ -4,7 +4,7 @@ function Spinner({className, size = 16, ...props}: CustomIconProps) {
   return (
     <svg
       xmlns='http://www.w3.org/2000/svg'
-      className={cn('animate-spin', className)}
+      className={cn('shrink-0 animate-spin', className)}
       width={size}
       height={size}
       viewBox='0 0 24 24'

@@ -11,6 +11,8 @@ const typographyVariants = cva(['block', 'leading-6', 'text-balance'], {
       h2: ['text-3xl font-serif font-semibold'],
       h3: ['text-2xl font-serif font-semibold'],
       h4: ['text-xl font-serif font-semibold'],
+      h5: ['text-lg font-semibold'],
+      h6: ['text-sm font-semibold'],
       p: ['text-base'],
       lead: ['text-xl'],
       large: ['text-lg'],

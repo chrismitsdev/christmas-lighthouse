@@ -13,6 +13,7 @@
     "clean": "rimraf .next node_modules pnpm-lock.yaml"
   },
   "devDependencies": {
+    "@adamscybot/react-leaflet-component-marker": "^2.0.3",
     "@biomejs/biome": "2.3.10",
     "@neondatabase/serverless": "^1.0.2",
     "@node-rs/argon2": "^2.0.2",

@@ -23,17 +23,17 @@ const iconsMap: Record<
   NonNullable<ToastProps['status']>,
   React.ReactElement<LucideIcon>
 > = {
-  default: <InfoIcon className='text-blue-300' />,
-  success: <CheckCircleIcon className='text-green-300' />,
-  error: <AlertCircleIcon className='text-red-300' />
+  default: <InfoIcon className='size-5 text-blue-300' />,
+  success: <CheckCircleIcon className='size-5 text-green-300' />,
+  error: <AlertCircleIcon className='size-5 text-red-300' />
 }
 
 function Toast({id, title, description, status = 'default'}: ToastProps) {
   return (
     <div className='p-6 space-y-1 bg-brand-gray-12 border border-brand-gray-11 text-app-foreground rounded'>
-      <div className='flex items-start gap-2'>
+      <div className='flex items-center gap-2'>
         <span
-          className='mt-0.5 shrink-0'
+          className='shrink-0'
           aria-hidden='true'
         >
           {iconsMap[status]}
@@ -45,7 +45,7 @@ function Toast({id, title, description, status = 'default'}: ToastProps) {
             status === 'success' && 'text-green-300',
             status === 'error' && 'text-red-300'
           )}
-          variant='large'
+          variant='h6'
         >
           {title}
         </Typography>

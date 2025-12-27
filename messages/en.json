@@ -238,7 +238,11 @@
           "nav-link": "Location",
           "section-header": {
             "title": "Find us",
-            "description": "View the location of The Christmas Lighthouse on the map and plan your visit to the park in Alexandroupoli."
+            "description": "View the location of The Christmas Lighthouse on the map to better plan your visit."
+          },
+          "map": {
+            "location": "How to get here",
+            "phone": "Call us"
           }
         }
       }

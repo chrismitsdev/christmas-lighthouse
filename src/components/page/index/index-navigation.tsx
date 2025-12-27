@@ -32,19 +32,13 @@ function IndexNavigation() {
         <ScrollareaViewport>
           <div className='px-1 flex items-center justify-center'>
             {sectionLinks.map((link) => (
-              <Typography
+              <SectionLink
                 key={link}
-                className={cn(
-                  'p-4 relative shrink-0 select-none text-nowrap font-semibold sm:px-3'
-                )}
-                variant='small'
-                draggable={false}
-                asChild
+                href={link}
               >
-                <a href={`#${link}`}>{t(`${link}.nav-link`)}</a>
-              </Typography>
+                {t(`${link}.nav-link`)}
+              </SectionLink>
             ))}
-
             <LocaleCycle />
           </div>
         </ScrollareaViewport>
@@ -57,6 +51,24 @@ function IndexNavigation() {
   )
 }
 
+function SectionLink({
+  href,
+  children
+}: React.PropsWithChildren<{href: string}>) {
+  return (
+    <Typography
+      className={cn(
+        'p-4 relative shrink-0 text-nowrap font-semibold rounded-xl focus-visible:outline-1 focus-visible:outline-solid focus-visible:outline-brand-gray-7 focus-visible:-outline-offset-6'
+      )}
+      variant='small'
+      asChild
+    >
+      <a href={`#${href}`}>{children}</a>
+    </Typography>
+  )
+}
+
 IndexNavigation.displayName = 'IndexNavigation'
+SectionLink.displayName = 'SectionLink'
 
 export {IndexNavigation}
