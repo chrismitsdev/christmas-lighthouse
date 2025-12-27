@@ -27,7 +27,7 @@ function LocaleCycle(props: React.ComponentPropsWithRef<typeof IconButton>) {
     const nextLocale = locales[(locales.indexOf(locale) + 1) % locales.length]
 
     startTransition(() => {
-      router.replace(pathname, {locale: nextLocale})
+      router.replace(pathname, {locale: nextLocale, scroll: false})
     })
   }, [locale, locales, pathname, router])
 
