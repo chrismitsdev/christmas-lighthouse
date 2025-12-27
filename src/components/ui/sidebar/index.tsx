@@ -411,12 +411,12 @@ const sidebarMenuButtonVariants = cva(
     'border',
     'rounded',
     'cursor-pointer',
-    '[&:not(:disabled)]:hover:bg-brand-gray-12',
-    '[&:not(:disabled)]:hover:border-border-hover',
+    'not-disabled:hover:bg-brand-gray-12',
+    'not-disabled:hover:border-brand-gray-11',
     'active:bg-brand-gray-11/50',
     'disabled:opacity-30',
     'data-disabled:opacity-30',
-    '[&>*]:shrink-0'
+    '*:shrink-0'
   ],
   {
     variants: {
@@ -436,7 +436,7 @@ const sidebarMenuButtonVariants = cva(
       size: {
         default: ['text-base'],
         sm: ['text-xs'],
-        lg: ['text-sm', 'group-data-[collapsible=icon]:!p-0']
+        lg: ['text-sm', 'group-data-[collapsible=icon]:p-0!']
       }
     },
     defaultVariants: {

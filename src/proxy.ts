@@ -14,7 +14,6 @@ export default async function middleware(
   const response = nextIntlMiddleware(request)
 
   // Only extend the cookie expiration on GET requests.
-  // if (request.method === 'GET') {
   if (request.method === 'GET' || request.method === 'HEAD') {
     const token = request.cookies.get('session')?.value ?? null
 

@@ -1,6 +1,7 @@
 'use client'
 
 import {type Messages, useTranslations} from 'next-intl'
+import {LocaleCycle} from '@/src/components/shared/locale-cycle'
 import {
   Scrollarea,
   ScrollareaScrollbar,
@@ -9,18 +10,18 @@ import {
 import {Typography} from '@/src/components/ui/typography'
 import {cn} from '@/src/lib/utils'
 
-type IndexLink = keyof Messages['pages']['index']['navigation']['links']
-
-const indexLinks: IndexLink[] = [
+const sectionLinks: (keyof Messages['pages']['index']['sections'])[] = [
   'about',
   'experiences',
   'parade',
   'schedule',
-  'games'
+  'games',
+  'contact',
+  'location'
 ]
 
 function IndexNavigation() {
-  const t = useTranslations('pages.index.navigation.links')
+  const t = useTranslations('pages.index.sections')
 
   return (
     <nav
@@ -30,19 +31,15 @@ function IndexNavigation() {
       <Scrollarea>
         <ScrollareaViewport>
           <div className='px-1 flex items-center justify-center'>
-            {indexLinks.map((link) => (
-              <Typography
+            {sectionLinks.map((link) => (
+              <SectionLink
                 key={link}
-                className={cn(
-                  'p-4 relative shrink-0 select-none text-nowrap font-semibold sm:px-3'
-                )}
-                variant='small'
-                draggable={false}
-                asChild
+                href={link}
               >
-                <a href={`#${link}`}>{t(link)}</a>
-              </Typography>
+                {t(`${link}.nav-link`)}
+              </SectionLink>
             ))}
+            <LocaleCycle />
           </div>
         </ScrollareaViewport>
         <ScrollareaScrollbar
@@ -54,6 +51,24 @@ function IndexNavigation() {
   )
 }
 
+function SectionLink({
+  href,
+  children
+}: React.PropsWithChildren<{href: string}>) {
+  return (
+    <Typography
+      className={cn(
+        'p-4 relative shrink-0 text-nowrap font-semibold rounded-xl focus-visible:outline-1 focus-visible:outline-solid focus-visible:outline-brand-gray-7 focus-visible:-outline-offset-6'
+      )}
+      variant='small'
+      asChild
+    >
+      <a href={`#${href}`}>{children}</a>
+    </Typography>
+  )
+}
+
 IndexNavigation.displayName = 'IndexNavigation'
+SectionLink.displayName = 'SectionLink'
 
 export {IndexNavigation}

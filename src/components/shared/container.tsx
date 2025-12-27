@@ -8,7 +8,7 @@ function Container({asChild = false, className, ...props}: ContainerProps) {
 
   return (
     <Comp
-      className={cn('container', className)}
+      className={cn('container max-w-7xl', className)}
       {...props}
     />
   )

@@ -1,16 +1,18 @@
 'use client'
 
-import {cva, type VariantProps} from 'class-variance-authority'
 import {Slot} from '@radix-ui/react-slot'
+import {cva, type VariantProps} from 'class-variance-authority'
 import {cn} from '@/src/lib/utils'
 
 const typographyVariants = cva(['block', 'leading-6', 'text-balance'], {
   variants: {
     variant: {
-      h1: ['text-5xl'],
-      h2: ['text-4xl'],
-      h3: ['text-3xl'],
-      h4: ['text-2xl'],
+      h1: ['text-5xl font-serif font-bold'],
+      h2: ['text-3xl font-serif font-semibold'],
+      h3: ['text-2xl font-serif font-semibold'],
+      h4: ['text-xl font-serif font-semibold'],
+      h5: ['text-lg font-semibold'],
+      h6: ['text-sm font-semibold'],
       p: ['text-base'],
       lead: ['text-xl'],
       large: ['text-lg'],

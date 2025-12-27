@@ -7,7 +7,7 @@ import {cn} from '@/src/lib/utils'
 
 const SCROLL_THRESHOLD = 120
 
-function ScrollTop() {
+function ScrollTopButton() {
   const [show, setShow] = useState<boolean>(false)
 
   useEffect(() => {
@@ -40,6 +40,6 @@ function ScrollTop() {
   )
 }
 
-ScrollTop.displayName = 'ScrollTop'
+ScrollTopButton.displayName = 'ScrollTopButton'
 
-export {ScrollTop}
+export {ScrollTopButton}

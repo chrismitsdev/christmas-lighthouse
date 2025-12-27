@@ -2,13 +2,15 @@ import type {Metadata} from 'next'
 import {getTranslations, setRequestLocale} from 'next-intl/server'
 import {Fragment} from 'react'
 import {About} from '@/src/components/page/index/about'
+import {Contact} from '@/src/components/page/index/contact'
 import {Experiences} from '@/src/components/page/index/experiences'
 import {Games} from '@/src/components/page/index/games'
 import {Hero} from '@/src/components/page/index/hero'
 import {IndexNavigation} from '@/src/components/page/index/index-navigation'
+import {Location} from '@/src/components/page/index/location'
 import {Parade} from '@/src/components/page/index/parade'
 import {Schedule} from '@/src/components/page/index/schedule'
-import {ScrollTop} from '@/src/components/shared/scroll-top'
+import {ScrollTopButton} from '@/src/components/shared/scroll-top-button'
 
 export async function generateMetadata({
   params
@@ -38,9 +40,11 @@ export default async function IndexPage({params}: PageProps<'/[locale]'>) {
         <Parade id='parade' />
         <Schedule id='schedule' />
         <Games id='games' />
+        <Contact id='contact' />
+        <Location id='location' />
       </main>
 
-      <ScrollTop />
+      <ScrollTopButton />
     </Fragment>
   )
 }
