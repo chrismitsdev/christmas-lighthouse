@@ -7,7 +7,6 @@ import {useState} from 'react'
 import * as gamesGalleries from '@/public/sections/games/images'
 import {Container} from '@/src/components/shared/container'
 import {Section} from '@/src/components/shared/section'
-import {SectionHeader} from '@/src/components/shared/section-header'
 import {Button} from '@/src/components/ui/button'
 import {
   Carousel,
@@ -108,12 +107,12 @@ function Games({id}: {id: string}) {
   ))
 
   return (
-    <Section id={id}>
-      <Container className='max-w-7xl'>
-        <SectionHeader
-          title={t('section-header.title')}
-          description={t('section-header.description')}
-        />
+    <Section
+      id={id}
+      title={t('section-header.title')}
+      description={t('section-header.description')}
+    >
+      <Container>
         <Sheet
           open={sheetOpen}
           onOpenChange={setSheetOpen}

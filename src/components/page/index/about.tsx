@@ -3,7 +3,6 @@ import {useTranslations} from 'next-intl'
 import {images} from '@/public/sections/about/images'
 import {Container} from '@/src/components/shared/container'
 import {Section} from '@/src/components/shared/section'
-import {SectionHeader} from '@/src/components/shared/section-header'
 import {
   Card,
   CardContent,
@@ -24,13 +23,12 @@ function About({id}: {id: string}) {
   const t = useTranslations('pages.index.sections.about')
 
   return (
-    <Section id={id}>
+    <Section
+      id={id}
+      title={t('section-header.title')}
+      description={t('section-header.description')}
+    >
       <Container>
-        <SectionHeader
-          title={t('section-header.title')}
-          description={t('section-header.description')}
-        />
-
         <div className='space-y-20'>
           <Card className='sm:[--card-padding:--spacing(8)] max-w-xl mx-auto'>
             <CardHeader>
@@ -38,9 +36,9 @@ function About({id}: {id: string}) {
               <CardDescription>{t('info-card.description')}</CardDescription>
             </CardHeader>
             <CardContent>
-              <div className='space-y-6'>
+              <div className='space-y-8'>
                 <article className='space-y-2'>
-                  <div className='flex gap-x-3'>
+                  <div className='flex gap-x-2'>
                     <CalendarDaysIcon className='h-7 w-5' />
                     <Typography variant='large'>
                       {t('info-card.season.title')}
@@ -51,14 +49,14 @@ function About({id}: {id: string}) {
                   </Typography>
                 </article>
                 <article className='space-y-2'>
-                  <div className='flex gap-x-3'>
+                  <div className='flex gap-x-2'>
                     <ClockIcon className='h-7 w-5' />
                     <Typography variant='large'>
                       {t('info-card.hours.title')}
                     </Typography>
                   </div>
-                  <div className='space-y-2 sm:px-6'>
-                    <div className='p-2 space-y-1 bg-brand-gold-12/50 text-brand-gold-4 border border-brand-gold-11/25 rounded'>
+                  <div className='space-y-2'>
+                    <div className='space-y-1 sm:pl-8'>
                       <Typography>
                         {t('info-card.hours.zone-1.date-range')}
                       </Typography>
@@ -69,7 +67,7 @@ function About({id}: {id: string}) {
                         {t('info-card.hours.zone-1.entry-2')}
                       </Typography>
                     </div>
-                    <div className='p-2 space-y-1 bg-brand-gold-12/50 text-brand-gold-4 border border-brand-gold-11/25 rounded'>
+                    <div className='space-y-1 sm:pl-8'>
                       <Typography>
                         {t('info-card.hours.zone-2.date-range')}
                       </Typography>
@@ -80,7 +78,7 @@ function About({id}: {id: string}) {
                   </div>
                 </article>
                 <article className='space-y-2'>
-                  <div className='flex gap-x-3'>
+                  <div className='flex gap-x-2'>
                     <MapPinIcon className='h-7 w-5' />
                     <Typography variant='large'>
                       {t('info-card.location.title')}
@@ -94,20 +92,20 @@ function About({id}: {id: string}) {
             </CardContent>
           </Card>
 
-          <div className='hidden sm:flex sm:gap-10'>
-            <Card className='row-start-2'>
+          <div className='hidden sm:flex sm:gap-6'>
+            <Card>
               <CardImage
                 src={images[1]}
                 alt='About section image 2'
               />
             </Card>
-            <Card className='row-start-2 col-start-3'>
+            <Card>
               <CardImage
                 src={images[6]}
                 alt='About section image 1'
               />
             </Card>
-            <Card className='row-start-3 col-start-2'>
+            <Card>
               <CardImage
                 src={images[3]}
                 alt='About section image 3'

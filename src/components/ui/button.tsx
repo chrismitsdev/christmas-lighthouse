@@ -13,6 +13,7 @@ const buttonVariants = cva(
     'transition',
     'shrink-0',
     'outline-none',
+    'rounded',
     'text-app-foreground',
     '[&_svg]:pointer-events-none',
     'data-disabled:pointer-events-none',
@@ -41,23 +42,9 @@ const buttonVariants = cva(
         ]
       },
       size: {
-        sm: ['h-6', 'px-2', 'text-sm', 'gap-x-1', 'rounded-sm', 'font-normal'],
-        default: [
-          'h-10',
-          'px-4',
-          'text-base',
-          'gap-x-1.5',
-          'rounded-md',
-          'font-semibold'
-        ],
-        lg: [
-          'h-14',
-          'px-6',
-          'text-lg',
-          'gap-x-2',
-          'rounded-lg',
-          'font-extrabold'
-        ]
+        sm: ['h-6', 'px-2', 'text-sm', 'gap-x-1', 'font-normal'],
+        default: ['h-10', 'px-4', 'text-base', 'gap-x-1.5', 'font-semibold'],
+        lg: ['h-14', 'px-6', 'text-lg', 'gap-x-2', 'font-extrabold']
       }
     },
     defaultVariants: {

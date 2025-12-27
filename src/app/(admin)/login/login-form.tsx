@@ -1,20 +1,20 @@
 'use client'
 
-import * as React from 'react'
-import Link from 'next/link'
 import {
-  MailIcon,
+  HouseIcon,
   KeySquareIcon,
-  SendHorizonalIcon,
-  HouseIcon
+  MailIcon,
+  SendHorizonalIcon
 } from 'lucide-react'
+import Link from 'next/link'
+import * as React from 'react'
 import {
   type LoginActionState,
   loginAction
 } from '@/src/app/(admin)/login/actions'
-import {Typography} from '@/src/components/ui/typography'
 import {Button} from '@/src/components/ui/button'
 import {Input} from '@/src/components/ui/input'
+import {Typography} from '@/src/components/ui/typography'
 
 const initialState = {
   data: {} as LoginActionState['data'],

@@ -5,6 +5,7 @@ import {Manrope} from 'next/font/google'
 import {notFound} from 'next/navigation'
 import {hasLocale, NextIntlClientProvider} from 'next-intl'
 import {setRequestLocale} from 'next-intl/server'
+import {Toaster} from 'sonner'
 import {Footer} from '@/src/components/shared/footer'
 import {Header} from '@/src/components/shared/header'
 import {Snowfall} from '@/src/components/shared/snow-fall'
@@ -63,6 +64,7 @@ export default async function LocaleLayout({
           <Header />
           {children}
           <Footer />
+          <Toaster position='top-center' />
         </NextIntlClientProvider>
         <Snowfall
           style={{

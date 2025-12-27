@@ -28,7 +28,7 @@ function Hero() {
           <div className='space-y-10 text-brand-gold-4 text-center'>
             <Typography
               variant='h1'
-              className='text-3xl font-serif font-bold sm:text-6xl'
+              className='not-sm:text-3xl'
               asChild
             >
               <h1>{t('title')}</h1>

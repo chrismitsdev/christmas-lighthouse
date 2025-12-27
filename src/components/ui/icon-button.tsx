@@ -88,6 +88,7 @@ function IconButton({
     >
       {/* Increase touch target size for mobile devices */}
       <span className='absolute size-full min-w-12 min-h-12 pointer-fine:hidden' />
+
       <Slottable>{children}</Slottable>
       {isLoading && (
         <span className='absolute inset-0 flex items-center justify-center'>

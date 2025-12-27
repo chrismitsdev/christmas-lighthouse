@@ -1,6 +1,7 @@
 'use client'
 
 import {type Messages, useTranslations} from 'next-intl'
+import {LocaleCycle} from '@/src/components/shared/locale-cycle'
 import {
   Scrollarea,
   ScrollareaScrollbar,
@@ -9,18 +10,18 @@ import {
 import {Typography} from '@/src/components/ui/typography'
 import {cn} from '@/src/lib/utils'
 
-type IndexLink = keyof Messages['pages']['index']['navigation']['links']
-
-const indexLinks: IndexLink[] = [
+const sectionLinks: (keyof Messages['pages']['index']['sections'])[] = [
   'about',
   'experiences',
   'parade',
   'schedule',
-  'games'
+  'games',
+  'contact',
+  'location'
 ]
 
 function IndexNavigation() {
-  const t = useTranslations('pages.index.navigation.links')
+  const t = useTranslations('pages.index.sections')
 
   return (
     <nav
@@ -30,7 +31,7 @@ function IndexNavigation() {
       <Scrollarea>
         <ScrollareaViewport>
           <div className='px-1 flex items-center justify-center'>
-            {indexLinks.map((link) => (
+            {sectionLinks.map((link) => (
               <Typography
                 key={link}
                 className={cn(
@@ -40,9 +41,11 @@ function IndexNavigation() {
                 draggable={false}
                 asChild
               >
-                <a href={`#${link}`}>{t(link)}</a>
+                <a href={`#${link}`}>{t(`${link}.nav-link`)}</a>
               </Typography>
             ))}
+
+            <LocaleCycle />
           </div>
         </ScrollareaViewport>
         <ScrollareaScrollbar

@@ -2,19 +2,18 @@ import {ExternalLinkIcon} from 'lucide-react'
 import {useTranslations} from 'next-intl'
 import {Container} from '@/src/components/shared/container'
 import {Section} from '@/src/components/shared/section'
-import {SectionHeader} from '@/src/components/shared/section-header'
 import {Typography} from '@/src/components/ui/typography'
 
 function Parade({id}: {id: string}) {
   const t = useTranslations('pages.index.sections.parade')
 
   return (
-    <Section id={id}>
-      <Container className='max-w-7xl'>
-        <SectionHeader
-          title={t('section-header.title')}
-          description={t('section-header.description')}
-        />
+    <Section
+      id={id}
+      title={t('section-header.title')}
+      description={t('section-header.description')}
+    >
+      <Container>
         <div className='space-y-10'>
           <div className='p-4 mx-auto w-full space-y-6 bg-brand-gold-12/50 text-brand-gold-4 border border-brand-gold-11 rounded-lg text-center sm:p-6'>
             <Typography

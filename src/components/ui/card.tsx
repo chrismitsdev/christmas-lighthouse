@@ -44,32 +44,21 @@ function CardHeader({className, ...props}: React.ComponentPropsWithRef<'div'>) {
   )
 }
 
-function CardTitle({
-  variant = 'h4',
-  children,
-  ...props
-}: Omit<React.ComponentPropsWithRef<typeof Typography>, 'asChild'>) {
+function CardTitle({children}: React.PropsWithChildren) {
   return (
     <Typography
-      className='font-semibold'
-      variant={variant}
-      {...props}
+      variant='h4'
       asChild
     >
-      <h2>{children}</h2>
+      <h4>{children}</h4>
     </Typography>
   )
 }
 
-function CardDescription({
-  variant = 'large',
-  children,
-  ...props
-}: Omit<React.ComponentPropsWithRef<typeof Typography>, 'asChild'>) {
+function CardDescription({children}: React.PropsWithChildren) {
   return (
     <Typography
-      variant={variant}
-      {...props}
+      variant='p'
       asChild
     >
       <p>{children}</p>

@@ -5,7 +5,6 @@ import {iceRinkImages} from '@/public/sections/attractions/images/ice-rink'
 import {paradeImages} from '@/public/sections/attractions/images/parade'
 import {Container} from '@/src/components/shared/container'
 import {Section} from '@/src/components/shared/section'
-import {SectionHeader} from '@/src/components/shared/section-header'
 import {
   Card,
   CardContent,
@@ -47,14 +46,13 @@ function Experiences({id}: {id: string}) {
   const t = useTranslations('pages.index.sections.experiences')
 
   return (
-    <Section id={id}>
+    <Section
+      id={id}
+      title={t('section-header.title')}
+      description={t('section-header.description')}
+    >
       <Container>
-        <SectionHeader
-          title={t('section-header.title')}
-          description={t('section-header.description')}
-        />
-
-        <div className='flex flex-wrap gap-16 sm:*:flex-1'>
+        <div className='flex flex-wrap gap-6 md:*:flex-1'>
           {carouselCards.map((carouselCard) => (
             <Card key={carouselCard.key}>
               <Carousel className='rounded-t-[inherit]'>
