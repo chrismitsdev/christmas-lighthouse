@@ -3,6 +3,7 @@
 import {
   MailIcon,
   MessageCircleIcon,
+  MessageSquareMoreIcon,
   SendHorizonalIcon,
   SmartphoneIcon,
   UserIcon
@@ -68,7 +69,7 @@ function Contact({id}: {id: string}) {
           noValidate
         >
           <Card className='sm:[--card-padding:--spacing(20)]'>
-            <CardContent className='space-y-4'>
+            <CardContent className='space-y-6'>
               <Input
                 defaultValue={state.data.fullname}
                 placeholder={t('form.field.fullname')}
@@ -103,7 +104,7 @@ function Contact({id}: {id: string}) {
                 defaultValue={state.data.message}
                 placeholder={t('form.field.message')}
                 name='message'
-                icon={<MessageCircleIcon />}
+                icon={<MessageSquareMoreIcon />}
                 error={state.fieldErrors.message}
                 disabled={isPending}
               />
@@ -115,7 +116,7 @@ function Contact({id}: {id: string}) {
                 disabled={isPending}
                 isLoading={isPending}
               >
-                <span>Υποβολή</span>
+                <span>{t('form.submit-button')}</span>
                 <SendHorizonalIcon className='size-5' />
               </Button>
             </CardFooter>

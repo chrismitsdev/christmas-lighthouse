@@ -218,6 +218,7 @@
               "phone": "Mobile phone number",
               "message": "Your message..."
             },
+            "submit-button": "Submit",
             "toast": {
               "success": {
                 "title": "Message sent",
