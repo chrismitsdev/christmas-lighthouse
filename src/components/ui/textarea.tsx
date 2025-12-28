@@ -14,7 +14,7 @@ interface TextareaProps
 
 function Textarea({
   className,
-  rows = 1,
+  rows = 3,
   icon,
   error,
   disabled = false,

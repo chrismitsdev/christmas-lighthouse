@@ -56,7 +56,9 @@ function Toast({id, title, description, status = 'default'}: ToastProps) {
           <XIcon />
         </IconButton>
       </div>
-      <Typography variant='small'>{description}</Typography>
+      <div className='pl-7'>
+        <Typography variant='small'>{description}</Typography>
+      </div>
     </div>
   )
 }

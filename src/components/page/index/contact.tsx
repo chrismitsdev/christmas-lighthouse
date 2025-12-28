@@ -73,11 +73,13 @@ function Contact({id}: {id: string}) {
           action={formAction}
           noValidate
         >
-          <Card className='sm:[--card-padding:--spacing(20)]'>
+          <Card className='[--card-padding:--spacing(6)] sm:[--card-padding:--spacing(20)]'>
             <CardHeader className='flex justify-center'>
-              <MessagesSquareIcon className='size-20 text-brand-gray-11' />
+              <div className='p-6 rounded-full bg-brand-gray-12 sm:p-10'>
+                <MessagesSquareIcon className='size-20 text-brand-gray-11 sm:size-24' />
+              </div>
             </CardHeader>
-            <CardContent className='space-y-6'>
+            <CardContent className='space-y-6 not-sm:pt-9'>
               <Input
                 defaultValue={state.data.fullname}
                 placeholder={t('form.field.fullname')}

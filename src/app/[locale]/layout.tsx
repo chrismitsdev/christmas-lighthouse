@@ -64,7 +64,11 @@ export default async function LocaleLayout({
           <Header />
           {children}
           <Footer />
-          <Toaster position='top-center' />
+          <Toaster
+            position='top-center'
+            offset={52}
+            mobileOffset={0}
+          />
         </NextIntlClientProvider>
         <Snowfall
           style={{

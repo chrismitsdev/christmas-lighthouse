@@ -215,7 +215,7 @@
             "field": {
               "fullname": "Full name",
               "email": "Email",
-              "phone": "Mobile phone number",
+              "phone": "Mobile phone",
               "message": "Your message..."
             },
             "submit-button": "Submit",
