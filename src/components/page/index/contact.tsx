@@ -79,7 +79,7 @@ function Contact({id}: {id: string}) {
                 <MessagesSquareIcon className='size-20 text-brand-gray-11 sm:size-24' />
               </div>
             </CardHeader>
-            <CardContent className='space-y-6 not-sm:pt-9'>
+            <CardContent className='space-y-6 not-sm:pt-10'>
               <Input
                 defaultValue={state.data.fullname}
                 placeholder={t('form.field.fullname')}

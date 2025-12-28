@@ -67,7 +67,7 @@ export default async function LocaleLayout({
           <Toaster
             position='top-center'
             offset={52}
-            mobileOffset={0}
+            mobileOffset={{top: 52}}
           />
         </NextIntlClientProvider>
         <Snowfall
