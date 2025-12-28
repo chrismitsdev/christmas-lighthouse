@@ -11,10 +11,10 @@ import {Typography} from '@/src/components/ui/typography'
 import {cn} from '@/src/lib/utils'
 
 const sectionLinks: (keyof Messages['pages']['index']['sections'])[] = [
+  'highlights',
   'about',
-  'experiences',
   'parade',
-  'schedule',
+  'activities',
   'games',
   'contact',
   'location'

@@ -12,7 +12,7 @@ import {Typography} from '@/src/components/ui/typography'
 import {cn, compareDates} from '@/src/lib/utils'
 
 type Event = {
-  key: keyof Messages['pages']['index']['sections']['schedule']['events']
+  key: keyof Messages['pages']['index']['sections']['activities']['events']
   timestamp: string
 }
 
@@ -40,7 +40,7 @@ export const events: Event[] = [
 ]
 
 function Events() {
-  const t = useTranslations('pages.index.sections.schedule')
+  const t = useTranslations('pages.index.sections.activities')
   const format = useFormatter()
 
   return (

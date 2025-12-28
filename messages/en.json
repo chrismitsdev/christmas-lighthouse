@@ -12,16 +12,36 @@
           "plan-button": "Visit",
           "parade-button": "Parade"
         },
-        "about": {
-          "nav-link": "Information",
-          "section-link": "Information",
+        "highlights": {
+          "nav-link": "Highlights",
           "section-header": {
-            "title": "Welcome to The Christmas Lighthouse",
-            "description": "Discover a magical holiday escape at the Port of Alexandroupoli. Our park is a festive wonderland filled with enchanting lights, joyful music, and unforgettable experiences for all ages."
+            "title": "Our main highlights",
+            "description": "From graceful skating to festive celebrations, our magical experiences brings the holiday spirit to life for visitors of all ages. Discover the enclosed ice rink, join our heartwarming Christmas parade, and enjoy a full season of interactive events with Santa, elves, mascots, and more."
+          },
+          "cards": {
+            "ice-rink-card": {
+              "title": "Enclosed ice rink",
+              "description": "Glide across our fully enclosed ice rink, surrounded shimmering lights, festive décor, and the sound of holiday music filling the air."
+            },
+            "parade-card": {
+              "title": "Christmas parade",
+              "description": "Celebrate the season with Santa, lively elves, sparkling costumes, and captivating performances, all dedicated to raising funds for children and families in need."
+            },
+            "events-card": {
+              "title": "Interactive events",
+              "description": "Dive into a full lineup of festive activities—live storytelling, creative workshops, holiday crafts, face painting, and surprises for all ages."
+            }
+          }
+        },
+        "about": {
+          "nav-link": "About",
+          "section-header": {
+            "title": "About The Christmas Lighthouse",
+            "description": "Located at the Port of Alexandroupoli, The Christmas Lighthouse is a festive Christmas park filled with lights, music, and seasonal attractions for visitors of all ages."
           },
           "info-card": {
             "title": "Park Information",
-            "description": "Located at the heart of the city's port, we transform the waterfront into a Christmas dream.",
+            "description": "Set at the heart of the city’s port, the park transforms the waterfront into a magical Christmas destination.",
             "season": {
               "title": "Operating period",
               "description": "November 22, 2025 to January 11, 2026"
@@ -40,28 +60,7 @@
             },
             "location": {
               "title": "Location",
-              "description": "Port of Alexandroupoli, under the Lighthouse"
-            }
-          }
-        },
-        "experiences": {
-          "nav-link": "Experiences",
-          "section-header": {
-            "title": "Our main experiences",
-            "description": "From graceful skating to festive celebrations, our magical experiences brings the holiday spirit to life for visitors of all ages. Discover the enclosed ice rink, join our heartwarming Christmas parade, and enjoy a full season of interactive events with Santa, elves, mascots, and more."
-          },
-          "cards": {
-            "ice-rink-card": {
-              "title": "Enclosed ice rink",
-              "description": "Glide across our fully enclosed ice rink, surrounded shimmering lights, festive décor, and the sound of holiday music filling the air."
-            },
-            "parade-card": {
-              "title": "Christmas parade",
-              "description": "Celebrate the season with Santa, lively elves, sparkling costumes, and captivating performances, all dedicated to raising funds for children and families in need."
-            },
-            "events-card": {
-              "title": "Interactive events",
-              "description": "Dive into a full lineup of festive activities—live storytelling, creative workshops, holiday crafts, face painting, and surprises for all ages."
+              "description": "Port of Alexandroupoli, beneath the Lighthouse"
             }
           }
         },
@@ -78,7 +77,7 @@
           },
           "video-description": "Watch highlights from the 5th Christmas Charity Parade in Alexandroupoli"
         },
-        "schedule": {
+        "activities": {
           "nav-link": "Activities",
           "section-header": {
             "title": "Daily Christmas activities",

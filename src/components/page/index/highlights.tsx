@@ -23,7 +23,7 @@ import {
 import {Typography} from '@/src/components/ui/typography'
 
 type CarouselCard = {
-  key: keyof Messages['pages']['index']['sections']['experiences']['cards']
+  key: keyof Messages['pages']['index']['sections']['highlights']['cards']
   images: StaticImageData[]
 }
 
@@ -42,8 +42,8 @@ const carouselCards: CarouselCard[] = [
   }
 ]
 
-function Experiences({id}: {id: string}) {
-  const t = useTranslations('pages.index.sections.experiences')
+function Highlights({id}: {id: string}) {
+  const t = useTranslations('pages.index.sections.highlights')
 
   return (
     <Section
@@ -87,6 +87,6 @@ function Experiences({id}: {id: string}) {
   )
 }
 
-Experiences.displayName = 'Experiences'
+Highlights.displayName = 'Highlights'
 
-export {Experiences}
+export {Highlights}

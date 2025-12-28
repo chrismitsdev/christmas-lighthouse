@@ -3,8 +3,8 @@ import {Events} from '@/src/components/page/index/schedule/events'
 import {Container} from '@/src/components/shared/container'
 import {Section} from '@/src/components/shared/section'
 
-async function Schedule({id}: {id: string}) {
-  const t = await getTranslations('pages.index.sections.schedule')
+async function Activities({id}: {id: string}) {
+  const t = await getTranslations('pages.index.sections.activities')
 
   return (
     <Section
@@ -19,6 +19,6 @@ async function Schedule({id}: {id: string}) {
   )
 }
 
-Schedule.displayName = 'Schedule'
+Activities.displayName = 'Activities'
 
-export {Schedule}
+export {Activities}
