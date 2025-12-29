@@ -58,7 +58,7 @@ function SectionLink({
   return (
     <Typography
       className={cn(
-        'p-4 relative shrink-0 text-nowrap font-semibold rounded-xl focus-visible:outline-1 focus-visible:outline-solid focus-visible:outline-brand-gray-7 focus-visible:-outline-offset-6'
+        'p-4 relative shrink-0 text-nowrap font-semibold rounded-xl focus-visible:outline-1 focus-visible:outline-solid focus-visible:outline-brand-gray-7 focus-visible:-outline-offset-6 sm:px-3'
       )}
       variant='small'
       asChild

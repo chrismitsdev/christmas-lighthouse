@@ -19,9 +19,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         {
           title: '5th Christmas Charity Parade',
           description:
-            'Watch highlights from the 5th Christmas Charity Parade in Alexandroupoli',
+            'Highlights from the 5th Christmas Charity Parade at the Port of Alexandroupoli.',
           thumbnail_loc: `${host}/sections/parade/images/parade-poster.webp`,
-          content_loc: `${host}/sections/parade/video/parade-video.mp4`
+          content_loc: `${host}/sections/parade/video/parade-video.mp4`,
+          publication_date: '2025-11-30',
+          family_friendly: 'yes'
         }
       ]
     }

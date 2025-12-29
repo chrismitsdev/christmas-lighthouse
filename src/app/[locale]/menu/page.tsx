@@ -11,7 +11,11 @@ export async function generateMetadata({
   const t = await getTranslations({locale, namespace: 'pages.metadata'})
 
   return {
-    title: t('menu-page')
+    title: t('menu-page'),
+    robots: {
+      index: false,
+      follow: false
+    }
   }
 }
 

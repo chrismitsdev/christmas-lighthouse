@@ -18,7 +18,11 @@ export async function generateMetadata({
 
   if (!category?.title) {
     return {
-      title: t('label')
+      title: t('label'),
+      robots: {
+        index: false,
+        follow: false
+      }
     }
   }
 
