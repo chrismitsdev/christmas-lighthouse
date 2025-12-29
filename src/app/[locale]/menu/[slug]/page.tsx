@@ -9,16 +9,13 @@ export async function generateMetadata({
   params
 }: PageProps<'/[locale]/menu/[slug]'>): Promise<Metadata> {
   const {locale, slug} = (await params) as ParamsWithSlug['params']
-  const t = await getTranslations({
-    locale,
-    namespace: 'components.categoryNotFound'
-  })
+  const t = await getTranslations({locale})
   const categories = await getLocalizedCategories(locale)
   const category = categories.find((category) => category.link === slug)
 
   if (!category?.title) {
     return {
-      title: t('label'),
+      title: t('components.categoryNotFound.label'),
       robots: {
         index: false,
         follow: false
@@ -27,7 +24,11 @@ export async function generateMetadata({
   }
 
   return {
-    title: category.title
+    title: category.title,
+    robots: {
+      index: false,
+      follow: false
+    }
   }
 }
 
