@@ -6,7 +6,7 @@ import {cn} from '@/src/lib/utils'
 interface SectionProps extends React.PropsWithChildren<AsChild> {
   id?: string
   className?: string
-  title?: string
+  title?: React.ReactNode
   description?: string
 }
 

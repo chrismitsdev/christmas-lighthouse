@@ -3,6 +3,7 @@ import {useTranslations} from 'next-intl'
 import {Container} from '@/src/components/shared/container'
 import {Section} from '@/src/components/shared/section'
 import {Typography} from '@/src/components/ui/typography'
+import {cn} from '@/src/lib/utils'
 
 function Parade({id}: {id: string}) {
   const t = useTranslations('pages.index.sections.parade')
@@ -10,7 +11,9 @@ function Parade({id}: {id: string}) {
   return (
     <Section
       id={id}
-      title={t('section-header.title')}
+      title={t.rich('section-header.title', {
+        sup: (chunk) => <sup>{chunk}</sup>
+      })}
       description={t('section-header.description')}
     >
       <Container>
@@ -24,29 +27,18 @@ function Parade({id}: {id: string}) {
               <h4>{t('info-card.title')}</h4>
             </Typography>
             <Typography>{t('info-card.subtitle')}</Typography>
-            <Typography>
+            <Typography className='leading-7'>
               {t.rich('info-card.description', {
+                sup: (chunk) => <sup>{chunk}</sup>,
                 axd: (chunks) => (
-                  <a
-                    className='underline inline-flex items-center space-x-0.5 font-medium'
-                    href='https://alexpolis.gr/'
-                    target='_blank'
-                    rel='noopener'
-                  >
-                    <span>{chunks}</span>
-                    <ExternalLinkIcon className='size-4' />
-                  </a>
+                  <ExternalLink href='https://alexpolis.gr/'>
+                    {chunks}
+                  </ExternalLink>
                 ),
                 sos: (chunks) => (
-                  <a
-                    className='underline inline-flex items-center space-x-0.5 font-medium'
-                    href='https://sos-villages.gr/'
-                    target='_blank'
-                    rel='noopener'
-                  >
-                    <span>{chunks}</span>
-                    <ExternalLinkIcon className='size-4' />
-                  </a>
+                  <ExternalLink href='https://sos-villages.gr/'>
+                    {chunks}
+                  </ExternalLink>
                 )
               })}
             </Typography>
@@ -74,6 +66,24 @@ function Parade({id}: {id: string}) {
   )
 }
 
+function ExternalLink({
+  href,
+  children
+}: React.PropsWithChildren<{href: string}>) {
+  return (
+    <a
+      href={href}
+      className='underline inline-flex items-center space-x-0.5 font-medium'
+      target='_blank'
+      rel='noopener'
+    >
+      <span>{children}</span>
+      <ExternalLinkIcon className='size-4' />
+    </a>
+  )
+}
+
 Parade.displayName = 'Parade'
+ExternalLink.displayName = 'ExternalLink'
 
 export {Parade}
