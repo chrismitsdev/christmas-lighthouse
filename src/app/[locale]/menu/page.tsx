@@ -8,10 +8,10 @@ export async function generateMetadata({
   params
 }: PageProps<'/[locale]/menu'>): Promise<Metadata> {
   const {locale} = (await params) as Params['params']
-  const t = await getTranslations({locale, namespace: 'pages.metadata'})
+  const t = await getTranslations({locale})
 
   return {
-    title: t('menu-page'),
+    title: t('pages.metadata.menu-page'),
     robots: {
       index: false,
       follow: false
