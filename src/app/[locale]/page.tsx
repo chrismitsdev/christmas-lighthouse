@@ -16,11 +16,11 @@ export async function generateMetadata({
   params
 }: PageProps<'/[locale]'>): Promise<Metadata> {
   const {locale} = (await params) as Params['params']
-  const t = await getTranslations({locale, namespace: 'pages.metadata'})
+  const t = await getTranslations({locale})
 
   return {
     title: {
-      absolute: `${t('index-page')} | The Christmas Lighthouse`
+      absolute: `${t('pages.metadata.index-page')} | The Christmas Lighthouse`
     }
   }
 }
