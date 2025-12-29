@@ -1,11 +1,6 @@
 # christmas-lighthouse
 
-Repo of the The Christmas Lighthouse website.
-At the moment, contains only the product catalogue.
-
-A website, built with Next.js, serves as a dynamic digital menu for a café, accessible via QR codes at the tables. It features seamless localization, supporting both English and Greek, ensuring a user-friendly experience for diverse customers. The site includes a secure backoffice system, allowing administrators to log in and efficiently manage menu categories and products with full CRUD functionality.
-
-<!-- You can take a look at the website [here](https://thechristmaslighthouse.gr). -->
+The Christmas Lighthouse website is a dynamic, multilingual Next.js application that serves as the official online presence for the seasonal Christmas park at the Port of Alexandroupoli, beneath the town's lighthouse. It showcases the park’s attractions, interactive events, ice rink, charitable parade details, schedules, and contact information while also providing a secure backoffice system for administrators to manage the café menu catalogue with full CRUD capabilities. The front end delivers a polished, localized experience in both English and Greek, integrates rich media content, and supports a QR‑driven menu interface for café visitors alongside festive park information.
 
 **Core project tools:**
 
