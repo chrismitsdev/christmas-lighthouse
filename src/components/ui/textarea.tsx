@@ -14,9 +14,10 @@ interface TextareaProps
 
 function Textarea({
   className,
-  rows = 3,
+  rows = 4,
   icon,
   error,
+  spellCheck = false,
   disabled = false,
   ...props
 }: TextareaProps) {
@@ -29,13 +30,14 @@ function Textarea({
     >
       <textarea
         className={cn(
-          'px-4 py-3.75 block w-full bg-brand-gray-12 text-app-foreground font-semibold border border-brand-gray-12 rounded outline-none duration-300 placeholder:text-sm placeholder:text-brand-gray-11 group-focus-within:border-brand-gray-11 disabled:opacity-30 sm:placeholder:text-base',
+          'px-4 py-3.75 block w-full bg-brand-gray-12 text-app-foreground font-semibold border border-brand-gray-12 rounded outline-none duration-300 placeholder:text-brand-gray-11 group-focus-within:border-brand-gray-11 disabled:opacity-30',
           'resize-none',
-          icon && 'pl-10 sm:pl-12',
+          icon && 'pl-11',
           error && 'border-red-300 group-focus-within:border-red-300',
           className
         )}
         rows={rows}
+        spellCheck={spellCheck}
         disabled={disabled}
         {...props}
         aria-describedby={error ? errorId : undefined}
@@ -44,20 +46,20 @@ function Textarea({
       {icon && (
         <span
           aria-hidden='true'
-          className='absolute left-3 top-5 text-brand-gray-11 group-focus-within:text-brand-gray-1 duration-300 [&>svg]:size-4 sm:left-4 sm:[&>svg]:size-5 sm:top-4.5'
+          className='absolute left-4 top-4.5 [&>svg]:size-5 text-brand-gray-11 group-focus-within:text-brand-gray-1 duration-300'
         >
           {icon}
         </span>
       )}
       <div
         id={errorId}
-        className='mt-0.5 min-h-4 flex gap-1 text-red-300 leading-4'
+        className='mt-1 min-h-6 flex items-center text-red-300'
         role='alert'
       >
         {error && (
           <>
-            <TriangleAlertIcon className='w-3 h-lh shrink-0' />
-            <Typography variant='mini'>{error}</Typography>
+            <TriangleAlertIcon className='mr-1 size-4 shrink-0' />
+            <Typography className='not-sm:text-sm'>{error}</Typography>
           </>
         )}
       </div>

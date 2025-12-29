@@ -8,7 +8,7 @@ function Header() {
       <Container>
         <div className='relative flex justify-center items-center'>
           <Image
-            className='h-20 w-auto'
+            className='h-16 w-auto'
             src={logo}
             alt='Logo image'
             priority

@@ -47,7 +47,7 @@ function CardHeader({className, ...props}: React.ComponentPropsWithRef<'div'>) {
 function CardTitle({children}: React.PropsWithChildren) {
   return (
     <Typography
-      variant='h4'
+      variant='h3'
       asChild
     >
       <h4>{children}</h4>

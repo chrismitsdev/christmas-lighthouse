@@ -29,7 +29,7 @@ function About({id}: {id: string}) {
       description={t('section-header.description')}
     >
       <Container>
-        <div className='space-y-20'>
+        <div className='space-y-10 sm:space-y-24'>
           <Card className='sm:[--card-padding:--spacing(8)] max-w-xl mx-auto'>
             <CardHeader>
               <CardTitle>{t('info-card.title')}</CardTitle>
@@ -118,7 +118,7 @@ function About({id}: {id: string}) {
             type='auto'
           >
             <ScrollareaViewport>
-              <div className='p-1 pb-4 w-max flex gap-4'>
+              <div className='p-1 pb-3 w-max flex gap-4'>
                 {images.map((image, i) => (
                   <div
                     key={image.src}

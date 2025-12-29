@@ -5,35 +5,37 @@ import {useEffect, useState} from 'react'
 import {IconButton} from '@/src/components/ui/icon-button'
 import {cn} from '@/src/lib/utils'
 
-const SCROLL_THRESHOLD = 120
+const SCROLL_THRESHOLD = 320
 
 function ScrollTopButton() {
-  const [show, setShow] = useState<boolean>(false)
+  const [isVisible, setIsVisible] = useState(false)
+  const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
-    function handleShowScrollTop() {
-      setShow(window.scrollY > SCROLL_THRESHOLD)
+    setMounted(true)
+
+    const toggleVisibility = () => {
+      setIsVisible(window.scrollY > SCROLL_THRESHOLD)
     }
+    toggleVisibility()
 
-    handleShowScrollTop()
-
-    document.addEventListener('scroll', handleShowScrollTop, {passive: true})
-    return () => document.removeEventListener('scroll', handleShowScrollTop)
+    window.addEventListener('scroll', toggleVisibility, {passive: true})
+    return () => window.removeEventListener('scroll', toggleVisibility)
   }, [])
 
-  function handleScrollTopClick() {
-    window.scrollTo({top: 0, behavior: 'smooth'})
-  }
+  if (!mounted) return null
 
   return (
     <IconButton
       className={cn(
-        'fixed bottom-4 right-4 translate-y-14 bg-brand-gold-12 hover:bg-brand-gold-11',
-        show && 'translate-y-0'
+        'fixed bottom-4 right-4 translate-y-14 bg-brand-gold-12 pointer-events-none hover:bg-brand-gold-11',
+        isVisible && 'translate-y-0 pointer-events-auto'
       )}
-      aria-label='Scroll to top'
       type='button'
-      onClick={handleScrollTopClick}
+      aria-label='Scroll to top'
+      aria-hidden={!isVisible}
+      tabIndex={isVisible ? 0 : -1}
+      onClick={() => window.scrollTo({top: 0, behavior: 'smooth'})}
     >
       <ChevronUpIcon />
     </IconButton>
