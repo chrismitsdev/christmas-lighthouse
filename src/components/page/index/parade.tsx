@@ -3,7 +3,6 @@ import {useTranslations} from 'next-intl'
 import {Container} from '@/src/components/shared/container'
 import {Section} from '@/src/components/shared/section'
 import {Typography} from '@/src/components/ui/typography'
-import {cn} from '@/src/lib/utils'
 
 function Parade({id}: {id: string}) {
   const t = useTranslations('pages.index.sections.parade')
