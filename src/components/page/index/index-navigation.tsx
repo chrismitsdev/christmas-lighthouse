@@ -8,9 +8,10 @@ import {
   ScrollareaViewport
 } from '@/src/components/ui/scroll-area'
 import {Typography} from '@/src/components/ui/typography'
+import {upcomingEvents} from '@/src/lib/events'
 import {cn} from '@/src/lib/utils'
 
-const sectionLinks: (keyof Messages['pages']['index']['sections'])[] = [
+const links: (keyof Messages['pages']['index']['sections'])[] = [
   'highlights',
   'about',
   'parade',
@@ -31,14 +32,16 @@ function IndexNavigation() {
       <Scrollarea>
         <ScrollareaViewport>
           <div className='px-1 flex items-center justify-center'>
-            {sectionLinks.map((link) => (
-              <SectionLink
-                key={link}
-                href={link}
-              >
-                {t(`${link}.nav-link`)}
-              </SectionLink>
-            ))}
+            {links.map((link) =>
+              link === 'activities' && upcomingEvents.length === 0 ? null : (
+                <SectionLink
+                  key={link}
+                  href={link}
+                >
+                  {t(`${link}.nav-link`)}
+                </SectionLink>
+              )
+            )}
             <LocaleCycle />
           </div>
         </ScrollareaViewport>

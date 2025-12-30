@@ -6,7 +6,7 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
-export async function sleep(sleepTime: number = 1000) {
+export async function sleep(sleepTime: number = 2000) {
   await new Promise((resolve) => setTimeout(resolve, sleepTime))
 }
 
@@ -27,15 +27,7 @@ export function splitAndTrim(
   return str.split(',').map((el) => el.trim())
 }
 
-export function joinAndSpace(arr: string[] | null): string | null {
-  if (!Array.isArray(arr) || arr === null) {
-    return null
-  }
-
-  return arr.join(', ')
-}
-
-export function compareDates(date: string): boolean {
+export function isTodayOrFutureDate(date: string): boolean {
   const today = new Date()
   today.setHours(0, 0, 0, 0)
 
@@ -45,8 +37,4 @@ export function compareDates(date: string): boolean {
   return dateToCheck.getTime() >= today.getTime()
 }
 
-// Regex
-export const greekLettersOnly =
-  /^[\u0391-\u03A9\u03B1-\u03C9\u0386\u0388-\u038A\u038C\u038E-\u03CE\s]+$/
-export const englishLettersOnly = /^[A-Za-z\s]+$/
 export const numberRegex = /^(\d+(\.\d*)?|\.\d+)$/
