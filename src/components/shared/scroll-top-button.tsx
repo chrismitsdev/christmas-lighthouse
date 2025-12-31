@@ -30,7 +30,6 @@ function ScrollTopButton() {
         'fixed bottom-4 right-4 translate-y-14 pointer-events-none',
         isVisible && 'translate-y-0 pointer-events-auto'
       )}
-      type='button'
       aria-label='Scroll to top'
       aria-hidden={!isVisible}
       tabIndex={isVisible ? 0 : -1}
