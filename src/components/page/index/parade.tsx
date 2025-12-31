@@ -17,7 +17,7 @@ function Parade({id}: {id: string}) {
     >
       <Container>
         <div className='space-y-10'>
-          <div className='p-4 mx-auto w-full space-y-6 bg-brand-gold-12/50 text-brand-gold-4 border border-brand-gold-11 rounded-lg text-center sm:p-6'>
+          <div className='p-4 mx-auto w-full space-y-6 bg-brand-gold-12 text-brand-gold-4 border border-brand-gold-11 rounded-lg text-center sm:p-6'>
             <Typography
               className='font-bold underline underline-offset-8'
               variant='large'
@@ -71,8 +71,8 @@ function ExternalLink({
 }: React.PropsWithChildren<{href: string}>) {
   return (
     <a
+      className='space-x-0.5 inline-flex items-center font-semibold underline'
       href={href}
-      className='underline inline-flex items-center space-x-0.5 font-medium'
       target='_blank'
       rel='noopener'
     >

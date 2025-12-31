@@ -1,4 +1,4 @@
-import {CalendarDaysIcon, ClockIcon, MapPinIcon} from 'lucide-react'
+import {CalendarDaysIcon, ClockIcon, InfoIcon, MapPinIcon} from 'lucide-react'
 import {useTranslations} from 'next-intl'
 import {images} from '@/public/sections/about/images'
 import {Container} from '@/src/components/shared/container'
@@ -30,33 +30,36 @@ function About({id}: {id: string}) {
     >
       <Container>
         <div className='space-y-10 sm:space-y-24'>
-          <Card className='sm:[--card-padding:--spacing(8)] max-w-xl mx-auto'>
+          <Card className='mx-auto max-w-md sm:[--card-padding:--spacing(8)]'>
             <CardHeader>
-              <CardTitle>{t('info-card.title')}</CardTitle>
+              <div className='flex items-center gap-2'>
+                <InfoIcon />
+                <CardTitle>{t('info-card.title')}</CardTitle>
+              </div>
               <CardDescription>{t('info-card.description')}</CardDescription>
             </CardHeader>
             <CardContent>
               <div className='space-y-8'>
                 <article className='space-y-2'>
                   <div className='flex gap-x-2'>
-                    <CalendarDaysIcon className='h-7 w-5' />
+                    <CalendarDaysIcon className='h-7 w-4' />
                     <Typography variant='large'>
                       {t('info-card.season.title')}
                     </Typography>
                   </div>
-                  <Typography className='sm:pl-8'>
+                  <Typography className='sm:pl-6'>
                     {t('info-card.season.description')}
                   </Typography>
                 </article>
                 <article className='space-y-2'>
                   <div className='flex gap-x-2'>
-                    <ClockIcon className='h-7 w-5' />
+                    <ClockIcon className='h-7 w-4' />
                     <Typography variant='large'>
                       {t('info-card.hours.title')}
                     </Typography>
                   </div>
                   <div className='space-y-2'>
-                    <div className='space-y-1 sm:pl-8'>
+                    <div className='space-y-1 sm:pl-6'>
                       <Typography>
                         {t('info-card.hours.zone-1.date-range')}
                       </Typography>
@@ -67,7 +70,7 @@ function About({id}: {id: string}) {
                         {t('info-card.hours.zone-1.entry-2')}
                       </Typography>
                     </div>
-                    <div className='space-y-1 sm:pl-8'>
+                    <div className='space-y-1 sm:pl-6'>
                       <Typography>
                         {t('info-card.hours.zone-2.date-range')}
                       </Typography>
@@ -79,12 +82,12 @@ function About({id}: {id: string}) {
                 </article>
                 <article className='space-y-2'>
                   <div className='flex gap-x-2'>
-                    <MapPinIcon className='h-7 w-5' />
+                    <MapPinIcon className='h-7 w-4' />
                     <Typography variant='large'>
                       {t('info-card.location.title')}
                     </Typography>
                   </div>
-                  <Typography className='sm:pl-8'>
+                  <Typography className='sm:pl-6'>
                     {t('info-card.location.description')}
                   </Typography>
                 </article>

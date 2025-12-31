@@ -1,7 +1,7 @@
 'use client'
 
 import {ChevronUpIcon} from 'lucide-react'
-import {useEffect, useState} from 'react'
+import {useEffect, useEffectEvent, useState} from 'react'
 import {IconButton} from '@/src/components/ui/icon-button'
 import {cn} from '@/src/lib/utils'
 
@@ -11,14 +11,13 @@ function ScrollTopButton() {
   const [isVisible, setIsVisible] = useState(false)
   const [mounted, setMounted] = useState(false)
 
+  const toggleVisibility = useEffectEvent(() =>
+    setIsVisible(window.scrollY > SCROLL_THRESHOLD)
+  )
+
   useEffect(() => {
     setMounted(true)
-
-    const toggleVisibility = () => {
-      setIsVisible(window.scrollY > SCROLL_THRESHOLD)
-    }
     toggleVisibility()
-
     window.addEventListener('scroll', toggleVisibility, {passive: true})
     return () => window.removeEventListener('scroll', toggleVisibility)
   }, [])
@@ -28,7 +27,7 @@ function ScrollTopButton() {
   return (
     <IconButton
       className={cn(
-        'fixed bottom-4 right-4 translate-y-14 bg-brand-gold-12 pointer-events-none hover:bg-brand-gold-11',
+        'fixed bottom-4 right-4 translate-y-14 pointer-events-none',
         isVisible && 'translate-y-0 pointer-events-auto'
       )}
       type='button'

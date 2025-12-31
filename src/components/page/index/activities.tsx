@@ -28,7 +28,7 @@ function Activities({id}: {id: string}) {
       description={t('section-header.description')}
     >
       <Container>
-        <div className='space-y-4'>
+        <div className='space-y-6'>
           {upcomingEvents.map((event) => (
             <Collapsible key={event.key}>
               <CollapsibleTrigger className='not-sm:px-4'>
@@ -46,8 +46,8 @@ function Activities({id}: {id: string}) {
               <CollapsibleContent>
                 <div className='flex'>
                   <ScheduleArticle className='from-brand-gold-12'>
-                    <SunIcon className='absolute top-4 right-4 text-brand-gold-12 sm:top-6 sm:right-6 sm:size-14' />
-                    <div className='relative space-y-2 text-brand-gold-3'>
+                    <SunIcon className='absolute top-4 right-4 text-brand-gold-4 sm:top-6 sm:right-6 sm:size-14' />
+                    <div className='relative space-y-2 text-brand-gold-4'>
                       <Typography variant='h5'>
                         {t('labels.morning')}
                       </Typography>
@@ -57,8 +57,8 @@ function Activities({id}: {id: string}) {
                     </div>
                   </ScheduleArticle>
                   <ScheduleArticle className='from-brand-blue-12'>
-                    <MoonIcon className='absolute top-4 right-4 text-brand-blue-12 sm:top-6 sm:right-6 sm:size-14' />
-                    <div className='relative space-y-2 text-brand-blue-3'>
+                    <MoonIcon className='absolute top-4 right-4 text-brand-blue-4 sm:top-6 sm:right-6 sm:size-14' />
+                    <div className='relative space-y-2 text-brand-blue-4'>
                       <Typography variant='h5'>
                         {t('labels.afternoon')}
                       </Typography>
