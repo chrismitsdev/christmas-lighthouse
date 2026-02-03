@@ -29,7 +29,7 @@ function LocaleCycle(props: React.ComponentPropsWithRef<typeof IconButton>) {
     startTransition(() => {
       router.replace(pathname, {locale: nextLocale, scroll: false})
     })
-  }, [locale, locales, pathname, router])
+  }, [locale, pathname, router])
 
   return (
     <IconButton
