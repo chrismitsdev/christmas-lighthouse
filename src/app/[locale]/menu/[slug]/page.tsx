@@ -40,7 +40,7 @@ export default async function SlugPage({
   const category = categories.find((ctg) => ctg.link === slug)
   setRequestLocale(locale)
 
-  if (!category || !category.title) {
+  if (!category?.title) {
     return <CategoryNotFound />
   }
 
