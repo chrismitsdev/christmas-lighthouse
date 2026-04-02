@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "prepare": "husky",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
@@ -11,8 +12,7 @@
     "db:generate": "drizzle-kit generate",
     "db:migrate": "tsx ./src/db/drizzle/migrate.ts",
     "db:exec": "tsx ./src/db/drizzle/exec.ts",
-    "clean": "rimraf .next node_modules pnpm-lock.yaml",
-    "prepare": "husky"
+    "clean": "rimraf .next node_modules pnpm-lock.yaml"
   },
   "devDependencies": {
     "@adamscybot/react-leaflet-component-marker": "^2.0.3",
