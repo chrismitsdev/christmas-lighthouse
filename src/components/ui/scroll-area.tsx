@@ -1,11 +1,11 @@
 'use client'
 
 import {
+  Corner,
   Root,
-  Viewport,
   Scrollbar,
   Thumb,
-  Corner
+  Viewport
 } from '@radix-ui/react-scroll-area'
 import {cn} from '@/src/lib/utils'
 
@@ -83,4 +83,4 @@ ScrollareaScrollbar.displayName = 'ScrollareaScrollbar'
 ScrollareaScrollbarThumb.displayName = 'ScrollareaScrollbarThumb'
 ScrollareaCorner.displayName = 'ScrollareaCorner'
 
-export {Scrollarea, ScrollareaViewport, ScrollareaScrollbar, ScrollareaCorner}
+export {Scrollarea, ScrollareaCorner, ScrollareaScrollbar, ScrollareaViewport}

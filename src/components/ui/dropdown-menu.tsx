@@ -1,21 +1,21 @@
 'use client'
 
 import {
-  Root,
-  Trigger,
-  Portal,
+  CheckboxItem,
   Content,
   Group,
-  Label,
   Item,
   ItemIndicator,
-  Separator,
-  CheckboxItem,
+  Label,
+  Portal,
   RadioGroup,
   RadioItem,
-  SubTrigger,
+  Root,
+  Separator,
+  Sub,
   SubContent,
-  Sub
+  SubTrigger,
+  Trigger
 } from '@radix-ui/react-dropdown-menu'
 import {Check, ChevronRight, Circle} from 'lucide-react'
 import {cn} from '@/src/lib/utils'
@@ -199,17 +199,17 @@ DropdownMenuSub.displayName = 'DropdownMenuSub'
 
 export {
   DropdownMenu,
-  DropdownMenuTrigger,
-  DropdownMenuPortal,
+  DropdownMenuCheckboxItem,
   DropdownMenuContent,
   DropdownMenuGroup,
-  DropdownMenuLabel,
   DropdownMenuItem,
-  DropdownMenuCheckboxItem,
+  DropdownMenuLabel,
+  DropdownMenuPortal,
   DropdownMenuRadioGroup,
   DropdownMenuRadioItem,
   DropdownMenuSeparator,
-  DropdownMenuSubTrigger,
+  DropdownMenuSub,
   DropdownMenuSubContent,
-  DropdownMenuSub
+  DropdownMenuSubTrigger,
+  DropdownMenuTrigger
 }

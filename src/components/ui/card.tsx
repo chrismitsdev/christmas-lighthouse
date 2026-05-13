@@ -100,10 +100,10 @@ CardFooter.displayName = 'CardFooter'
 
 export {
   Card,
-  CardImage,
-  CardHeader,
-  CardFooter,
-  CardTitle,
+  CardContent,
   CardDescription,
-  CardContent
+  CardFooter,
+  CardHeader,
+  CardImage,
+  CardTitle
 }

@@ -53,13 +53,13 @@ function Textarea({
       )}
       <div
         id={errorId}
-        className='mt-1 min-h-6 flex items-center text-red-300'
+        className='mt-2 min-h-6 flex text-red-300'
         role='alert'
       >
         {error && (
           <>
-            <TriangleAlertIcon className='mr-1 size-4 shrink-0' />
-            <Typography className='not-sm:text-sm'>{error}</Typography>
+            <TriangleAlertIcon className='mr-1.5 w-4 h-5 shrink-0' />
+            <Typography variant='small'>{error}</Typography>
           </>
         )}
       </div>

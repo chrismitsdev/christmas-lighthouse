@@ -1,11 +1,11 @@
 import type {Metadata} from 'next'
 import {redirect} from 'next/navigation'
-import {getCurrentSession} from '@/src/db/session'
-import {getCategories, getProducts} from '@/src/db/menu'
-import {Section} from '@/src/components/shared/section'
-import {Container} from '@/src/components/shared/container'
-import {DashboardPageCard} from '@/src/app/(admin)/dashboard/components'
 import {CategoriesTable} from '@/src/app/(admin)/dashboard/categories/edit/categories-table'
+import {DashboardPageCard} from '@/src/app/(admin)/dashboard/components'
+import {Container} from '@/src/components/shared/container'
+import {Section} from '@/src/components/shared/section'
+import {getCategories, getProducts} from '@/src/db/menu'
+import {getCurrentSession} from '@/src/db/session'
 
 export const metadata: Metadata = {
   title: 'Επεξεργασία κατηγοριών | Διαχειριστικό'
@@ -28,7 +28,10 @@ export default async function CategoriesEditPage() {
           title='Επεξεργασία κατηγοριών'
           desc='Σε αυτή τη σελίδα μπορείτε να επεξεργαστείτε τις κατηγορίες.'
         >
-          <CategoriesTable categories={categories} products={products} />
+          <CategoriesTable
+            categories={categories}
+            products={products}
+          />
         </DashboardPageCard>
       </Container>
     </Section>

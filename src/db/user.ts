@@ -125,11 +125,11 @@ async function getUserPasswordHash(userId: number): Promise<string> {
 }
 
 export {
-  verifyPasswordHash,
-  hashPassword,
   checkEmailAvailability,
   createUser,
-  updateUser,
   getUserFromEmail,
-  getUserPasswordHash
+  getUserPasswordHash,
+  hashPassword,
+  updateUser,
+  verifyPasswordHash
 }

@@ -115,9 +115,9 @@ CarouselNextButton.displayName = 'CarouselNextButton'
 
 export {
   Carousel,
-  CarouselViewport,
-  CarouselSlidesContainer,
-  CarouselSlide,
+  CarouselNextButton,
   CarouselPrevButton,
-  CarouselNextButton
+  CarouselSlide,
+  CarouselSlidesContainer,
+  CarouselViewport
 }

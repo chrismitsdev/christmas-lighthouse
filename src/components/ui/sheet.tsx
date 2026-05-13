@@ -210,12 +210,12 @@ SheetClose.displayName = 'SheetClose'
 
 export {
   Sheet,
-  SheetTrigger,
+  SheetBody,
+  SheetClose,
   SheetContent,
+  SheetDescription,
+  SheetFooter,
   SheetHeader,
   SheetTitle,
-  SheetDescription,
-  SheetBody,
-  SheetFooter,
-  SheetClose
+  SheetTrigger
 }

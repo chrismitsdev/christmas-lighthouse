@@ -1,6 +1,6 @@
 'use client'
 
-import {Provider, Root, Trigger, Portal, Content} from '@radix-ui/react-tooltip'
+import {Content, Portal, Provider, Root, Trigger} from '@radix-ui/react-tooltip'
 import {cn} from '@/src/lib/utils'
 
 const TooltipProvider = Provider
@@ -33,4 +33,4 @@ TooltipTrigger.displayName = 'TooltipTrigger'
 TooltipPortal.displayName = 'TooltipPortal'
 TooltipContent.displayName = 'TooltipContent'
 
-export {TooltipProvider, Tooltip, TooltipTrigger, TooltipPortal, TooltipContent}
+export {Tooltip, TooltipContent, TooltipPortal, TooltipProvider, TooltipTrigger}

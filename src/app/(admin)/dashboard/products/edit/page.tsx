@@ -1,11 +1,11 @@
 import type {Metadata} from 'next'
 import {redirect} from 'next/navigation'
-import {getCurrentSession} from '@/src/db/session'
-import {getProducts, getCategories} from '@/src/db/menu'
-import {Section} from '@/src/components/shared/section'
-import {Container} from '@/src/components/shared/container'
 import {DashboardPageCard} from '@/src/app/(admin)/dashboard/components'
 import {ProductsTable} from '@/src/app/(admin)/dashboard/products/edit/products-table'
+import {Container} from '@/src/components/shared/container'
+import {Section} from '@/src/components/shared/section'
+import {getCategories, getProducts} from '@/src/db/menu'
+import {getCurrentSession} from '@/src/db/session'
 
 export const metadata: Metadata = {
   title: 'Επεξεργασία προϊόντων | Διαχειριστικό'

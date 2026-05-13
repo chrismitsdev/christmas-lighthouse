@@ -2,21 +2,21 @@
 
 import {revalidatePath} from 'next/cache'
 import {
-  type InferOutput,
-  objectAsync,
-  union,
-  unionAsync,
-  literal,
-  safeParseAsync,
   checkAsync,
-  pipe,
-  pipeAsync,
-  string,
-  trim,
   email,
   endsWith,
+  flatten,
+  type InferOutput,
+  literal,
   minLength,
-  flatten
+  objectAsync,
+  pipe,
+  pipeAsync,
+  safeParseAsync,
+  string,
+  trim,
+  union,
+  unionAsync
 } from 'valibot'
 import {checkEmailAvailability, updateUser} from '@/src/db/user'
 

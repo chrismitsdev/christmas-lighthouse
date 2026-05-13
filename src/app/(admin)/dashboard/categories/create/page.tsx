@@ -1,10 +1,10 @@
 import type {Metadata} from 'next'
 import {redirect} from 'next/navigation'
-import {getCurrentSession} from '@/src/db/session'
-import {Section} from '@/src/components/shared/section'
-import {Container} from '@/src/components/shared/container'
-import {DashboardPageCard} from '@/src/app/(admin)/dashboard/components'
 import {CreateCategoryForm} from '@/src/app/(admin)/dashboard/categories/create/create-category-form'
+import {DashboardPageCard} from '@/src/app/(admin)/dashboard/components'
+import {Container} from '@/src/components/shared/container'
+import {Section} from '@/src/components/shared/section'
+import {getCurrentSession} from '@/src/db/session'
 
 export const metadata: Metadata = {
   title: 'Δημιουργία κατηγορίας | Διαχειριστικό'

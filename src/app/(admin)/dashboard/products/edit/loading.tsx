@@ -1,5 +1,5 @@
-import {Section} from '@/src/components/shared/section'
 import {Container} from '@/src/components/shared/container'
+import {Section} from '@/src/components/shared/section'
 import {Skeleton} from '@/src/components/ui/skeleton'
 
 export default function Loading() {

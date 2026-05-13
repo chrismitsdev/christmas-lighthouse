@@ -2,9 +2,9 @@
 
 import {redirect} from 'next/navigation'
 import {
+  deleteSessionTokenCookie,
   getCurrentSession,
-  invalidateSession,
-  deleteSessionTokenCookie
+  invalidateSession
 } from '@/src/db/session'
 
 export async function logoutAction(): Promise<void> {

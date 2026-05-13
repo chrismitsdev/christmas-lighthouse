@@ -1,9 +1,9 @@
 import {Fragment} from 'react'
-import {cn} from '@/src/lib/utils'
 import {Section} from '@/src/components/shared/section'
-import {Card, CardHeader, CardContent} from '@/src/components/ui/card'
+import {Card, CardContent, CardHeader} from '@/src/components/ui/card'
 import {Separator} from '@/src/components/ui/separator'
 import {Skeleton} from '@/src/components/ui/skeleton'
+import {cn} from '@/src/lib/utils'
 
 export default function Loading() {
   return (

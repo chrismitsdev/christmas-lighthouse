@@ -1,29 +1,29 @@
-import Link from 'next/link'
-import {CustomImage} from '@/src/components/ui/custom-image'
 import {
+  EditIcon,
   HomeIcon,
-  ScrollTextIcon,
-  ShoppingBasketIcon,
-  UserCogIcon,
   LogOutIcon,
   PlusIcon,
-  EditIcon
+  ScrollTextIcon,
+  ShoppingBasketIcon,
+  UserCogIcon
 } from 'lucide-react'
-import type {User} from '@/src/db/drizzle/schema'
+import Link from 'next/link'
+import logo from '@/public/shared/logo.png'
+import {LogoutForm} from '@/src/app/(admin)/dashboard/logout-form'
+import {Badge} from '@/src/components/ui/badge'
+import {CustomImage} from '@/src/components/ui/custom-image'
+import {Separator} from '@/src/components/ui/separator'
 import {
   Sidebar,
-  SidebarHeader,
-  SidebarTrigger,
   SidebarContent,
+  SidebarHeader,
   SidebarMenu,
+  SidebarMenuButton,
   SidebarMenuItem,
-  SidebarMenuButton
+  SidebarTrigger
 } from '@/src/components/ui/sidebar'
 import {Typography} from '@/src/components/ui/typography'
-import {Badge} from '@/src/components/ui/badge'
-import {Separator} from '@/src/components/ui/separator'
-import {LogoutForm} from '@/src/app/(admin)/dashboard/logout-form'
-import logo from '@/public/shared/logo.png'
+import type {User} from '@/src/db/drizzle/schema'
 
 function DashboardHeader({
   user,
@@ -186,4 +186,4 @@ DashboardHeader.displayName = 'DashboardHeader'
 DashboardSidebar.displayName = 'DashboardSidebar'
 DashboardPageCard.displayName = 'DashboardPageCard'
 
-export {DashboardHeader, DashboardSidebar, DashboardPageCard}
+export {DashboardHeader, DashboardPageCard, DashboardSidebar}

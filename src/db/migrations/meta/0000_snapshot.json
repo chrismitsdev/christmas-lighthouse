@@ -50,16 +50,12 @@
         "category_el_name_unique": {
           "name": "category_el_name_unique",
           "nullsNotDistinct": false,
-          "columns": [
-            "el_name"
-          ]
+          "columns": ["el_name"]
         },
         "category_en_name_unique": {
           "name": "category_en_name_unique",
           "nullsNotDistinct": false,
-          "columns": [
-            "en_name"
-          ]
+          "columns": ["en_name"]
         }
       },
       "policies": {},
@@ -126,12 +122,8 @@
           "name": "product_category_id_category_id_fk",
           "tableFrom": "product",
           "tableTo": "category",
-          "columnsFrom": [
-            "category_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["category_id"],
+          "columnsTo": ["id"],
           "onDelete": "no action",
           "onUpdate": "no action"
         }
@@ -171,12 +163,8 @@
           "name": "session_user_id_user_id_fk",
           "tableFrom": "session",
           "tableTo": "user",
-          "columnsFrom": [
-            "user_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["user_id"],
+          "columnsTo": ["id"],
           "onDelete": "no action",
           "onUpdate": "no action"
         }
@@ -223,9 +211,7 @@
         "user_email_unique": {
           "name": "user_email_unique",
           "nullsNotDistinct": false,
-          "columns": [
-            "email"
-          ]
+          "columns": ["email"]
         }
       },
       "policies": {},

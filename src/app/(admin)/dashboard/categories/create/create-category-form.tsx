@@ -1,15 +1,15 @@
 'use client'
 
-import * as React from 'react'
 import {PlusIcon} from 'lucide-react'
-import {Label} from '@/src/components/ui/label'
-import {Input} from '@/src/components/ui/input'
-import {Button} from '@/src/components/ui/button'
+import * as React from 'react'
 import {
   type CreateCategoryFormData,
   type CreateCategoryFormErrors,
   createCategoryAction
 } from '@/src/app/(admin)/dashboard/categories/create/action'
+import {Button} from '@/src/components/ui/button'
+import {Input} from '@/src/components/ui/input'
+import {Label} from '@/src/components/ui/label'
 
 const initialState = {
   data: {} as CreateCategoryFormData,

@@ -1,8 +1,8 @@
+import {ArrowLeftIcon, TriangleAlertIcon} from 'lucide-react'
 import {useTranslations} from 'next-intl'
-import {Link} from '@/src/i18n/navigation'
-import {TriangleAlertIcon, ArrowLeftIcon} from 'lucide-react'
-import {Typography} from '@/src/components/ui/typography'
 import {Button} from '@/src/components/ui/button'
+import {Typography} from '@/src/components/ui/typography'
+import {Link} from '@/src/i18n/navigation'
 
 function CategoryNotFound() {
   const t = useTranslations('components.categoryNotFound')

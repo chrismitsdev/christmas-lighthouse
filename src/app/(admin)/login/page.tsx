@@ -1,10 +1,10 @@
 import type {Metadata} from 'next'
 import Image from 'next/image'
 import {redirect} from 'next/navigation'
-import {getCurrentSession} from '@/src/db/session'
-import {Section} from '@/src/components/shared/section'
-import {LoginForm} from '@/src/app/(admin)/login/login-form'
 import logo from '@/public/shared/logo.png'
+import {LoginForm} from '@/src/app/(admin)/login/login-form'
+import {Section} from '@/src/components/shared/section'
+import {getCurrentSession} from '@/src/db/session'
 
 export const metadata: Metadata = {
   title: 'Σύνδεση | Διαχειριστικό'

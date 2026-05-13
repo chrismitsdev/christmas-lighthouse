@@ -17,16 +17,9 @@ import {
   Text
 } from 'react-email'
 
-interface InternalEmailProps {
-  fullname: string
-  email: string
-  phone: string
-  message?: string
-}
-
 const baseUrl = 'https://i.imgur.com'
 
-function InternalEmail({fullname, email, phone, message}: InternalEmailProps) {
+export default function InternalEmail() {
   return (
     <Html>
       <Head>
@@ -94,7 +87,7 @@ function InternalEmail({fullname, email, phone, message}: InternalEmailProps) {
                 </Column>
               </Row>
               <Row>
-                <Text className='my-0 text-sm'>{fullname}</Text>
+                <Text className='my-0 text-sm'>Chris Mitsiaris</Text>
               </Row>
 
               <Hr className='my-6 border-[#1d1f2b]' />
@@ -117,9 +110,9 @@ function InternalEmail({fullname, email, phone, message}: InternalEmailProps) {
               <Row>
                 <Link
                   className='block text-sm leading-5'
-                  href={`mailto:${email}`}
+                  href={`mailto:chrismits88@gmail.com`}
                 >
-                  {email}
+                  chrismits88@gmail.com
                 </Link>
               </Row>
 
@@ -143,9 +136,9 @@ function InternalEmail({fullname, email, phone, message}: InternalEmailProps) {
               <Row>
                 <Link
                   className='block text-sm leading-5'
-                  href={`tel:${phone}`}
+                  href={`tel:+306973993703`}
                 >
-                  {phone}
+                  +306973993703
                 </Link>
               </Row>
 
@@ -168,7 +161,16 @@ function InternalEmail({fullname, email, phone, message}: InternalEmailProps) {
               </Row>
               <Row>
                 <Text className='my-0 leading-5'>
-                  {message || 'Ο χρήστης δεν άφησε κάποιο μήνυμα.'}
+                  Lorem Ipsum is simply dummy text of the printing and
+                  typesetting industry. Lorem Ipsum has been the industry's
+                  standard dummy text ever since the 1500s, when an unknown
+                  printer took a galley of type and scrambled it to make a type
+                  specimen book. It has survived not only five centuries, but
+                  also the leap into electronic typesetting, remaining
+                  essentially unchanged. It was popularised in the 1960s with
+                  the release of Letraset sheets containing Lorem Ipsum
+                  passages, and more recently with desktop publishing software
+                  like Aldus PageMaker including versions of Lorem Ipsum.
                 </Text>
               </Row>
             </Section>
@@ -180,5 +182,3 @@ function InternalEmail({fullname, email, phone, message}: InternalEmailProps) {
 }
 
 InternalEmail.displayName = 'InternalEmail'
-
-export {InternalEmail}

@@ -1,6 +1,6 @@
 'use client'
 
-import {Root, Image, Fallback} from '@radix-ui/react-avatar'
+import {Fallback, Image, Root} from '@radix-ui/react-avatar'
 import {cn} from '@/src/lib/utils'
 
 function Avatar({
@@ -48,4 +48,4 @@ Avatar.displayName = 'Avatar'
 AvatarImage.displayName = 'AvatarImage'
 AvatarFallback.displayName = 'AvatarFallback'
 
-export {Avatar, AvatarImage, AvatarFallback}
+export {Avatar, AvatarFallback, AvatarImage}

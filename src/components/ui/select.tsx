@@ -1,19 +1,19 @@
 'use client'
 
 import {
-  Root,
-  Trigger,
-  Value,
-  Icon,
-  Portal,
   Content,
   Group,
-  Viewport,
-  Label,
+  Icon,
   Item,
   ItemIndicator,
   ItemText,
-  Separator
+  Label,
+  Portal,
+  Root,
+  Separator,
+  Trigger,
+  Value,
+  Viewport
 } from '@radix-ui/react-select'
 import {ChevronDown} from 'lucide-react'
 import {cn} from '@/src/lib/utils'
@@ -142,15 +142,15 @@ SelectSeparator.displayName = 'SelectSeparator'
 
 export {
   Select,
-  SelectValue,
-  SelectTrigger,
-  SelectPortal,
   SelectContent,
   SelectGroup,
-  SelectViewport,
-  SelectLabel,
   SelectItem,
   SelectItemIndicator,
   SelectItemText,
-  SelectSeparator
+  SelectLabel,
+  SelectPortal,
+  SelectSeparator,
+  SelectTrigger,
+  SelectValue,
+  SelectViewport
 }

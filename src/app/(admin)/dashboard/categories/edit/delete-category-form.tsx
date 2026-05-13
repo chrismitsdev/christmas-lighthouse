@@ -1,11 +1,11 @@
 'use client'
 
-import * as React from 'react'
 import {Trash2Icon} from 'lucide-react'
+import * as React from 'react'
 import {deleteCategoryAction} from '@/src/app/(admin)/dashboard/categories/edit/action'
-import {Label} from '@/src/components/ui/label'
-import {Checkbox} from '@/src/components/ui/checkbox'
 import {SubmitActionButton} from '@/src/components/shared/submit-action-button'
+import {Checkbox} from '@/src/components/ui/checkbox'
+import {Label} from '@/src/components/ui/label'
 
 function DeleteCategoryForm({
   categoryId,
