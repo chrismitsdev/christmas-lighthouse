@@ -78,7 +78,7 @@ export default async function LocaleLayout({
           }}
           snowflakeCount={30}
         />
-        <Analytics />
+        {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>
     </html>
   )
