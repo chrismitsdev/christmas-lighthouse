@@ -1,6 +1,6 @@
 'use client'
 
-import {Root} from '@radix-ui/react-separator'
+import {Separator as RadixSeparator} from 'radix-ui'
 import {cn} from '@/src/lib/utils'
 
 function Separator({
@@ -8,9 +8,9 @@ function Separator({
   orientation = 'horizontal',
   decorative = true,
   ...props
-}: React.ComponentPropsWithRef<typeof Root>) {
+}: React.ComponentPropsWithRef<typeof RadixSeparator.Root>) {
   return (
-    <Root
+    <RadixSeparator.Root
       className={cn(
         'shrink-0 bg-brand-gray-12',
         orientation === 'horizontal' ? 'w-full h-px' : 'w-px h-full',

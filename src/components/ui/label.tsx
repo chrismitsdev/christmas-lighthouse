@@ -1,5 +1,5 @@
-import {Root} from '@radix-ui/react-label'
 import {cva, type VariantProps} from 'class-variance-authority'
+import {Label as RadixLabel} from 'radix-ui'
 import {cn} from '@/src/lib/utils'
 
 const labelVariants = cva(
@@ -25,12 +25,12 @@ const labelVariants = cva(
 )
 
 interface LabelProps
-  extends React.ComponentPropsWithRef<typeof Root>,
+  extends React.ComponentPropsWithRef<typeof RadixLabel.Root>,
     VariantProps<typeof labelVariants> {}
 
 function Label({className, size = 'small', ...props}: LabelProps) {
   return (
-    <Root
+    <RadixLabel.Root
       className={cn(labelVariants({size, className}))}
       {...props}
     />

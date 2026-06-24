@@ -1,5 +1,5 @@
-import {Slot} from '@radix-ui/react-slot'
 import {SparklesIcon} from 'lucide-react'
+import {Slot} from 'radix-ui'
 import {Typography} from '@/src/components/ui/typography'
 import {cn} from '@/src/lib/utils'
 
@@ -18,7 +18,7 @@ function Section({
   children,
   ...props
 }: SectionProps) {
-  const Comp = asChild ? Slot : 'section'
+  const Comp = asChild ? Slot.Root : 'section'
   const iconClass = 'size-14 absolute top-4 text-brand-gold-12'
 
   return (

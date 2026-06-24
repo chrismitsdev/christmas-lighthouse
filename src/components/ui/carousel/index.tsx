@@ -1,7 +1,7 @@
 'use client'
 
-import {Slot} from '@radix-ui/react-slot'
 import {ChevronLeftIcon, ChevronRightIcon} from 'lucide-react'
+import {Slot} from 'radix-ui'
 import {IconButton} from '@/src/components/ui/icon-button'
 import {cn} from '@/src/lib/utils'
 import {CarouselProvider, useCarousel} from './context'
@@ -11,7 +11,7 @@ function Carousel({
   asChild = false,
   ...props
 }: React.ComponentPropsWithRef<'div'> & AsChild) {
-  const Comp = asChild ? Slot : 'div'
+  const Comp = asChild ? Slot.Root : 'div'
 
   return (
     <CarouselProvider>
@@ -28,7 +28,7 @@ function CarouselViewport({
   asChild = false,
   ...props
 }: React.ComponentPropsWithRef<'div'> & AsChild) {
-  const Comp = asChild ? Slot : 'div'
+  const Comp = asChild ? Slot.Root : 'div'
   const {emblaRef} = useCarousel()
 
   return (
@@ -45,7 +45,7 @@ function CarouselSlidesContainer({
   asChild = false,
   ...props
 }: React.ComponentPropsWithRef<'div'> & AsChild) {
-  const Comp = asChild ? Slot : 'div'
+  const Comp = asChild ? Slot.Root : 'div'
 
   return (
     <Comp
@@ -60,7 +60,7 @@ function CarouselSlide({
   asChild = false,
   ...props
 }: React.ComponentPropsWithRef<'div'> & AsChild) {
-  const Comp = asChild ? Slot : 'div'
+  const Comp = asChild ? Slot.Root : 'div'
 
   return (
     <Comp

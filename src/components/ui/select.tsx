@@ -1,37 +1,23 @@
 'use client'
 
-import {
-  Content,
-  Group,
-  Icon,
-  Item,
-  ItemIndicator,
-  ItemText,
-  Label,
-  Portal,
-  Root,
-  Separator,
-  Trigger,
-  Value,
-  Viewport
-} from '@radix-ui/react-select'
 import {ChevronDown} from 'lucide-react'
+import {Select as RadixSelect} from 'radix-ui'
 import {cn} from '@/src/lib/utils'
 
-const Select = Root
-const SelectValue = Value
-const SelectPortal = Portal
-const SelectGroup = Group
-const SelectItemIndicator = ItemIndicator
-const SelectItemText = ItemText
+const Select = RadixSelect.Root
+const SelectValue = RadixSelect.Value
+const SelectPortal = RadixSelect.Portal
+const SelectGroup = RadixSelect.Group
+const SelectItemIndicator = RadixSelect.ItemIndicator
+const SelectItemText = RadixSelect.ItemText
 
 function SelectTrigger({
   className,
   children,
   ...props
-}: React.ComponentPropsWithRef<typeof Trigger>) {
+}: React.ComponentPropsWithRef<typeof RadixSelect.Trigger>) {
   return (
-    <Trigger
+    <RadixSelect.Trigger
       className={cn(
         'p-4 flex items-center justify-between gap-1 bg-app-surface text-brand-gray-1 border border-brand-gray-12 rounded outline-none duration-300 hover:border-border-hover/50 data-open:bg-brand-gray-12 data-open:border-border-hover data-placeholder:text-sm data-placeholder:text-app-foreground/25 sm:data-placeholder:text-base disabled:cursor-not-allowed disabled:opacity-50 group',
         className
@@ -39,13 +25,13 @@ function SelectTrigger({
       {...props}
     >
       {children}
-      <Icon
+      <RadixSelect.Icon
         className='text-brand-gray-1 opacity-50 transition-transform group-data-open:opacity-100 group-data-open:rotate-180'
         asChild
       >
         <ChevronDown />
-      </Icon>
-    </Trigger>
+      </RadixSelect.Icon>
+    </RadixSelect.Trigger>
   )
 }
 
@@ -56,9 +42,9 @@ function SelectContent({
   side = 'bottom',
   sideOffset = 8,
   ...props
-}: React.ComponentPropsWithRef<typeof Content>) {
+}: React.ComponentPropsWithRef<typeof RadixSelect.Content>) {
   return (
-    <Content
+    <RadixSelect.Content
       position={position}
       side={side}
       sideOffset={sideOffset}
@@ -69,16 +55,16 @@ function SelectContent({
       {...props}
     >
       {children}
-    </Content>
+    </RadixSelect.Content>
   )
 }
 
 function SelectViewport({
   className,
   ...props
-}: React.ComponentPropsWithRef<typeof Viewport>) {
+}: React.ComponentPropsWithRef<typeof RadixSelect.Viewport>) {
   return (
-    <Viewport
+    <RadixSelect.Viewport
       className={cn('p-1', className)}
       {...props}
     />
@@ -88,9 +74,9 @@ function SelectViewport({
 function SelectLabel({
   className,
   ...props
-}: React.ComponentPropsWithRef<typeof Label>) {
+}: React.ComponentPropsWithRef<typeof RadixSelect.Label>) {
   return (
-    <Label
+    <RadixSelect.Label
       className={cn('py-1.5 pl-8 pr-2 text-sm ', className)}
       {...props}
     />
@@ -101,9 +87,9 @@ function SelectItem({
   className,
   children,
   ...props
-}: React.ComponentPropsWithRef<typeof Item>) {
+}: React.ComponentPropsWithRef<typeof RadixSelect.Item>) {
   return (
-    <Item
+    <RadixSelect.Item
       className={cn(
         'px-3 py-2 relative w-full flex items-center justify-start gap-2 bg-inherit text-brand-gray-1 text-sm select-none rounded outline-none data-disabled:pointer-events-none data-disabled:opacity-50 data-highlighted:bg-brand-gray-11/30',
         className
@@ -111,16 +97,16 @@ function SelectItem({
       {...props}
     >
       {children}
-    </Item>
+    </RadixSelect.Item>
   )
 }
 
 function SelectSeparator({
   className,
   ...props
-}: React.ComponentPropsWithRef<typeof Separator>) {
+}: React.ComponentPropsWithRef<typeof RadixSelect.Separator>) {
   return (
-    <Separator
+    <RadixSelect.Separator
       className={cn('my-1 h-px bg-brand-gray-5', className)}
       {...props}
     />

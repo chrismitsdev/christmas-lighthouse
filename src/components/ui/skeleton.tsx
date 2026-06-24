@@ -1,10 +1,10 @@
-import {Slot} from '@radix-ui/react-slot'
+import {Slot} from 'radix-ui'
 import {cn} from '@/src/lib/utils'
 
 interface SkeletonProps extends React.ComponentPropsWithRef<'div'>, AsChild {}
 
 function Skeleton({className, asChild = false, ...props}: SkeletonProps) {
-  const Comp = asChild ? Slot : 'div'
+  const Comp = asChild ? Slot.Root : 'div'
 
   return (
     <Comp

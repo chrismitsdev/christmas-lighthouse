@@ -1,21 +1,21 @@
 'use client'
 
-import {Content, Portal, Provider, Root, Trigger} from '@radix-ui/react-tooltip'
+import {Tooltip as RadixTooltip} from 'radix-ui'
 import {cn} from '@/src/lib/utils'
 
-const TooltipProvider = Provider
-const Tooltip = Root
-const TooltipTrigger = Trigger
-const TooltipPortal = Portal
+const TooltipProvider = RadixTooltip.Provider
+const Tooltip = RadixTooltip.Root
+const TooltipTrigger = RadixTooltip.Trigger
+const TooltipPortal = RadixTooltip.Portal
 
 function TooltipContent({
   className,
   side = 'bottom',
   sideOffset = 4,
   ...props
-}: React.ComponentPropsWithRef<typeof Content>) {
+}: React.ComponentPropsWithRef<typeof RadixTooltip.Content>) {
   return (
-    <Content
+    <RadixTooltip.Content
       className={cn(
         'px-3 py-1.5 z-50 bg-brand-gray-12 border border-border-hover rounded overflow-hidden shadow-md',
         className

@@ -1,5 +1,5 @@
-import {Slot, Slottable} from '@radix-ui/react-slot'
 import {cva, type VariantProps} from 'class-variance-authority'
+import {Slot} from 'radix-ui'
 import {Spinner} from '@/src/components/ui/spinner'
 import {cn} from '@/src/lib/utils'
 
@@ -70,7 +70,7 @@ function IconButton({
   children,
   ...props
 }: IconButtonProps) {
-  const Comp = asChild ? Slot : 'button'
+  const Comp = asChild ? Slot.Root : 'button'
 
   return (
     <Comp
@@ -89,7 +89,7 @@ function IconButton({
       {/* Increase touch target size for mobile devices */}
       <span className='absolute size-full min-w-12 min-h-12 pointer-fine:hidden' />
 
-      <Slottable>{children}</Slottable>
+      <Slot.Slottable>{children}</Slot.Slottable>
       {isLoading && (
         <span className='absolute inset-0 flex items-center justify-center'>
           <Spinner />

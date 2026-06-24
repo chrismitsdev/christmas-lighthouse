@@ -1,20 +1,14 @@
 'use client'
 
-import {
-  Corner,
-  Root,
-  Scrollbar,
-  Thumb,
-  Viewport
-} from '@radix-ui/react-scroll-area'
+import {ScrollArea} from 'radix-ui'
 import {cn} from '@/src/lib/utils'
 
 function Scrollarea({
   className,
   ...props
-}: React.ComponentPropsWithRef<typeof Root>) {
+}: React.ComponentPropsWithRef<typeof ScrollArea.Root>) {
   return (
-    <Root
+    <ScrollArea.Root
       className={cn('relative overflow-hidden', className)}
       {...props}
     />
@@ -24,9 +18,9 @@ function Scrollarea({
 function ScrollareaViewport({
   className,
   ...props
-}: React.ComponentPropsWithRef<typeof Viewport>) {
+}: React.ComponentPropsWithRef<typeof ScrollArea.Viewport>) {
   return (
-    <Viewport
+    <ScrollArea.Viewport
       className={cn('size-full rounded-[inherit]', className)}
       {...props}
     />
@@ -38,11 +32,11 @@ function ScrollareaScrollbar({
   orientation = 'vertical',
   invisible,
   ...props
-}: React.ComponentPropsWithRef<typeof Scrollbar> & {
+}: React.ComponentPropsWithRef<typeof ScrollArea.Scrollbar> & {
   invisible?: boolean
 }) {
   return (
-    <Scrollbar
+    <ScrollArea.Scrollbar
       className={cn(
         'p-0.5 flex select-none touch-none rounded-full',
         orientation === 'vertical' && 'w-3 h-full',
@@ -53,34 +47,26 @@ function ScrollareaScrollbar({
       orientation={orientation}
       {...props}
     >
-      <ScrollareaScrollbarThumb />
-    </Scrollbar>
+      <ScrollArea.Thumb
+        className={cn(
+          'relative grow shrink basis-0 bg-brand-gray-11 rounded-full',
+          className
+        )}
+        {...props}
+      />
+    </ScrollArea.Scrollbar>
   )
 }
 
-function ScrollareaScrollbarThumb({
-  className,
-  ...props
-}: React.ComponentPropsWithRef<typeof Thumb>) {
-  return (
-    <Thumb
-      className={cn(
-        'relative grow shrink basis-0 bg-brand-gray-11 rounded-full',
-        className
-      )}
-      {...props}
-    />
-  )
-}
-
-function ScrollareaCorner(props: React.ComponentPropsWithRef<typeof Corner>) {
-  return <Corner {...props} />
+function ScrollareaCorner(
+  props: React.ComponentPropsWithRef<typeof ScrollArea.Corner>
+) {
+  return <ScrollArea.Corner {...props} />
 }
 
 Scrollarea.displayName = 'Scrollarea'
 ScrollareaViewport.displayName = 'ScrollareaViewport'
 ScrollareaScrollbar.displayName = 'ScrollareaScrollbar'
-ScrollareaScrollbarThumb.displayName = 'ScrollareaScrollbarThumb'
 ScrollareaCorner.displayName = 'ScrollareaCorner'
 
 export {Scrollarea, ScrollareaCorner, ScrollareaScrollbar, ScrollareaViewport}

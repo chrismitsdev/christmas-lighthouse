@@ -1,30 +1,20 @@
 'use client'
 
-import {
-  Action,
-  Cancel,
-  Content,
-  Description,
-  Overlay,
-  Portal,
-  Root,
-  Title,
-  Trigger
-} from '@radix-ui/react-alert-dialog'
+import {AlertDialog as RadixAlertDialog} from 'radix-ui'
 import {cn} from '@/src/lib/utils'
 
-const AlertDialog = Root
-const AlertDialogTrigger = Trigger
-const AlertDialogPortal = Portal
-const AlertDialogAction = Action
-const AlertDialogCancel = Cancel
+const AlertDialog = RadixAlertDialog.Root
+const AlertDialogTrigger = RadixAlertDialog.Trigger
+const AlertDialogPortal = RadixAlertDialog.Portal
+const AlertDialogAction = RadixAlertDialog.Action
+const AlertDialogCancel = RadixAlertDialog.Cancel
 
 function AlertDialogOverlay({
   className,
   ...props
-}: React.ComponentPropsWithRef<typeof Overlay>) {
+}: React.ComponentPropsWithRef<typeof RadixAlertDialog.Overlay>) {
   return (
-    <Overlay
+    <RadixAlertDialog.Overlay
       className={cn(
         'fixed inset-0 z-50 bg-black/50 backdrop-blur-[2px]',
         className
@@ -37,9 +27,9 @@ function AlertDialogOverlay({
 function AlertDialogContent({
   className,
   ...props
-}: React.ComponentPropsWithRef<typeof Content>) {
+}: React.ComponentPropsWithRef<typeof RadixAlertDialog.Content>) {
   return (
-    <Content
+    <RadixAlertDialog.Content
       className={cn(
         'px-4 py-6 fixed left-1/2 top-1/2 z-50 -translate-x-1/2 -translate-y-1/2 max-w-xl w-[calc(100%-32px)] bg-app-surface border rounded sm:p-12',
         className
@@ -64,9 +54,9 @@ function AlertDialogHeader({
 function AlertDialogTitle({
   className,
   ...props
-}: React.ComponentPropsWithRef<typeof Title>) {
+}: React.ComponentPropsWithRef<typeof RadixAlertDialog.Title>) {
   return (
-    <Title
+    <RadixAlertDialog.Title
       className={cn(
         'text-xl font-semibold leading-none tracking-tight sm:text-2xl',
         className
@@ -79,9 +69,9 @@ function AlertDialogTitle({
 function AlertDialogDescription({
   className,
   ...props
-}: React.ComponentPropsWithRef<typeof Description>) {
+}: React.ComponentPropsWithRef<typeof RadixAlertDialog.Description>) {
   return (
-    <Description
+    <RadixAlertDialog.Description
       className={cn('text-sm text-brand-gray-10', className)}
       {...props}
     />

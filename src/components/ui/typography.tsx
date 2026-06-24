@@ -1,7 +1,7 @@
 'use client'
 
-import {Slot} from '@radix-ui/react-slot'
 import {cva, type VariantProps} from 'class-variance-authority'
+import {Slot} from 'radix-ui'
 import {cn} from '@/src/lib/utils'
 
 const typographyVariants = cva(['block', 'leading-6', 'text-balance'], {
@@ -37,7 +37,7 @@ function Typography({
   asChild = false,
   ...props
 }: TypographyProps) {
-  const Comp = asChild ? Slot : 'span'
+  const Comp = asChild ? Slot.Root : 'span'
 
   return (
     <Comp

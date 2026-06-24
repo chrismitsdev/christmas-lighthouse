@@ -1,8 +1,8 @@
 'use client'
 
-import {TooltipTrigger} from '@radix-ui/react-tooltip'
 import {EditIcon, EllipsisIcon, PlusIcon, Trash2Icon} from 'lucide-react'
 import Link from 'next/link'
+import {Tooltip as RadixTooltip} from 'radix-ui'
 import {DeleteCategoryForm} from '@/src/app/(admin)/dashboard/categories/edit/delete-category-form'
 import {UpdateCategoryForm} from '@/src/app/(admin)/dashboard/categories/edit/update-category-form'
 import {
@@ -113,11 +113,11 @@ function CategoriesTable({categories, products}: CategoriesTableProps) {
                 <TableCell className='hidden cursor-default sm:table-cell'>
                   <TooltipProvider>
                     <Tooltip>
-                      <TooltipTrigger asChild>
+                      <RadixTooltip.Trigger asChild>
                         <Badge className='data-delayed-open:border-border-hover'>
                           {categoryProducts.length}
                         </Badge>
-                      </TooltipTrigger>
+                      </RadixTooltip.Trigger>
                       <TooltipPortal>
                         <TooltipContent side='top'>
                           {categoryProducts.map((product) => (

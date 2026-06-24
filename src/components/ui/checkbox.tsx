@@ -1,29 +1,29 @@
 'use client'
 
-import {Indicator, Root} from '@radix-ui/react-checkbox'
 import {Check} from 'lucide-react'
+import {Checkbox as RadixCheckbox} from 'radix-ui'
 import {cn} from '@/src/lib/utils'
 
 function Checkbox({
   className,
   ...props
-}: React.ComponentPropsWithRef<typeof Root>) {
+}: React.ComponentPropsWithRef<typeof RadixCheckbox.Root>) {
   return (
-    <Root
+    <RadixCheckbox.Root
       className={cn(
         'relative h-6 w-6 shrink-0 bg-app-surface border rounded-sm data-checked:bg-brand-gray-12 data-checked:border-border-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 peer transition-colors',
         className
       )}
       {...props}
     >
-      <Indicator
+      <RadixCheckbox.Indicator
         className={cn(
           'absolute inset-0 flex items-center justify-center text-app-foreground'
         )}
       >
         <Check size={20} />
-      </Indicator>
-    </Root>
+      </RadixCheckbox.Indicator>
+    </RadixCheckbox.Root>
   )
 }
 

@@ -1,38 +1,13 @@
 'use client'
 
-import {
-  Close,
-  Content,
-  Description,
-  Overlay,
-  Portal,
-  Root,
-  Title,
-  Trigger
-} from '@radix-ui/react-dialog'
 import {cva, type VariantProps} from 'class-variance-authority'
 import {XIcon} from 'lucide-react'
+import {Dialog} from 'radix-ui'
 import {IconButton} from '@/src/components/ui/icon-button'
 import {cn} from '@/src/lib/utils'
 
-const Sheet = Root
-const SheetTrigger = Trigger
-const SheetPortal = Portal
-
-function SheetOverlay({
-  className,
-  ...props
-}: React.ComponentPropsWithRef<typeof Overlay>) {
-  return (
-    <Overlay
-      className={cn(
-        'fixed inset-0 z-10 bg-black/50 backdrop-blur-[2px] data-open:animate-overlay-open data-closed:animate-overlay-closed',
-        className
-      )}
-      {...props}
-    />
-  )
-}
+const Sheet = Dialog.Root
+const SheetTrigger = Dialog.Trigger
 
 const sheetContentVariants = cva(
   [
@@ -101,7 +76,7 @@ const sheetContentVariants = cva(
 )
 
 interface SheetContentProps
-  extends React.ComponentPropsWithRef<typeof Content>,
+  extends React.ComponentPropsWithRef<typeof Dialog.Content>,
     VariantProps<typeof sheetContentVariants> {}
 
 function SheetContent({
@@ -110,13 +85,19 @@ function SheetContent({
   ...props
 }: SheetContentProps) {
   return (
-    <SheetPortal>
-      <SheetOverlay />
-      <Content
+    <Dialog.Portal>
+      <Dialog.Overlay
+        className={cn(
+          'fixed inset-0 z-10 bg-black/50 backdrop-blur-[2px] data-open:animate-overlay-open data-closed:animate-overlay-closed',
+          className
+        )}
+        {...props}
+      />
+      <Dialog.Content
         className={cn(sheetContentVariants({side, className}))}
         {...props}
       />
-    </SheetPortal>
+    </Dialog.Portal>
   )
 }
 
@@ -135,9 +116,9 @@ function SheetHeader({
 function SheetTitle({
   className,
   ...props
-}: React.ComponentPropsWithRef<typeof Title>) {
+}: React.ComponentPropsWithRef<typeof Dialog.Title>) {
   return (
-    <Title
+    <Dialog.Title
       className={cn('text-lg font-semibold text-foreground', className)}
       {...props}
     />
@@ -147,9 +128,9 @@ function SheetTitle({
 function SheetDescription({
   className,
   ...props
-}: React.ComponentPropsWithRef<typeof Description>) {
+}: React.ComponentPropsWithRef<typeof Dialog.Description>) {
   return (
-    <Description
+    <Dialog.Description
       className={cn('text-sm text-muted-foreground', className)}
       {...props}
     />
@@ -185,21 +166,19 @@ function SheetClose({
   ...props
 }: React.ComponentPropsWithRef<typeof IconButton>) {
   return (
-    <Close
+    <Dialog.Close
       className={cn('absolute top-4 right-4', className)}
       asChild
     >
       <IconButton {...props}>
         <XIcon />
       </IconButton>
-    </Close>
+    </Dialog.Close>
   )
 }
 
 Sheet.displayName = 'Sheet'
 SheetTrigger.displayName = 'SheetTrigger'
-SheetPortal.displayName = 'SheetPortal'
-SheetOverlay.displayName = 'SheetOverlay'
 SheetContent.displayName = 'SheetContent'
 SheetHeader.displayName = 'SheetHeader'
 SheetTitle.displayName = 'SheetTitle'
