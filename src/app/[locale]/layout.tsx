@@ -2,9 +2,8 @@ import '@/src/styles/index.css'
 import {Analytics} from '@vercel/analytics/next'
 import type {Metadata} from 'next'
 import {Manrope} from 'next/font/google'
-import {notFound} from 'next/navigation'
-import {hasLocale, NextIntlClientProvider} from 'next-intl'
-import {setRequestLocale} from 'next-intl/server'
+import {NextIntlClientProvider} from 'next-intl'
+import {getLocale} from 'next-intl/server'
 import {Toaster} from 'sonner'
 import {Footer} from '@/src/components/shared/footer'
 import {Header} from '@/src/components/shared/header'
@@ -41,17 +40,8 @@ export const metadata: Metadata = {
   }
 }
 
-export default async function LocaleLayout({
-  params,
-  children
-}: LayoutProps<'/[locale]'>) {
-  const {locale} = (await params) as Params['params']
-
-  if (!hasLocale(routing.locales, locale)) {
-    notFound()
-  }
-
-  setRequestLocale(locale)
+export default async function RootLayout({children}: LayoutProps<'/[locale]'>) {
+  const locale = await getLocale()
 
   return (
     <html

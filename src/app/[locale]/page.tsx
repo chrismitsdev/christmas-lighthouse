@@ -1,5 +1,5 @@
 import type {Metadata} from 'next'
-import {getTranslations, setRequestLocale} from 'next-intl/server'
+import {getTranslations} from 'next-intl/server'
 import {Fragment} from 'react'
 import {About} from '@/src/components/page/index/about'
 import {Activities} from '@/src/components/page/index/activities'
@@ -12,23 +12,16 @@ import {Location} from '@/src/components/page/index/location'
 import {Parade} from '@/src/components/page/index/parade'
 import {ScrollTopButton} from '@/src/components/shared/scroll-top-button'
 
-export async function generateMetadata({
-  params
-}: PageProps<'/[locale]'>): Promise<Metadata> {
-  const {locale} = (await params) as Params['params']
-  const t = await getTranslations({locale})
-
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations('pages.metadata')
   return {
     title: {
-      absolute: `${t('pages.metadata.index-page')} | The Christmas Lighthouse`
+      absolute: `${t('index-page')} | The Christmas lighthouse`
     }
   }
 }
 
-export default async function IndexPage({params}: PageProps<'/[locale]'>) {
-  const {locale} = (await params) as Params['params']
-  setRequestLocale(locale)
-
+export default function IndexPage() {
   return (
     <Fragment>
       <IndexNavigation />

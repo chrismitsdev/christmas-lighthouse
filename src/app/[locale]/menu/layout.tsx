@@ -1,4 +1,4 @@
-import {setRequestLocale} from 'next-intl/server'
+import {getLocale} from 'next-intl/server'
 import {Fragment, Suspense} from 'react'
 import {
   MenuNavigation,
@@ -8,19 +8,16 @@ import {Container} from '@/src/components/shared/container'
 import {getLocalizedCategories} from '@/src/db/menu'
 
 export default async function MenuLayout({
-  params,
   children
 }: LayoutProps<'/[locale]/menu'>) {
-  const {locale} = (await params) as Params['params']
+  const locale = await getLocale()
   const categories = getLocalizedCategories(locale)
-  setRequestLocale(locale)
 
   return (
     <Fragment>
       <Suspense fallback={<MenuNavigationSkeleton />}>
         <MenuNavigation categoriesPromise={categories} />
       </Suspense>
-
       <main>
         <Container className='max-w-5xl'>{children}</Container>
       </main>

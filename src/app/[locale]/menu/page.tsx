@@ -1,17 +1,13 @@
 import type {Metadata} from 'next'
-import {getTranslations, setRequestLocale} from 'next-intl/server'
+import {getLocale, getTranslations} from 'next-intl/server'
 import {CollapsibleCategory} from '@/src/components/page/menu/collapsible-category'
 import {Section} from '@/src/components/shared/section'
 import {getLocalizedCategories} from '@/src/db/menu'
 
-export async function generateMetadata({
-  params
-}: PageProps<'/[locale]/menu'>): Promise<Metadata> {
-  const {locale} = (await params) as Params['params']
-  const t = await getTranslations({locale})
-
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations('pages.metadata')
   return {
-    title: t('pages.metadata.menu-page'),
+    title: t('menu-page'),
     robots: {
       index: false,
       follow: false
@@ -19,10 +15,9 @@ export async function generateMetadata({
   }
 }
 
-export default async function MenuPage({params}: PageProps<'/[locale]/menu'>) {
-  const {locale} = (await params) as Params['params']
+export default async function MenuPage() {
+  const locale = await getLocale()
   const categories = await getLocalizedCategories(locale)
-  setRequestLocale(locale)
 
   return (
     <Section className='space-y-6'>

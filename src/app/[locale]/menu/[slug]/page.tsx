@@ -1,5 +1,5 @@
 import type {Metadata} from 'next'
-import {getTranslations, setRequestLocale} from 'next-intl/server'
+import {getLocale, getTranslations} from 'next-intl/server'
 import {Category} from '@/src/components/page/menu/category'
 import {CategoryNotFound} from '@/src/components/page/menu/category-not-found'
 import {Section} from '@/src/components/shared/section'
@@ -8,14 +8,15 @@ import {getCategories, getLocalizedCategories} from '@/src/db/menu'
 export async function generateMetadata({
   params
 }: PageProps<'/[locale]/menu/[slug]'>): Promise<Metadata> {
-  const {locale, slug} = (await params) as ParamsWithSlug['params']
-  const t = await getTranslations({locale})
+  const {slug} = await params
+  const locale = await getLocale()
+  const t = await getTranslations('components.categoryNotFound')
   const categories = await getLocalizedCategories(locale)
   const category = categories.find((category) => category.link === slug)
 
   if (!category?.title) {
     return {
-      title: t('components.categoryNotFound.label'),
+      title: t('label'),
       robots: {
         index: false,
         follow: false
@@ -35,10 +36,10 @@ export async function generateMetadata({
 export default async function SlugPage({
   params
 }: PageProps<'/[locale]/menu/[slug]'>) {
-  const {locale, slug} = (await params) as ParamsWithSlug['params']
+  const locale = await getLocale()
+  const {slug} = await params
   const categories = await getLocalizedCategories(locale)
-  const category = categories.find((ctg) => ctg.link === slug)
-  setRequestLocale(locale)
+  const category = categories.find((category) => category.link === slug)
 
   if (!category?.title) {
     return <CategoryNotFound />

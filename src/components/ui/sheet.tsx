@@ -86,13 +86,7 @@ function SheetContent({
 }: SheetContentProps) {
   return (
     <Dialog.Portal>
-      <Dialog.Overlay
-        className={cn(
-          'fixed inset-0 z-10 bg-black/50 backdrop-blur-[2px] data-open:animate-overlay-open data-closed:animate-overlay-closed',
-          className
-        )}
-        {...props}
-      />
+      <Dialog.Overlay className='fixed inset-0 z-10 bg-black/50 backdrop-blur-[2px] data-open:animate-overlay-open data-closed:animate-overlay-closed' />
       <Dialog.Content
         className={cn(sheetContentVariants({side, className}))}
         {...props}
