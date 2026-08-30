@@ -40,7 +40,7 @@
     "leaflet": "^1.9.4",
     "lucide-react": "0.577.0",
     "next": "^16.3.3",
-    "next-intl": "^4.13.7",
+    "next-intl": "^4.14.0",
     "postcss": "^8.5.26",
     "radix-ui": "^1.6.7",
     "react": "^19.2.8",
