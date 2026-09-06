@@ -27,7 +27,7 @@
     "@types/leaflet": "^1.9.22",
     "@types/node": "^26.4.1",
     "@types/react": "^19.2.18",
-    "@types/react-dom": "^19.2.5",
+    "@types/react-dom": "^19.2.7",
     "@vercel/analytics": "^2.0.1",
     "chalk": "^6.0.0",
     "class-variance-authority": "^0.7.1",
