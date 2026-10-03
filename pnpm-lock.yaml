@@ -105,8 +105,8 @@ importers:
         specifier: ^2.4.0
         version: 2.4.0(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
       resend:
-        specifier: ^6.28.1
-        version: 6.28.1(@react-email/render@2.1.0(react-dom@19.3.0(react@19.3.0))(react@19.3.0))
+        specifier: ^6.31.0
+        version: 6.31.0(@react-email/render@2.1.0(react-dom@19.3.0(react@19.3.0))(react@19.3.0))
       rimraf:
         specifier: 6.1.3
         version: 6.1.3
@@ -3206,8 +3206,8 @@ packages:
     resolution: {integrity: sha512-Xf0nWe6RseziFMu+Ap9biiUbmplq6S9/p+7w7YXP/JBHhrUDDUhwa+vANyubuqfZWTveU//DYVGsDG7RKL/vEw==}
     engines: {node: '>=0.10.0'}
 
-  resend@6.28.1:
-    resolution: {integrity: sha512-5VWOcDiWKBt0NWYKXwzY9WJ+LbpQLYw9M6j1DDJYPk7TloHfWOJyaY4EFKoR/KPL0N4m5yO3o96iDoYOX7v+GA==}
+  resend@6.31.0:
+    resolution: {integrity: sha512-E9Ekrm888UKKCIY61UmDkgRVd2Q9OwihimgStrWJ4olNsjFYM25F4X8QbzrLuZz6W9iS7eLMS7MLbRBNqnlI/Q==}
     engines: {node: '>=20'}
     peerDependencies:
       '@react-email/render': '*'
@@ -5942,7 +5942,7 @@ snapshots:
 
   require-from-string@2.0.2: {}
 
-  resend@6.28.1(@react-email/render@2.1.0(react-dom@19.3.0(react@19.3.0))(react@19.3.0)):
+  resend@6.31.0(@react-email/render@2.1.0(react-dom@19.3.0(react@19.3.0))(react@19.3.0)):
     dependencies:
       postal-mime: 2.7.6
       standardwebhooks: 1.1.1
