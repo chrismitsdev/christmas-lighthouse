@@ -39,7 +39,7 @@
     "husky": "^9.1.7",
     "leaflet": "^1.9.4",
     "lucide-react": "0.577.0",
-    "next": "^16.4.1",
+    "next": "^16.4.2",
     "next-intl": "^4.14.9",
     "postcss": "^8.5.30",
     "radix-ui": "^1.8.1",
