@@ -15,8 +15,8 @@ importers:
         specifier: ^2.6.8
         version: 2.6.8
       '@neondatabase/serverless':
-        specifier: ^1.2.0
-        version: 1.2.0
+        specifier: ^1.2.1
+        version: 1.2.1
       '@node-rs/argon2':
         specifier: ^2.2.2
         version: 2.2.2
@@ -61,7 +61,7 @@ importers:
         version: 0.31.11
       drizzle-orm:
         specifier: ^0.45.4
-        version: 0.45.4(@neondatabase/serverless@1.2.0)
+        version: 0.45.4(@neondatabase/serverless@1.2.1)
       embla-carousel-autoplay:
         specifier: ^8.6.0
         version: 8.6.0(embla-carousel@8.6.0)
@@ -933,8 +933,8 @@ packages:
   '@jridgewell/trace-mapping@0.3.31':
     resolution: {integrity: sha512-zzNR+SdQSDJzc8joaeP8QQoCQr8NuYx2dIIytl1QeBEZHJ9uW6hebsrYgbz8hJwUQao3TWCMtmfV8Nu1twOLAw==}
 
-  '@neondatabase/serverless@1.2.0':
-    resolution: {integrity: sha512-tnaqgixUengZQNd9ZrS3ytQfamJzLKY8QxgqWQTNHHtB+KrFQWk77JTbbpg4RD+J3qE4eO2lVytvGDX5Kj6FdQ==}
+  '@neondatabase/serverless@1.2.1':
+    resolution: {integrity: sha512-PI2JjuyEFE7oZDTkV/s6WP4KEceCwnjQHClfunhysuIATtvcVTBLdA4UgHTnJo7C0mkK+OZ6U7SV1NDnYa0HgA==}
     engines: {node: '>=19.0.0'}
 
   '@next/env@16.4.3':
@@ -3780,7 +3780,7 @@ snapshots:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.6.0
 
-  '@neondatabase/serverless@1.2.0': {}
+  '@neondatabase/serverless@1.2.1': {}
 
   '@next/env@16.4.3': {}
 
@@ -5106,9 +5106,9 @@ snapshots:
       esbuild: 0.25.12
       tsx: 4.23.15
 
-  drizzle-orm@0.45.4(@neondatabase/serverless@1.2.0):
+  drizzle-orm@0.45.4(@neondatabase/serverless@1.2.1):
     optionalDependencies:
-      '@neondatabase/serverless': 1.2.0
+      '@neondatabase/serverless': 1.2.1
 
   embla-carousel-autoplay@8.6.0(embla-carousel@8.6.0):
     dependencies:
