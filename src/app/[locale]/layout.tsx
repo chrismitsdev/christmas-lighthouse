@@ -3,40 +3,36 @@ import {Analytics} from '@vercel/analytics/next'
 import type {Metadata} from 'next'
 import {Manrope} from 'next/font/google'
 import {NextIntlClientProvider} from 'next-intl'
-import {getLocale} from 'next-intl/server'
+import {getLocale, getTranslations} from 'next-intl/server'
 import {Toaster} from 'sonner'
 import {Footer} from '@/src/components/shared/footer'
 import {Header} from '@/src/components/shared/header'
 import {Snowfall} from '@/src/components/shared/snow-fall'
 import {routing} from '@/src/i18n/routing'
+import {siteUrl} from '@/src/lib/seo'
 
 const font = Manrope({
   subsets: ['latin'],
   display: 'swap'
 })
 
-export const metadata: Metadata = {
-  metadataBase: new URL('https://thechristmaslighthouse.gr'),
-  alternates: {
-    canonical: '/',
-    languages: {
-      el: '/el',
-      en: '/en'
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations('pages.metadata')
+  return {
+    metadataBase: new URL(siteUrl),
+    title: {
+      template: '%s | The Christmas Lighthouse',
+      default: 'The Christmas Lighthouse'
+    },
+    description: t('description'),
+    formatDetection: {
+      email: true,
+      telephone: true
+    },
+    robots: {
+      index: true,
+      follow: true
     }
-  },
-  title: {
-    template: '%s | The Christmas Lighthouse',
-    default: 'The Christmas Lighthouse'
-  },
-  description:
-    'The Christmas Lighthouse is the festive Christmas park of Alexandroupoli featuring the ice rink, charity parade, interactive games, workshops and holiday events for all ages.',
-  formatDetection: {
-    email: true,
-    telephone: true
-  },
-  robots: {
-    index: true,
-    follow: true
   }
 }
 

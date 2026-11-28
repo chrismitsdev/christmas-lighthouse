@@ -5,6 +5,7 @@ import {Category} from '@/src/components/page/menu/category'
 import {CategoryNotFound} from '@/src/components/page/menu/category-not-found'
 import {Section} from '@/src/components/shared/section'
 import {getLocalizedCategories} from '@/src/lib/menu'
+import {localeAlternates} from '@/src/lib/seo'
 
 export async function generateMetadata({
   params
@@ -18,6 +19,7 @@ export async function generateMetadata({
   if (!category) {
     return {
       title: t('label'),
+      alternates: localeAlternates(locale, `/menu/${slug}`),
       robots: {
         index: false,
         follow: false
@@ -27,6 +29,7 @@ export async function generateMetadata({
 
   return {
     title: category.title,
+    alternates: localeAlternates(locale, `/menu/${slug}`),
     robots: {
       index: false,
       follow: false
