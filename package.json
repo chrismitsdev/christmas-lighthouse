@@ -52,7 +52,7 @@
     "rimraf": "6.1.4",
     "sharp": "^0.35.5",
     "sonner": "^2.0.8",
-    "tailwind-merge": "^3.7.0",
+    "tailwind-merge": "^3.7.1",
     "tailwindcss": "^4.3.5",
     "tsx": "^4.23.15",
     "typescript": "^7.0.2",
