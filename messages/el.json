@@ -219,7 +219,7 @@
             "field": {
               "fullname": "Ονοματεπώνυμο",
               "email": "Email",
-              "phone": "Κινητό τηλέφωνο",
+              "phone": "Τηλέφωνο",
               "message": "Το μήνυμά σας..."
             },
             "submit-button": "Υποβολή",

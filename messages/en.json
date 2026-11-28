@@ -219,7 +219,7 @@
             "field": {
               "fullname": "Full name",
               "email": "Email",
-              "phone": "Mobile phone",
+              "phone": "Phone",
               "message": "Your message..."
             },
             "submit-button": "Submit",

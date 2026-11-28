@@ -87,7 +87,7 @@ export default function InternalEmail() {
                 </Column>
               </Row>
               <Row>
-                <Text className='my-0 text-sm'>Chris Mitsiaris</Text>
+                <Text className='my-0 text-sm'>Maria Papadopoulou</Text>
               </Row>
 
               <Hr className='my-6 border-[#1d1f2b]' />
@@ -110,9 +110,9 @@ export default function InternalEmail() {
               <Row>
                 <Link
                   className='block text-sm leading-5'
-                  href={`mailto:chrismits88@gmail.com`}
+                  href={`mailto:maria@example.com`}
                 >
-                  chrismits88@gmail.com
+                  maria@example.com
                 </Link>
               </Row>
 
@@ -136,9 +136,9 @@ export default function InternalEmail() {
               <Row>
                 <Link
                   className='block text-sm leading-5'
-                  href={`tel:+306973993703`}
+                  href={`tel:+306900000000`}
                 >
-                  +306973993703
+                  +306900000000
                 </Link>
               </Row>
 
