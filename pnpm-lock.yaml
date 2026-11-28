@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@chrismitsdev/menu-data':
-        specifier: github:chrismitsdev/menu-data#v1.0.0
-        version: https://codeload.github.com/chrismitsdev/menu-data/tar.gz/4886615a0667ccd15b375e65f5d513a1bd8d6554
+        specifier: github:chrismitsdev/menu-data#v1.0.1
+        version: https://codeload.github.com/chrismitsdev/menu-data/tar.gz/67e2a5159ac19b36ee749497f35ddbc44f621718
     devDependencies:
       '@adamscybot/react-leaflet-component-marker':
         specifier: ^2.0.3
@@ -238,8 +238,8 @@ packages:
     cpu: [x64]
     os: [win32]
 
-  '@chrismitsdev/menu-data@https://codeload.github.com/chrismitsdev/menu-data/tar.gz/4886615a0667ccd15b375e65f5d513a1bd8d6554':
-    resolution: {gitHosted: true, tarball: https://codeload.github.com/chrismitsdev/menu-data/tar.gz/4886615a0667ccd15b375e65f5d513a1bd8d6554}
+  '@chrismitsdev/menu-data@https://codeload.github.com/chrismitsdev/menu-data/tar.gz/67e2a5159ac19b36ee749497f35ddbc44f621718':
+    resolution: {gitHosted: true, integrity: sha512-cVlujcKiPgb2lyILj62Pb/J8u4ZaGxk3Ik3IP9SlDyYhub05ixmseP4FEUOn+tLgbbRBLLTnMu/0BggcInT1Tw==, tarball: https://codeload.github.com/chrismitsdev/menu-data/tar.gz/67e2a5159ac19b36ee749497f35ddbc44f621718}
     version: 1.0.0
 
   '@eloqnt/config@0.1.2':
@@ -2748,7 +2748,7 @@ snapshots:
   '@biomejs/cli-win32-x64@2.6.9':
     optional: true
 
-  '@chrismitsdev/menu-data@https://codeload.github.com/chrismitsdev/menu-data/tar.gz/4886615a0667ccd15b375e65f5d513a1bd8d6554': {}
+  '@chrismitsdev/menu-data@https://codeload.github.com/chrismitsdev/menu-data/tar.gz/67e2a5159ac19b36ee749497f35ddbc44f621718': {}
 
   '@eloqnt/config@0.1.2': {}
 
