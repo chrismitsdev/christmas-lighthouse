@@ -8,7 +8,6 @@ import {
   ScrollareaViewport
 } from '@/src/components/ui/scroll-area'
 import {Typography} from '@/src/components/ui/typography'
-import {upcomingEvents} from '@/src/lib/events'
 import {cn} from '@/src/lib/utils'
 
 const links: (keyof Messages['pages']['index']['sections'])[] = [
@@ -21,7 +20,7 @@ const links: (keyof Messages['pages']['index']['sections'])[] = [
   'location'
 ]
 
-function IndexNavigation() {
+function IndexNavigation({showActivities}: {showActivities: boolean}) {
   const t = useTranslations('pages.index.sections')
 
   return (
@@ -33,7 +32,7 @@ function IndexNavigation() {
         <ScrollareaViewport>
           <div className='px-1 flex items-center justify-center'>
             {links.map((link) =>
-              link === 'activities' && upcomingEvents.length === 0 ? null : (
+              link === 'activities' && !showActivities ? null : (
                 <SectionLink
                   key={link}
                   href={link}

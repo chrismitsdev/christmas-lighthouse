@@ -10,14 +10,14 @@ import {
   CollapsibleTrigger
 } from '@/src/components/ui/collapsible'
 import {Typography} from '@/src/components/ui/typography'
-import {upcomingEvents} from '@/src/lib/events'
+import {hasMorning, type UpcomingEvent} from '@/src/lib/events'
 import {cn} from '@/src/lib/utils'
 
-function Activities({id}: {id: string}) {
+function Activities({id, events}: {id: string; events: UpcomingEvent[]}) {
   const t = useTranslations('pages.index.sections.activities')
   const format = useFormatter()
 
-  if (upcomingEvents.length === 0) {
+  if (events.length === 0) {
     return null
   }
 
@@ -29,8 +29,11 @@ function Activities({id}: {id: string}) {
     >
       <Container>
         <div className='space-y-6'>
-          {upcomingEvents.map((event) => (
-            <Collapsible key={event.key}>
+          {events.map((event) => (
+            <Collapsible
+              key={event.key}
+              defaultOpen={event.isToday}
+            >
               <CollapsibleTrigger className='not-sm:px-4'>
                 <Typography
                   variant='large'
@@ -39,23 +42,26 @@ function Activities({id}: {id: string}) {
                   {format.dateTime(new Date(event.timestamp), {
                     day: 'numeric',
                     month: 'long',
-                    year: 'numeric'
+                    year: 'numeric',
+                    timeZone: 'Europe/Athens'
                   })}
                 </Typography>
               </CollapsibleTrigger>
               <CollapsibleContent>
                 <div className='flex'>
-                  <ScheduleArticle className='from-brand-gold-12'>
-                    <SunIcon className='absolute top-4 right-4 text-brand-gold-4 sm:top-6 sm:right-6 sm:size-14' />
-                    <div className='relative space-y-2 text-brand-gold-4'>
-                      <Typography variant='h5'>
-                        {t('labels.morning')}
-                      </Typography>
-                      <Typography>
-                        {t(`events.${event.key}.morning`)}
-                      </Typography>
-                    </div>
-                  </ScheduleArticle>
+                  {hasMorning(event) && (
+                    <ScheduleArticle className='from-brand-gold-12'>
+                      <SunIcon className='absolute top-4 right-4 text-brand-gold-4 sm:top-6 sm:right-6 sm:size-14' />
+                      <div className='relative space-y-2 text-brand-gold-4'>
+                        <Typography variant='h5'>
+                          {t('labels.morning')}
+                        </Typography>
+                        <Typography>
+                          {t(`events.${event.key}.morning`)}
+                        </Typography>
+                      </div>
+                    </ScheduleArticle>
+                  )}
                   <ScheduleArticle className='from-brand-blue-12'>
                     <MoonIcon className='absolute top-4 right-4 text-brand-blue-4 sm:top-6 sm:right-6 sm:size-14' />
                     <div className='relative space-y-2 text-brand-blue-4'>

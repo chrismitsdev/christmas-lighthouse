@@ -80,6 +80,15 @@ function Contact({id}: {id: string}) {
               </div>
             </CardHeader>
             <CardContent className='space-y-4 not-sm:pt-10'>
+              {/* Honeypot: off-screen, so only bots fill it in */}
+              <input
+                className='absolute -left-[9999px] size-px opacity-0'
+                type='text'
+                name='website'
+                tabIndex={-1}
+                autoComplete='off'
+                aria-hidden
+              />
               <Input
                 defaultValue={state.data.fullname}
                 placeholder={t('form.field.fullname')}

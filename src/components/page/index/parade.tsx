@@ -4,16 +4,15 @@ import {Container} from '@/src/components/shared/container'
 import {Section} from '@/src/components/shared/section'
 import {Typography} from '@/src/components/ui/typography'
 
-function Parade({id}: {id: string}) {
+function Parade({id, isUpcoming}: {id: string; isUpcoming: boolean}) {
   const t = useTranslations('pages.index.sections.parade')
+  const variant = isUpcoming ? 'upcoming' : 'past'
 
   return (
     <Section
       id={id}
-      title={t.rich('section-header.title', {
-        sup: (chunk) => <sup>{chunk}</sup>
-      })}
-      description={t('section-header.description')}
+      title={t(`${variant}.section-header.title`)}
+      description={t(`${variant}.section-header.description`)}
     >
       <Container>
         <div className='space-y-10'>
@@ -23,19 +22,13 @@ function Parade({id}: {id: string}) {
               variant='large'
               asChild
             >
-              <h4>{t('info-card.title')}</h4>
+              <h4>{t(`${variant}.info-card.title`)}</h4>
             </Typography>
-            <Typography>{t('info-card.subtitle')}</Typography>
+            <Typography>{t(`${variant}.info-card.subtitle`)}</Typography>
             <Typography className='leading-7'>
-              {t.rich('info-card.description', {
-                sup: (chunk) => <sup>{chunk}</sup>,
+              {t.rich(`${variant}.info-card.description`, {
                 axd: (chunks) => (
                   <ExternalLink href='https://alexpolis.gr/'>
-                    {chunks}
-                  </ExternalLink>
-                ),
-                sos: (chunks) => (
-                  <ExternalLink href='https://sos-villages.gr/'>
                     {chunks}
                   </ExternalLink>
                 )
@@ -43,22 +36,31 @@ function Parade({id}: {id: string}) {
             </Typography>
           </div>
 
-          {/* biome-ignore lint: No talking on video */}
-          <video
-            className='mx-auto w-full rounded-lg'
-            poster='/sections/parade/images/parade-poster.webp'
-            preload='none'
-            controls
-            playsInline
-            disablePictureInPicture
-            aria-label={t('video-description')}
-            title={t('video-description')}
-          >
-            <source
-              src='/sections/parade/video/parade-video.mp4'
-              type='video/mp4'
-            />
-          </video>
+          <figure className='space-y-3'>
+            {/* biome-ignore lint: No talking on video */}
+            <video
+              className='mx-auto w-full rounded-lg'
+              poster='/sections/parade/images/parade-poster.webp'
+              preload='none'
+              controls
+              playsInline
+              disablePictureInPicture
+              aria-label={t('video-description')}
+              title={t('video-description')}
+            >
+              <source
+                src='/sections/parade/video/parade-video.mp4'
+                type='video/mp4'
+              />
+            </video>
+            <Typography
+              variant='muted'
+              className='text-center'
+              asChild
+            >
+              <figcaption>{t('video-description')}</figcaption>
+            </Typography>
+          </figure>
         </div>
       </Container>
     </Section>

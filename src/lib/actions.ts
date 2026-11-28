@@ -3,7 +3,6 @@
 import type {Locale} from 'next-intl'
 import {Resend} from 'resend'
 import {
-  check,
   email,
   flatten,
   type InferOutput,
@@ -15,21 +14,12 @@ import {
   regex,
   safeParse,
   string,
+  transform,
   trim
 } from 'valibot'
 import {InternalEmail} from '@/src/components/email/internal-email'
 
 const resend = new Resend(process.env.RESEND_API_KEY)
-
-const ALLOWED_EMAIL_PROVIDERS = [
-  '@gmail.com',
-  '@icloud.com',
-  '@yahoo.gr',
-  '@yahoo.com',
-  '@protonmail.com',
-  '@outlook.com',
-  '@hotmail.com'
-]
 
 const errorMessages = {
   el: {
@@ -38,9 +28,7 @@ const errorMessages = {
     fullnameMinLength: 'Τουλάχιστον 2 χαρακτήρες',
     fullnameMaxLength: 'Το πολύ 50 χαρακτήρες',
     email: 'Μη έγκυρη μορφή email',
-    emailProviders: `Μη αποδεκτός πάροχος email (Αποδεκτοί πάροχοι: ${ALLOWED_EMAIL_PROVIDERS.join(', ')})`,
-    phoneRegex:
-      'Μη έγκυρος αριθμός (πρέπει να ξεκινά με 69 και να έχει 10 ψηφία)',
+    phoneRegex: 'Μη έγκυρος αριθμός τηλεφώνου',
     messageMaxLength: 'Το πολύ 1000 χαρακτήρες'
   },
   en: {
@@ -49,8 +37,7 @@ const errorMessages = {
     fullnameMinLength: 'At least 2 characters',
     fullnameMaxLength: 'At most 50 characters',
     email: 'Invalid email format',
-    emailProviders: `Email provider not accepted (Accepted providers: ${ALLOWED_EMAIL_PROVIDERS.join(', ')})`,
-    phoneRegex: 'Invalid mobile number (must start with 69 and have 10 digits)',
+    phoneRegex: 'Invalid phone number',
     messageMaxLength: 'At most 1000 characters'
   }
 }
@@ -69,16 +56,17 @@ const ContactFormSchema = object({
   ),
   email: pipe(
     ...trimmedNonEmptyString,
-    email(({lang}) => errorMessages[lang as Locale].email),
-    check(
-      (input) =>
-        ALLOWED_EMAIL_PROVIDERS.some((provider) => input.endsWith(provider)),
-      ({lang}) => errorMessages[lang as Locale].emailProviders
-    )
+    email(({lang}) => errorMessages[lang as Locale].email)
   ),
   phone: pipe(
     ...trimmedNonEmptyString,
-    regex(/^69\d{8}$/, ({lang}) => errorMessages[lang as Locale].phoneRegex)
+    // Drop spaces, dashes, dots and brackets; a leading 00 means +.
+    transform((input) => input.replace(/[\s\-.()]/g, '').replace(/^00/, '+')),
+    // Greek numbers (10 digits, optionally +30) or any international number.
+    regex(
+      /^(\+30)?\d{10}$|^\+\d{8,15}$/,
+      ({lang}) => errorMessages[lang as Locale].phoneRegex
+    )
   ),
   message: pipe(
     ...trimmedNonEmptyString,
@@ -103,6 +91,11 @@ export async function sendContactForm(
   _prevState: ContactFormActionState,
   formData: FormData
 ): Promise<ContactFormActionState> {
+  // Honeypot: hidden from people, so only bots fill it in. Pretend success.
+  if (formData.get('website')) {
+    return {...successState}
+  }
+
   const data = {
     fullname: (formData.get('fullname') as string) ?? '',
     email: (formData.get('email') as string) ?? '',
@@ -141,23 +134,27 @@ export async function sendContactForm(
     reason: 'resend-error'
   }
 
-  // Attempt form submission
-  console.log('Attempting to send email for:', result.output.email)
+  const from = process.env.CONTACT_EMAIL_FROM
+  const to = process.env.CONTACT_EMAIL_TO
+  const cc = process.env.CONTACT_EMAIL_CC
 
+  if (!from || !to) {
+    console.error(
+      '❌ Form submission failed: CONTACT_EMAIL_FROM or CONTACT_EMAIL_TO is not set'
+    )
+
+    return resendErrorData
+  }
+
+  // Attempt form submission
   try {
     const response = await resend.emails.send({
-      from: 'The Christmas Lighthouse <info@moccaliving.com>',
-      react: InternalEmail(result.output),
-      ...(process.env.NODE_ENV === 'production'
-        ? {
-            subject: 'Φόρμα επικοινωνίας - Christmas Lighthouse',
-            to: 'mokalis@gmail.com',
-            cc: 'chrismits88@gmail.com'
-          }
-        : {
-            subject: 'Φόρμα επικοινωνίας - Christmas Lighthouse (Dev mode)',
-            to: 'chrismits88@gmail.com'
-          })
+      from,
+      to: splitAddresses(to),
+      cc: cc ? splitAddresses(cc) : undefined,
+      replyTo: result.output.email,
+      subject: `Φόρμα επικοινωνίας - Christmas Lighthouse${subjectTag()}`,
+      react: InternalEmail(result.output)
     })
 
     if (response.error) {
@@ -177,14 +174,40 @@ export async function sendContactForm(
   }
 
   // Reset fields if submission was successful
-  return {
-    data: {
-      fullname: '',
-      email: '',
-      phone: '',
-      message: ''
-    },
-    fieldErrors: {},
-    ok: true
+  return {...successState}
+}
+
+const successState: ContactFormActionState = {
+  data: {
+    fullname: '',
+    email: '',
+    phone: '',
+    message: ''
+  },
+  fieldErrors: {},
+  ok: true
+}
+
+/**
+ * Marks test emails in the subject. VERCEL_ENV (not NODE_ENV, which is
+ * 'production' on preview deployments too) tells the live site apart; it is
+ * unset when running locally without the Vercel env.
+ */
+function subjectTag(): string {
+  switch (process.env.VERCEL_ENV) {
+    case 'production':
+      return ''
+    case 'preview':
+      return ' (Preview)'
+    default:
+      return ' (Dev mode)'
   }
+}
+
+/** Comma-separated env value to a list of addresses. */
+function splitAddresses(value: string): string[] {
+  return value
+    .split(',')
+    .map((address) => address.trim())
+    .filter(Boolean)
 }

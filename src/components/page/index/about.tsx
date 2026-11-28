@@ -77,6 +77,9 @@ function About({id}: {id: string}) {
                       <Typography variant='small'>
                         {t('info-card.hours.zone-2.entry-1')}
                       </Typography>
+                      <Typography variant='small'>
+                        {t('info-card.hours.zone-2.entry-2')}
+                      </Typography>
                     </div>
                   </div>
                 </article>
