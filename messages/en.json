@@ -9,9 +9,7 @@
       "sections": {
         "hero": {
           "nav-link": "",
-          "title": "The magic of Christmas under the lighthouse of Alexandroupolis",
-          "plan-button": "Visit",
-          "parade-button": "Parade"
+          "title": "The magic of Christmas under the lighthouse of Alexandroupolis"
         },
         "highlights": {
           "nav-link": "Highlights",
@@ -270,22 +268,6 @@
     "categoryNotFound": {
       "label": "Category not found",
       "button": "Back"
-    },
-    "footer": {
-      "operating": {
-        "column-title": "Opening hours",
-        "title": "November 22, 2025 - January 11, 2026",
-        "description-1": "Monday to Friday: 18:00 - 23:30",
-        "description-2": "Weekends & Holidays: 11:00 - 23:30",
-        "description-3": "Daily: 11:00 - 23:30"
-      },
-      "information": {
-        "column-title": "Information",
-        "description-1": "Alexandroupoli, Greece",
-        "description-2": "Port of Alexandroupoli",
-        "description-3": "+30 6973433980"
-      },
-      "admin": "Administrative"
     }
   }
 }

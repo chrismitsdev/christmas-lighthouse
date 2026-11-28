@@ -73,5 +73,3 @@ export function toast(props: Omit<ToastProps, 'id'>) {
 }
 
 Toast.displayName = 'Toast'
-
-export {Toast}

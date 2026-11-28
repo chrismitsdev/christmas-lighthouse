@@ -58,15 +58,8 @@ function ScrollareaScrollbar({
   )
 }
 
-function ScrollareaCorner(
-  props: React.ComponentPropsWithRef<typeof ScrollArea.Corner>
-) {
-  return <ScrollArea.Corner {...props} />
-}
-
 Scrollarea.displayName = 'Scrollarea'
 ScrollareaViewport.displayName = 'ScrollareaViewport'
 ScrollareaScrollbar.displayName = 'ScrollareaScrollbar'
-ScrollareaCorner.displayName = 'ScrollareaCorner'
 
-export {Scrollarea, ScrollareaCorner, ScrollareaScrollbar, ScrollareaViewport}
+export {Scrollarea, ScrollareaScrollbar, ScrollareaViewport}
