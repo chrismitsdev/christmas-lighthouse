@@ -12,6 +12,5 @@ The Christmas Lighthouse website is a dynamic, multilingual Next.js application 
 - [Radix UI](https://www.radix-ui.com/primitives) for its accessible, unstyled primitives
 - [shadcn/ui](https://ui.shadcn.com/) as a reference on the implementation of components
 - [Lucide React](https://lucide.dev/) icon library
-- [Neon DB](https://neon.tech/home) fully managed serverless PostgreSQL database
-- [Drizzle ORM](https://orm.drizzle.team/) as a type-safe way to interact with the DB
+- [@chrismitsdev/menu-data](https://github.com/chrismitsdev/menu-data) for the café menu, shared with Yuppii
 - [Valibot](https://valibot.dev/) schema & data validation library

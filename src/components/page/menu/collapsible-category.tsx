@@ -7,7 +7,7 @@ import {
 } from '@/src/components/ui/collapsible'
 import {Separator} from '@/src/components/ui/separator'
 import {Typography} from '@/src/components/ui/typography'
-import type {CategoryWithProducts} from '@/src/db/menu'
+import type {CategoryWithProducts} from '@/src/lib/menu'
 import {formatCurrency} from '@/src/lib/utils'
 
 function CollapsibleCategory({category}: {category: CategoryWithProducts}) {
@@ -32,14 +32,14 @@ function CollapsibleCategory({category}: {category: CategoryWithProducts}) {
               <Typography variant='small'>
                 {formatCurrency(product.price)}
               </Typography>
-              {product.description !== null && (
+              {product.variants !== null && (
                 <div className='flex flex-wrap gap-2'>
-                  {product.description.map((description) => (
+                  {product.variants.map((variant) => (
                     <Badge
-                      key={description}
+                      key={variant}
                       variant='secondary'
                     >
-                      {description}
+                      {variant}
                     </Badge>
                   ))}
                 </div>

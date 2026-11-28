@@ -1,6 +1,6 @@
 import {ImageResponse} from 'next/og'
-import {getLocalizedCategories} from '@/src/db/menu'
 import {getOpengraphData} from '@/src/lib/get-opengraph-data'
+import {getLocalizedCategories} from '@/src/lib/menu'
 
 export const alt = 'The Christmas Lighthouse'
 export const size = {
@@ -14,7 +14,7 @@ export default async function Image({
   params
 }: PageProps<'/[locale]/menu/[slug]'>) {
   const {locale, slug} = (await params) as ParamsWithSlug['params']
-  const categories = await getLocalizedCategories(locale)
+  const categories = getLocalizedCategories(locale)
   const category = categories.find((category) => category.link === slug)
   const {base64Src, font} = await getOpengraphData()
 

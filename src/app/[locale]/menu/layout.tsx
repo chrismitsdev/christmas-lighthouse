@@ -1,23 +1,22 @@
 import {getLocale} from 'next-intl/server'
-import {Fragment, Suspense} from 'react'
-import {
-  MenuNavigation,
-  MenuNavigationSkeleton
-} from '@/src/components/page/menu/menu-navigation'
+import {Fragment} from 'react'
+import {MenuNavigation} from '@/src/components/page/menu/menu-navigation'
 import {Container} from '@/src/components/shared/container'
-import {getLocalizedCategories} from '@/src/db/menu'
+import {getLocalizedCategories} from '@/src/lib/menu'
 
 export default async function MenuLayout({
   children
 }: LayoutProps<'/[locale]/menu'>) {
   const locale = await getLocale()
-  const categories = getLocalizedCategories(locale)
+  // Only what the navigation needs: it's a client component.
+  const categories = getLocalizedCategories(locale).map(({title, link}) => ({
+    title,
+    link
+  }))
 
   return (
     <Fragment>
-      <Suspense fallback={<MenuNavigationSkeleton />}>
-        <MenuNavigation categoriesPromise={categories} />
-      </Suspense>
+      <MenuNavigation categories={categories} />
       <main>
         <Container className='max-w-5xl'>{children}</Container>
       </main>

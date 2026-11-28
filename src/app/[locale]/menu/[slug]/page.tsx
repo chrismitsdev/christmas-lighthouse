@@ -1,9 +1,10 @@
+import {getMenu} from '@chrismitsdev/menu-data'
 import type {Metadata} from 'next'
 import {getLocale, getTranslations} from 'next-intl/server'
 import {Category} from '@/src/components/page/menu/category'
 import {CategoryNotFound} from '@/src/components/page/menu/category-not-found'
 import {Section} from '@/src/components/shared/section'
-import {getCategories, getLocalizedCategories} from '@/src/db/menu'
+import {getLocalizedCategories} from '@/src/lib/menu'
 
 export async function generateMetadata({
   params
@@ -11,10 +12,10 @@ export async function generateMetadata({
   const {slug} = await params
   const locale = await getLocale()
   const t = await getTranslations('components.categoryNotFound')
-  const categories = await getLocalizedCategories(locale)
+  const categories = getLocalizedCategories(locale)
   const category = categories.find((category) => category.link === slug)
 
-  if (!category?.title) {
+  if (!category) {
     return {
       title: t('label'),
       robots: {
@@ -38,10 +39,10 @@ export default async function SlugPage({
 }: PageProps<'/[locale]/menu/[slug]'>) {
   const locale = await getLocale()
   const {slug} = await params
-  const categories = await getLocalizedCategories(locale)
+  const categories = getLocalizedCategories(locale)
   const category = categories.find((category) => category.link === slug)
 
-  if (!category?.title) {
+  if (!category) {
     return <CategoryNotFound />
   }
 
@@ -52,7 +53,6 @@ export default async function SlugPage({
   )
 }
 
-export async function generateStaticParams() {
-  const categories = await getCategories()
-  return categories.map((category) => ({slug: category.id}))
+export function generateStaticParams() {
+  return getMenu('christmas').map((category) => ({slug: category.id}))
 }

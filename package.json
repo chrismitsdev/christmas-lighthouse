@@ -10,18 +10,11 @@
     "lint": "biome check",
     "typecheck": "tsc",
     "email": "email dev",
-    "clean": "rimraf .next node_modules pnpm-lock.yaml",
-    "db:generate": "drizzle-kit generate",
-    "db:migrate": "tsx ./src/db/drizzle/migrate.ts",
-    "db:exec": "tsx ./src/db/drizzle/exec.ts"
+    "clean": "rimraf .next node_modules pnpm-lock.yaml"
   },
   "devDependencies": {
     "@adamscybot/react-leaflet-component-marker": "^2.0.3",
     "@biomejs/biome": "^2.6.9",
-    "@neondatabase/serverless": "^1.2.1",
-    "@node-rs/argon2": "^2.2.2",
-    "@oslojs/crypto": "^1.0.1",
-    "@oslojs/encoding": "^1.1.0",
     "@react-email/ui": "^6.11.16",
     "@tailwindcss/postcss": "^4.3.5",
     "@types/leaflet": "^1.9.22",
@@ -29,11 +22,8 @@
     "@types/react": "^19.3.1",
     "@types/react-dom": "^19.3.0",
     "@vercel/analytics": "^2.0.1",
-    "chalk": "^6.0.1",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
-    "drizzle-kit": "^0.31.11",
-    "drizzle-orm": "^0.45.4",
     "embla-carousel-autoplay": "^8.6.0",
     "embla-carousel-react": "^8.6.0",
     "husky": "^9.1.7",
@@ -54,9 +44,11 @@
     "sonner": "^2.0.8",
     "tailwind-merge": "^3.7.1",
     "tailwindcss": "^4.3.5",
-    "tsx": "^4.23.15",
     "typescript": "^7.0.2",
     "valibot": "^1.5.0"
   },
-  "packageManager": "pnpm@11.22.0"
+  "packageManager": "pnpm@11.22.0",
+  "dependencies": {
+    "@chrismitsdev/menu-data": "github:chrismitsdev/menu-data#v1.0.0"
+  }
 }
