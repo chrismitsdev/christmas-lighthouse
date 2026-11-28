@@ -15,6 +15,7 @@
   "devDependencies": {
     "@adamscybot/react-leaflet-component-marker": "^2.0.3",
     "@biomejs/biome": "^2.6.9",
+    "@chrismitsdev/menu-data": "github:chrismitsdev/menu-data#v1.0.1",
     "@react-email/ui": "^6.11.16",
     "@tailwindcss/postcss": "^4.3.5",
     "@types/leaflet": "^1.9.23",
@@ -47,8 +48,5 @@
     "typescript": "^7.0.2",
     "valibot": "^1.5.0"
   },
-  "packageManager": "pnpm@11.22.0",
-  "dependencies": {
-    "@chrismitsdev/menu-data": "github:chrismitsdev/menu-data#v1.0.1"
-  }
+  "packageManager": "pnpm@11.22.0"
 }
