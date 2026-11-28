@@ -16,9 +16,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     videos: [
       {
-        title: '5th Christmas Charity Parade',
+        title: '2025 Christmas Charity Parade',
         description:
-          'Highlights from the 5th Christmas Charity Parade at the Port of Alexandroupoli.',
+          'Highlights from the 2025 Christmas Charity Parade at the Port of Alexandroupoli.',
         thumbnail_loc: `${siteUrl}/sections/parade/images/parade-poster.webp`,
         content_loc: `${siteUrl}/sections/parade/video/parade-video.mp4`,
         publication_date: '2025-11-30',

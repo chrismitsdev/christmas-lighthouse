@@ -45,18 +45,19 @@
             "description": "Set at the heart of the city’s port, the park transforms the waterfront into a magical Christmas destination.",
             "season": {
               "title": "Operating period",
-              "description": "November 22, 2025 to January 11, 2026"
+              "description": "December 4, 2026 to January 10, 2027"
             },
             "hours": {
               "title": "Opening hours",
               "zone-1": {
-                "date-range": "November 22, 2025 to December 22, 2025",
+                "date-range": "December 4, 2026 to December 23, 2026",
                 "entry-1": "Monday to Friday from 18:00",
-                "entry-2": "Weekends & holidays from 11:00"
+                "entry-2": "Weekends from 11:00"
               },
               "zone-2": {
-                "date-range": "December 23, 2025 to January 6, 2026",
-                "entry-1": "Daily from 11:00"
+                "date-range": "December 24, 2026 to January 10, 2027",
+                "entry-1": "Daily from 11:00",
+                "entry-2": "Exception: on Friday, January 8, 2027 the park opens at 18:00"
               }
             },
             "location": {
@@ -67,16 +68,29 @@
         },
         "parade": {
           "nav-link": "Parade",
-          "section-header": {
-            "title": "5<sup>th</sup> Christmas charity parade",
-            "description": "This year’s beloved holiday celebration brought Alexandroupoli together once again with music, costumes, mascots, and Santa, uniting families in support of children and those in need."
+          "upcoming": {
+            "section-header": {
+              "title": "Christmas parade",
+              "description": "The Christmas parade of the Municipality of Alexandroupoli, in collaboration with The Christmas Lighthouse, marks the opening of the park. Grab your Christmas hat and march with Santa, his elf and all our favourite characters!"
+            },
+            "info-card": {
+              "title": "Friday, December 4, 2026 — 17:30",
+              "subtitle": "The Christmas Lighthouse opens its doors with a Christmas parade!",
+              "description": "Organised by the <axd>Municipality of Alexandroupoli</axd> in collaboration with The Christmas Lighthouse. Joining us: Santa with his elf, Olaf, the Minion, Mickey, Minnie, Pikachu, T-Rex, our living Christmas tree, the Panda, and the Grinch. 3,000 Christmas hats will be handed out at schools — bring yours and come march with us!"
+            }
           },
-          "info-card": {
-            "title": "Sunday, November 30, 2025 — 18:30",
-            "subtitle": "Alexandroupoli’s biggest Christmas parade concluded successfully!",
-            "description": "Held with the support of the <axd>Municipality of Alexandroupoli</axd>, the 5<sup>th</sup> Christmas Charity Parade filled the city streets with festive music, colourful characters, and joyful performances. The celebration continued with the official Christmas tree lighting, fireworks, and a holiday party at the park. Visitors supported the cause through food donations and the purchase of official Christmas accessories, with all proceeds benefiting the <sos>SOS Children’s Villages</sos>."
+          "past": {
+            "section-header": {
+              "title": "Christmas parade",
+              "description": "The Christmas parade of the Municipality of Alexandroupoli, in collaboration with The Christmas Lighthouse, opened this year’s season with Santa, his elf and all our favourite characters."
+            },
+            "info-card": {
+              "title": "Friday, December 4, 2026 — 17:30",
+              "subtitle": "Thank you to everyone who marched with us!",
+              "description": "Organised by the <axd>Municipality of Alexandroupoli</axd> in collaboration with The Christmas Lighthouse, the Christmas parade marked the opening of the park. See you at next year’s parade!"
+            }
           },
-          "video-description": "Watch highlights from the fifth Christmas Charity Parade in Alexandroupoli"
+          "video-description": "Highlights from the 2025 Christmas parade"
         },
         "activities": {
           "nav-link": "Activities",
@@ -89,85 +103,75 @@
             "afternoon": "AFTERNOON"
           },
           "events": {
-            "22/11": {
-              "morning": "The Christmas Lighthouse is here! We’re waiting for you with super surprises!",
-              "afternoon": "Ho! Ho! Ho! Santa is waiting for you with the most beautiful Christmas stories!"
+            "4/12": {
+              "afternoon": "The Christmas Lighthouse opens its doors! At 17:30, the Christmas parade of the Municipality of Alexandroupoli, in collaboration with The Christmas Lighthouse, takes to the streets! Joining us: Santa with his elf, Olaf, the Minion, Mickey, Minnie, Pikachu, T-Rex, our living Christmas tree, the Panda, and the Grinch. 3,000 Christmas hats will be handed out at schools — grab yours and come march with us!"
             },
-            "23/11": {
-              "morning": "Santa’s post office is ready to receive your letters!",
-              "afternoon": "Santa Gallery: Paint together with Santa and decorate his little house with your artwork!"
-            },
-            "29/11": {
-              "morning": "How many gifts can Santa’s sack fit? Guess!",
-              "afternoon": "Quiz games with Santa!"
-            },
-            "30/11": {
-              "morning": "Santa’s elf is waiting for you for Christmas face painting!",
-              "afternoon": "The Christmas Lighthouse parade has become a tradition! Joining us: Santa with his elf, Olaf, the Minion, Mickey, Minnie, Pikachu, T-Rex, our living Christmas tree, the Panda, and the Grinch. Come march with us for a good cause!"
+            "5/12": {
+              "morning": "Quiz time with Santa!",
+              "afternoon": "Who tells the best Christmas stories? Santa, of course!"
             },
             "6/12": {
-              "morning": "Survivor with Santa’s helper",
-              "afternoon": "Fairy tales from around the world, told by Santa"
+              "morning": "Come to the main stage for experiments and games with the elf and Minnie Mouse!",
+              "afternoon": "Elf games on the main stage!"
             },
-            "7/12": {
-              "morning": "Santa lost Rudolph! What do we do now?",
-              "afternoon": "Mascots on stage! Your favorite characters from The Christmas Lighthouse are waiting for you for lots of dancing and games!"
+            "12/12": {
+              "morning": "Rudolph, where are you? Santa is looking for you!",
+              "afternoon": "Santa’s list is waiting at his little house! Make sure you’re on it!"
             },
             "13/12": {
-              "morning": "Experiments with the Candy Fairy!",
-              "afternoon": "Santa Claus in trouble! Will he make it only with your help?"
+              "morning": "Main stage: What on earth is a panda bear doing here?",
+              "afternoon": "Main stage: Come make origami gnomes with the elves!"
             },
-            "14/12": {
-              "morning": "Around the world with Santa Claus!",
-              "afternoon": "Little elves, come join us! The game begins!"
+            "19/12": {
+              "morning": "Travels around the world with Santa!",
+              "afternoon": "Have you written your Christmas wish? Santa can’t wait to read it!"
             },
             "20/12": {
-              "morning": "We make greeting cards together with Santa Claus!",
-              "afternoon": "Santa, can you teach me how to climb chimneys like you?"
+              "morning": "A Pokémon in our park! Where has it been hiding all this time?",
+              "afternoon": "Santa, how do you get down the chimneys? Will you tell us the secret?"
             },
-            "21/12": {
-              "morning": "Little Mrs. Claus is preparing super races! Who will be the winner?",
-              "afternoon": "Make a wish with a teddy bear for a good cause! Get your teddy from the ticket booth and come to the ice rink for an awesome disco party with all our favorite mascots! Take photos and dance with them! All proceeds will be donated to the Pediatric Surgery & Pediatrics Clinic of Alexandroupoli."
+            "23/12": {
+              "afternoon": "Christmas carol rehearsal with Santa!"
             },
             "24/12": {
-              "morning": "Santa, Santa — are you here?",
-              "afternoon": "Mickey Mouse put on his holiday outfit and is waiting to give lots of hugs!"
+              "morning": "The reindeer are struggling to pull the sleigh full of gifts… Can you help Santa?",
+              "afternoon": "The Grinch is going to “steal” Christmas! Or is he?"
             },
             "25/12": {
-              "morning": "The Grinch is coming to “steal” Christmas!",
-              "afternoon": "Christmas elf relay race!"
+              "morning": "A very, very tall little angel is coming to The Christmas Lighthouse!",
+              "afternoon": "Games and lots of dancing with our little elf!"
             },
             "26/12": {
-              "morning": "A living Christmas tree dancing to festive beats!",
-              "afternoon": "Treasure hunt with our elf!"
+              "morning": "Treasure hunt with elf riddles!",
+              "afternoon": "Dear Santa, tell us the story of Christmas!"
             },
             "27/12": {
-              "morning": "Memory game with Minnie Mouse!",
-              "afternoon": "The head elf is organizing the… Christmas Exathlon! Join in!"
+              "morning": "Christmas game on the main stage with our elf!",
+              "afternoon": "Dear Santa, this year I want…"
             },
             "28/12": {
-              "morning": "Pikachu, our favorite Pokémon, comes to The Christmas Lighthouse for new adventures!",
-              "afternoon": "Lots of games and dancing with our little elf!"
+              "morning": "A Minion took our bananas! What’s going on here?",
+              "afternoon": "Main stage: Elf science… Join the elves’ workshop!"
             },
             "29/12": {
-              "morning": "A fluffy panda turns The Christmas Lighthouse upside down!",
-              "afternoon": "We make origami with the elves!"
+              "morning": "Where did the goblins hide our toys? Help the elves!",
+              "afternoon": "Candy cane challenge: Join the elves’ game!"
             },
             "30/12": {
-              "morning": "What’s yellow and wears blue clothes? Our favorite Minion, of course!",
-              "afternoon": "A little angel visits The Christmas Lighthouse!"
+              "morning": "Elves vs. goblins: Which team will win?",
+              "afternoon": "Olaf is coming to The Christmas Lighthouse!"
             },
             "31/12": {
-              "morning": "Santa has a lot of work! Will he manage to deliver all the gifts to our little friends?",
-              "afternoon": "The elves’ list is ready! Will you be on the naughty list or the nice list?"
+              "morning": "Santa is putting the finishing touches on our gifts!",
+              "afternoon": "Elf mix-ups before the New Year!"
             },
             "1/1": {
-              "morning": "Happy New Year from The Christmas Lighthouse! Santa Claus is waiting to wish you a wonderful new year!",
-              "afternoon": "New Year’s stories that only Santa Claus knows how to tell!"
+              "morning": "Happy New Year from The Christmas Lighthouse! Come have a great time with us!",
+              "afternoon": "Did Santa manage to deliver all the gifts after all?"
             },
             "2/1": {
-              "morning": "Santa Claus is getting ready for the North Pole!",
-              "afternoon": "Reindeer, sleigh, bells — check! Have a good trip, Santa!"
+              "morning": "Santa is leaving for the North Pole soon!",
+              "afternoon": "Have a good trip, Santa! See you next year!"
             }
           }
         },
